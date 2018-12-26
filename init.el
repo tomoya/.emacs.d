@@ -20,6 +20,9 @@
      (left . 0)
      (left-fringe . 0)))
  '(menu-bar-mode nil)
+ '(package-archives
+   '(("melpa" . "https://melpa.org/packages/")
+     ("gnu" . "https://elpa.gnu.org/packages/")))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tab-width 4)
