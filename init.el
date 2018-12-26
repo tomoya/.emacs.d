@@ -8,6 +8,9 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
+ '(custom-enabled-themes '(spacemacs-dark))
+ '(custom-safe-themes
+   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
  '(global-whitespace-mode t)
