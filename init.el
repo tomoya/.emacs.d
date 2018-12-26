@@ -29,3 +29,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(defun my-before-save-hooks ()
+  "My before save hooks"
+  (delete-trailing-whitespace))
+
+
+(add-hook 'before-save-hook 'my-before-save-hooks)
