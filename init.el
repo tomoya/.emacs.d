@@ -11,6 +11,7 @@
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+ '(diff-hl-flydiff-mode t)
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
  '(global-hl-line-mode t)
@@ -27,6 +28,7 @@
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
+ '(package-selected-packages '(diff-hl spacemacs-theme))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tab-width 4)
