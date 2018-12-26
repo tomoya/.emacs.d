@@ -13,6 +13,7 @@
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
+ '(global-hl-line-mode t)
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
