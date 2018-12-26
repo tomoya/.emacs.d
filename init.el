@@ -8,9 +8,20 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
+ '(find-file-visit-truename t)
+ '(global-auto-revert-mode t)
+ '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
+ '(initial-frame-alist
+   '((width . 272)
+     (height . 82)
+     (top . 0)
+     (left . 0)
+     (left-fringe . 0)))
  '(menu-bar-mode nil)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(tab-width 4)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
