@@ -10,6 +10,7 @@
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
+ '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist
@@ -22,7 +23,18 @@
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tab-width 4)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(whitespace-display-mappings
+   '((space-mark 12288
+                 [9633])
+     (newline-mark 10
+                   [182 10])
+     (tab-mark 9
+               [187 9]
+               [92 9])))
+ '(whitespace-space-regexp "\\(　+\\)")
+ '(whitespace-style
+   '(face trailing tabs spaces lines newline empty indentation big-indent space-after-tab space-before-tab space-mark tab-mark newline-mark)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
