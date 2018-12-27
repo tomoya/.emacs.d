@@ -31,6 +31,8 @@
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages '(diff-hl spacemacs-theme))
+ '(recentf-max-saved-items 100000)
+ '(recentf-mode t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tab-width 4)
