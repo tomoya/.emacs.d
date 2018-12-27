@@ -12,8 +12,10 @@
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(diff-hl-flydiff-mode t)
+ '(diff-hl-margin-mode t)
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
+ '(global-diff-hl-mode t)
  '(global-hl-line-mode t)
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
