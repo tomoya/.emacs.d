@@ -18,10 +18,13 @@
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
  '(company-auto-complete t)
+ '(company-dabbrev-code-ignore-case t)
  '(company-flx-mode t)
  '(company-global-modes t)
- '(company-idle-delay 0.2)
- '(company-tooltip-idle-delay 0.3)
+ '(company-idle-delay 0)
+ '(company-minimum-prefix-length 2)
+ '(company-tooltip-align-annotations t)
+ '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
