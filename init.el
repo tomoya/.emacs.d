@@ -66,6 +66,7 @@
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
  '(skk-user-directory "~/.emacs.d/ddskk/")
+ '(smartparens-global-mode t)
  '(split-height-threshold nil)
  '(tab-width 4)
  '(tide-always-show-documentation t)
