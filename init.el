@@ -8,6 +8,11 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
+ '(company-auto-complete t)
+ '(company-global-modes t)
+ '(company-idle-delay 0.2)
+ '(company-tooltip-idle-delay 0.3)
+ '(company-tooltip-limit 20)
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
@@ -15,6 +20,7 @@
  '(diff-hl-margin-mode t)
  '(find-file-visit-truename t)
  '(global-auto-revert-mode t)
+ '(global-company-mode t)
  '(global-diff-hl-mode t)
  '(global-hl-line-mode t)
  '(global-whitespace-mode t)
@@ -67,6 +73,9 @@
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
 (define-key global-map (kbd "M-g s") 'magit-status)
+(define-key company-active-map [tab] 'company-complete-selection)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
 
 ;; Helm
 (helm-descbinds-mode)
