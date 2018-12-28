@@ -86,6 +86,8 @@
 (define-key global-map (kbd "s-t") 'helm-for-files)
 (define-key global-map (kbd "s-p") 'helm-ghq)
 (define-key global-map (kbd "M-g s") 'magit-status)
+(define-key global-map (kbd "M-g a") 'magit-stage-file)
+(define-key global-map (kbd "M-g c") 'magit-commit)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
