@@ -32,6 +32,7 @@
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-diff-hl-mode t)
+ '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(global-whitespace-mode t)
  '(helm-for-files-preferred-list
