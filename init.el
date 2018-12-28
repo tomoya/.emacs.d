@@ -82,6 +82,7 @@
   (delete-trailing-whitespace))
 
 (add-hook 'before-save-hook 'my-before-save-hooks)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
