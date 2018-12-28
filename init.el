@@ -32,7 +32,7 @@
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+   '(company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
  '(scroll-bar-mode nil)
