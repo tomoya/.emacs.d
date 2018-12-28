@@ -84,6 +84,7 @@
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
+(define-key global-map (kbd "s-p") 'helm-ghq)
 (define-key global-map (kbd "M-g s") 'magit-status)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
