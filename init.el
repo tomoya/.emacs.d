@@ -96,6 +96,8 @@
 (define-key global-map (kbd "M-g a") 'magit-stage-file)
 (define-key global-map (kbd "M-g c") 'magit-commit-create)
 (define-key global-map (kbd "C-x C-j") 'skk-mode)
+(define-key global-map (kbd "s-w") 'kill-this-buffer)
+(define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
