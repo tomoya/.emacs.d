@@ -19,6 +19,8 @@
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
  '(company-auto-complete t)
  '(company-dabbrev-code-ignore-case t)
+ '(company-dabbrev-code-modes
+   '(prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode typescript-mode))
  '(company-flx-mode t)
  '(company-global-modes t)
  '(company-idle-delay 0)
@@ -66,7 +68,10 @@
  '(skk-user-directory "~/.emacs.d/ddskk/")
  '(split-height-threshold nil)
  '(tab-width 4)
+ '(tide-always-show-documentation t)
+ '(tide-completion-ignore-case t)
  '(tool-bar-mode nil)
+ '(typescript-indent-level 2)
  '(whitespace-display-mappings
    '((space-mark 12288
                  [9633])
@@ -91,6 +96,16 @@
 
 (add-hook 'before-save-hook 'my-before-save-hooks)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+;; TypeScript/Tide
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1))
+
+;; formats the buffer before saving
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
