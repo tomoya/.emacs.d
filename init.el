@@ -29,11 +29,13 @@
  '(diff-hl-flydiff-mode t)
  '(diff-hl-margin-mode t)
  '(find-file-visit-truename t)
+ '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-diff-hl-mode t)
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
+ '(global-visual-line-mode t)
  '(global-whitespace-mode t)
  '(helm-for-files-preferred-list
    '(helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-projectile-projects helm-source-files-in-current-dir))
