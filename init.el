@@ -60,3 +60,6 @@
   (delete-trailing-whitespace))
 
 (add-hook 'before-save-hook 'my-before-save-hooks)
+
+;; Key bindings
+(define-key global-map (kbd "s-t") 'helm-for-files)
