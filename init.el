@@ -59,5 +59,4 @@
   "My before save hooks"
   (delete-trailing-whitespace))
 
-
 (add-hook 'before-save-hook 'my-before-save-hooks)
