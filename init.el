@@ -18,6 +18,7 @@
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
  '(company-auto-complete t)
+ '(company-flx-mode t)
  '(company-global-modes t)
  '(company-idle-delay 0.2)
  '(company-tooltip-idle-delay 0.3)
