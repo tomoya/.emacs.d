@@ -30,7 +30,7 @@
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
- '(package-selected-packages '(helm diff-hl spacemacs-theme))
+ '(package-selected-packages '(helm-descbinds helm diff-hl spacemacs-theme))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
  '(scroll-bar-mode nil)
@@ -63,3 +63,6 @@
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
+
+;; Helm
+(helm-descbinds-mode)
