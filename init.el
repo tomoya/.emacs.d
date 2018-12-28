@@ -8,6 +8,8 @@
 (defvar user-backup-directory (locate-user-emacs-file "backups")
   "This variable is define backup directory for users")
 
+(require 'helm-projectile nil t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,6 +33,8 @@
  '(global-diff-hl-mode t)
  '(global-hl-line-mode t)
  '(global-whitespace-mode t)
+ '(helm-for-files-preferred-list
+   '(helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-projectile-projects helm-source-files-in-current-dir))
  '(helm-split-window-preferred-function 'split-window-sensibly)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -46,6 +50,7 @@
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
    '(helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+ '(projectile-mode t nil (projectile))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
  '(scroll-bar-mode nil)
