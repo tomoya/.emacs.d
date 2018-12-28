@@ -94,7 +94,7 @@
 (define-key global-map (kbd "s-p") 'helm-ghq)
 (define-key global-map (kbd "M-g s") 'magit-status)
 (define-key global-map (kbd "M-g a") 'magit-stage-file)
-(define-key global-map (kbd "M-g c") 'magit-commit)
+(define-key global-map (kbd "M-g c") 'magit-commit-create)
 (define-key global-map (kbd "C-x C-j") 'skk-mode)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
