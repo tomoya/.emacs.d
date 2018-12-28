@@ -18,6 +18,7 @@
  '(global-diff-hl-mode t)
  '(global-hl-line-mode t)
  '(global-whitespace-mode t)
+ '(helm-split-window-preferred-function 'split-window-sensibly)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist
@@ -35,6 +36,7 @@
  '(recentf-mode t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(split-height-threshold nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(whitespace-display-mappings
