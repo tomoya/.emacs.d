@@ -63,6 +63,7 @@
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
+(define-key global-map (kbd "M-g s") 'magit-status)
 
 ;; Helm
 (helm-descbinds-mode)
