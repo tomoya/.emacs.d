@@ -7,7 +7,7 @@
       do (add-to-list 'exec-path x))
 
 (defvar user-backup-directory (locate-user-emacs-file "backups")
-  "This variable is define backup directory for users")
+  "This variable is define backup directory for users.")
 
 (require 'helm-projectile nil t)
 
@@ -93,7 +93,7 @@
  )
 
 (defun my-before-save-hooks ()
-  "My before save hooks"
+  "My before save hooks."
   (delete-trailing-whitespace))
 
 (add-hook 'before-save-hook 'my-before-save-hooks)
@@ -101,6 +101,7 @@
 
 ;; TypeScript/Tide
 (defun setup-tide-mode ()
+  "Setqup function for tide-mode."
   (interactive)
   (tide-setup)
   (eldoc-mode +1)
@@ -109,7 +110,7 @@
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 (defun my-use-local-lint ()
-  "Use local lint if exist it"
+  "Use local lint if exist it."
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory) "node_modules"))
          (eslint (and root (expand-file-name "node_modules/.bin/eslint" root)))
