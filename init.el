@@ -92,6 +92,20 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Key bindings
+(define-key global-map (kbd "s-t") 'helm-for-files)
+(define-key global-map (kbd "s-p") 'helm-ghq)
+(define-key global-map (kbd "M-g s") 'magit-status)
+(define-key global-map (kbd "M-g a") 'magit-stage-file)
+(define-key global-map (kbd "M-g c") 'magit-commit-create)
+(define-key global-map (kbd "C-x C-j") 'skk-mode)
+(define-key global-map (kbd "s-w") 'kill-this-buffer)
+(define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
+(define-key company-active-map [tab] 'company-complete-selection)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+
+;; Remove trailing whitespace when save file
 (defun my-before-save-hooks ()
   "My before save hooks."
   (delete-trailing-whitespace))
@@ -121,19 +135,6 @@
       (setq-local flycheck-typescript-tslint-executable tslint))))
 
 (add-hook 'flycheck-mode-hook #'my-use-local-lint)
-
-;; Key bindings
-(define-key global-map (kbd "s-t") 'helm-for-files)
-(define-key global-map (kbd "s-p") 'helm-ghq)
-(define-key global-map (kbd "M-g s") 'magit-status)
-(define-key global-map (kbd "M-g a") 'magit-stage-file)
-(define-key global-map (kbd "M-g c") 'magit-commit-create)
-(define-key global-map (kbd "C-x C-j") 'skk-mode)
-(define-key global-map (kbd "s-w") 'kill-this-buffer)
-(define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
-(define-key company-active-map [tab] 'company-complete-selection)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
 
 ;; Helm
 (helm-descbinds-mode)
