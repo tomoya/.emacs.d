@@ -106,7 +106,6 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1))
 
-;; formats the buffer before saving
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 ;; Key bindings
