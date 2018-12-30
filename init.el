@@ -154,6 +154,8 @@ if you want to switch to previous buffer, set first argument non-nil."
 (define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
 (define-key global-map (kbd "<M-s-right>") 'next-code-buffer)
 (define-key global-map (kbd "<M-s-left>") 'previous-code-buffer)
+(define-key global-map (kbd "C-/") 'undo-tree-undo)
+(define-key global-map (kbd "C-'") 'undo-tree-redo)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
@@ -194,3 +196,6 @@ if you want to switch to previous buffer, set first argument non-nil."
 
 ;; Helm
 (helm-descbinds-mode)
+
+;; undo-tree
+(global-undo-tree-mode)
