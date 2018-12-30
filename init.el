@@ -94,25 +94,31 @@
 
 (defvar ignore-buffer-regex "^\\(\*\\|magit-\\)")
 
-(defun next-code-buffer ()
+(defun switch-code-buffer (&optional previous)
+  "Switch buffer ignore no code buffers.
+if you want to switch to previous buffer, set first argument non-nil."
   (interactive)
-  (let (( bread-crumb (buffer-name) ))
-    (next-buffer)
+  (let* ((previous (or previous nil))
+         (bread-crumb (buffer-name)))
+    (message "%s" previous)
+    (or (and previous (previous-buffer))
+        (next-buffer))
     (while
         (and
          (string-match-p ignore-buffer-regex (buffer-name))
          (not ( equal bread-crumb (buffer-name) )) )
-      (next-buffer))))
+    (or (and previous (previous-buffer))
+        (next-buffer)))))
+
+(defun next-code-buffer ()
+  "Switch next buffer ignore no code buffer."
+  (interactive)
+  (switch-code-buffer))
 
 (defun previous-code-buffer ()
+  "Switch previous buffer ignore no code buffer."
   (interactive)
-  (let (( bread-crumb (buffer-name) ))
-    (previous-buffer)
-    (while
-        (and
-         (string-match-p ignore-buffer-regex (buffer-name))
-         (not ( equal bread-crumb (buffer-name) )) )
-      (previous-buffer))))
+  (switch-code-buffer t))
 
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
