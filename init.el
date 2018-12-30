@@ -92,7 +92,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(defvar ignore-buffer-regex "^\\(\*\\|magit-\\)")
+(defvar ignore-buffer-regex "^\\(\*\\|magit.+:\\)")
 
 (defun switch-code-buffer (&optional previous)
   "Switch buffer ignore no code buffers.
