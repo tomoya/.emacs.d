@@ -105,6 +105,9 @@
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
+;; Setup windmove keybindings
+(windmove-default-keybindings 'super)
+
 ;; Remove trailing whitespace when save file
 (defun my-before-save-hooks ()
   "My before save hooks."
