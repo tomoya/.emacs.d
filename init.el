@@ -92,6 +92,28 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; font
+;; AsciiフォントをMenloに
+(set-face-attribute 'default nil
+                    :family "Menlo"
+                    :height 140)
+
+;; 日本語フォントをNoto Serif CJK JPに
+(set-fontset-font
+ nil 'japanese-jisx0208
+(font-spec :family "Noto Serif CJK JP"))
+
+;; ひらがなとカタカナをNoto Sans CJK JPに
+;; U+3000-303F  CJKの記号および句読点
+;; U+3040-309F  ひらがな
+;; U+30A0-30FF  カタカナ
+(set-fontset-font
+ nil '(#x3040 . #x30ff)
+ (font-spec :family "Noto Sans CJK JP"))
+
+;; Notoフォントの横幅を調整
+(add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
+
 (defvar ignore-buffer-regex "^\\(\*\\|magit.+:\\)"
   "Ignore switch-code-buffer() regex.")
 
