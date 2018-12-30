@@ -92,6 +92,28 @@
  ;; If there is more than one, they won't work right.
  )
 
+(defvar ignore-buffer-regex "^\\(\*\\|magit-\\)")
+
+(defun next-code-buffer ()
+  (interactive)
+  (let (( bread-crumb (buffer-name) ))
+    (next-buffer)
+    (while
+        (and
+         (string-match-p ignore-buffer-regex (buffer-name))
+         (not ( equal bread-crumb (buffer-name) )) )
+      (next-buffer))))
+
+(defun previous-code-buffer ()
+  (interactive)
+  (let (( bread-crumb (buffer-name) ))
+    (previous-buffer)
+    (while
+        (and
+         (string-match-p ignore-buffer-regex (buffer-name))
+         (not ( equal bread-crumb (buffer-name) )) )
+      (previous-buffer))))
+
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
 (define-key global-map (kbd "s-p") 'helm-ghq)
@@ -101,8 +123,8 @@
 (define-key global-map (kbd "C-x C-j") 'skk-mode)
 (define-key global-map (kbd "s-w") 'kill-this-buffer)
 (define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
-(define-key global-map (kbd "<M-s-right>") 'next-buffer)
-(define-key global-map (kbd "<M-s-left>") 'previous-buffer)
+(define-key global-map (kbd "<M-s-right>") 'next-code-buffer)
+(define-key global-map (kbd "<M-s-left>") 'previous-code-buffer)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
