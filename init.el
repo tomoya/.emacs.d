@@ -143,12 +143,22 @@ if you want to switch to previous buffer, set first argument non-nil."
   (interactive)
   (switch-code-buffer t))
 
+(defun checkout-head-revision ()
+  "Checkout HEAD revision on current buffer."
+  (interactive)
+  (or (and (buffer-file-name)
+           (vc-git-checkout (buffer-file-name) "HEAD")
+           (message "File reverted: %s" (buffer-file-name)))
+      (message "Can not revert. Because this buffer is not a file.")))
+
 ;; Key bindings
 (define-key global-map (kbd "s-t") 'helm-for-files)
 (define-key global-map (kbd "s-p") 'helm-ghq)
 (define-key global-map (kbd "M-g s") 'magit-status)
 (define-key global-map (kbd "M-g a") 'magit-stage-file)
 (define-key global-map (kbd "M-g c") 'magit-commit-create)
+(define-key global-map (kbd "M-g d") 'magit-diff-buffer-file)
+(define-key global-map (kbd "M-s-z") 'checkout-head-revision)
 (define-key global-map (kbd "C-x C-j") 'skk-mode)
 (define-key global-map (kbd "s-w") 'kill-this-buffer)
 (define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
