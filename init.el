@@ -50,8 +50,8 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist
-   '((width . 272)
-     (height . 82)
+   '((width . 238)
+     (height . 72)
      (top . 0)
      (left . 0)
      (left-fringe . 0)))
