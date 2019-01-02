@@ -9,6 +9,7 @@
 (defvar user-backup-directory (locate-user-emacs-file "backups")
   "This variable is define backup directory for users.")
 
+;; Used by custom-set-variables
 (require 'helm-projectile nil t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
