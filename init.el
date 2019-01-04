@@ -1,3 +1,6 @@
+;;; init.el --- Initialization file for Emacs
+;;; Commentary: Emacs Startup File --- initialization for Emacs
+
 (require 'cl-lib)
 
 ;; Set PATH env and exec-path from $PATH
@@ -245,3 +248,5 @@ point reaches the beginning or end of the buffer, stop there."
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
+
+;;; init.el ends here
