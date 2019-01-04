@@ -231,6 +231,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
+(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'helm-for-files)
 (global-set-key (kbd "s-p") 'helm-ghq)
 (global-set-key (kbd "M-g s") 'magit-status)
