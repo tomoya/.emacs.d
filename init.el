@@ -186,26 +186,6 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
-;; Key bindings
-(global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
-(define-key global-map (kbd "s-t") 'helm-for-files)
-(define-key global-map (kbd "s-p") 'helm-ghq)
-(define-key global-map (kbd "M-g s") 'magit-status)
-(define-key global-map (kbd "M-g a") 'magit-stage-file)
-(define-key global-map (kbd "M-g c") 'magit-commit-create)
-(define-key global-map (kbd "M-g d") 'magit-diff-buffer-file)
-(define-key global-map (kbd "M-s-z") 'checkout-head-revision)
-(define-key global-map (kbd "C-x C-j") 'skk-mode)
-(define-key global-map (kbd "s-w") 'kill-this-buffer)
-(define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
-(define-key global-map (kbd "<M-s-right>") 'next-code-buffer)
-(define-key global-map (kbd "<M-s-left>") 'previous-code-buffer)
-(define-key global-map (kbd "C-/") 'undo-tree-undo)
-(define-key global-map (kbd "C-'") 'undo-tree-redo)
-(define-key company-active-map [tab] 'company-complete-selection)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-
 ;; Setup windmove keybindings
 (windmove-default-keybindings 'super)
 
@@ -245,3 +225,23 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; undo-tree
 (global-undo-tree-mode)
+
+;; Key bindings
+(global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
+(define-key global-map (kbd "s-t") 'helm-for-files)
+(define-key global-map (kbd "s-p") 'helm-ghq)
+(define-key global-map (kbd "M-g s") 'magit-status)
+(define-key global-map (kbd "M-g a") 'magit-stage-file)
+(define-key global-map (kbd "M-g c") 'magit-commit-create)
+(define-key global-map (kbd "M-g d") 'magit-diff-buffer-file)
+(define-key global-map (kbd "M-s-z") 'checkout-head-revision)
+(define-key global-map (kbd "C-x C-j") 'skk-mode)
+(define-key global-map (kbd "s-w") 'kill-this-buffer)
+(define-key global-map (kbd "s-T") 'recentf-open-most-recent-file)
+(define-key global-map (kbd "<M-s-right>") 'next-code-buffer)
+(define-key global-map (kbd "<M-s-left>") 'previous-code-buffer)
+(define-key global-map (kbd "C-/") 'undo-tree-undo)
+(define-key global-map (kbd "C-'") 'undo-tree-redo)
+(define-key company-active-map [tab] 'company-complete-selection)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
