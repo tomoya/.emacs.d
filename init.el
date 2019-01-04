@@ -63,6 +63,7 @@
      (top . 0)
      (left . 0)
      (left-fringe . 0)))
+ '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
