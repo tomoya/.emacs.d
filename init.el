@@ -201,6 +201,19 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'before-save-hook 'my-before-save-hooks)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
+;; tslint auto fix
+(defun tslint-fix ()
+  "Fix current file using tslint."
+  (interactive)
+  (or (and flycheck-typescript-tslint-executable
+           (shell-command (concat flycheck-typescript-tslint-executable " --fix " (buffer-file-name)))
+           (message "File fixed: %s" (buffer-file-name)))
+      (message "Can not fix this file")))
+
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook #'tslint-fix nil 'local)))
+
 ;; TypeScript/Tide
 (defun setup-tide-mode ()
   "Setqup function for tide-mode."
