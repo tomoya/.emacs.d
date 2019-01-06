@@ -201,14 +201,30 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'before-save-hook 'my-before-save-hooks)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
-;; tslint auto fix
+;; auto fix
+(defun auto-fix (executable &optional fix-option)
+  "Fix current file using EXECUTABLE.
+default FIX-OPTION is `--fix`."
+  (interactive)
+  (let* ((fix-option (or fix-option "--fix")))
+    (or (and executable
+             (shell-command (concat executable " " fix-option  " " (buffer-file-name)))
+             (message "File fixed: %s" (buffer-file-name)))
+        (message "Can not fix this file"))))
+
+(defun eslint-fix ()
+  "Fix current file using eslint."
+  (interactive)
+  (auto-fix flycheck-javascript-eslint-executable))
+
 (defun tslint-fix ()
   "Fix current file using tslint."
   (interactive)
-  (or (and flycheck-typescript-tslint-executable
-           (shell-command (concat flycheck-typescript-tslint-executable " --fix " (buffer-file-name)))
-           (message "File fixed: %s" (buffer-file-name)))
-      (message "Can not fix this file")))
+  (auto-fix flycheck-typescript-tslint-executable))
+
+(add-hook 'js-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook #'eslint-fix nil 'local)))
 
 (add-hook 'typescript-mode-hook
           (lambda ()
