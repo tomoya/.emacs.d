@@ -27,7 +27,7 @@
  '(auto-revert-interval 1)
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
- '(company-auto-complete t)
+ '(company-auto-complete 'ignore)
  '(company-dabbrev-code-ignore-case t)
  '(company-dabbrev-code-modes
    '(prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode typescript-mode))
