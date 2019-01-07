@@ -43,6 +43,7 @@
    '("c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(diff-hl-flydiff-mode t)
  '(diff-hl-margin-mode t)
+ '(direnv-mode t nil (direnv))
  '(find-file-visit-truename t)
  '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
