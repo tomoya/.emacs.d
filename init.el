@@ -246,6 +246,14 @@ default FIX-OPTION is `--fix`."
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
+;; TSX using web-mode
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(flycheck-add-mode 'typescript-tslint 'web-mode)
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+
 (defun my-use-local-lint ()
   "Use local lint if exist it."
   (let* ((root (locate-dominating-file
