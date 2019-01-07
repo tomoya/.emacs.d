@@ -85,6 +85,11 @@
  '(tide-completion-ignore-case t)
  '(tool-bar-mode nil)
  '(typescript-indent-level 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-enable-comment-interpolation t)
+ '(web-mode-enable-current-column-highlight t)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-markup-indent-offset 2)
  '(whitespace-display-mappings
    '((space-mark 12288
                  [9633])
