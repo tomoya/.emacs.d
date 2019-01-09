@@ -274,7 +274,15 @@ default FIX-OPTION is `--fix`."
 
 ;; lsp-mode
 (add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'ts-web-mode-hook #'lsp)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(with-eval-after-load 'lsp-clients
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection 'lsp-typescript--ls-command)
+                    :major-modes '(typescript-mode js-mode js2-mode rjsx-mode ts-web-mode)
+                    :priority -1
+                    :ignore-messages '("readFile .*? requested by TypeScript but content not available")
+                    :server-id 'ts-ls)))
 
 ;; Helm
 (helm-descbinds-mode)
