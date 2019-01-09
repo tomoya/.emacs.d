@@ -299,4 +299,7 @@ default FIX-OPTION is `--fix`."
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
+;; Command protection
+(put 'narrow-to-region 'disabled nil)
+
 ;;; init.el ends here
