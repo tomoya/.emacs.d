@@ -236,10 +236,9 @@ default FIX-OPTION is `--fix`."
           (lambda ()
             (add-hook 'after-save-hook #'tslint-fix nil 'local)))
 
-(add-hook 'web-mode-hook
+(add-hook 'ts-web-mode-hook
           (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (add-hook 'after-save-hook #'tslint-fix nil 'local))))
+            (add-hook 'after-save-hook #'tslint-fix nil 'local)))
 
 ;; TypeScript/Tide
 (defun setup-tide-mode ()
@@ -251,13 +250,14 @@ default FIX-OPTION is `--fix`."
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
-;; TSX using web-mode
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(flycheck-add-mode 'typescript-tslint 'web-mode)
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
+;; ts-web-mode derrived from web-mode
+(define-derived-mode ts-web-mode web-mode "TS-Web"
+  (setq-local web-mode-content-type "jsx"))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . ts-web-mode))
+
+;; TSX using ts-web-mode
+(flycheck-add-mode 'typescript-tslint 'ts-web-mode)
+(add-hook 'ts-web-mode-hook #'setup-tide-mode)
 
 (defun my-use-local-lint ()
   "Use local lint if exist it."
