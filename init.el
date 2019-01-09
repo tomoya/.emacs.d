@@ -272,6 +272,10 @@ default FIX-OPTION is `--fix`."
 
 (add-hook 'flycheck-mode-hook #'my-use-local-lint)
 
+;; lsp-mode
+(add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
 ;; Helm
 (helm-descbinds-mode)
 
