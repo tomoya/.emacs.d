@@ -283,6 +283,7 @@ default FIX-OPTION is `--fix`."
                     :priority -1
                     :ignore-messages '("readFile .*? requested by TypeScript but content not available")
                     :server-id 'ts-ls)))
+(push 'company-lsp company-backends)
 
 ;; Helm
 (helm-descbinds-mode)
