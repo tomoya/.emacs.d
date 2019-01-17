@@ -291,6 +291,17 @@ default FIX-OPTION is `--fix`."
 ;; undo-tree
 (global-undo-tree-mode)
 
+;; emacs-revision
+(defun emacs-revision (&optional here)
+  "Return string the version of Emacs Git Revision that is running.
+If optional argument HERE is non-nil, insert string at point."
+  (interactive "P")
+  (if here
+      (insert emacs-repository-version)
+    (if (called-interactively-p 'interactive)
+        (message "%s" emacs-repository-version)
+      emacs-repository-version)))
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
