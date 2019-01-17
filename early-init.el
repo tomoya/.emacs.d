@@ -17,4 +17,13 @@
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 
+;; font
+;; AsciiフォントをMenloに
+(set-face-attribute 'default nil
+                    :family "Menlo"
+                    :height 140)
+
+;; Notoフォントの横幅を調整
+(add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
+
 (message "Done early initialization")

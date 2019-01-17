@@ -113,11 +113,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; font
-;; AsciiフォントをMenloに
-(set-face-attribute 'default nil
-                    :family "Menlo"
-                    :height 140)
-
+;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
 ;; 日本語フォントをNoto Serif CJK JPに
 (set-fontset-font
  nil 'japanese-jisx0208
@@ -130,9 +126,6 @@
 (set-fontset-font
  nil '(#x3040 . #x30ff)
  (font-spec :family "Noto Sans CJK JP"))
-
-;; Notoフォントの横幅を調整
-(add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
 
 (defvar ignore-buffer-regex "^\\(\*\\|magit.+:\\)"
   "Ignore switch-code-buffer() regex.")
