@@ -31,6 +31,7 @@
  '(company-dabbrev-code-ignore-case t)
  '(company-dabbrev-code-modes
    '(prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode typescript-mode))
+ '(company-emoji-insert-unicode nil)
  '(company-flx-mode t)
  '(company-global-modes t)
  '(company-idle-delay 0)
@@ -276,6 +277,9 @@ default FIX-OPTION is `--fix`."
                     :priority -1
                     :ignore-messages '("readFile .*? requested by TypeScript but content not available")
                     :server-id 'ts-ls)))
+
+;; company
+(push 'company-emoji company-backends)
 (push 'company-lsp company-backends)
 
 ;; Helm
