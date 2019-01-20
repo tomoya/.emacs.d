@@ -208,6 +208,14 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'ts-web-mode-hook #'auto-fix-mode)
 (add-hook 'typescript-mode-hook #'auto-fix-mode)
 
+;; ruby-mode
+(defun setup-auto-fix-rubocop ()
+  (setq-local auto-fix-command "rubocop")
+  (setq-local auto-fix-option "-a")
+  (auto-fix-mode +1))
+
+(add-hook 'ruby-mode-hook #'setup-auto-fix-rubocop)
+
 ;; TypeScript/Tide
 (defun setup-tide-mode ()
   "Setqup function for tide-mode."
