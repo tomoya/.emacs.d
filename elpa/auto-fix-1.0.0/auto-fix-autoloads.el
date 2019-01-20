@@ -7,7 +7,7 @@
 
 
 ;;;### (autoloads nil "auto-fix" "../../../../../../../.emacs.d/elpa/auto-fix-1.0.0/auto-fix.el"
-;;;;;;  "94732ec05e9be471091f4691b2bea834")
+;;;;;;  "cb29c02c05456a4c62845702a71f33b1")
 ;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/auto-fix-1.0.0/auto-fix.el
 
 (autoload 'auto-fix-mode "auto-fix" "\

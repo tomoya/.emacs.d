@@ -65,6 +65,23 @@
 ;;
 ;; This package is a minor mode to fix current buffer automatically.
 ;;
+;;
+;; Variables
+;; ---------
+;;
+;; This package have 2 important buffer local variables.
+;; Please let you set using the hook.
+;;
+;; * `auto-fix-command'
+;;
+;; This is the command to fix code.
+;; Default value is `nil`.
+;;
+;; * `auto-fix-option'
+;;
+;; This is the option string to fix for the command.
+;; Default value is `--fix`.
+;;
 ;; Setup
 ;; -----
 ;;
@@ -110,6 +127,9 @@ a `before-save-hook'."
   "Hook called by `auto-fix-mode'."
   :type 'hook
   :group 'auto-fix)
+
+(defvar-local auto-fix-temp-file-prefix "auto_fix_"
+  "Temp file name prefix.")
 
 (defvar-local auto-fix-command nil
   "Set auto-fix command.")
@@ -195,10 +215,10 @@ arguments can be set as a list via ‘auto-fix-option`."
 
 (defun auto-fix--make-temp-file ()
   "Create temporary file at same directory for creating patch."
-  (let ((temporary-file-directory default-directory)
-        (prefix "auto-fix-")
+  (let ((basename (file-name-base buffer-file-name))
         (suffix (concat "." (file-name-extension buffer-file-name))))
-    (make-temp-file prefix nil suffix)))
+    (make-empty-file (concat auto-fix-temp-file-prefix basename suffix)) ; return nil
+    (concat default-directory auto-fix-temp-file-prefix basename suffix)))
 
 (defun auto-fix--delete-whole-line (&optional arg)
   "Delete the current line without putting it in the `kill-ring'.
