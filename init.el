@@ -202,37 +202,11 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 ;; auto fix
-(defun auto-fix (executable &optional fix-option)
-  "Fix current file using EXECUTABLE.
-default FIX-OPTION is `--fix`."
-  (interactive)
-  (let* ((fix-option (or fix-option "--fix")))
-    (or (and executable
-             (shell-command (concat executable " " fix-option  " " (buffer-file-name)))
-             (message "File fixed: %s" (buffer-file-name)))
-        (message "Can not fix this file"))))
+(add-hook 'auto-fix-mode-hook
+          (lambda () (add-hook 'before-save-hook #'auto-fix-before-save)))
 
-(defun eslint-fix ()
-  "Fix current file using eslint."
-  (interactive)
-  (auto-fix flycheck-javascript-eslint-executable))
-
-(defun tslint-fix ()
-  "Fix current file using tslint."
-  (interactive)
-  (auto-fix flycheck-typescript-tslint-executable))
-
-(add-hook 'js-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook #'eslint-fix nil 'local)))
-
-(add-hook 'typescript-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook #'tslint-fix nil 'local)))
-
-(add-hook 'ts-web-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook #'tslint-fix nil 'local)))
+(add-hook 'ts-web-mode-hook #'auto-fix-mode)
+(add-hook 'typescript-mode-hook #'auto-fix-mode)
 
 ;; TypeScript/Tide
 (defun setup-tide-mode ()
@@ -260,9 +234,11 @@ default FIX-OPTION is `--fix`."
          (eslint (and root (expand-file-name "node_modules/.bin/eslint" root)))
          (tslint (and root (expand-file-name "node_modules/.bin/tslint" root))))
     (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint)
+      (setq-local auto-fix-command eslint))
     (when (and tslint (file-executable-p tslint))
-      (setq-local flycheck-typescript-tslint-executable tslint))))
+      (setq-local flycheck-typescript-tslint-executable tslint)
+      (setq-local auto-fix-command tslint))))
 
 (add-hook 'flycheck-mode-hook #'my-use-local-lint)
 
