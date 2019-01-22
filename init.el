@@ -66,6 +66,7 @@
      (left . 0)
      (left-fringe . 0)))
  '(js-indent-level 2)
+ '(markdown-command "marked")
  '(menu-bar-mode nil)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
@@ -112,6 +113,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; End customize configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; markdown-preview-mode
+(setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
 ;; font
 ;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
