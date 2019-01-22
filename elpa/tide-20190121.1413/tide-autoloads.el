@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "tide" "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide.el"
-;;;;;;  "be00a35ee76f7e515783acac0d035cf2")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide.el
+;;;### (autoloads nil "tide" "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide.el"
+;;;;;;  "fa1b836c2f0bf23f465dc001372ec021")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide.el
 
 (autoload 'company-tide "tide" "\
 
@@ -69,9 +69,9 @@ if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "tide" "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide.el"
+;;;### (autoloads "actual autoloads are elsewhere" "tide" "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide" '("tide-")))
 
@@ -79,18 +79,18 @@ if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "tide-lv" "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide-lv.el"
+;;;### (autoloads "actual autoloads are elsewhere" "tide-lv" "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide-lv.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide-lv.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide-lv.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide-lv" '("tide-lv-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide-lv.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190109.1335/tide.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide-lv.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide-pkg.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/tide-20190121.1413/tide.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
