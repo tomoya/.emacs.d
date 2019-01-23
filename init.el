@@ -291,7 +291,7 @@ If optional argument HERE is non-nil, insert string at point."
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'helm-for-files)
-(global-set-key (kbd "s-p") 'helm-ghq)
+(global-set-key (kbd "C-]") 'helm-ghq)
 (global-set-key (kbd "M-g s") 'magit-status)
 (global-set-key (kbd "M-g a") 'magit-stage-file)
 (global-set-key (kbd "M-g c") 'magit-commit-create)
