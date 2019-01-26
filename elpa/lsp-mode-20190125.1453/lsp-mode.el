@@ -538,6 +538,14 @@ FORMAT and ARGS i the same as for `message'."
 
 (defalias 'lsp-ht 'ht)
 
+;; `file-local-name' was added in Emacs 26.1.
+(defalias 'lsp-file-local-name
+  (if (fboundp 'file-local-name)
+      'file-local-name
+    (lambda (file)
+      "Return the local name component of FILE."
+      (or (file-remote-p file 'localname) file))))
+
 (defun lsp--merge-results (results method)
   "Merge RESULTS by filtering the empty hash-tables and merging the lists.
 METHOD is the executed method so the results could be merged
@@ -784,7 +792,7 @@ DELETE when `lsp-mode.el' is deleted.")
 (defun lsp--path-to-uri (path)
   "Convert PATH to a uri."
   (concat lsp--uri-file-prefix
-          (url-hexify-string (or (file-remote-p path 'localname t) path)
+          (url-hexify-string (expand-file-name (or (file-remote-p path 'localname t) path))
                              url-path-allowed-chars)))
 
 (defun lsp--string-match-any (regex-list str)
@@ -1006,11 +1014,11 @@ Results are meaningful only if FROM and TO are on the same line."
 (defun lsp--lens-update (ov)
   "Redraw quick-peek overlay OV."
   (let ((offset (lsp--lens-text-width (save-excursion
-                                          (beginning-of-visual-line)
-                                          (point))
-                                        (save-excursion
-                                          (beginning-of-line-text)
-                                          (point)))))
+                                        (beginning-of-visual-line)
+                                        (point))
+                                      (save-excursion
+                                        (beginning-of-line-text)
+                                        (point)))))
     (save-excursion
       (goto-char (overlay-start ov))
       (overlay-put ov
@@ -1392,7 +1400,7 @@ If WORKSPACE is not provided current workspace will be used."
                  (json-encode params)))
          (body-with-newline (concat body "\n")))
     (concat (format "Content-Length: %d\r\n\r\n" (string-bytes body-with-newline))
-                    body-with-newline)))
+            body-with-newline)))
 
 (defun lsp--send-notification (body)
   "Send BODY as a notification to the language server."
@@ -3473,7 +3481,7 @@ SESSION is the active session."
       (run-hooks 'lsp-before-initialize-hook)
       (lsp-request-async "initialize"
                          (list :processId (emacs-pid)
-                               :rootPath (file-local-name (expand-file-name root))
+                               :rootPath (lsp-file-local-name (expand-file-name root))
                                :rootUri (lsp--path-to-uri root)
                                :capabilities (lsp--client-capabilities)
                                :initializationOptions initialization-options)
