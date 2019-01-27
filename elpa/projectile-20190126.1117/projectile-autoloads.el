@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "projectile" "../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile.el"
-;;;;;;  "b91ac29dbb24e2ecf77c2049c4d57edd")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile.el
+;;;### (autoloads nil "projectile" "../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile.el"
+;;;;;;  "a8b4a2ddf540c1ef6444654d01ef9a9b")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile.el
 
 (autoload 'projectile-version "projectile" "\
 Get the Projectile version as string.
@@ -560,9 +560,9 @@ Otherwise behave as if called interactively.
 
 (define-obsolete-function-alias 'projectile-global-mode 'projectile-mode "1.0")
 
-;;;### (autoloads "actual autoloads are elsewhere" "projectile" "../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile.el"
+;;;### (autoloads "actual autoloads are elsewhere" "projectile" "../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "projectile" '("??" "compilation-find-file-projectile-find-compilation-buffer" "def-projectile-commander-method" "delete-file-projectile-remove-from-cache" "projectile-")))
 
@@ -570,8 +570,8 @@ Otherwise behave as if called interactively.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/projectile-20190116.1640/projectile.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/projectile-20190126.1117/projectile.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

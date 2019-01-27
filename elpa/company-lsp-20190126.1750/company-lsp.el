@@ -1,8 +1,8 @@
 ;;; company-lsp.el --- Company completion backend for lsp-mode.  -*- lexical-binding: t -*-
 
-;; Version: 2.0.2
-;; Package-Version: 20190124.209
-;; Package-Requires: ((emacs "25.1") (lsp-mode "3.4") (company "0.9.0") (s "1.2.0") (dash "2.11.0"))
+;; Version: 2.1.0
+;; Package-Version: 20190126.1750
+;; Package-Requires: ((emacs "25.1") (lsp-mode "6.0") (company "0.9.0") (s "1.2.0") (dash "2.11.0"))
 ;; URL: https://github.com/tigersoldier/company-lsp
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
   :prefix "company-lsp-"
   :group 'tools)
 
-(defcustom company-lsp-cache-candidates 'auto
+(defcustom company-lsp-cache-candidates nil
   "Whether or not to cache completion candidates.
 
 When set to 'auto, company-lsp caches the completion. It sends
