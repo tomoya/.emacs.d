@@ -25,8 +25,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-revert-interval 1)
- '(auto-save-file-name-transforms
-   `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
+ '(auto-save-file-name-transforms `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
+ '(backup-directory-alist `((".*" . ,user-backup-directory)))
  '(company-auto-complete 'ignore)
  '(company-dabbrev-code-ignore-case t)
  '(company-dabbrev-code-modes
