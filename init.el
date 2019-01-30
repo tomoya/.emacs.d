@@ -306,6 +306,7 @@ If optional argument HERE is non-nil, insert string at point."
 (global-set-key (kbd "<M-s-left>") 'previous-code-buffer)
 (global-set-key (kbd "C-/") 'undo-tree-undo)
 (global-set-key (kbd "C-'") 'undo-tree-redo)
+(global-set-key (kbd "<s-return>") 'cua-rectangle-mark-mode)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
