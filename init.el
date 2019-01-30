@@ -2,6 +2,7 @@
 ;;; Commentary: Emacs Startup File --- initialization for Emacs
 
 (require 'cl-lib)
+(setq default-directory "~/")
 
 ;; Set PATH env and exec-path from $PATH
 (setenv "PATH" (shell-command-to-string "echo $PATH"))
@@ -324,5 +325,12 @@ If optional argument HERE is non-nil, insert string at point."
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
+
+;; neotree
+(defun after-init-hooks ()
+  (neotree-toggle)
+  (switch-to-buffer "*scratch*"))
+
+(add-hook 'after-init-hook #'after-init-hooks)
 
 ;;; init.el ends here
