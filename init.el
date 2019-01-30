@@ -74,8 +74,10 @@
  '(markdown-command "marked")
  '(menu-bar-mode nil)
  '(neo-autorefresh t)
- '(neo-hidden-regexp-list
-   '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.git$"))
+ '(neo-confirm-delete-directory-recursively 'off-p)
+ '(neo-confirm-kill-buffers-for-files-in-directory 'off-p)
+ '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.git$"))
+ '(neo-keymap-style 'concise)
  '(neo-theme 'icons)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
