@@ -1,4 +1,4 @@
-(define-package "diff-hl" "20181218.1834" "Highlight uncommitted changes using VC"
+(define-package "diff-hl" "20190128.201" "Highlight uncommitted changes using VC"
   '((cl-lib "0.2")
     (emacs "24.3"))
   :keywords
