@@ -309,6 +309,25 @@ If optional argument HERE is non-nil, insert string at point."
         (message "%s" emacs-repository-version)
       emacs-repository-version)))
 
+;; reopen-killed-file
+(defvar killed-file-list nil
+  "List of recently killed files.")
+
+(defun add-file-to-killed-file-list ()
+  "Add file to killed-file-list.
+If buffer is associated with a file name, add that file to the
+`killed-file-list' when killing the buffer."
+  (when buffer-file-name
+    (push buffer-file-name killed-file-list)))
+
+(add-hook 'kill-buffer-hook #'add-file-to-killed-file-list)
+
+(defun reopen-killed-file ()
+  "Reopen the most recently killed file, if one exists."
+  (interactive)
+  (when killed-file-list
+    (find-file (pop killed-file-list))))
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
@@ -321,7 +340,7 @@ If optional argument HERE is non-nil, insert string at point."
 (global-set-key (kbd "M-s-z") 'checkout-head-revision)
 (global-set-key (kbd "C-x C-j") 'skk-mode)
 (global-set-key (kbd "s-w") 'kill-this-buffer)
-(global-set-key (kbd "s-T") 'recentf-open-most-recent-file)
+(global-set-key (kbd "s-T") 'reopen-killed-file)
 (global-set-key (kbd "<M-s-right>") 'next-code-buffer)
 (global-set-key (kbd "<M-s-left>") 'previous-code-buffer)
 (global-set-key (kbd "C-/") 'undo-tree-undo)
