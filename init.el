@@ -328,6 +328,17 @@ If buffer is associated with a file name, add that file to the
   (when killed-file-list
     (find-file (pop killed-file-list))))
 
+;; neotree
+(defun neotree-mode-hooks ()
+  (visual-line-mode -1))
+
+(add-hook 'neotree-mode-hook #'neotree-mode-hooks)
+
+(defun after-init-hooks ()
+  (neotree-toggle))
+
+(add-hook 'after-init-hook #'after-init-hooks)
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
@@ -352,16 +363,5 @@ If buffer is associated with a file name, add that file to the
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
-
-;; neotree
-(defun neotree-mode-hooks ()
-  (visual-line-mode -1))
-
-(add-hook 'neotree-mode-hook #'neotree-mode-hooks)
-
-(defun after-init-hooks ()
-  (neotree-toggle))
-
-(add-hook 'after-init-hook #'after-init-hooks)
 
 ;;; init.el ends here
