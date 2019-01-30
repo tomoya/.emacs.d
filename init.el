@@ -81,6 +81,7 @@
  '(neo-show-slash-for-folder nil)
  '(neo-theme 'icons)
  '(neo-toggle-window-keep-p t)
+ '(neo-vc-integration '(face))
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
