@@ -118,6 +118,10 @@
 ;; End customize configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; flycheck-package
+(eval-after-load 'flycheck
+  '(flycheck-package-setup))
+
 ;; markdown-preview-mode
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
