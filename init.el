@@ -72,6 +72,10 @@
  '(js-indent-level 2)
  '(markdown-command "marked")
  '(menu-bar-mode nil)
+ '(neo-autorefresh t)
+ '(neo-hidden-regexp-list
+   '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.git$"))
+ '(neo-theme 'icons)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
