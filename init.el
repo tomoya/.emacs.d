@@ -260,12 +260,13 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'ts-web-mode-hook #'lsp)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (with-eval-after-load 'lsp-clients
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection 'lsp-typescript--ls-command)
-                    :major-modes '(typescript-mode js-mode js2-mode rjsx-mode ts-web-mode)
-                    :priority -1
-                    :ignore-messages '("readFile .*? requested by TypeScript but content not available")
-                    :server-id 'ts-ls)))
+  (defun lsp-typescript-javascript-tsx-jsx-activate-p (filename major-mode)
+  "Checks if the javascript-typescript language server should be enabled
+based on FILE-NAME and MAJOR-MODE"
+  (or (member major-mode '(typescript-mode typescript-tsx-mode js-mode js2-mode rjsx-mode ts-web-mode))
+      (and (eq major-mode 'web-mode)
+           (or (string-suffix-p ".tsx" filename t)
+               (string-suffix-p ".jsx" filename t))))))
 
 ;; company
 (push 'company-emoji company-backends)
