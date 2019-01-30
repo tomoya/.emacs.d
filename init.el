@@ -334,6 +334,11 @@ If optional argument HERE is non-nil, insert string at point."
 (put 'narrow-to-region 'disabled nil)
 
 ;; neotree
+(defun neotree-mode-hooks ()
+  (visual-line-mode -1))
+
+(add-hook 'neotree-mode-hook #'neotree-mode-hooks)
+
 (defun after-init-hooks ()
   (neotree-toggle))
 
