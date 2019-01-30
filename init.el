@@ -78,13 +78,17 @@
  '(neo-confirm-kill-buffers-for-files-in-directory 'off-p)
  '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.git$"))
  '(neo-keymap-style 'concise)
+ '(neo-show-slash-for-folder nil)
  '(neo-theme 'icons)
+ '(neo-toggle-window-keep-p t)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
    '(all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix wgrep company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens tide typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
  '(projectile-enable-caching t)
+ '(projectile-globally-ignored-directories
+   '(".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules"))
  '(projectile-mode t nil (projectile))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
@@ -331,8 +335,7 @@ If optional argument HERE is non-nil, insert string at point."
 
 ;; neotree
 (defun after-init-hooks ()
-  (neotree-toggle)
-  (switch-to-buffer "*scratch*"))
+  (neotree-toggle))
 
 (add-hook 'after-init-hook #'after-init-hooks)
 
