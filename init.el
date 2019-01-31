@@ -51,6 +51,7 @@
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
  '(find-file-visit-truename t)
+ '(frame-tabs-filter-function 'my-frame-tabs-default-filter)
  '(frame-tabs-mode t)
  '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
@@ -126,6 +127,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(frame-tabs-buffer-tab ((t (:inherit frame-tabs-face :box (:line-width 5 :color "#212326")))))
+ '(frame-tabs-face ((t (:background "#212326" :foreground "gray80"))))
+ '(frame-tabs-higlight-tab ((t (:inherit frame-tabs-buffer-tab :background "#3d4147" :box (:line-width 5 :color "#3d4147")))))
+ '(frame-tabs-selected-tab ((t (:inherit frame-tabs-buffer-tab :background "#292b2e" :box (:line-width 5 :color "#292b2e")))))
  '(whitespace-newline ((t (:foreground "gray25")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -339,6 +344,14 @@ If buffer is associated with a file name, add that file to the
   (neotree-toggle))
 
 (add-hook 'after-init-hook #'after-init-hooks)
+
+;; frame-tabs
+(defun my-frame-tabs-default-filter (buffer _frame)
+  "Default filter function for frame tabs."
+  (let ((name (buffer-name buffer)))
+    (if (not (string-match-p ignore-buffer-regex name))
+        (unless (eq (aref name 0) ?\s)
+          name))))
 
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
