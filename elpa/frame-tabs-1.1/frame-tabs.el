@@ -231,6 +231,11 @@ alphabetical order of their names instead."
 This keymap is used when frame tabs show an 'x' button via
 `frame-tabs-x'.")
 
+(defface frame-tabs-face
+  '((t :background "gray10"))
+  "Face of the frame-tabs buffer."
+  :group 'frame-tabs)
+
 (defun frame-tabs--window (&optional frame)
   "Return or create a tabs window for FRAME.
 FRAME must be a live frame and defaults to the selected one."
@@ -267,6 +272,7 @@ FRAME must be a live frame and defaults to the selected one."
     ;; Display tabs in the window.
     (when tabs-window
       (with-current-buffer tabs-buffer
+	    (buffer-face-set 'frame-tabs-face)
 	(setq mode-line-format nil)
 	(setq header-line-format nil)
 	(setq buffer-read-only nil)
@@ -306,11 +312,10 @@ FRAME must be a live frame and defaults to the selected one."
 		 "\n")))))
 	;; Delete very last space or newline inserted.
 	(when (memq (char-before) '(?\s ?\n)) (delete-char -1))
-	(when tabs-vertical
-	  ;; Make sure word wrapping takes care of buffer tabs.
-	  (set (make-local-variable 'truncate-lines) nil)
-	  (set (make-local-variable 'truncate-partial-width-windows) nil)
-	  (set (make-local-variable 'word-wrap) t))
+	;; Disable wrapping
+	(set (make-local-variable 'truncate-lines) t)
+	(set (make-local-variable 'truncate-partial-width-windows) t)
+	(set (make-local-variable 'word-wrap) nil)
 	;; Handle window.
 	(set-window-margins tabs-window 0 0)
 	(set-window-fringes tabs-window 0 0)
@@ -510,9 +515,9 @@ frame."
 ;;;; ChangeLog:
 
 ;; 2018-06-29  Stefan Monnier  <monnier@iro.umontreal.ca>
-;; 
+;;
 ;; 	* frame-tabs: New package
-;; 
+;;
 
 
 (provide 'frame-tabs)
