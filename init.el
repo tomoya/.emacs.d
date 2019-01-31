@@ -174,7 +174,7 @@ if you want to switch to previous buffer, set first argument non-nil."
     (while
         (and
          (string-match-p ignore-buffer-regex (buffer-name))
-         (not ( equal bread-crumb (buffer-name) )) )
+         (not (equal bread-crumb (buffer-name))))
     (or (and previous (previous-buffer))
         (next-buffer)))))
 
