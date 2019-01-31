@@ -51,6 +51,7 @@
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
  '(find-file-visit-truename t)
+ '(frame-tabs-mode t)
  '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
  '(global-company-mode t)
