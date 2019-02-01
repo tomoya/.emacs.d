@@ -127,10 +127,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(frame-tabs-buffer-tab ((t (:inherit frame-tabs-face :box (:line-width 5 :color "#212326")))))
+ '(frame-tabs-buffer-tab ((t (:inherit frame-tabs-face :foreground "gray60" :box (:line-width 5 :color "#212326")))))
  '(frame-tabs-face ((t (:background "#212326" :foreground "gray80"))))
  '(frame-tabs-higlight-tab ((t (:inherit frame-tabs-buffer-tab :background "#3d4147" :box (:line-width 5 :color "#3d4147")))))
- '(frame-tabs-selected-tab ((t (:inherit frame-tabs-buffer-tab :background "#292b2e" :box (:line-width 5 :color "#292b2e")))))
+ '(frame-tabs-selected-tab ((t (:inherit frame-tabs-buffer-tab :background "#292b2e" :foreground "white" :box (:line-width 5 :color "#292b2e")))))
  '(whitespace-newline ((t (:foreground "gray25")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
