@@ -29,4 +29,12 @@
 ;; Notoフォントの横幅を調整
 (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
 
+;; all-the-iconsの横幅を調整
+(add-to-list 'face-font-rescale-alist '(".*all-the-icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*file-icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*FontAwesome.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
+
 (message "Done early initialization")
