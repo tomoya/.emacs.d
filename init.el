@@ -30,6 +30,7 @@
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
  '(backup-directory-alist `((".*" \, user-backup-directory)))
  '(company-auto-complete 'ignore)
+ '(company-box-doc-delay 0.3)
  '(company-dabbrev-code-ignore-case t)
  '(company-dabbrev-code-modes
    '(prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode typescript-mode))
