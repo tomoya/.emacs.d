@@ -306,7 +306,7 @@ skk-inline-show-background-color-odd "gray20")) ;奇数ラインの背景色
 ;; 変換候補一覧と注釈 (annotation) の表示を
 ;; エコーエリアに代えて tooltip で表示する
 ;; 注) 今のところ FSF Emacs 21 以上と XEmacs 21.5 以上で機能します。
-(setq skk-show-tooltip t)
+(setq skk-show-tooltip nil)
 
 ;; ;; Tip 描画に pos-tip を利用してみる
 ;; ;; http://www.emacswiki.org/emacs-en/PosTip
