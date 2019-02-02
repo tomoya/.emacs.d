@@ -37,6 +37,7 @@
  '(company-flx-mode t)
  '(company-global-modes t)
  '(company-idle-delay 0)
+ '(company-lsp-cache-candidates 'auto)
  '(company-minimum-prefix-length 2)
  '(company-tooltip-align-annotations t)
  '(company-tooltip-idle-delay 0.1)
