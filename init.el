@@ -80,6 +80,7 @@
  '(neo-autorefresh t)
  '(neo-confirm-delete-directory-recursively 'off-p)
  '(neo-confirm-kill-buffers-for-files-in-directory 'off-p)
+ '(neo-default-system-application "open")
  '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.git$"))
  '(neo-keymap-style 'concise)
  '(neo-show-slash-for-folder nil)
