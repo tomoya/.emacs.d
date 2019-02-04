@@ -394,6 +394,12 @@ If buffer is associated with a file name, add that file to the
         (unless (eq (aref name 0) ?\s)
           name))))
 
+;; open finder
+(defun open-finder ()
+  "Open DIR from finder."
+  (interactive)
+  (shell-command (concat "open " default-directory)))
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
@@ -407,6 +413,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-x C-j") 'skk-mode)
 (global-set-key (kbd "s-w") 'kill-this-buffer)
 (global-set-key (kbd "s-T") 'reopen-killed-file)
+(global-set-key (kbd "s-o") 'open-finder)
 (global-set-key (kbd "<M-s-right>") 'next-code-buffer)
 (global-set-key (kbd "<M-s-left>") 'previous-code-buffer)
 (global-set-key (kbd "C-/") 'undo-tree-undo)
