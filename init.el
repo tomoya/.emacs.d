@@ -162,7 +162,7 @@
  nil '(#x3040 . #x30ff)
  (font-spec :family "Noto Sans CJK JP"))
 
-(defvar ignore-buffer-regex "^\\(\*\\|magit.+:\\)"
+(defvar ignore-buffer-regex "^\\(\*\\|magit.?+:\\)"
   "Ignore switch-code-buffer() regex.")
 
 (defun switch-code-buffer (&optional previous)
