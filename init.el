@@ -165,6 +165,14 @@
 (defvar ignore-buffer-regex "^\\(\*\\|magit.?+:\\)"
   "Ignore switch-code-buffer() regex.")
 
+(defvar whitelist-buffer-regex "^\*scratch\*"
+  "Do not ignore switch-code-buffer() regex.")
+
+(defun ignore-buffer-p (buffer)
+  "Return ignore BUFFER predicate."
+  (and (not (string-match-p whitelist-buffer-regex buffer))
+       (string-match-p ignore-buffer-regex buffer)))
+
 (defun switch-code-buffer (&optional previous)
   "Switch buffer ignore no code buffers.
 if you want to switch to previous buffer, set first argument non-nil."
@@ -176,7 +184,7 @@ if you want to switch to previous buffer, set first argument non-nil."
         (next-buffer))
     (while
         (and
-         (string-match-p ignore-buffer-regex (buffer-name))
+         (ignore-buffer-p (buffer-name))
          (not (equal bread-crumb (buffer-name))))
     (or (and previous (previous-buffer))
         (next-buffer)))))
@@ -390,9 +398,9 @@ If buffer is associated with a file name, add that file to the
 (defun my-frame-tabs-default-filter (buffer _frame)
   "Default filter function for frame tabs."
   (let ((name (buffer-name buffer)))
-    (if (not (string-match-p ignore-buffer-regex name))
-        (unless (eq (aref name 0) ?\s)
-          name))))
+    (and (not (eq (aref name 0) ?\s))
+         (not (ignore-buffer-p name))
+         name)))
 
 ;; open finder
 (defun open-finder ()
