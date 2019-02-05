@@ -408,6 +408,11 @@ If buffer is associated with a file name, add that file to the
   (interactive)
   (shell-command (concat "open " default-directory)))
 
+;; pdf-view-mode
+(autoload 'pdf-view-mode
+  "pdf-view" "View PDF file in Emacs" t)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
