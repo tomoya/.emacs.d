@@ -310,7 +310,7 @@ based on FILE-NAME and MAJOR-MODE"
 (add-hook 'company-mode-hook 'company-box-mode)
 
 ;; company-box
-(when (require 'all-the-icons nil t)
+(with-eval-after-load 'all-the-icons
   (setq company-box-icons-elisp
         (list
          (concat (all-the-icons-material "functions") " ")
