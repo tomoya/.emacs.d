@@ -433,6 +433,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-/") 'undo-tree-undo)
 (global-set-key (kbd "C-'") 'undo-tree-redo)
 (global-set-key (kbd "<s-return>") 'cua-rectangle-mark-mode)
+(global-set-key (kbd "s-F") 'projectile-grep)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
