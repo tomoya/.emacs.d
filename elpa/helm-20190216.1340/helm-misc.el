@@ -202,37 +202,6 @@ It is added to `extended-command-history'.
           (const :tag "Confirm" 'confirm)
           (const :tag "Always allow" nil)))
 
-;;; Shell history
-;;
-;;
-(defun helm-comint-input-ring-action (candidate)
-  "Default action for comint history."
-  (with-helm-current-buffer
-    (delete-region (comint-line-beginning-position) (point-max))
-    (insert candidate)))
-
-(defcustom helm-comint-max-offset 400
-  "Max number of chars displayed per candidate in comint-input-ring browser.
-When `t', don't truncate candidate, show all.
-By default it is approximatively the number of bits contained in five lines
-of 80 chars each i.e 80*5.
-Note that if you set this to nil multiline will be disabled, i.e you
-will not have anymore separators between candidates."
-  :type '(choice (const :tag "Disabled" t)
-          (integer :tag "Max candidate offset"))
-  :group 'helm-misc)
-
-(defvar helm-source-comint-input-ring
-  (helm-build-sync-source "Comint history"
-    :candidates (lambda ()
-                  (with-helm-current-buffer
-                    (ring-elements comint-input-ring)))
-    :action 'helm-comint-input-ring-action
-    ;; Multiline does not work for `shell' because of an Emacs bug.
-    ;; It works in other REPLs like Geiser.
-    :multiline 'helm-comint-max-offset)
-  "Source that provides Helm completion against `comint-input-ring'.")
-
 
 ;;; Helm ratpoison UI
 ;;
@@ -352,17 +321,6 @@ Default action change TZ environment variable locally to emacs."
               elm))))
     (delete-minibuffer-contents)
     (insert elm)))
-
-;;;###autoload
-(defun helm-comint-input-ring ()
-  "Preconfigured `helm' that provide completion of `comint' history."
-  (interactive)
-  (when (derived-mode-p 'comint-mode)
-    (helm :sources 'helm-source-comint-input-ring
-          :input (buffer-substring-no-properties (comint-line-beginning-position)
-                                                 (point-at-eol))
-          :buffer "*helm comint history*")))
-
 
 (provide 'helm-misc)
 

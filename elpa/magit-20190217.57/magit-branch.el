@@ -673,7 +673,7 @@ the remote."
               (remote (magit-get-push-remote new)))
           (when (and old-target
                      (not new-target)
-                     (magit-y-or-n-p (format "Also rename %S to %S on %S"
+                     (magit-y-or-n-p (format "Also rename %S to %S on \"%s\""
                                              old new remote)))
             ;; Rename on (i.e. within) the remote, but only if the
             ;; destination ref doesn't exist yet.  If that ref already
@@ -740,11 +740,11 @@ and also rename the respective reflog file."
    ("r"   magit-branch.<branch>.rebase)
    ("p"   magit-branch.<branch>.pushRemote)]
   ["Configure repository defaults"
-   ("M-r" magit-pull.rebase)
-   ("M-p" magit-remote.pushDefault)]
+   ("R" magit-pull.rebase)
+   ("P" magit-remote.pushDefault)]
   ["Configure branch creation"
-   ("U"   magit-branch.autoSetupMerge)
-   ("R"   magit-branch.autoSetupRebase)]
+   ("a m" magit-branch.autoSetupMerge)
+   ("a r" magit-branch.autoSetupRebase)]
   (interactive
    (list (or (and (not current-prefix-arg)
                   (not (and magit-branch-popup-show-variables
