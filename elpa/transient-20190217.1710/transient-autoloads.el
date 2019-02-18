@@ -6,17 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads "actual autoloads are elsewhere" "transient" "../../../../../../../.emacs.d/elpa/transient-20190216.1412/transient.el"
+;;;### (autoloads "actual autoloads are elsewhere" "transient" "../../../../../../../.emacs.d/elpa/transient-20190217.1710/transient.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/transient-20190216.1412/transient.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/transient-20190217.1710/transient.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "transient" '("current-transient-" "define-" "post-transient-hook" "transient-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/transient-20190216.1412/transient-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/transient-20190216.1412/transient-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/transient-20190216.1412/transient.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/transient-20190217.1710/transient-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/transient-20190217.1710/transient-pkg.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/transient-20190217.1710/transient.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
