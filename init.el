@@ -164,6 +164,9 @@
  nil '(#x3040 . #x30ff)
  (font-spec :family "Noto Sans CJK JP"))
 
+;; fira-code-mode
+(add-hook 'prog-mode-hook 'fira-code-mode)
+
 (defvar ignore-buffer-regex "^\\(\*\\|magit.?+:\\)"
   "Ignore switch-code-buffer() regex.")
 
