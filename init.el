@@ -89,6 +89,9 @@
  '(neo-theme 'icons)
  '(neo-toggle-window-keep-p t)
  '(neo-vc-integration '(face))
+ '(nyan-animate-nyancat t)
+ '(nyan-mode t)
+ '(nyan-wavy-trail t)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
