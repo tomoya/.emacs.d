@@ -105,6 +105,7 @@
  '(recentf-mode t)
  '(savehist-mode t)
  '(scroll-bar-mode nil)
+ '(session-initialize '(session places))
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
  '(skk-user-directory "~/.emacs.d/ddskk/")
@@ -399,7 +400,8 @@ If buffer is associated with a file name, add that file to the
 (add-hook 'neotree-mode-hook #'neotree-mode-hooks)
 
 (defun after-init-hooks ()
-  (neotree-toggle))
+  (neotree-toggle)
+  (session-initialize))
 
 (add-hook 'after-init-hook #'after-init-hooks)
 
