@@ -212,9 +212,9 @@ if you want to switch to previous buffer, set first argument non-nil."
 (defun checkout-head-revision ()
   "Checkout HEAD revision on current buffer."
   (interactive)
-  (or (and (buffer-file-name)
-           (vc-git-checkout (buffer-file-name) "HEAD")
-           (message "File reverted: %s" (buffer-file-name)))
+  (or (and buffer-file-name
+           (vc-git-checkout buffer-file-name "HEAD")
+           (message "File reverted: %s" buffer-file-name))
       (message "Can not revert. Because this buffer is not a file.")))
 
 ;; smarter-move-beginning-of-line
@@ -290,7 +290,7 @@ point reaches the beginning or end of the buffer, stop there."
 (defun my-use-local-lint ()
   "Use local lint if exist it."
   (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory) "node_modules"))
+                (or buffer-file-name default-directory) "node_modules"))
          (eslint (and root (expand-file-name "node_modules/.bin/eslint" root)))
          (tslint (and root (expand-file-name "node_modules/.bin/tslint" root))))
     (when (and eslint (file-executable-p eslint))
