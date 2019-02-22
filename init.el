@@ -103,6 +103,7 @@
  '(projectile-mode t nil (projectile))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
+ '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
