@@ -244,6 +244,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Setup windmove keybindings
 (windmove-default-keybindings 'super)
+(windmove-swap-states-default-keybindings)
 
 ;; Remove trailing whitespace when save file
 (defun my-before-save-hooks ()
