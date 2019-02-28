@@ -107,6 +107,7 @@
  '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(session-initialize '(session places))
+ '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
  '(skk-user-directory "~/.emacs.d/ddskk/")
