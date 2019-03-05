@@ -6,3 +6,6 @@ history
 .session
 projectile-bookmarks.eld
 projectile.cache
+transient
+ddskk/*
+!ddskk/init
