@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "markdown-mode" "../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode.el"
-;;;;;;  "1d692380c464e5b538e39e332b31fadd")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode.el
+;;;### (autoloads nil "markdown-mode" "../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode.el"
+;;;;;;  "335709f5eee35aba331f84c27310d70a")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode.el
 
 (autoload 'markdown-mode "markdown-mode" "\
 Major mode for editing Markdown files.
@@ -45,9 +45,9 @@ if ARG is `toggle'; disable the mode otherwise.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "markdown-mode"
-;;;;;;  "../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "markdown-mode" '("defun-markdown-" "gfm-" "markdown")))
 
@@ -55,8 +55,8 @@ if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/markdown-mode-20181229.1430/markdown-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/markdown-mode-20190305.319/markdown-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

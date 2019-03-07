@@ -18,6 +18,30 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
+File: magit.info,  Node: Minor Mode for Buffers Visiting Blobs,  Prev: Minor Mode for Buffers Visiting Files,  Up: Miscellaneous
+
+8.9 Minor Mode for Buffers Visiting Blobs
+=========================================
+
+The ‘magit-blob-mode’ enables certain Magit features in blob-visiting
+buffers.  Such buffers can be created using ‘magit-find-file’ and some
+of the commands mentioned below, which also take care of turning on this
+minor mode.  Currently this mode only establishes a few key bindings,
+but this might be extended.
+
+‘p’     (‘magit-blob-previous’)
+
+     Visit the previous blob which modified the current file.
+
+‘n’     (‘magit-blob-next’)
+
+     Visit the next blob which modified the current file.
+
+‘q’     (‘magit-kill-this-buffer’)
+
+     Kill the current buffer.
+
+
 File: magit.info,  Node: Customizing,  Next: Plumbing,  Prev: Miscellaneous,  Up: Top
 
 9 Customizing
@@ -1670,6 +1694,8 @@ Appendix C Keystroke Index
 * B:                                     Bisecting.           (line   8)
 * b:                                     Blaming.             (line 105)
 * b <1>:                                 Branch Commands.     (line  12)
+* b <2>:                                 Editing Rebase Sequences.
+                                                              (line  85)
 * B B:                                   Bisecting.           (line  16)
 * B b:                                   Bisecting.           (line  31)
 * b b:                                   Branch Commands.     (line  49)
@@ -1775,7 +1801,7 @@ Appendix C Keystroke Index
 * C-w:                                   Common Commands.     (line  27)
 * C-x g:                                 Status Buffer.       (line  22)
 * C-x u:                                 Editing Rebase Sequences.
-                                                              (line  89)
+                                                              (line  94)
 * d:                                     Diffing.             (line  20)
 * D:                                     Refreshing Diffs.    (line  11)
 * d c:                                   Diffing.             (line  68)
@@ -1840,6 +1866,8 @@ Appendix C Keystroke Index
 * L:                                     Refreshing Logs.     (line  11)
 * L <1>:                                 Log Buffer.          (line   6)
 * L <2>:                                 Log Margin.          (line  47)
+* l <1>:                                 Editing Rebase Sequences.
+                                                              (line 115)
 * l a:                                   Logging.             (line  59)
 * l b:                                   Logging.             (line  55)
 * L d:                                   Log Margin.          (line  64)
@@ -1914,6 +1942,10 @@ Appendix C Keystroke Index
 * M-x magit-version <1>:                 Debugging Tools.     (line  10)
 * M-x magit-wip-commit:                  Wip Modes.           (line  88)
 * M-x with-editor-debug:                 Debugging Tools.     (line  38)
+* MM:                                    Editing Rebase Sequences.
+                                                              (line 125)
+* Mt:                                    Editing Rebase Sequences.
+                                                              (line 132)
 * n:                                     Section Movement.    (line  16)
 * n <1>:                                 Blaming.             (line 109)
 * N:                                     Blaming.             (line 113)
@@ -1994,7 +2026,9 @@ Appendix C Keystroke Index
 * SPC <2>:                               Blaming.             (line  82)
 * SPC <3>:                               Editing Rebase Sequences.
                                                               (line  21)
-* t:                                     Tagging.             (line   8)
+* t:                                     Editing Rebase Sequences.
+                                                              (line 119)
+* t <1>:                                 Tagging.             (line   8)
 * T:                                     Notes.               (line   8)
 * T a:                                   Notes.               (line  52)
 * T c:                                   Notes.               (line  47)
@@ -2042,7 +2076,7 @@ Appendix C Keystroke Index
 * Y:                                     Cherries.            (line  17)
 * y:                                     References Buffer.   (line   6)
 * y <1>:                                 Editing Rebase Sequences.
-                                                              (line  85)
+                                                              (line  90)
 * y c:                                   References Buffer.   (line  26)
 * y o:                                   References Buffer.   (line  32)
 * y y:                                   References Buffer.   (line  21)
@@ -2098,6 +2132,8 @@ Appendix D Command Index
                                                               (line 140)
 * git-rebase-backward-line:              Editing Rebase Sequences.
                                                               (line  35)
+* git-rebase-break:                      Editing Rebase Sequences.
+                                                              (line  85)
 * git-rebase-edit:                       Editing Rebase Sequences.
                                                               (line  55)
 * git-rebase-exec:                       Editing Rebase Sequences.
@@ -2105,15 +2141,23 @@ Appendix D Command Index
 * git-rebase-fixup:                      Editing Rebase Sequences.
                                                               (line  63)
 * git-rebase-insert:                     Editing Rebase Sequences.
-                                                              (line  85)
+                                                              (line  90)
 * git-rebase-kill-line:                  Editing Rebase Sequences.
                                                               (line  68)
+* git-rebase-label:                      Editing Rebase Sequences.
+                                                              (line 115)
+* git-rebase-merge:                      Editing Rebase Sequences.
+                                                              (line 125)
+* git-rebase-merge-toggle-editmsg:       Editing Rebase Sequences.
+                                                              (line 132)
 * git-rebase-move-line-down:             Editing Rebase Sequences.
                                                               (line  47)
 * git-rebase-move-line-up:               Editing Rebase Sequences.
                                                               (line  43)
 * git-rebase-pick:                       Editing Rebase Sequences.
                                                               (line  72)
+* git-rebase-reset:                      Editing Rebase Sequences.
+                                                              (line 119)
 * git-rebase-reword:                     Editing Rebase Sequences.
                                                               (line  51)
 * git-rebase-show-commit:                Editing Rebase Sequences.
@@ -2125,7 +2169,7 @@ Appendix D Command Index
 * git-rebase-squash:                     Editing Rebase Sequences.
                                                               (line  59)
 * git-rebase-undo:                       Editing Rebase Sequences.
-                                                              (line  89)
+                                                              (line  94)
 * ido-enter-magit-status:                Status Buffer.       (line  72)
 * magit-am:                              Maildir Patches.     (line   8)
 * magit-am-abort:                        Maildir Patches.     (line  43)
@@ -2805,11 +2849,11 @@ Appendix F Variable Index
 * git-commit-summary-max-length:         Editing Commit Messages.
                                                               (line 222)
 * git-rebase-auto-advance:               Editing Rebase Sequences.
-                                                              (line  94)
+                                                              (line  99)
 * git-rebase-confirm-cancel:             Editing Rebase Sequences.
-                                                              (line 102)
+                                                              (line 107)
 * git-rebase-show-instructions:          Editing Rebase Sequences.
-                                                              (line  98)
+                                                              (line 103)
 * global-auto-revert-mode:               Automatic Reverting of File-Visiting Buffers.
                                                               (line  22)
 * global-magit-file-mode:                Minor Mode for Buffers Visiting Files.

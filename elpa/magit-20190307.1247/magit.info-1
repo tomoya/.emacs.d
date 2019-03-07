@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 2.90.1 (v2.90.1-275-g3e73ff19d+1).
+This manual is for Magit version 2.90.1 (v2.90.1-301-g3cc12771+1).
 
      Copyright (C) 2015-2019 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -453,10 +453,10 @@ File: magit.info,  Node: Installing from the Git Repository,  Next: Post-Install
 2.2 Installing from the Git Repository
 ======================================
 
-Magit depends on the ‘dash’, ‘lv’, ‘transient’ and ‘with-editor’
-libraries which are available from Melpa and Melpa-Stable.  Install them
-using ‘M-x package-install RET <package> RET’.  Of course you may also
-install them manually from their repository.
+Magit depends on the ‘dash’, ‘transient’ and ‘with-editor’ libraries
+which are available from Melpa and Melpa-Stable.  Install them using
+‘M-x package-install RET <package> RET’.  Of course you may also install
+them manually from their repository.
 
    Then clone the Magit repository:
 
@@ -467,19 +467,15 @@ install them manually from their repository.
 
      $ make
 
-   If you haven’t installed ‘dash’, ‘lv’, ‘transient’ and ‘with-editor’
-from Melpa or at ‘/path/to/magit/../<package>’, then you have to tell
-‘make’ where to find them.  To do so create the file
-‘/path/to/magit/config.mk’ with the following content before running
-‘make’:
+   If you haven’t installed ‘dash’, ‘transient’ and ‘with-editor’ from
+Melpa or at ‘/path/to/magit/../<package>’, then you have to tell ‘make’
+where to find them.  To do so create the file ‘/path/to/magit/config.mk’
+with the following content before running ‘make’:
 
      LOAD_PATH  = -L /path/to/magit/lisp
      LOAD_PATH += -L /path/to/dash
-     LOAD_PATH += -L /path/to/hydra
      LOAD_PATH += -L /path/to/transient
      LOAD_PATH += -L /path/to/with-editor
-
-   Note that ‘lv.el’ is part of the ‘hydra’ repository.
 
    Finally add this to your init file:
 
@@ -5921,6 +5917,11 @@ File: magit.info,  Node: Editing Rebase Sequences,  Next: Information About In-P
      when there already is one on the current line.  With empty input
      remove the command on the current line, if any.
 
+‘b’     (‘git-rebase-break’)
+
+     Insert a break action before the current line, instructing Git to
+     return control to the user.
+
 ‘y’     (‘git-rebase-insert’)
 
      Read an arbitrary commit and insert it below current line.
@@ -5941,6 +5942,35 @@ File: magit.info,  Node: Editing Rebase Sequences,  Next: Information About In-P
  -- User Option: git-rebase-confirm-cancel
 
      Whether confirmation is required to cancel.
+
+   When a rebase is performed with the ‘--rebase-merges’ option, the
+sequence will include a few other types of actions and the following
+commands become relevant.
+
+‘l’     (‘git-rebase-label’)
+
+     This commands inserts a label action or edits the one at point.
+
+‘t’     (‘git-rebase-reset’)
+
+     This command inserts a reset action or edits the one at point.  The
+     prompt will offer the labels that are currently present in the
+     buffer.
+
+‘MM’     (‘git-rebase-merge’)
+
+     The command inserts a merge action or edits the one at point.  The
+     prompt will offer the labels that are currently present in the
+     buffer.  Specifying a message to reuse via ‘-c’ or ‘-C’ is not
+     supported; an editor will always be invoked for the merge.
+
+‘Mt’     (‘git-rebase-merge-toggle-editmsg’)
+
+     This command toggles between the ‘-C’ and ‘-c’ options of the merge
+     action at point.  These options both specify a commit whose message
+     should be reused.  The lower-case variant instructs Git to invoke
+     the editor when creating the merge, allowing the user to edit the
+     message.
 
 
 File: magit.info,  Node: Information About In-Progress Rebase,  Prev: Editing Rebase Sequences,  Up: Rebasing
@@ -5989,7 +6019,9 @@ shown in different colors to indicate the status of the commits.
    • Commits prefixed with ‘pick’, ‘reword’, ‘edit’, ‘squash’, and
      ‘fixup’ have not been applied yet.  These words have the same
      meaning here as they do in the buffer used to edit the rebase
-     sequence.  See *note Editing Rebase Sequences::.
+     sequence.  See *note Editing Rebase Sequences::.  When the
+     ‘--rebase-merges’ option was specified, ‘reset’, ‘label’, and
+     ‘merge’ lines may also be present.
 
    • Commits prefixed with ‘done’ and ‘onto’ have already been applied.
      It is possible for such a commit to be the ‘HEAD’, in which case it
@@ -7758,28 +7790,4 @@ are not enabled in the file transient command by default:
 (‘C-x l’), set the "transient level" (‘C-x l’ again), enter ‘5’, and
 leave edit mode (‘C-g’).  Also see *note (transient)Enabling and
 Disabling Suffixes::.
-
-
-File: magit.info,  Node: Minor Mode for Buffers Visiting Blobs,  Prev: Minor Mode for Buffers Visiting Files,  Up: Miscellaneous
-
-8.9 Minor Mode for Buffers Visiting Blobs
-=========================================
-
-The ‘magit-blob-mode’ enables certain Magit features in blob-visiting
-buffers.  Such buffers can be created using ‘magit-find-file’ and some
-of the commands mentioned below, which also take care of turning on this
-minor mode.  Currently this mode only establishes a few key bindings,
-but this might be extended.
-
-‘p’     (‘magit-blob-previous’)
-
-     Visit the previous blob which modified the current file.
-
-‘n’     (‘magit-blob-next’)
-
-     Visit the next blob which modified the current file.
-
-‘q’     (‘magit-kill-this-buffer’)
-
-     Kill the current buffer.
 
