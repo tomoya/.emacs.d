@@ -1,7 +1,13 @@
 (message "Start early initialization...")
 
-;; Add full file path to frame title
-(setq frame-title-format "%b %f")
+(setq frame-title-format
+      '((:eval
+         (if (buffer-file-name)
+             (let ((project-name (projectile-project-name)))
+               (if (string= "-" project-name)
+                   "%f"
+                 (format "%s: %s" project-name (abbreviate-file-name (buffer-file-name)))))
+           "%b"))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
