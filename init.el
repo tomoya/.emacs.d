@@ -31,6 +31,7 @@
  '(backup-directory-alist `((".*" \, user-backup-directory)))
  '(company-auto-complete 'ignore)
  '(company-box-doc-delay 0.3)
+ '(company-box-icons-alist 'company-box-icons-all-the-icons)
  '(company-dabbrev-code-ignore-case t)
  '(company-dabbrev-code-modes
    '(prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode typescript-mode))
@@ -321,44 +322,6 @@ based on FILE-NAME and MAJOR-MODE"
 (push 'company-emoji company-backends)
 (push 'company-lsp company-backends)
 (add-hook 'company-mode-hook 'company-box-mode)
-
-;; company-box
-(with-eval-after-load 'all-the-icons
-  (setq company-box-icons-elisp
-        (list
-         (concat (all-the-icons-material "functions") " ")
-         (concat (all-the-icons-material "check_circle") " ")
-         (concat (all-the-icons-material "stars") " ")
-         (concat (all-the-icons-material "format_paint") " ")))
-  (setq company-box-icons-unknown (concat (all-the-icons-material "help") " "))
-  (setq company-box-icons-yasnippet (concat (all-the-icons-material "bookmark")  " "))
-  (setq company-box-icons-lsp
-        `((1 . ,(concat (all-the-icons-material "short_text") " ")) ; Text
-          (2 . ,(concat (all-the-icons-material "functions") " ")) ; Method
-          (3 . ,(concat (all-the-icons-material "functions") " ")) ; Function
-          (4 . ,(concat (all-the-icons-material "functions") " ")) ; Constructor
-          (5 . ,(concat (all-the-icons-material "check_circle") " ")) ; Field
-          (6 . ,(concat (all-the-icons-material "check_circle") " ")) ; Variable
-          (7 . ,(concat (all-the-icons-material "stars") " ")) ; Class
-          (8 . ,(concat (all-the-icons-material "stars") " ")) ; Interface
-          (9 . ,(concat (all-the-icons-material "stars") " ")) ; Module
-          (10 . ,(concat (all-the-icons-material "help") " ")) ; Property
-          (11 . ,(concat (all-the-icons-material "help") " ")) ; Unit
-          (12 . ,(concat (all-the-icons-material "help") " ")) ; Value
-          (13 . ,(concat (all-the-icons-material "help") " ")) ; Enum
-          (14 . ,(concat (all-the-icons-material "help") " ")) ; Keyword
-          (15 . ,(concat (all-the-icons-material "bookmark") " ")) ; Snippet
-          (16 . ,(concat (all-the-icons-material "color_lens") " ")) ; Color
-          (17 . ,(concat (all-the-icons-material "help") " ")) ; File
-          (18 . ,(concat (all-the-icons-material "book") " ")) ; Reference
-          (19 . ,(concat (all-the-icons-material "folder") " ")) ; Folder
-          (20 . ,(concat (all-the-icons-material "check_circle") " ")) ; EnumMember
-          (21 . ,(concat (all-the-icons-material "check_circle") " ")) ; Constant
-          (22 . ,(concat (all-the-icons-material "help") " ")) ; Struct
-          (23 . ,(concat (all-the-icons-material "event") " ")) ; Event
-          (24 . ,(concat (all-the-icons-material "help") " ")) ; Operator
-          (25 . ,(concat (all-the-icons-material "title") " "))) ; TypeParameter
-        ))
 
 ;; Helm
 (helm-descbinds-mode)
