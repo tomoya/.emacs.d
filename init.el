@@ -417,5 +417,7 @@ If buffer is associated with a file name, add that file to the
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;;; init.el ends here
