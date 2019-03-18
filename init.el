@@ -419,5 +419,6 @@ If buffer is associated with a file name, add that file to the
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(put 'list-timers 'disabled nil)
 
 ;;; init.el ends here
