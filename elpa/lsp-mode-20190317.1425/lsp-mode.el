@@ -121,7 +121,7 @@
   :group 'lsp-mode
   :type 'boolean)
 
-(defcustom lsp-use-native-json nil
+(defcustom lsp-use-native-json t
   "If non-nil, use native json parsing if available."
   :group 'lsp-mode
   :type 'boolean)
@@ -243,6 +243,29 @@ It contains all of the clients that are currently registered.")
   :type 'hook
   :group 'lsp-mode)
 
+(defcustom lsp-enable-file-watchers t
+  "If non-nil lsp-mode will watch the files in the workspace if
+the server has requested that."
+  :type 'boolean
+  :group 'lsp-mode)
+
+(defcustom lsp-file-watch-ignored '(".idea"
+                                    ".ensime_cache"
+                                    ".eunit"
+                                    "node_modules"
+                                    ".git"
+                                    ".hg"
+                                    ".fslckout"
+                                    "_FOSSIL_"
+                                    ".bzr"
+                                    "_darcs"
+                                    ".tox"
+                                    ".svn"
+                                    ".stack-work")
+  "List of directories which won't be monitored when creating file watches."
+  :group 'lsp-mode
+  :type '(repeat string))
+
 (defcustom lsp-before-uninitialized-hook nil
   "List of functions to be called before a Language Server has been uninitialized."
   :type 'hook
@@ -252,6 +275,20 @@ It contains all of the clients that are currently registered.")
   '((0 . none)
     (1 . full)
     (2 . incremental)))
+
+(defcustom lsp-debounce-full-sync-notifications t
+  "If non-nil debounce full sync events.
+This flag affects only server which do not support incremental update."
+  :type 'boolean
+  :group 'lsp-mode)
+
+(defcustom lsp-debounce-full-sync-notifications-interval 1.0
+  "Time to wait before sending full sync synchronization after buffer modication."
+  :type 'float
+  :group 'lsp-mode)
+
+(defvar lsp--delayed-requests nil)
+(defvar lsp--delay-timer nil)
 
 (defvar-local lsp--server-sync-method nil
   "Sync method recommended by the server.")
@@ -898,54 +935,59 @@ DELETE when `lsp-mode.el' is deleted.")
   "Given a list of REGEX-LIST and STR return the first matching regex if any."
   (--first (string-match it str) regex-list))
 
-(defun lsp-create-watch (dir file-regexp-list callback &optional watches root-dir)
-  "Create recursive file notificaton watch in DIR monitoring FILE-REGEXP-LIST.
+(cl-defstruct lsp-watch
+  (descriptors (make-hash-table :test 'equal) :read-only t)
+  (root-directory))
+
+(defun lsp-watch-root-folder (dir callback &optional watch)
+  "Create recursive file notificaton watch in DIR.
 CALLBACK is the will be called when there are changes in any of
 the monitored files. WATCHES is a hash table directory->file
-notification handle which contains all of the watches that
+notification handle which contains all of the watch that
 already have been created."
-  (let ((all-dirs (->> (directory-files-recursively dir ".*" t)
-                       (seq-filter #'file-directory-p)
-                       (cl-list* dir)))
-        (watches (or watches (make-hash-table :test 'equal)))
-        (root-dir (or root-dir dir)))
-    (seq-do
-     (lambda (dir-to-watch)
-       (puthash
-        dir-to-watch
-        (file-notify-add-watch
-         dir-to-watch
-         '(change)
-         (lambda (event)
-           (let ((file-name (cl-caddr event))
-                 (event-type (cadr event)))
-             (cond
-              ((and (file-directory-p file-name)
-                    (equal 'created event-type))
+  (lsp-log "Creating watch for %s" dir)
+  (let ((watch (or watch (make-lsp-watch :root-directory dir))))
+    (condition-case err
+        (progn
+          (puthash
+           dir
+           (file-notify-add-watch
+            dir
+            '(change)
+            (lambda (event)
+              (let ((file-name (cl-caddr event))
+                    (event-type (cadr event)))
+                (cond
+                 ((and (file-directory-p file-name)
+                       (equal 'created event-type))
 
-               (lsp-create-watch file-name file-regexp-list callback watches root-dir)
+                  (lsp-watch-root-folder file-name callback watch)
 
-               ;; process the files that are already present in
-               ;; the directory.
-               (->> (directory-files-recursively file-name ".*" t)
-                    (seq-do (lambda (f)
-                              (when (and (lsp--string-match-any
-                                          file-regexp-list
-                                          (concat "/" (file-relative-name f root-dir)))
-                                         (not (file-directory-p f)))
-                                (funcall callback (list nil 'created f)))))))
-              ((and (not (file-directory-p file-name))
-                    (lsp--string-match-any
-                     file-regexp-list
-                     (concat "/" (file-relative-name file-name root-dir))))
-               (funcall callback event))))))
-        watches))
-     all-dirs)
-    watches))
+                  ;; process the files that are already present in
+                  ;; the directory.
+                  (->> (directory-files-recursively file-name ".*" t)
+                       (seq-do (lambda (f)
+                                 (unless (file-directory-p f)
+                                   (funcall callback (list nil 'created f)))))))
+                 ((and (not (file-directory-p file-name))
+                       (memq event-type '(created deleted changed)))
+                  (funcall callback event))))))
+           (lsp-watch-descriptors watch))
+          (seq-do
+           (-rpartial #'lsp-watch-root-folder callback watch)
+           (seq-filter (lambda (f)
+                         (and (file-directory-p f)
+                              (not (lsp--string-match-any lsp-file-watch-ignored f))
+                              (not (-contains? '("." "..") (f-filename f)))))
+                       (directory-files dir t))))
+      (error (lsp-log "Failed to create a watch for %s: message" (error-message-string err)))
+      (file-missing (lsp-log "Failed to create a watch for %s: message" (error-message-string err))))
+    watch))
 
-(defun lsp-kill-watch (watches)
-  "Delete WATCHES."
-  (->> watches hash-table-values (-map 'file-notify-rm-watch)))
+(defun lsp-kill-watch (watch)
+  "Delete WATCH."
+  (-> watch lsp-watch-descriptors hash-table-values (-each #'file-notify-rm-watch))
+  (ht-clear! (lsp-watch-descriptors watch)))
 
 (defmacro with-lsp-workspace (workspace &rest body)
   "Helper macro for invoking BODY in WORKSPACE context."
@@ -1071,6 +1113,7 @@ WORKSPACE is the workspace that contains the diagnostics."
   (with-eval-after-load 'flymake
     (defun lsp--flymake-setup()
       "Setup flymake."
+      (setq lsp--flymake-report-fn nil)
       (flymake-mode 1)
       (add-hook 'flymake-diagnostic-functions 'lsp--flymake-backend nil t)
       (add-hook 'lsp-after-diagnostics-hook 'lsp--flymake-after-diagnostics nil t))
@@ -1121,6 +1164,95 @@ WORKSPACE is the workspace that contains the diagnostics."
       (setq val (ht-get val (cl-first keys)))
       (setq keys (cl-rest keys)))
     val))
+
+
+
+;; textDocument/foldingRange support
+
+(cl-defstruct lsp--folding-range
+  (beg)
+  (end)
+  (kind))
+
+(defvar-local lsp--cached-folding-ranges nil)
+
+(define-inline lsp--folding-range-width (range)
+  (inline-letevals (range)
+    (inline-quote (- (lsp--folding-range-end ,range)
+                     (lsp--folding-range-beg ,range)))))
+
+(defun lsp--get-folding-ranges ()
+  "Get the folding ranges for the current buffer."
+  (unless (lsp--capability "foldingRangeProvider")
+    (signal 'lsp-capability-not-supported (list "foldingRangeProvider")))
+  (-let [(tick . ranges) lsp--cached-folding-ranges]
+    (if (eq tick (buffer-chars-modified-tick))
+        ranges
+      (setq ranges (lsp-request "textDocument/foldingRange"
+                                `(:textDocument ,(lsp--text-document-identifier))))
+      (setq lsp--cached-folding-ranges
+            (cons (buffer-chars-modified-tick)
+                  (seq-map
+                   (-lambda ((&hash "startLine" start-line
+		                                "startCharacter" start-character
+		                                "endLine" end-line
+		                                "endCharacter" end-character
+                                    "kind" kind))
+                     (make-lsp--folding-range
+                      :beg (lsp--position-to-point
+                            (ht ("line" start-line)
+				                        ("character" start-character)))
+ 	                    :end (lsp--position-to-point
+                            (ht ("line" end-line)
+				                        ("character" end-character)))
+                      :kind kind))
+                   ranges)))
+      (cdr lsp--cached-folding-ranges))))
+
+(define-inline lsp--range-inside-p (r1 r2)
+  "Return non-nil if range R1 lies inside range R2"
+  (inline-letevals (r1 r2)
+    (inline-quote
+     (and (>= (lsp--folding-range-beg ,r1) (lsp--folding-range-beg ,r2))
+          (<= (lsp--folding-range-end ,r1) (lsp--folding-range-end ,r2))))))
+
+(define-inline lsp--point-inside-range-p (point range)
+  (inline-letevals (point range)
+    (inline-quote
+     (and (>= ,point (lsp--folding-range-beg ,range))
+          (<= ,point (lsp--folding-range-end ,range))))))
+
+(cl-defun lsp--get-current-innermost-range (&optional (point (point)))
+  "Return the innermost folding range POINT lies in."
+  (let (inner)
+    (seq-doseq (range (lsp--get-folding-ranges))
+      (when (lsp--point-inside-range-p point range)
+        (if inner
+            (when (lsp--range-inside-p inner range)
+              (setq inner range))
+          (setq inner range))))
+    inner))
+
+(cl-defun lsp--get-current-outermost-range (&optional (point (point)))
+  "Return the outermost folding range POINT lies in."
+  (let (outer width)
+    (seq-doseq (range (lsp--get-folding-ranges))
+      (when (lsp--point-inside-range-p point range)
+        (setq width (lsp--folding-range-width range))
+        (if outer
+            (when (> width (car outer))
+              (setq outer (cons width range)))
+          (setq outer (cons width range)))))
+    (cdr outer)))
+
+(put 'lsp-folding-range 'bounds-of-thing-at-point
+     (lambda ()
+       (if (and (lsp--capability "foldingRangeProvider") lsp-enable-folding)
+           (if-let ((range (lsp--get-current-innermost-range)))
+               (cons (lsp--folding-range-beg range)
+                     (lsp--folding-range-end range)))
+         nil)))
+
 
 ;; lenses support
 
@@ -1490,7 +1622,6 @@ CALLBACK - callback for the lenses."
   (server-id->folders (make-hash-table :test 'equal) :read-only t)
   ;; folder to list of the servers that are associated with the folder.
   (folder->servers (make-hash-table :test 'equal) :read-only t)
-
   ;; ‘metadata’ is a generic storage for workspace specific data. It is
   ;; accessed via `lsp-workspace-set-metadata' and `lsp-workspace-set-metadata'
   (metadata (make-hash-table :test 'equal)))
@@ -1741,6 +1872,8 @@ callback will be executed only if the buffer was not modified.
 
 ERROR-CALLBACK will be called in case the request has failed.
 If NO-MERGE is non-nil, don't merge the results but return alist workspace->result."
+  (lsp--flush-delayed-changes)
+
   (if-let ((target-workspaces (lsp--find-workspaces-for body)))
       (let* ((start-time (current-time))
              (method (plist-get body :method))
@@ -1796,7 +1929,6 @@ If NO-MERGE is non-nil, don't merge the results but return alist workspace->resu
 When a workspace is shut down, by request or from just
 disappearing, unset all the variables related to it."
   (run-hooks 'lsp-workspace-uninitialized-hook)
-  (lsp-kill-watch (lsp--workspace-watches lsp--cur-workspace))
 
   (let ((proc (lsp--workspace-cmd-proc lsp--cur-workspace)))
     (when (process-live-p proc)
@@ -1835,27 +1967,94 @@ disappearing, unset all the variables related to it."
                                             :lineFoldingOnly lsp-folding-line-folding-only)
                                     nil))))
 
+(defun lsp-find-roots-for-workspace (workspace session)
+  "Get all roots for the WORKSPACE."
+  (-filter #'identity (ht-map (lambda (folder workspaces)
+                                (when (-contains? workspaces workspace)
+                                  folder))
+                              (lsp-session-folder->servers session))))
+
+(defun lsp-session-watches (&optional session)
+  "Get watches created for SESSION."
+  (or (gethash "__watches" (lsp-session-metadata (or session (lsp-session))))
+      (-let [res (make-hash-table :test 'equal)]
+        (puthash "__watches" res (lsp-session-metadata (or session (lsp-session))))
+        res)))
+
+(defun lsp--file-process-event (session root-folder event)
+  "Process file event."
+  (let ((changed-file (cl-caddr event)))
+    (->> session
+         lsp-session-folder->servers
+         (gethash root-folder)
+         (seq-do (lambda (workspace)
+                   (when (->> workspace
+                              lsp--workspace-registered-server-capabilities
+                              (-any? (lambda (capability)
+                                       (and (string= (lsp--registered-capability-method capability)
+                                                     "workspace/didChangeWatchedFiles")
+                                            (->> capability
+                                                 lsp--registered-capability-options
+                                                 (gethash "watchers")
+                                                 (seq-find (-lambda ((&hash "globPattern" glob-pattern))
+                                                             (-let [glob-regex (eshell-glob-regexp glob-pattern)]
+                                                               (or (string-match glob-regex changed-file)
+                                                                   (string-match glob-regex (f-relative changed-file root-folder)))))))))))
+                     (with-lsp-workspace workspace
+                       (lsp-notify
+                        "workspace/didChangeWatchedFiles"
+                        `((changes . [((type . ,(alist-get (cadr event) lsp--file-change-type))
+                                       (uri . ,(lsp--path-to-uri changed-file)))]))))))))))
+
 (defun lsp--server-register-capability (reg)
   "Register capability REG."
-  (-let (((&hash "method" "id" "registerOptions") reg))
+  (-let (((&hash "method" "id" "registerOptions") reg)
+         (session (lsp-session)))
+    (when (and lsp-enable-file-watchers
+               (string= method "workspace/didChangeWatchedFiles"))
+      (-let* ((created-watches (lsp-session-watches session))
+              (root-folders (cl-set-difference (lsp-find-roots-for-workspace lsp--cur-workspace session)
+                                               (ht-keys created-watches))))
+        ;; create watch for each root folder withtout such
+        (dolist (folder root-folders)
+          (puthash folder (lsp-watch-root-folder
+                           folder
+                           (-partial #'lsp--file-process-event session folder))
+                   created-watches))))
+
     (push
      (make-lsp--registered-capability :id id :method method :options registerOptions)
      (lsp--workspace-registered-server-capabilities lsp--cur-workspace))))
 
+(defun lsp--cleanup-hanging-watches ()
+  "Cleanup watches in case there are no more workspaces that are interested
+in that particular folder."
+  (let* ((session (lsp-session))
+         (watches (lsp-session-watches session)))
+    (dolist (watched-folder (ht-keys watches))
+      (when (-none? (lambda (workspace)
+                      (with-lsp-workspace workspace
+                        (lsp--registered-capability "workspace/didChangeWatchedFiles")))
+                    (gethash watched-folder (lsp-session-folder->servers (lsp-session))))
+        (lsp-log "Cleaning up watches for folder %s. There is no workspace watching this folder..." watched-folder)
+        (lsp-kill-watch (gethash watched-folder watches))
+        (remhash watched-folder watches)))))
+
 (defun lsp--server-unregister-capability (unreg)
   "Unregister capability UNREG."
-  (let* ((id (gethash "id" unreg))
-         (fn (lambda (e) (equal (lsp--registered-capability-id e) id))))
+  (-let [(&hash "id" "method") unreg]
     (setf (lsp--workspace-registered-server-capabilities lsp--cur-workspace)
-          (seq-remove fn
-                      (lsp--workspace-registered-server-capabilities lsp--cur-workspace)))))
+          (seq-remove (lambda (e) (equal (lsp--registered-capability-id e) id))
+                      (lsp--workspace-registered-server-capabilities lsp--cur-workspace)))
+    (when (string= method "workspace/didChangeWatchedFiles")
+      (lsp--cleanup-hanging-watches))))
 
 (defun lsp--server-capabilities ()
   "Return the capabilities of the language server associated with the buffer."
   (->> (lsp-workspaces)
-       (-map 'lsp--workspace-server-capabilities)
-       (-filter 'identity)
-       (apply 'ht-merge)))
+       (-map #'lsp--workspace-server-capabilities)
+       (-filter #'identity)
+       (apply #'ht-merge)))
 
 (defun lsp--send-open-close-p ()
   "Return whether open and close notifications should be sent to the server."
@@ -2284,6 +2483,18 @@ Added to `before-change-functions'."
                 :start-pos (lsp--point-to-position start)
                 :end-pos (lsp--point-to-position end)))))
 
+(defun lsp--flush-delayed-changes ()
+  (-each (prog1 lsp--delayed-requests
+           (setq lsp--delayed-requests nil))
+    (-lambda ((workspace . buffer))
+      (with-current-buffer buffer
+        (with-lsp-workspace workspace
+          (lsp-notify
+           "textDocument/didChange"
+           `(:textDocument
+             ,(lsp--versioned-text-document-identifier)
+             :contentChanges ,(vector (lsp--full-change-event)))))))))
+
 (defun lsp-on-change (start end length)
   "Executed when a file is changed.
 Added to `after-change-functions'."
@@ -2304,7 +2515,10 @@ Added to `after-change-functions'."
   ;; (message "lsp-on-change:(start,end,length)=(%s,%s,%s)" start end length)
   ;; (message "lsp-on-change:(lsp--before-change-vals)=%s" lsp--before-change-vals)
   (when (not revert-buffer-in-progress-p)
-    (cl-incf lsp--cur-version)
+    (if lsp--cur-version
+        (cl-incf lsp--cur-version)
+      ;; buffer has been reset - start from scratch.
+      (setq lsp--cur-version 0))
     (--each (lsp-workspaces)
       (with-lsp-workspace it
         (with-demoted-errors "Error in ‘lsp-on-change’: %S"
@@ -2314,16 +2528,31 @@ Added to `after-change-functions'."
             ;; buffer-file-name. We need the buffer-file-name to send notifications;
             ;; so we skip handling revert-buffer-caused changes and instead handle
             ;; reverts separately in lsp-on-revert
-            (unless (eq lsp--server-sync-method 'none)
-              (lsp-notify
-               "textDocument/didChange"
-               `(:textDocument
-                 ,(lsp--versioned-text-document-identifier)
-                 :contentChanges
-                 ,(pcase lsp--server-sync-method
-                    ('incremental (vector (lsp--text-document-content-change-event
-                                           start end length)))
-                    ('full (vector (lsp--full-change-event))))))))))))
+            (pcase lsp--server-sync-method
+              ('incremental (lsp-notify
+                             "textDocument/didChange"
+                             `(:textDocument
+                               ,(lsp--versioned-text-document-identifier)
+                               :contentChanges ,(vector (lsp--text-document-content-change-event
+                                                         start end length)))))
+              ('full
+               (if lsp-debounce-full-sync-notifications
+                   (progn
+                     (-some-> lsp--delay-timer cancel-timer)
+                     (cl-pushnew (cons lsp--cur-workspace (current-buffer))
+                                 lsp--delayed-requests
+                                 :test 'equal)
+                     (setq lsp--delay-timer (run-with-idle-timer
+                                             lsp-debounce-full-sync-notifications-interval
+                                             nil
+                                             (lambda ()
+                                               (setq lsp--delay-timer nil)
+                                               (lsp--flush-delayed-changes)))))
+                 (lsp-notify
+                  "textDocument/didChange"
+                  `(:textDocument
+                    ,(lsp--versioned-text-document-identifier)
+                    :contentChanges (vector (lsp--full-change-event))))))))))))
   (lsp--set-document-link-timer)
   (when lsp-lens-mode
     (lsp--lens-schedule-refresh t)))
@@ -2763,17 +2992,19 @@ RENDER-ALL - nil if only the signature should be rendered."
   (-when-let* (((&hash "activeSignature" active-signature-index
                        "activeParameter" active-parameter
                        "signatures") signature-help)
-               (signature (lsp-elt signatures (or active-signature-index 0)))
+               (signatures (append signatures nil))
+               (signature (seq-elt signatures (or active-signature-index 0)))
                (result (lsp--fontlock-with-mode (gethash "label" signature) major-mode)))
-    (-when-let* (((&hash "parameters" parameters) signature)
-                 (param (lsp-elt parameters active-parameter))
-                 (selected-param-label (-some->> param (gethash "label")))
+    (-when-let* ((parameters (append (gethash "parameters" signature) nil))
+                 (param (seq-elt parameters active-parameter))
+                 (selected-param-label (let ((label (-some->> param (gethash "label"))))
+                                         (if (stringp label) label (append label nil))))
                  (start (if (stringp selected-param-label)
                             (s-index-of selected-param-label result)
-                          (seq-first selected-param-label)))
+                          (cl-first selected-param-label)))
                  (end (if (stringp selected-param-label)
                           (+ start (length selected-param-label))
-                        (lsp-elt selected-param-label (1- (seq-length selected-param-label))))))
+                        (cl-second selected-param-label))))
       (add-face-text-property start end 'eldoc-highlight-function-argument nil result))
     result))
 
@@ -3040,7 +3271,7 @@ A reference is highlighted only if it is visible in a window."
 (defun lsp--xref-backend () 'xref-lsp)
 
 (cl-defmethod xref-backend-identifier-at-point ((_backend (eql xref-lsp)))
-  (propertize (symbol-name (symbol-at-point))
+  (propertize (or (thing-at-point 'symbol) "")
               'def-params (lsp--text-document-position-params)
               'ref-params (lsp--make-reference-params)))
 
@@ -3194,30 +3425,6 @@ EXTRA is a plist of extra parameters."
 (defun lsp--set-configuration (settings)
   "Set the SETTINGS for the lsp server."
   (lsp-notify "workspace/didChangeConfiguration" `(:settings , settings)))
-
-(defun lsp-workspace-register-watch (to-watch &optional workspace)
-  "Monitor for file change and trigger workspace/didChangeConfiguration.
-
-TO-WATCH is a list of the directories and regexp in the following format:
-'((root-dir1 (glob-pattern1 glob-pattern2))
-  (root-dir2 (glob-pattern3 glob-pattern4)))
-
-If WORKSPACE is not specified the `lsp--cur-workspace' will be used."
-  (setq workspace (or workspace lsp--cur-workspace))
-  (let ((watches (lsp--workspace-watches workspace)))
-    (cl-loop for (dir glob-patterns) in to-watch do
-             (lsp-create-watch
-              dir
-              (mapcar 'eshell-glob-regexp glob-patterns)
-              (lambda (event)
-                (let ((lsp--cur-workspace workspace))
-                  (lsp-notify
-                   "workspace/didChangeWatchedFiles"
-                   (list :changes
-                         (list
-                          :type (alist-get (cadr event) lsp--file-change-type)
-                          :uri (lsp--path-to-uri (cl-caddr event)))))))
-              watches))))
 
 (defun lsp--on-set-visitied-file-name (old-func &rest args)
   "Advice around function `set-visited-file-name'.
@@ -3917,7 +4124,8 @@ returns the command to execute."
 
       (if (eq (lsp--workspace-shutdown-action workspace) 'shutdown)
           (lsp--info "Workspace %s shutdown." (lsp--workspace-print workspace))
-        (lsp--restart-if-needed workspace)))))
+        (lsp--restart-if-needed workspace))
+      (lsp--cleanup-hanging-watches))))
 
 (defun lsp--start-workspace (session client-template root &optional initialization-options)
   "Create new workspace for CLIENT-TEMPLATE with project root ROOT.
