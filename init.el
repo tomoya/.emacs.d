@@ -156,7 +156,6 @@
 
 (with-eval-after-load 'flycheck
   (flycheck-package-setup)
-  (require 'flycheck-posframe)
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 ;; markdown-preview-mode
