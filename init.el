@@ -56,6 +56,8 @@
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
  '(find-file-visit-truename t)
+ '(flycheck-posframe-error-prefix "E: ")
+ '(flycheck-posframe-warning-prefix "W: ")
  '(frame-tabs-filter-function 'my-frame-tabs-default-filter)
  '(frame-tabs-mode t)
  '(fringe-mode '(nil . 0) nil (fringe))
@@ -141,6 +143,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flycheck-posframe-face ((t (:inherit nil :background "purple4" :box (:line-width 1 :color "purple3")))))
  '(frame-tabs-buffer-tab ((t (:inherit frame-tabs-face :foreground "gray60" :box (:line-width 5 :color "#212326")))))
  '(frame-tabs-face ((t (:background "#212326" :foreground "gray80"))))
  '(frame-tabs-higlight-tab ((t (:inherit frame-tabs-buffer-tab :background "#3d4147" :box (:line-width 5 :color "#3d4147")))))
@@ -154,6 +157,10 @@
 ;; flycheck-package
 (eval-after-load 'flycheck
   '(flycheck-package-setup))
+
+(with-eval-after-load 'flycheck
+  (require 'flycheck-posframe)
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 ;; markdown-preview-mode
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
