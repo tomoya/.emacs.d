@@ -25,6 +25,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(auto-revert-interval 1)
  '(auto-save-file-name-transforms
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
@@ -45,9 +47,9 @@
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(completion-styles '(basic flex partial-completion emacs22))
- '(custom-enabled-themes '(spacemacs-dark))
+ '(custom-enabled-themes '(cyberpunk-2019))
  '(custom-safe-themes
-   '("c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+   '("d90fe08e88654af93970f730a686b4fb936bad4e4b3b86ae3ce66388585ae649" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(delete-selection-mode t)
  '(diff-hl-flydiff-mode t)
  '(diff-hl-margin-mode t)
@@ -71,6 +73,23 @@
  '(helm-for-files-preferred-list
    '(helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-projectile-projects helm-source-files-in-current-dir))
  '(helm-split-window-preferred-function 'split-window-sensibly)
+ '(hl-todo-keyword-faces
+   '(("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX" . "#dc752f")
+     ("XXXX" . "#dc752f")
+     ("???" . "#dc752f")))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist
@@ -99,7 +118,8 @@
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(flycheck-posframe rspec-mode session nyan-mode fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix wgrep company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens tide typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+   '(cyberpunk-2019-theme flycheck-posframe rspec-mode session nyan-mode fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix wgrep company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens tide typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(project-vc-ignores '("node_modules" ".git" "tmp" "dist" "coverage"))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
