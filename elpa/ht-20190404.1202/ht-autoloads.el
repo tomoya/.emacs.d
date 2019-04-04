@@ -6,16 +6,16 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads "actual autoloads are elsewhere" "ht" "../../../../../../../.emacs.d/elpa/ht-20181216.1137/ht.el"
+;;;### (autoloads "actual autoloads are elsewhere" "ht" "../../../../../../../.emacs.d/elpa/ht-20190404.1202/ht.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/ht-20181216.1137/ht.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/ht-20190404.1202/ht.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ht" 'nil))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/ht-20181216.1137/ht-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/ht-20181216.1137/ht.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/ht-20190404.1202/ht-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/ht-20190404.1202/ht.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

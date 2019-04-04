@@ -47,7 +47,7 @@ Don't set it to any value, it will have no effect.")
   :group 'helm-occur
   :type '(alist :key-type string :value-type function))
 
-(defcustom helm-occur-use-ioccur-style-keys t
+(defcustom helm-occur-use-ioccur-style-keys nil
   "Similar to `helm-grep-use-ioccur-style-keys' but for multi occur."
   :group 'helm-occur
   :type 'boolean)
@@ -95,12 +95,12 @@ Any other non--nil value update after confirmation."
 (defface helm-moccur-buffer
     '((t (:foreground "DarkTurquoise" :underline t)))
   "Face used to highlight occur buffer names."
-  :group 'helm-regexp)
+  :group 'helm-occur)
 
 (defface helm-resume-need-update
     '((t (:background "red")))
   "Face used to flash occur buffer when it needs update."
-  :group 'helm-regexp)
+  :group 'helm-occur)
 
 
 ;;;###autoload
@@ -140,28 +140,31 @@ engine beeing completely different and also much faster."
       (unwind-protect
            (helm :sources 'helm-source-occur
                  :buffer "*helm occur*"
-                 :default (or def (helm-aif (thing-at-point 'symbol) (regexp-quote it)))
+                 :default (or def (helm-aif (thing-at-point 'symbol)
+                                      (regexp-quote it)))
                  :preselect (and (memq 'helm-source-occur
                                        helm-sources-using-default-as-input)
-                                 (format "^%d:" (line-number-at-pos (or pos (point)))))
+                                 (format "^%d:" (line-number-at-pos
+                                                 (or pos (point)))))
                  :truncate-lines helm-occur-truncate-lines)
         (deactivate-mark t)))))
 
-(defun helm-occur-transformer (candidates)
+(defun helm-occur-transformer (candidates source)
   "Returns CANDIDATES prefixed with line number."
-  (cl-loop with buf = (helm-attr 'buffer-name)
-           for i in candidates
-           for n from 1
-           collect (cons (format "%s:%s"
-                                 (propertize
-                                  (number-to-string n)
-                                  'face 'helm-grep-lineno
-                                  'help-echo (buffer-file-name
-                                              (get-buffer buf)))
-                                 i)
-                         n)))
+  (cl-loop with buf = (helm-attr 'buffer-name source)
+           for c in candidates collect
+           (when (string-match "\\`\\([0-9]*\\)\\s-\\{1\\}\\(.*\\)\\'" c)
+             (let ((linum (match-string 1 c))
+                   (disp (match-string 2 c)))
+               (cons (format "%s:%s"
+                             (propertize
+                              linum 'face 'helm-grep-lineno
+                              'help-echo (buffer-file-name
+                                          (get-buffer buf)))
+                             disp)
+                     (string-to-number linum))))))
 
-(defclass helm-moccur-class (helm-source-sync)
+(defclass helm-moccur-class (helm-source-in-buffer)
   ((buffer-name :initarg :buffer-name
                 :initform nil)
    (moccur-buffers :initarg :moccur-buffers
@@ -169,32 +172,44 @@ engine beeing completely different and also much faster."
 
 (defun helm-occur-build-sources (buffers &optional source-name)
   (cl-loop for buf in buffers
-           collect (helm-make-source
-                       (or source-name
-                           (format "Helm moccur in `%s'" (buffer-name buf)))
-                       'helm-moccur-class
-                     :buffer-name (buffer-name buf)
-                     ;; By using :candidates+:candidate-transformer we
-                     ;; ensure candidates are cached and no more computed.
-                     :candidates
-                     `(lambda ()
-                        (with-current-buffer ,buf
-                          ;; Don't use OMMIT-NULLS arg of split-string to
-                          ;; collect empty lines to ensure right line numbers.
-                          (split-string (buffer-substring-no-properties
-                                         (point-min) (point-max)) "\n")))
-                     :candidate-transformer 'helm-occur-transformer
-                     :nomark t
-                     :migemo t
-                     :history 'helm-occur-history
-                     :candidate-number-limit helm-occur-candidate-number-limit
-                     :action 'helm-occur-actions
-                     :requires-pattern 2
-                     :follow 1
-                     :group 'helm-occur
-                     :keymap helm-occur-map
-                     :resume 'helm-occur-resume-fn
-                     :moccur-buffers buffers)))
+           collect
+           (helm-make-source (or source-name
+                                 (format "Helm moccur in `%s'"
+                                         (buffer-name buf)))
+               'helm-moccur-class
+             :buffer-name (buffer-name buf)
+             :match-part
+             (lambda (candidate)
+               ;; The regexp should match what is in candidate buffer,
+               ;; not what is displayed in helm-buffer e.g. "12 foo"
+               ;; and not "12:foo".
+               (when (string-match "\\`\\([0-9]*\\)\\s-\\{1\\}\\(.*\\)\\'"
+                                   candidate)
+                 (match-string 2 candidate)))
+             :init `(lambda ()
+                      (with-current-buffer ,buf
+                        (let ((contents (buffer-substring-no-properties
+                                         (point-min) (point-max))))
+                          (with-current-buffer (helm-candidate-buffer 'local)
+                            (insert contents)
+                            (goto-char (point-min))
+                            (let ((linum 1))
+                              (insert (format "%s " linum))
+                              (while (re-search-forward "\n" nil t)
+                                (cl-incf linum)
+                                (insert (format "%s " linum))))))))
+             :filtered-candidate-transformer 'helm-occur-transformer
+             :nomark t
+             :migemo t
+             :history 'helm-occur-history
+             :candidate-number-limit helm-occur-candidate-number-limit
+             :action 'helm-occur-actions
+             :requires-pattern 2
+             :follow 1
+             :group 'helm-occur
+             :keymap helm-occur-map
+             :resume 'helm-occur-resume-fn
+             :moccur-buffers buffers)))
 
 (defun helm-multi-occur-1 (buffers &optional input)
   (let* ((curbuf (current-buffer))
@@ -344,7 +359,8 @@ Same as `helm-occur-goto-line' but go in new frame."
                          (not (y-or-n-p
                                (format "Buffer `%s' already exists overwrite? "
                                        new-buf))))
-               do (setq new-buf (helm-read-string "OccurBufferName: " "*hmoccur ")))
+               do (setq new-buf (helm-read-string
+                                 "OccurBufferName: " "*hmoccur ")))
       (setq buf new-buf))
     (with-current-buffer (get-buffer-create buf)
       (setq buffer-read-only t)
@@ -358,11 +374,14 @@ Same as `helm-occur-goto-line' but go in new frame."
                     (goto-char (point-min))
                     (cl-loop with buf
                              while (re-search-forward "^[0-9]*:" nil t)
-                             for line = (buffer-substring (point-at-bol) (point-at-eol))
-                             for lineno = (get-text-property (point) 'helm-realvalue)
+                             for line = (buffer-substring
+                                         (point-at-bol) (point-at-eol))
+                             for lineno = (get-text-property (point)
+                                                             'helm-realvalue)
                              do (setq buf (helm-attr 'buffer-name))
                              concat (propertize
-                                     (concat (propertize buf 'face 'helm-moccur-buffer)
+                                     (concat (propertize
+                                              buf 'face 'helm-moccur-buffer)
                                              ":" line "\n")
                                      'buffer-name buf
                                      'helm-realvalue lineno)))))
@@ -491,7 +510,8 @@ Special commands:
                                    (length (helm-attr 'moccur-buffers))))
       (helm-attrset 'moccur-buffers helm-occur--buffer-list)
       (setq new-tick-ls (cl-loop for b in helm-occur--buffer-list
-                                 collect (buffer-chars-modified-tick (get-buffer b))))
+                                 collect (buffer-chars-modified-tick
+                                          (get-buffer b))))
       (when buffer-is-modified
         (setq helm-occur--buffer-tick new-tick-ls))
       (cl-assert (> (length helm-occur--buffer-list) 0) nil
@@ -499,28 +519,33 @@ Special commands:
       (unless (eq helm-occur-auto-update-on-resume 'never)
         (when (or buffer-is-modified
                   (cl-loop for b in helm-occur--buffer-list
-                           for new-tick = (buffer-chars-modified-tick (get-buffer b))
+                           for new-tick = (buffer-chars-modified-tick
+                                           (get-buffer b))
                            for tick in helm-occur--buffer-tick
                            thereis (/= tick new-tick)))
           (helm-aif helm-occur-auto-update-on-resume
               (when (or (eq it 'noask)
                         (y-or-n-p "Helm (m)occur Buffer outdated, update? "))
-                (run-with-idle-timer 0.1 nil (lambda ()
-                                               (with-helm-buffer
-                                                 (helm-force-update)
-                                                 (message "Helm (m)occur Buffer have been udated")
-                                                 (sit-for 1) (message nil))))
-                (unless buffer-is-modified (setq helm-occur--buffer-tick new-tick-ls)))
-            (run-with-idle-timer 0.1 nil (lambda ()
-                                           (with-helm-buffer
-                                             (let ((ov (make-overlay (save-excursion
-                                                                       (goto-char (point-min))
-                                                                       (forward-line 1)
-                                                                       (point))
-                                                                     (point-max))))
-                                               (overlay-put ov 'face 'helm-resume-need-update)
-                                               (sit-for 0.3) (delete-overlay ov)
-                                               (message "[Helm occur Buffer outdated (C-c C-u to update)]")))))
+                (run-with-idle-timer
+                 0.1 nil (lambda ()
+                           (with-helm-buffer
+                             (helm-force-update)
+                             (message "Helm (m)occur Buffer have been udated")
+                             (sit-for 1) (message nil))))
+                (unless buffer-is-modified (setq helm-occur--buffer-tick
+                                                 new-tick-ls)))
+            (run-with-idle-timer
+             0.1 nil
+             (lambda ()
+               (with-helm-buffer
+                 (let ((ov (make-overlay (save-excursion
+                                           (goto-char (point-min))
+                                           (forward-line 1)
+                                           (point))
+                                         (point-max))))
+                   (overlay-put ov 'face 'helm-resume-need-update)
+                   (sit-for 0.3) (delete-overlay ov)
+                   (message "[Helm occur Buffer outdated (C-c C-u to update)]")))))
             (unless buffer-is-modified
               (with-helm-after-update-hook
                 (setq helm-occur--buffer-tick new-tick-ls)
