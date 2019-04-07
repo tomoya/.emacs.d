@@ -4,8 +4,8 @@
 
 ;; Author: Andrew Hyatt <ahyatt@gmail.com>
 ;; Keywords: Communication, Websocket, Server
-;; Package-Version: 20180423.16
-;; Version: 1.9
+;; Package-Version: 20190406.419
+;; Version: 1.10
 ;; Package-Requires: ((cl-lib "0.5"))
 ;;
 ;; This program is free software; you can redistribute it and/or
@@ -100,7 +100,7 @@ same for the protocols."
   accept-string
   (inflight-input nil))
 
-(defvar websocket-version "1.9"
+(defvar websocket-version "1.10"
   "Version numbers of this version of websocket.el.")
 
 (defvar websocket-debug nil
@@ -914,13 +914,13 @@ connection, which should be kept in order to pass to
     (process-put client :websocket ws)
     (set-process-coding-system client 'binary 'binary)
     (set-process-sentinel client
-     (lambda (process change)
-       (let ((websocket (process-get process :websocket)))
-         (websocket-debug websocket "State change to %s" change)
-         (when (and
-                (member (process-status process) '(closed failed exit signal))
-                (not (eq 'closed (websocket-ready-state websocket))))
-           (websocket-try-callback 'websocket-on-close 'on-close websocket)))))))
+                          (lambda (process change)
+                            (let ((websocket (process-get process :websocket)))
+                              (websocket-debug websocket "State change to %s" change)
+                              (when (and
+                                     (member (process-status process) '(closed failed exit signal))
+                                     (not (eq 'closed (websocket-ready-state websocket))))
+                                (websocket-try-callback 'websocket-on-close 'on-close websocket)))))))
 
 (defun websocket-create-headers (url key protocol extensions custom-headers-alist)
   "Create connections headers for the given URL, KEY, PROTOCOL, and EXTENSIONS.

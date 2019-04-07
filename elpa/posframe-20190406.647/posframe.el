@@ -5,7 +5,7 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20190313.1246
+;; Package-Version: 20190406.647
 ;; Version: 0.4.3
 ;; Keywords: tooltip
 ;; Package-Requires: ((emacs "26"))
@@ -587,7 +587,9 @@ This need PARENT-FRAME-WIDTH and PARENT-FRAME-HEIGHT"
                 (cons parent-frame-width parent-frame-height)))
   ;; Make posframe's posframe--frame visible
   (unless (frame-visible-p posframe)
-    (make-frame-visible posframe)))
+    (make-frame-visible posframe)
+    ;; Fix issue: https://github.com/tumashu/ivy-posframe/pull/30
+    (redraw-frame posframe)))
 
 (defun posframe--run-timeout-timer (posframe secs)
   "Hide POSFRAME after a delay of SECS seconds."

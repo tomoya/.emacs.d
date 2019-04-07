@@ -6,16 +6,16 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads "actual autoloads are elsewhere" "websocket" "../../../../../../../.emacs.d/elpa/websocket-20180423.16/websocket.el"
+;;;### (autoloads "actual autoloads are elsewhere" "websocket" "../../../../../../../.emacs.d/elpa/websocket-20190406.419/websocket.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/websocket-20180423.16/websocket.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/websocket-20190406.419/websocket.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "websocket" '("websocket-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/websocket-20180423.16/websocket-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/websocket-20180423.16/websocket.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/websocket-20190406.419/websocket-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/websocket-20190406.419/websocket.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
