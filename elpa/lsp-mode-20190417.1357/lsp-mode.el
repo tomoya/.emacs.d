@@ -3248,7 +3248,7 @@ RENDER-ALL - nil if only the signature should be rendered."
   (if (and (hash-table-p contents) (gethash "kind" contents))
       ;; MarkupContent, deprecated by LSP but actually very flexible.
       ;; It tends to be long and is not suitable in echo area.
-      (lsp--render-element contents)
+      (if render-all (lsp--render-element contents) "")
     ;; MarkedString -> MarkedString[]
     (when (or (hash-table-p contents) (stringp contents))
       (setq contents (list contents)))
@@ -4596,6 +4596,11 @@ the path to the property, symbol is the defcustom symbol which
 will be used to retrieve the value and boolean determines whether
 the type of the property is boolean?"
   (setq lsp-client-settings (-uniq (append lsp-client-settings props))))
+
+(defun lsp-region-text (region)
+  "Get the text for REGION in current buffer."
+  (-let (((start . end) (lsp--range-to-region region)))
+    (buffer-substring-no-properties start end)))
 
 (defun lsp-ht-set (tbl paths value)
   "Set nested hashtable value.

@@ -369,6 +369,7 @@ Same as `helm-occur-goto-line' but go in new frame."
                                  "OccurBufferName: " "*hmoccur ")))
       (setq buf new-buf))
     (with-current-buffer (get-buffer-create buf)
+      (kill-all-local-variables)
       (setq buffer-read-only t)
       (buffer-disable-undo)
       (let ((inhibit-read-only t)
@@ -497,6 +498,8 @@ numbered.  The property 'buffer-name is added to the whole string."
                             (car (helm-occur-filter-one-by-one line))
                             'helm-realvalue linum)
                            "\n"))))
+          (when (fboundp 'wgrep-cleanup-overlays)
+            (wgrep-cleanup-overlays (point-min) (point-max)))
           (message "Reverting buffer done"))))))
 
 (defun helm-occur-filter-one-by-one (candidate)
