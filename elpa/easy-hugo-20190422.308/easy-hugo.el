@@ -4,8 +4,8 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-easy-hugo
-;; Package-Version: 20181202.831
-;; Version: 3.8.37
+;; Package-Version: 20190422.308
+;; Version: 3.8.38
 ;; Package-Requires: ((emacs "24.4") (popup "0.5.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -406,22 +406,23 @@ Report an error if hugo is not installed, or if `easy-hugo-basedir' is unset."
       (error "%s does not exist" (expand-file-name
 				  easy-hugo-image-directory
 				  (expand-file-name "static" easy-hugo-basedir))))
-    (let ((file (read-file-name "Image file: " nil
-				(expand-file-name
+    (let ((insert-default-directory nil))
+      (let ((file (read-file-name "Image file: " nil
+				  (expand-file-name
+				   easy-hugo-image-directory
+				   (expand-file-name "static" easy-hugo-basedir))
+				  t
+				  (expand-file-name
+				   easy-hugo-image-directory
+				   (expand-file-name "static" easy-hugo-basedir)))))
+	(insert (concat (format "<img src=\"%s%s\""
+				easy-hugo-url
+				(concat
+				 "/"
 				 easy-hugo-image-directory
-				 (expand-file-name "static" easy-hugo-basedir))
-				t
-				(expand-file-name
-				 easy-hugo-image-directory
-				 (expand-file-name "static" easy-hugo-basedir)))))
-      (insert (concat (format "<img src=\"%s%s\""
-			      easy-hugo-url
-			      (concat
-			       "/"
-			       easy-hugo-image-directory
-			       "/"
-			       (file-name-nondirectory file)))
-		      " alt=\"\" width=\"100%\"/>"))))))
+				 "/"
+				 (file-name-nondirectory file)))
+			" alt=\"\" width=\"100%\"/>")))))))
 
 ;;;###autoload
 (defun easy-hugo-figure ()
@@ -434,22 +435,23 @@ Report an error if hugo is not installed, or if `easy-hugo-basedir' is unset."
       (error "%s does not exist" (expand-file-name
 				  easy-hugo-image-directory
 				  (expand-file-name "static" easy-hugo-basedir))))
-    (let ((file (read-file-name "Image file: " nil
-				(expand-file-name
+    (let ((insert-default-directory nil))
+      (let ((file (read-file-name "Image file: " nil
+				  (expand-file-name
+				   easy-hugo-image-directory
+				   (expand-file-name "static" easy-hugo-basedir))
+				  t
+				  (expand-file-name
+				   easy-hugo-image-directory
+				   (expand-file-name "static" easy-hugo-basedir)))))
+	(insert (concat (format "{{< figure src=\"%s%s\""
+				easy-hugo-url
+				(concat
+				 "/"
 				 easy-hugo-image-directory
-				 (expand-file-name "static" easy-hugo-basedir))
-				t
-				(expand-file-name
-				 easy-hugo-image-directory
-				 (expand-file-name "static" easy-hugo-basedir)))))
-      (insert (concat (format "{{< figure src=\"%s%s\""
-			      easy-hugo-url
-			      (concat
-			       "/"
-			       easy-hugo-image-directory
-			       "/"
-			       (file-name-nondirectory file)))
-		      "  title=\"\" >}}"))))))
+				 "/"
+				 (file-name-nondirectory file)))
+			"  title=\"\" >}}")))))))
 
 ;;;###autoload
 (defun easy-hugo-put-image ()
@@ -462,24 +464,25 @@ Report an error if hugo is not installed, or if `easy-hugo-basedir' is unset."
       (error "%s does not exist" (expand-file-name
 				  easy-hugo-image-directory
 				  (expand-file-name "static" easy-hugo-basedir))))
-    (let* ((file (read-file-name "Image file: " nil
-				 (expand-file-name easy-hugo-default-picture-directory)
-				 t
-				 (expand-file-name easy-hugo-default-picture-directory)))
-	   (putfile (expand-file-name
-		     (file-name-nondirectory file)
-		     (expand-file-name easy-hugo-image-directory "static"))))
-      (when (file-exists-p putfile)
-	(error "%s already exists!" putfile))
-      (copy-file file putfile)
-      (insert (concat (format "<img src=\"%s%s\""
-			      easy-hugo-url
-			      (concat
-			       "/"
-			       easy-hugo-image-directory
-			       "/"
-			       (file-name-nondirectory file)))
-		      " alt=\"\" width=\"100%\"/>"))))))
+    (let ((insert-default-directory nil))
+      (let* ((file (read-file-name "Image file: " nil
+				   (expand-file-name easy-hugo-default-picture-directory)
+				   t
+				   (expand-file-name easy-hugo-default-picture-directory)))
+	     (putfile (expand-file-name
+		       (file-name-nondirectory file)
+		       (expand-file-name easy-hugo-image-directory "static"))))
+	(when (file-exists-p putfile)
+	  (error "%s already exists!" putfile))
+	(copy-file file putfile)
+	(insert (concat (format "<img src=\"%s%s\""
+				easy-hugo-url
+				(concat
+				 "/"
+				 easy-hugo-image-directory
+				 "/"
+				 (file-name-nondirectory file)))
+			" alt=\"\" width=\"100%\"/>")))))))
 
 ;;;###autoload
 (defun easy-hugo-put-figure ()
@@ -492,24 +495,25 @@ Report an error if hugo is not installed, or if `easy-hugo-basedir' is unset."
       (error "%s does not exist" (expand-file-name
                                   easy-hugo-image-directory
                                   (expand-file-name "static" easy-hugo-basedir))))
-    (let* ((file (read-file-name "Image file: " nil
-				 (expand-file-name easy-hugo-default-picture-directory)
-				 t
-				 (expand-file-name easy-hugo-default-picture-directory)))
-	   (putfile (expand-file-name
-		     (file-name-nondirectory file)
-		     (expand-file-name easy-hugo-image-directory "static"))))
-      (when (file-exists-p putfile)
-	(error "%s already exists!" putfile))
-      (copy-file file putfile)
-      (insert (concat (format "{{< figure src=\"%s%s\""
-                              easy-hugo-url
-                              (concat
-                               "/"
-                               easy-hugo-image-directory
-                               "/"
-                               (file-name-nondirectory file)))
-                      "  title=\"\" >}}"))))))
+    (let ((insert-default-directory nil))
+      (let* ((file (read-file-name "Image file: " nil
+				   (expand-file-name easy-hugo-default-picture-directory)
+				   t
+				   (expand-file-name easy-hugo-default-picture-directory)))
+	     (putfile (expand-file-name
+		       (file-name-nondirectory file)
+		       (expand-file-name easy-hugo-image-directory "static"))))
+	(when (file-exists-p putfile)
+	  (error "%s already exists!" putfile))
+	(copy-file file putfile)
+	(insert (concat (format "{{< figure src=\"%s%s\""
+				easy-hugo-url
+				(concat
+				 "/"
+				 easy-hugo-image-directory
+				 "/"
+				 (file-name-nondirectory file)))
+			"  title=\"\" >}}")))))))
 
 ;;;###autoload
 (defun easy-hugo-pull-image ()

@@ -3774,7 +3774,7 @@ Default function to match candidates according to `helm-pattern'."
 ;;; Fuzzy matching
 ;;
 ;;
-(defconst helm--fuzzy-word-separators '("-" "_" "." ":" "/"))
+(defconst helm--fuzzy-word-separators '("-" "_" ":" "/"))
 (defvar helm--fuzzy-regexp-cache (make-hash-table :test 'eq))
 (defun helm--fuzzy-match-maybe-set-pattern ()
   ;; Computing helm-pattern with helm--mapconcat-pattern
