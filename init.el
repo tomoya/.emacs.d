@@ -47,6 +47,7 @@
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(completion-styles '(basic flex partial-completion emacs22))
+ '(css-indent-offset 2)
  '(custom-enabled-themes '(cyberpunk-2019))
  '(custom-safe-themes
    '("d90fe08e88654af93970f730a686b4fb936bad4e4b3b86ae3ce66388585ae649" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
@@ -144,6 +145,7 @@
  '(tool-bar-mode nil)
  '(typescript-indent-level 2)
  '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
  '(web-mode-enable-comment-interpolation t)
  '(web-mode-enable-current-column-highlight t)
  '(web-mode-enable-current-element-highlight t)
