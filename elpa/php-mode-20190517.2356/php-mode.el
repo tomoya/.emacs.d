@@ -413,6 +413,10 @@ In that case set to `NIL'."
         (left-assoc "\\" "::" "->")
         (prefix "\\" "::")))
 
+(c-lang-defconst c-operators
+  php (delete '(postfix-if-paren "<" ">")
+              (c-lang-const c-operators)))
+
 ;; Allow '\' when scanning from open brace back to defining
 ;; construct like class
 (c-lang-defconst c-block-prefix-disallowed-chars
@@ -469,40 +473,35 @@ PHP does not have an \"enum\"-like keyword."
   php '("implements" "extends"))
 
 (c-lang-defconst c-type-list-kwds
-  php '("new" "use" "implements" "extends" "namespace" "instanceof" "insteadof"))
+  php '("@new" ;; @new is *NOT* language construct, it's workaround for coloring.
+        "new" "use" "implements" "extends" "namespace" "instanceof" "insteadof"))
 
 (c-lang-defconst c-ref-list-kwds
   php nil)
 
 (c-lang-defconst c-block-stmt-2-kwds
-  php (append '("elseif" "foreach" "declare")
-              (remove "synchronized" (c-lang-const c-block-stmt-2-kwds))))
+  php '("catch" "declare" "elseif" "for" "foreach" "if" "switch" "while"))
 
 (c-lang-defconst c-simple-stmt-kwds
-  php (append '("include" "include_once" "require" "require_once"
-                "echo" "print" "die" "exit")
-              (c-lang-const c-simple-stmt-kwds)))
+  php '("break" "continue" "die" "echo" "exit" "goto" "return" "throw"
+        "include" "include_once" "print" "require" "require_once"))
 
 (c-lang-defconst c-constant-kwds
-  php '("true"
-        "false"
-        "null"))
+  php '("true" "false" "null"))
 
 (c-lang-defconst c-lambda-kwds
-  php '("function"
-        "use"))
+  php '("function" "use"))
 
 (c-lang-defconst c-other-block-decl-kwds
   php '("namespace"))
 
 (c-lang-defconst c-other-kwds
   "Keywords not accounted for by any other `*-kwds' language constant."
-  php '(
+  php
+  '(
     "__halt_compiler"
     "and"
     "array"
-    "callable"
-    "iterable"
     "as"
     "break"
     "catch"
@@ -546,6 +545,12 @@ PHP does not have an \"enum\"-like keyword."
 (c-lang-defconst c-recognize-<>-arglists
   php nil)
 
+(c-lang-defconst c-<>-type-kwds
+  php nil)
+
+(c-lang-defconst c-inside-<>-type-kwds
+  php nil)
+
 (c-lang-defconst c-enums-contain-decls
   php nil)
 
@@ -568,6 +573,13 @@ might be to handle switch and goto labels differently."
 (c-lang-defconst c-basic-matchers-before
   php (cl-remove-if (lambda (elm) (and (listp elm) (equal (car elm) "\\s|")))
                     (c-lang-const c-basic-matchers-before php)))
+
+(c-lang-defconst c-basic-matchers-after
+  php (cl-remove-if (lambda (elm) (and (listp elm) (memq 'c-annotation-face elm)))
+                    (c-lang-const c-basic-matchers-after php)))
+
+(c-lang-defconst c-opt-<>-sexp-key
+  php nil)
 
 (defun php-lineup-cascaded-calls (langelem)
   "Line up chained methods using `c-lineup-cascaded-calls',
@@ -1379,9 +1391,10 @@ a completion list."
      ;; Highlight variables, e.g. 'var' in '$var' and '$obj->var', but
      ;; not in $obj->var()
      ("\\(->\\)\\(\\sw+\\)\\s-*(" (1 'php-object-op) (2 'php-method-call))
+     ("\\<\\(const\\)\\s-+\\(\\_<.+?\\_>\\)" (1 'php-keyword) (2 'php-constant-assign))
 
      ;; Highlight special variables
-     ("\\(\\$\\)\\(this\\|that\\)\\_>" (1 'php-$this-sigil) (2 'php-$this))
+     ("\\(\\$\\)\\(this\\)\\>" (1 'php-$this-sigil) (2 'php-$this))
      ("\\(\\$+\\)\\(\\sw+\\)" (1 'php-variable-sigil) (2 'php-variable-name))
      ("\\(->\\)\\([a-zA-Z0-9_]+\\)" (1 'php-object-op) (2 'php-property-name))
 
@@ -1397,12 +1410,13 @@ a completion list."
      ;; - when used as cast, so that (int) and (array) look the same
      ("(\\(array\\))" 1 font-lock-type-face)
 
+     (,(regexp-opt php-magical-constants 'symbols) (1 'php-magical-constant))
      ;; namespaces
      ("\\(\\([a-zA-Z0-9_]+\\\\\\)+[a-zA-Z0-9_]+\\|\\(\\\\[a-zA-Z0-9_]+\\)+\\)[^:a-zA-Z0-9_\\\\]" 1 'font-lock-type-face)
      ("\\(\\([a-zA-Z0-9_]+\\\\\\)+[a-zA-Z0-9_]+\\|\\(\\\\[a-zA-Z0-9_]+\\)+\\)::" 1 'php-constant)
 
      ;; Support the ::class constant in PHP5.6
-     ("\\sw+\\(::\\)\\(class\\)\\b" (1 'php-paamayim-nekudotayim) (2 'php-constant))
+     ("\\sw+\\(::\\)\\(class\\)\\b" (1 'php-paamayim-nekudotayim) (2 'php-magical-constant))
 
      ;; Highlight static method calls as such. This is necessary for method
      ;; names which are identical to keywords to be highlighted correctly.
@@ -1431,6 +1445,7 @@ a completion list."
    ;;   already fontified by another pattern. Note that using OVERRIDE
    ;;   is usually overkill.
    `(
+     ("\\<\\(@\\)" 1 'php-errorcontrol-op)
      ;; Highlight all upper-cased symbols as constant
      ("\\<\\([A-Z_][A-Z0-9_]+\\)\\>" 1 'php-constant)
 

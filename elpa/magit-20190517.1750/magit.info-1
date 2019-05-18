@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 2.90.1 (v2.90.1-655-ge2308d9f4+1).
+This manual is for Magit version 2.90.1 (v2.90.1-662-gb9c5ed10e+1).
 
      Copyright (C) 2015-2019 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -2636,9 +2636,13 @@ default the following functions are also members of that hook:
 
      Insert a tree of ignored files.
 
-     If the first element of ‘magit-diff-section-arguments’ is a
-     directory, then limit the list to files below that.  The value of
-     that variable can be set using ‘D = f <DIRECTORY> RET g’.
+     Its possible to limit the logs in the current buffer to a certain
+     directory using ‘D = f <DIRECTORY> RET g’.  If you do that, then
+     that that also affects this command.
+
+     The log filter can be used to limit to multiple files.  In that
+     case this function only respects the first of the files and only if
+     it is a directory.
 
  -- Function: magit-insert-unpulled-or-recent-commits
 

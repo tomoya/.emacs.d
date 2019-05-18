@@ -427,6 +427,14 @@ the active signature."
   :group 'lsp-mode)
 
 (defcustom lsp-after-diagnostics-hook nil
+  "Hooks to run after diagnostics are received.
+Note: it runs only if the receiving buffer is open. Use
+`lsp-diagnostics-updated-hook'if you want to be notified when
+diagnostics have changed."
+  :type 'hook
+  :group 'lsp-mode)
+
+(defcustom lsp-diagnostics-updated-hook nil
   "Hooks to run after diagnostics are received."
   :type 'hook
   :group 'lsp-mode)
@@ -509,6 +517,7 @@ If set to `:none' neither of two will be enabled."
 
 (defvar lsp-language-id-configuration '((".*.vue" . "vue")
                                         (".*.tsx" . "typescriptreact")
+                                        (scala-mode . "scala")
                                         (julia-mode . "julia")
                                         (java-mode . "java")
                                         (python-mode . "python")
@@ -1222,6 +1231,8 @@ WORKSPACE is the workspace that contains the diagnostics."
         (remhash file workspace-diagnostics)
       (when (or lsp-report-if-no-buffer buffer)
         (puthash file (seq-map #'lsp--make-diag diagnostics) workspace-diagnostics)))
+
+    (run-hooks 'lsp-diagnostics-updated-hook)
 
     (when buffer
       (save-mark-and-excursion
@@ -3128,9 +3139,11 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
   "Resolve completion ITEM."
   (cl-assert item nil "Completion item must not be nil")
   (or (-first 'identity
-               (lsp-foreach-workspace
-                (when (gethash "resolveProvider" (lsp--capability "completionProvider"))
-                  (lsp-request "completionItem/resolve" item))))
+              (condition-case _err
+                  (lsp-foreach-workspace
+                   (when (gethash "resolveProvider" (lsp--capability "completionProvider"))
+                     (lsp-request "completionItem/resolve" item)))
+                (error)))
       item))
 
 (defun lsp--extract-line-from-buffer (pos)
@@ -3634,9 +3647,9 @@ A reference is highlighted only if it is visible in a window."
                     (when (and (> (1+ (gethash "line" start)) start-window)
                                (< (1+ (gethash "line" end)) end-window)
                                (not (and lsp-symbol-highlighting-skip-current
-                                         (< (lsp--position-to-point start)
-                                            (point)
-                                            (lsp--position-to-point end)))))
+                                         (<= (lsp--position-to-point start)
+                                             (point)
+                                             (lsp--position-to-point end)))))
                       (setq overlay (make-overlay (lsp--position-to-point start)
                                                   (lsp--position-to-point end)))
                       (overlay-put overlay 'face

@@ -565,10 +565,8 @@ is that Git first goes outside and has a smoke.
 not only by using ‘-<N>’ but by also using a range.  But unfortunately
 that’s not always possible.
 
-   In repositories with more than a few thousand commits ‘--graph’
-should never be a member of ‘magit-log-section-arguments’.  That
-variable is used in the status buffer which is refreshed every time you
-run any Magit command.
+   When more than a few thousand commits are shown, then the use of
+‘--graph’ can slow things down.
 
    Using ‘--color --graph’ is even slower.  Magit uses code that is part
 of Emacs to turn control characters into faces.  That code is pretty
@@ -3064,7 +3062,7 @@ Appendix E Function Index
 * magit-insert-push-branch-header:       Status Header Sections.
                                                               (line  51)
 * magit-insert-rebase-sequence:          Status Sections.     (line  23)
-* magit-insert-recent-commits:           Status Sections.     (line 115)
+* magit-insert-recent-commits:           Status Sections.     (line 119)
 * magit-insert-remote-branches:          References Sections. (line  21)
 * magit-insert-remote-header:            Status Header Sections.
                                                               (line  67)
@@ -3081,11 +3079,11 @@ Appendix E Function Index
 * magit-insert-tags-header:              Status Header Sections.
                                                               (line  56)
 * magit-insert-tracked-files:            Status Sections.     (line  96)
-* magit-insert-unpulled-cherries:        Status Sections.     (line 126)
+* magit-insert-unpulled-cherries:        Status Sections.     (line 130)
 * magit-insert-unpulled-from-pushremote: Status Sections.     (line  79)
 * magit-insert-unpulled-from-upstream:   Status Sections.     (line  74)
-* magit-insert-unpulled-or-recent-commits: Status Sections.   (line 108)
-* magit-insert-unpushed-cherries:        Status Sections.     (line 133)
+* magit-insert-unpulled-or-recent-commits: Status Sections.   (line 112)
+* magit-insert-unpushed-cherries:        Status Sections.     (line 137)
 * magit-insert-unpushed-to-pushremote:   Status Sections.     (line  89)
 * magit-insert-unpushed-to-upstream:     Status Sections.     (line  84)
 * magit-insert-unstaged-changes:         Status Sections.     (line  59)
@@ -3285,7 +3283,7 @@ Appendix F Variable Index
                                                               (line 118)
 * magit-log-margin:                      Log Margin.          (line  12)
 * magit-log-section-args:                Status Options.      (line  36)
-* magit-log-section-commit-count:        Status Sections.     (line 120)
+* magit-log-section-commit-count:        Status Sections.     (line 124)
 * magit-log-select-margin:               Select from Log.     (line  30)
 * magit-log-show-refname-after-summary:  Log Buffer.          (line  75)
 * magit-log-trace-definition-function:   Commands Available in Diffs.

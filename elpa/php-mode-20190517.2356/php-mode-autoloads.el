@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "php" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php.el"
-;;;;;;  "525a5300423bc5d7e398e9b38b2eec58")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php.el
+;;;### (autoloads nil "php" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php.el"
+;;;;;;  "45aa472f2ce4a185396f0d77e3e11bd5")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php.el
 
 (let ((loads (get 'php 'custom-loads))) (if (member '"php" loads) nil (put 'php 'custom-loads (cons '"php" loads))))
 
@@ -18,9 +18,9 @@ Insert current class name if cursor in class context." t nil)
 (autoload 'php-current-namespace "php" "\
 Insert current namespace if cursor in namespace context." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "php" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php" '("php-")))
 
@@ -28,90 +28,90 @@ Insert current namespace if cursor in namespace context." t nil)
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-array" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-array.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-array" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-array.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-array.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-array.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-array" '("php-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-classobj"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-classobj.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-classobj.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-classobj.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-classobj.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-classobj" '("php")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-control-structures"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-control-structures.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-control-structures.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-control-structures.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-control-structures.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-control-structures" '("php-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-crack" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-crack.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-crack" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-crack.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-crack.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-crack.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-crack" '("php-crack-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-dio" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dio.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-dio" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dio.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dio.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dio.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-dio" '("php-dio_")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-dom" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dom.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-dom" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dom.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dom.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dom.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-dom" '("php-dom")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-exceptions"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exceptions.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exceptions.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exceptions.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exceptions.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-exceptions" '("php-try-catch")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-exif" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exif.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-exif" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exif.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exif.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exif.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-exif" '("php-exif_")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-ext" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-ext.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-ext" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-ext.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-ext.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-ext.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-ext" '("php-")))
 
 ;;;***
 
-;;;### (autoloads nil "php-face" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-face.el"
-;;;;;;  "1d3e86a789c260aac2ef336bb425eb61")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-face.el
+;;;### (autoloads nil "php-face" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-face.el"
+;;;;;;  "03a03f9a517d3e05092ff043c28571cd")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-face.el
 
 (let ((loads (get 'php-faces 'custom-loads))) (if (member '"php-face" loads) nil (put 'php-faces 'custom-loads (cons '"php-face" loads))))
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-face" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-face.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-face" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-face.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-face.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-face.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-face" '("php-annotations-annotation-face")))
 
@@ -120,33 +120,33 @@ Insert current namespace if cursor in namespace context." t nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-filesystem"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-filesystem.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-filesystem.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-filesystem.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-filesystem.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-filesystem" '("php-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-gd" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-gd.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-gd" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-gd.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-gd.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-gd.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-gd" '("php-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-math" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-math.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-math" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-math.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-math.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-math.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-math" '("php-")))
 
 ;;;***
 
-;;;### (autoloads nil "php-mode" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode.el"
-;;;;;;  "b178532b532153e0935f297a4e2246a7")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode.el
+;;;### (autoloads nil "php-mode" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode.el"
+;;;;;;  "6f99a2b7afb4a7556d67285fe18924fe")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode.el
 
 (let ((loads (get 'php-mode 'custom-loads))) (if (member '"php-mode" loads) nil (put 'php-mode 'custom-loads (cons '"php-mode" loads))))
 
@@ -163,9 +163,9 @@ Major mode for editing PHP code.
 
 (add-to-list 'auto-mode-alist (cons (eval-when-compile (rx (or (: "." (or (: "php" (32 (in "s345t"))) "amk" "phtml")) (: "/" (or "Amkfile" ".php_cs" ".php_cs.dist"))) string-end)) 'php-mode) t)
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-mode" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-mode" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-mode" '("php-")))
 
@@ -174,25 +174,25 @@ Major mode for editing PHP code.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-mode-debug"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode-debug.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode-debug.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode-debug.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode-debug.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-mode-debug" '("php-mode-debug")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-pcre" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-pcre.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-pcre" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-pcre.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-pcre.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-pcre.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-pcre" '("php-preg_")))
 
 ;;;***
 
-;;;### (autoloads nil "php-project" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-project.el"
+;;;### (autoloads nil "php-project" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-project.el"
 ;;;;;;  "e1bffe7be3d0a5b4c76eb6aa74042bbe")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-project.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-project.el
 
 (defvar-local php-project-root 'auto "\
 Method of searching for the top level directory.
@@ -277,9 +277,9 @@ Return list of bootstrap script." nil nil)
 Return path to current PHP project." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-project"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-project.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-project.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-project.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-project.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-project" '("php-project-")))
 
@@ -287,84 +287,84 @@ Return path to current PHP project." nil nil)
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-regex" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-regex.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-regex" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-regex.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-regex.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-regex.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-regex" '("php-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-simplexml"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-simplexml.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-simplexml.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-simplexml.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-simplexml.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-simplexml" '("php-simplexml_")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-strings"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-strings.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-strings.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-strings.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-strings.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-strings" '("php-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-var" "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-var.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-var" "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-var.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-var.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-var.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-var" '("php-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-xmlparser"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlparser.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlparser.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlparser.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlparser.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-xmlparser" '("php-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-xmlreader"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlreader.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlreader.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlreader.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlreader.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-xmlreader" '("php-xmlreader")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-array.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-classobj.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-control-structures.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-crack.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dio.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-dom.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exceptions.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-exif.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-ext.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-face.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-filesystem.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-gd.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-math.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode-debug.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-mode.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-pcre.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-project.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-regex.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-simplexml.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-strings.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-var.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlparser.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php-xmlreader.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190511.1635/php.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-array.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-classobj.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-control-structures.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-crack.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dio.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-dom.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exceptions.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-exif.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-ext.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-face.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-filesystem.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-gd.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-math.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode-debug.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode-pkg.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-mode.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-pcre.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-project.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-regex.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-simplexml.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-strings.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-var.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlparser.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php-xmlreader.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/php-mode-20190517.2356/php.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
