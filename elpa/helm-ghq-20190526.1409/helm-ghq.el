@@ -1,12 +1,12 @@
-;;; helm-ghq.el --- ghq with helm interface -*- lexical-binding: t; -*-
+;;; helm-ghq.el --- Ghq with helm interface -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015 by Takashi Masuda
 
 ;; Author: Takashi Masuda <masutaka.net@gmail.com>
 ;; URL: https://github.com/masutaka/emacs-helm-ghq
-;; Package-Version: 20161015.817
-;; Version: 1.7.0
-;; Package-Requires: ((helm "2.2.0"))
+;; Package-Version: 20190526.1409
+;; Version: 1.8.0
+;; Package-Requires: ((emacs "24") (helm "2.2.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -110,7 +110,7 @@
     ("Open File other frame" . find-file-other-frame)
     ("Open Directory" . helm-ghq--open-dired)))
 
-(defvar helm-source-ghq
+(defvar helm-ghq-source
   (helm-build-sync-source "ghq"
     :candidates #'helm-ghq--list-candidates
     :match #'helm-ghq--files-match-only-basename
@@ -119,6 +119,9 @@
     :help-message helm-generic-file-help-message
     :action helm-ghq--action)
   "Helm source for ghq.")
+
+(define-obsolete-variable-alias 'helm-source-ghq
+  'helm-ghq-source "1.8.0")
 
 (defun helm-ghq--files-match-only-basename (candidate)
   "Allow matching only basename of file when \" -b\" is added at end of pattern.
@@ -204,15 +207,15 @@ even is \" -b\" is specified."
         ((string-match "code.google.com/\\(.+\\)" repo)
          (match-string-no-properties 1 repo))))
 
-(defsubst hel-ghq--concat-as-command (args)
+(defsubst helm-ghq--concat-as-command (args)
   (mapconcat 'identity args " "))
 
 (defun helm-ghq--update-repository (repo)
   (let* ((user-project (helm-ghq--repo-to-user-project repo))
-	 (command (hel-ghq--concat-as-command
+	 (command (helm-ghq--concat-as-command
 		   (list
 		    helm-ghq-command-ghq
-		    (hel-ghq--concat-as-command
+		    (helm-ghq--concat-as-command
 		     helm-ghq-command-ghq-arg-update-repo)
 		    user-project))))
     (async-shell-command command)))

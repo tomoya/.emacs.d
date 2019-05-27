@@ -72,9 +72,8 @@ If you want to have the default tramp messages set it to 3."
 
 (defcustom helm-ff-auto-update-initial-value nil
   "Auto update when only one candidate directory is matched.
-Default value when starting `helm-find-files' is nil because
-it prevent using <backspace> to delete char backward and by the way
-confuse beginners.
+Default value when starting `helm-find-files' is nil to not confuse
+new users.
 For a better experience with `helm-find-files' set this to non--nil
 and use C-<backspace> to toggle it."
   :group 'helm-files
@@ -606,6 +605,16 @@ have no effect, use customize instead."
            (define-key helm-find-files-map (kbd "<left>")  nil)
            (define-key helm-read-file-map (kbd "<right>") nil)
            (define-key helm-read-file-map (kbd "<left>")  nil))))
+
+(defcustom helm-ff-DEL-up-one-level-maybe nil
+  "Use DEL to maybe go up one level when non nil.
+
+Going up one level works only when pattern is a directory endings with
+\"/\", otherwise this command delete char backward.
+
+When nil always delete char backward."
+  :group 'helm-files
+  :type 'boolean)
 
 ;; Internal.
 (defvar helm-find-files-doc-header " (\\<helm-find-files-map>\\[helm-find-files-up-one-level]: Go up one level)"
@@ -1518,15 +1527,25 @@ This doesn't replace inside the files, only modify filenames."
 (put 'helm-ff-run-toggle-auto-update 'helm-only t)
 
 (defun helm-ff-delete-char-backward ()
-  "Disable helm find files auto update and delete char backward."
+  "Go up one level or disable HFF auto update and delete char backward.
+
+Going up one level works only when pattern is a directory endings with
+\"/\", otherwise this command delete char backward.
+
+Going up one level can be disabled if necessary by deleting \"/\" at
+end of pattern using \\<helm-map>\\[backward-char] and \\[helm-delete-minibuffer-contents]."
   (interactive)
   (with-helm-alive-p
-    (setq helm-ff-auto-update-flag nil)
-    (setq helm-ff--deleting-char-backward t)
-    (call-interactively
-     (lookup-key (current-global-map)
-                 (read-kbd-macro "DEL")))
-    (helm--update-header-line)))
+    (if (and helm-ff-DEL-up-one-level-maybe
+             (string-match "/\\'" helm-pattern)
+             (file-directory-p helm-pattern))
+        (call-interactively 'helm-find-files-up-one-level)
+      (setq helm-ff-auto-update-flag nil)
+      (setq helm-ff--deleting-char-backward t)
+      (call-interactively
+       (lookup-key (current-global-map)
+                   (read-kbd-macro "DEL")))
+      (helm--update-header-line))))
 (put 'helm-ff-delete-char-backward 'helm-only t)
 
 (defun helm-ff-delete-char-backward--exit-fn ()
@@ -1560,6 +1579,29 @@ Behave differently depending of `helm-selection':
   (interactive)
   (helm-ff-RET-1))
 (put 'helm-ff-RET 'helm-only t)
+
+(defun helm-ff-TAB-1 (&optional force-menu)
+  "Used for TAB action in `helm-find-files'."
+  (let ((sel (helm-get-selection)))
+    (if (and (null force-menu)
+             (file-directory-p sel)
+             (not (string= "." (helm-basename sel))))
+        (helm-execute-persistent-action)
+      (helm-select-action))))
+
+(defun helm-ff-TAB (arg)
+  "Default action for TAB in `helm-find-files'.
+
+Behave differently depending of `helm-selection':
+
+- candidate basename is \".\" => open the action menu.
+- candidate is a directory    => expand it.
+- candidate is a file         => open action menu.
+
+Called with a prefix arg open menu unconditionally."
+  (interactive "P")
+  (helm-ff-TAB-1 arg))
+(put 'helm-ff-TAB 'helm-only t)
 
 (defun helm-ff-RET-must-match ()
   "Same as `helm-ff-RET' but used in must-match map."
