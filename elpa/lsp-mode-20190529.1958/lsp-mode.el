@@ -235,6 +235,21 @@ When set to t `lsp-mode' will auto-configure `lsp-ui' and `company-lsp'."
   :group 'lsp-mode
   :type 'boolean)
 
+(defcustom lsp-disabled-clients nil
+  "A list of disabled/blacklisted clients.
+Each entry in the list can be either:
+a symbol, the server-id for the LSP client, or
+a cons pair (MAJOR-MODE . CLIENTS), where MAJOR-MODE is the major-mode,
+and CLIENTS is either a client or a list of clients.
+
+This option can also be used as a file or directory local variable to
+disable a language server for individual files or directories/projects
+respectively."
+  :group 'lsp-mode
+  :type 'list
+  :safe 'listp
+  :package-version '(lsp-mode . "6.1"))
+
 (defvar lsp-clients (make-hash-table :test 'eql)
   "Hash table server-id -> client.
 It contains all of the clients that are currently registered.")
@@ -1228,7 +1243,7 @@ PARAMS contains the diagnostics data.
 WORKSPACE is the workspace that contains the diagnostics."
   (let* ((file (lsp--uri-to-path (gethash "uri" params)))
          (diagnostics (gethash "diagnostics" params))
-         (buffer (get-file-buffer file))
+         (buffer (find-buffer-visiting file))
          (workspace-diagnostics (lsp--workspace-diagnostics workspace)))
 
     (if (seq-empty-p diagnostics)
@@ -1984,25 +1999,25 @@ TYPE can either be 'incoming or 'outgoing"
               (json-encoding-pretty-print t)
               (str nil))
     (setq str
-          (concat (format "[Trace - %s]\n" timestamp)
+          (concat (format "[Trace - %s] " timestamp)
                   (pcase type
-                    ('incoming-req (format "Received request '%s - (%s).\n" method id))
-                    ('outgoing-req (format "Sending request '%s - (%s)'.\n" method id))
+                    ('incoming-req (format "Received request '%s - (%s)." method id))
+                    ('outgoing-req (format "Sending request '%s - (%s)'." method id))
 
-                    ('incoming-notif (format "Received notification '%s'.\n" method))
-                    ('outgoing-notif (format "Sending notification '%s'.\n" method))
+                    ('incoming-notif (format "Received notification '%s'." method))
+                    ('outgoing-notif (format "Sending notification '%s'." method))
 
-                    ('incoming-resp (format "Received response '%s - (%s)' in %dms.\n"
+                    ('incoming-resp (format "Received response '%s - (%s)' in %dms."
                                             method id process-time))
                     ('outgoing-resp
                      (format
-                      "Sending response '%s - (%s)'. Processing request took %dms\n"
+                      "Sending response '%s - (%s)'. Processing request took %dms"
                       method id process-time)))
                   "\n"
                   (if (memq type '(incoming-resp ougoing-resp))
-                      "Result: \n"
-                    "Params: \n")
-                  (json-encode body) "\n"
+                      "Result: "
+                    "Params: ")
+                  (json-encode body)
                   "\n\n\n"))
     (setq str (propertize str 'mouse-face 'highlight 'read-only t))
     (insert str)))
@@ -2020,7 +2035,7 @@ TYPE can either be 'incoming or 'outgoing"
       (lsp--workspace-ewoc workspace)
     (with-current-buffer (lsp--generate-log-buffer-name workspace)
       (unless (eq 'lsp-log-io-mode major-mode) (lsp-log-io-mode))
-      (setq-local lsp--log-io-ewoc (ewoc-create #'lsp--log-entry-pp nil nil))
+      (setq-local lsp--log-io-ewoc (ewoc-create #'lsp--log-entry-pp nil nil t))
       (setf (lsp--workspace-ewoc workspace) lsp--log-io-ewoc))
     (lsp--workspace-ewoc workspace)))
 
@@ -2469,6 +2484,16 @@ in that particular folder."
     (lsp--persist-session (lsp-session)))
 
   (run-hook-with-args 'lsp-workspace-folders-changed-hook nil (list project-root)))
+
+(defun lsp-workspace-blacklist-remove (project-root)
+  "Remove PROJECT-ROOT from the workspace blacklist."
+  (interactive (list (completing-read "Select folder to remove:"
+                                      (lsp-session-folders-blacklist (lsp-session))
+                                      nil t)))
+  (setf (lsp-session-folders-blacklist (lsp-session))
+        (delete project-root
+                (lsp-session-folders-blacklist (lsp-session))))
+  (lsp--persist-session (lsp-session)))
 
 (define-obsolete-function-alias 'lsp-workspace-folders-switch
   'lsp-workspace-folders-open "lsp-mode 6.1")
@@ -3207,7 +3232,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
     (cl-labels ((get-xrefs-in-file
                  (file-locs location-link)
                  (let* ((filename (seq-first file-locs))
-                        (visiting (get-file-buffer filename))
+                        (visiting (find-buffer-visiting filename))
                         (fn (lambda (loc)
                               (lsp--xref-make-item filename
                                                    (if location-link (or (gethash "targetSelectionRange" loc)
@@ -4724,6 +4749,18 @@ SESSION is the active session."
   "Get the session associated with the current buffer."
   (or lsp--session (setq lsp--session (lsp--load-default-session))))
 
+(defun lsp--client-disabled-p (buffer-major-mode client)
+  (seq-some
+   (lambda (entry)
+     (pcase entry
+       ((pred symbolp) (eq entry client))
+       (`(,mode . ,client-or-list)
+        (and (eq mode buffer-major-mode)
+             (if (listp client-or-list)
+                 (memq client client-or-list)
+               (eq client client-or-list))))))
+   lsp-disabled-clients))
+
 (defun lsp--find-clients (buffer-major-mode file-name)
   "Find clients which can handle BUFFER-MAJOR-MODE.
 SESSION is the currently active session. The function will also
@@ -4741,7 +4778,8 @@ remote machine and vice versa."
                                                       (or (null lsp-enabled-clients)
                                                           (or (member (lsp--client-server-id client) lsp-enabled-clients)
                                                               (ignore (lsp--info "Client %s is not in lsp-enabled-clients"
-                                                                                 (lsp--client-server-id client))))))))))
+                                                                                 (lsp--client-server-id client)))))
+                                                      (not (lsp--client-disabled-p buffer-major-mode (lsp--client-server-id client))))))))
       (lsp-log "Found the following clients for %s: %s"
                file-name
                (s-join ", "

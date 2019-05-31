@@ -870,26 +870,30 @@ example, sets a variable use `define-infix-command' instead.
 (defun transient--insert-suffix (prefix loc suffix action)
   (let* ((suf (cl-etypecase suffix
                 (vector (transient--parse-group  prefix suffix))
-                (list   (transient--parse-suffix prefix suffix))))
-         (mem (transient--layout-member loc prefix)))
+                (list   (transient--parse-suffix prefix suffix))
+                (string suffix)))
+         (mem (transient--layout-member loc prefix))
+         (elt (car mem)))
     (cond
      ((not mem)
       (message "Cannot insert %S into %s; %s not found"
                suffix prefix loc))
-     ((not (eq (type-of suffix)
-               (type-of (car mem))))
+     ((or (and (vectorp suffix) (not (vectorp elt)))
+          (and (listp   suffix) (vectorp elt))
+          (and (stringp suffix) (vectorp elt)))
       (message "Cannot place %S into %s at %s; %s"
                suffix prefix loc
                "suffixes and groups cannot be siblings"))
      (t
-      (when (listp suffix)
+      (when (and (listp suffix)
+                 (listp elt))
         (let ((key (plist-get (nth 2 suf) :key)))
           (if (equal (transient--kbd key)
-                     (transient--kbd (plist-get (nth 2 (car mem)) :key)))
+                     (transient--kbd (plist-get (nth 2 elt) :key)))
               (setq action 'replace)
             (transient-remove-suffix prefix key))))
       (cl-ecase action
-        (insert  (setcdr mem (cons (car mem) (cdr mem)))
+        (insert  (setcdr mem (cons elt (cdr mem)))
                  (setcar mem suf))
         (append  (setcdr mem (cons suf (cdr mem))))
         (replace (setcar mem suf)))))))
@@ -997,14 +1001,15 @@ See info node `(transient)Modifying Existing Transients'."
 
 (defun transient--group-member (loc group)
   (cl-member-if (lambda (suffix)
-                  (let* ((def (nth 2 suffix))
-                         (cmd (plist-get def :command)))
-                    (if (symbolp loc)
-                        (eq cmd loc)
-                      (equal (transient--kbd
-                              (or (plist-get def :key)
-                                  (transient--command-key cmd)))
-                             loc))))
+                  (and (listp suffix)
+                       (let* ((def (nth 2 suffix))
+                              (cmd (plist-get def :command)))
+                         (if (symbolp loc)
+                             (eq cmd loc)
+                           (equal (transient--kbd
+                                   (or (plist-get def :key)
+                                       (transient--command-key cmd)))
+                                  loc)))))
                 (aref group 3)))
 
 (defun transient--kbd (keys)

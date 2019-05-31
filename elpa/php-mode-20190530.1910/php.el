@@ -4,7 +4,7 @@
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 5 Dec 2018
-;; Version: 1.21.3
+;; Version: 1.21.4
 ;; Keywords: languages, php
 ;; Homepage: https://github.com/emacs-php/php-mode
 ;; Package-Requires: ((emacs "24.3") (cl-lib "0.5"))
@@ -107,7 +107,7 @@ You can replace \"en\" with your ISO language code."
 
 (defcustom php-template-mode-alist
   `(("\\.blade" . ,php-blade-template-major-mode)
-    ("\\.phpt\\'" . ,(if (fboundp 'phpt-mode) 'phpt-mode php-html-template-major-mode))
+    ("\\.phpt\\'" . ,(if (fboundp 'phpt-mode) 'phpt-mode php-default-major-mode))
     ("\\.phtml\\'" . ,php-html-template-major-mode))
   "Automatically use another MAJOR-MODE when open template file."
   :group 'php

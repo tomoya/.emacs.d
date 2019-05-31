@@ -695,7 +695,7 @@ to 'auto, tags may not be properly aligned. "
      `(notmuch-search-date ((,class (:foreground ,func))))
      `(notmuch-search-flagged-face ((,class (:weight extra-bold))))
      `(notmuch-search-non-matching-authors ((,class (:foreground ,base-dim))))
-     `(notmuch-search-unread-face ((,class (:background ,highlight-dim :box ,border))))
+     `(notmuch-search-unread-face ((,class (:background ,highlight-dim))))
      `(notmuch-tag-face ((,class (:foreground ,keyword))))
      `(notmuch-tag-flagged ((,class (:foreground ,war))))
 
@@ -849,8 +849,10 @@ to 'auto, tags may not be properly aligned. "
      `(tabbar-default ((,class (:background ,bg1 :foreground ,head1 :height 0.9))))
      `(tabbar-highlight ((,class (:underline t))))
      `(tabbar-selected ((,class (:inherit tabbar-default :foreground ,func :weight bold))))
+     `(tabbar-selected-modified ((,class (:inherit tabbar-default :foreground ,red :weight bold))))
      `(tabbar-separator ((,class (:inherit tabbar-default))))
      `(tabbar-unselected ((,class (:inherit tabbar-default :background ,bg1 :slant italic :weight light))))
+     `(tabbar-unselected-modified ((,class (:inherit tabbar-unselected :background ,bg1 :foreground ,red))))
 
 ;;;;; term
      `(term ((,class (:foreground ,base :background ,bg1))))
@@ -942,22 +944,22 @@ to 'auto, tags may not be properly aligned. "
      `(ansi-color-names-vector [,bg4 ,red ,green ,yellow ,blue ,magenta ,cyan ,base])
 
 ;;;;; hl-todo
-     `(hl-todo-keyword-faces '(("TODO"   . ,war)
-                               ("NEXT"   . ,war)
-                               ("THEM"   . ,aqua)
-                               ("PROG"   . ,blue)
-                               ("OKAY"   . ,blue)
-                               ("DONT"   . ,red)
-                               ("FAIL"   . ,red)
-                               ("DONE"   . ,suc)
-                               ("NOTE"   . ,yellow)
-                               ("KLUDGE" . ,yellow)
-                               ("HACK"   . ,yellow)
-                               ("TEMP"   . ,yellow)
-                               ("FIXME"  . ,war)
-                               ("XXX"    . ,war)
-                               ("XXXX"   . ,war)
-                               ("???"    . ,war)))
+     `(hl-todo-keyword-faces '(("TODO"        . ,war)
+                               ("NEXT"        . ,war)
+                               ("THEM"        . ,aqua)
+                               ("PROG"        . ,blue)
+                               ("OKAY"        . ,blue)
+                               ("DONT"        . ,red)
+                               ("FAIL"        . ,red)
+                               ("DONE"        . ,suc)
+                               ("NOTE"        . ,yellow)
+                               ("KLUDGE"      . ,yellow)
+                               ("HACK"        . ,yellow)
+                               ("TEMP"        . ,yellow)
+                               ("FIXME"       . ,war)
+                               ("XXX+"        . ,war)
+                               ("\\?\\?\\?+"  . ,war)))
+
 
 ;;;;; pdf-tools
     `(pdf-view-midnight-colors '(,base . ,bg1)))
