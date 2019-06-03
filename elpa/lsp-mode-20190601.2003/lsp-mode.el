@@ -211,6 +211,8 @@ the buffer when it becomes large."
   "Capability not supported by the language server" 'lsp-error)
 (define-error 'lsp-file-scheme-not-supported
   "Unsupported file scheme" 'lsp-error)
+(define-error 'lsp-client-already-exists-error
+  "A client with this server-id already exists" 'lsp-error)
 
 (defcustom lsp-auto-guess-root nil
   "Automatically guess the project root using projectile/project."
@@ -960,7 +962,7 @@ INHERIT-INPUT-METHOD will be proxied to `completing-read' without changes."
   (activation-fn)
   ;; Break the tie when major-mode is supported by multiple clients.
   (priority 0)
-  ;; Unique identifier for
+  ;; Unique identifier identifier for representing the client object.
   (server-id)
   ;; defines whether the client supports multi root workspaces.
   (multi-root)
@@ -1082,7 +1084,7 @@ DELETE when `lsp-mode.el' is deleted.")
 
 (defun lsp-watch-root-folder (dir callback &optional watch)
   "Create recursive file notificaton watch in DIR.
-CALLBACK is the will be called when there are changes in any of
+CALLBACK will be called when there are changes in any of
 the monitored files. WATCHES is a hash table directory->file
 notification handle which contains all of the watch that
 already have been created."
@@ -1095,24 +1097,7 @@ already have been created."
            (file-notify-add-watch
             dir
             '(change)
-            (lambda (event)
-              (let ((file-name (cl-caddr event))
-                    (event-type (cadr event)))
-                (cond
-                 ((and (file-directory-p file-name)
-                       (equal 'created event-type))
-
-                  (lsp-watch-root-folder file-name callback watch)
-
-                  ;; process the files that are already present in
-                  ;; the directory.
-                  (->> (directory-files-recursively file-name ".*" t)
-                       (seq-do (lambda (f)
-                                 (unless (file-directory-p f)
-                                   (funcall callback (list nil 'created f)))))))
-                 ((and (not (file-directory-p file-name))
-                       (memq event-type '(created deleted changed)))
-                  (funcall callback event))))))
+            (lambda (event) (funcall 'lsp--folder-watch-callback event callback watch)))
            (lsp-watch-descriptors watch))
           (seq-do
            (-rpartial #'lsp-watch-root-folder callback watch)
@@ -1125,6 +1110,26 @@ already have been created."
       (error (lsp-log "Failed to create a watch for %s: message" (error-message-string err)))
       (file-missing (lsp-log "Failed to create a watch for %s: message" (error-message-string err))))
     watch))
+
+(defun lsp--folder-watch-callback (event callback watch)
+  (let ((file-name (cl-caddr event))
+        (event-type (cadr event)))
+    (cond
+     ((and (file-directory-p file-name)
+           (equal 'created event-type)
+           (not (lsp--string-match-any lsp-file-watch-ignored file-name)))
+
+      (lsp-watch-root-folder file-name callback watch)
+
+      ;; process the files that are already present in
+      ;; the directory.
+      (->> (directory-files-recursively file-name ".*" t)
+           (seq-do (lambda (f)
+                     (unless (file-directory-p f)
+                       (funcall callback (list nil 'created f)))))))
+     ((and (not (file-directory-p file-name))
+           (memq event-type '(created deleted changed)))
+      (funcall callback event)))))
 
 (defun lsp-kill-watch (watch)
   "Delete WATCH."
@@ -3026,12 +3031,13 @@ Applies on type formatting."
 
 (defun lsp-buffer-language ()
   "Get language corresponding current buffer."
-  (->> lsp-language-id-configuration
-       (-first (-lambda ((mode-or-pattern . language))
-                 (cond
-                  ((and (stringp mode-or-pattern) (s-matches? mode-or-pattern buffer-file-name)) language)
-                  ((eq mode-or-pattern major-mode) language))))
-       cl-rest))
+  (or (->> lsp-language-id-configuration
+        (-first (-lambda ((mode-or-pattern . language))
+                  (cond
+                   ((and (stringp mode-or-pattern) (s-matches? mode-or-pattern buffer-file-name)) language)
+                   ((eq mode-or-pattern major-mode) language))))
+        cl-rest)
+      (lsp-warn "Unable to calculate the languageId for current buffer. Take a look at lsp-language-id-configuration.")))
 
 (defun lsp-workspace-root (&optional path)
   "Find the workspace root for the current file or PATH."
@@ -3617,9 +3623,22 @@ If ACTION is not set it will be selected from `lsp-code-actions'."
   (lsp-execute-code-action-by-kind "source.organizeImports"))
 
 (defun lsp--apply-formatting (edits)
-  (let ((lsp--server-sync-method 'full))
-    (save-excursion
-      (lsp--apply-text-edits edits))))
+  (if (fboundp 'replace-buffer-contents)
+      (let ((current-buffer (current-buffer)))
+        (with-temp-buffer
+          (insert-buffer-substring-no-properties current-buffer)
+          (let ((lsp--server-sync-method 'full))
+            (lsp--apply-text-edits edits))
+          (let ((temp-buffer (current-buffer)))
+            (with-current-buffer current-buffer
+              (replace-buffer-contents temp-buffer)))))
+    (let ((point (point))
+          (w-start (window-start)))
+      (let ((lsp--server-sync-method 'full))
+        (lsp--apply-text-edits edits))
+      (goto-char point)
+      (goto-char (line-beginning-position))
+      (set-window-start (selected-window) w-start))))
 
 (defun lsp--make-document-range-formatting-params (start end)
   "Make DocumentRangeFormattingParams for selected region.
@@ -4417,7 +4436,12 @@ Return a nested alist keyed by symbol names. e.g.
 (defun lsp-resolve-final-function (command)
   "Resolve final function COMMAND."
   (-let [command (if (functionp command) (funcall command) command)]
-    (if (consp command) command (list command))))
+    (cl-etypecase command
+      (list
+       (cl-assert (seq-every-p (apply-partially #'stringp) command) nil
+                  "Invalid command list")
+       command)
+      (string (list command)))))
 
 (defun lsp-server-present? (final-command)
   "Check whether FINAL-COMMAND is present."
@@ -4433,9 +4457,20 @@ Return a nested alist keyed by symbol names. e.g.
       (ignore (lsp-log "Command \"%s\" is not present on the path." (s-join " " final-command)))))
 
 (defun lsp-stdio-connection (command)
-  "Create LSP stdio connection named name.
-  COMMAND is either list of strings, string or function which
-  returns the command to execute."
+  "Returns a connection property list using COMMAND.
+COMMAND can be:
+A string, denoting the command to launch the language server.
+A list of strings, denoting an executable with its command line arguments.
+A function, that either returns a string or a list of strings.
+In all cases, the launched language server should send and receive messages on
+standard I/O."
+  (cl-check-type command (or string
+                             function
+                             (and list
+                                  (satisfies (lambda (l)
+                                               (seq-every-p (lambda (el)
+                                                              (stringp el))
+                                                            l))))))
   (list :connect (lambda (filter sentinel name)
                    (let ((final-command (lsp-resolve-final-function command))
                          (process-name (generate-new-buffer-name name)))
@@ -4486,8 +4521,11 @@ Return a nested alist keyed by symbol names. e.g.
     port))
 
 (defun lsp-tcp-connection (command-fn)
-  "Create LSP TCP connection named name.
-  COMMAND-FN will be called to generate Language Server command."
+  "Returns a connection property list similar to `lsp-stdio-connection'.
+COMMAND-FN can only be a function that takes a single argument, a
+port number. It should return a command for launches a language server
+process listening for TCP connections on the provided port."
+  (cl-check-type command-fn function)
   (list
    :connect (lambda (filter sentinel name)
               (let* ((host "localhost")
@@ -4507,11 +4545,14 @@ Return a nested alist keyed by symbol names. e.g.
                 (cons tcp-proc proc)))
    :test? (lambda () (executable-find (cl-first (funcall command-fn 0))))))
 
-(defun lsp-tcp-server (command)
+(defalias 'lsp-tcp-server 'lsp-tcp-server-command)
+
+(defun lsp-tcp-server-command (command-fn)
   "Create tcp server connection.
 In this mode Emacs is TCP server and the language server connects
 to it. COMMAND is function with one parameter(the port) and it
 should return the command to start the LS server."
+  (cl-check-type command-fn function)
   (list
    :connect (lambda (filter sentinel name)
               (let* (tcp-client-connection
@@ -4524,7 +4565,7 @@ should return the command to start the LS server."
                                                                    (setf tcp-client-connection proc))
                                                        :server 't))
                      (port (process-contact tcp-server :service))
-                     (final-command (funcall command port))
+                     (final-command (funcall command-fn port))
 
                      (cmd-proc (make-process :name name
                                              :connection-type 'pipe
@@ -4551,7 +4592,7 @@ should return the command to start the LS server."
                 (set-process-filter tcp-client-connection filter)
                 (set-process-sentinel tcp-client-connection sentinel)
                 (cons tcp-client-connection cmd-proc)))
-   :test? (lambda () (executable-find (cl-first (funcall command 0))))))
+   :test? (lambda () (executable-find (cl-first (funcall command-fn 0))))))
 
 (defun lsp-tramp-connection (local-command)
   "Create LSP stdio connection named name.
@@ -4806,6 +4847,16 @@ remote machine and vice versa."
 
 (defun lsp-register-client (client)
   "Registers LSP client CLIENT."
+  (cl-assert (symbolp (lsp--client-server-id client)) t)
+  (cl-assert (or
+              (functionp (lsp--client-activation-fn client))
+              (and (listp (lsp--client-major-modes client))
+                   (seq-every-p (apply-partially #'symbolp)
+                                (lsp--client-major-modes client))))
+             nil "Invalid activation-fn and/or major-modes.")
+  (when (gethash (lsp--client-server-id client) lsp-clients)
+    (signal 'lsp-client-already-exists-error
+            (list (lsp--client-server-id client))))
   (puthash (lsp--client-server-id client) client lsp-clients))
 
 (defun lsp--create-initialization-options (_session client)
