@@ -34,6 +34,8 @@ Don't set it to any value, it will have no effect.")
 (defvar helm-occur-history nil)
 (defvar helm-occur--search-buffer-regexp "\\`\\([0-9]*\\)\\s-\\{1\\}\\(.*\\)\\'"
   "The regexp matching candidates in helm-occur candidate buffer.")
+(defvar helm-occur-mode--last-pattern nil)
+
 
 (defvar helm-occur-map
   (let ((map (make-sparse-keymap)))
@@ -344,6 +346,7 @@ persistent action."
     (define-key map (kbd "M-p")      'helm-occur-mode-goto-line-ow-backward)
     (define-key map (kbd "M-N")      'helm-gm-next-file)
     (define-key map (kbd "M-P")      'helm-gm-precedent-file)
+    (define-key map (kbd "C-c b")    'helm-occur-mode-resume-session)
     map))
 
 (defun helm-occur-mode-goto-line ()
@@ -359,19 +362,21 @@ persistent action."
 (defun helm-occur-mode-goto-line-ow-forward-1 (arg)
   (condition-case nil
       (progn
+        (when (or (eq last-command 'helm-occur-mode-goto-line-ow-forward)
+                  (eq last-command 'helm-occur-mode-goto-line-ow-backward))
+          (forward-line arg))
         (save-selected-window
           (helm-occur-mode-goto-line-ow)
-          (recenter))
-        (forward-line arg))
+          (recenter)))
     (error nil)))
 
-(defun helm-occur-mode-goto-line-ow-forward ()
-  (interactive)
-  (helm-occur-mode-goto-line-ow-forward-1 1))
+(defun helm-occur-mode-goto-line-ow-forward (arg)
+  (interactive "p")
+  (helm-occur-mode-goto-line-ow-forward-1 arg))
 
-(defun helm-occur-mode-goto-line-ow-backward ()
-  (interactive)
-  (helm-occur-mode-goto-line-ow-forward-1 -1))
+(defun helm-occur-mode-goto-line-ow-backward (arg)
+  (interactive "p")
+  (helm-occur-mode-goto-line-ow-forward-1 (- arg)))
 
 (defun helm-occur-save-results (_candidate)
   "Save helm moccur results in a `helm-moccur-mode' buffer."
@@ -447,6 +452,11 @@ persistent action."
         (goto-char pos)
         (helm-occur-mode-goto-line)))))
 (put 'helm-moccur-mode-mouse-goto-line 'helm-only t)
+
+(defun helm-occur-mode-resume-session ()
+  (interactive)
+  (cl-assert (eq major-mode 'helm-occur-mode) nil "Helm command called in wrong context")
+  (helm-multi-occur-1 helm-occur--buffer-list helm-occur-mode--last-pattern))
 
 (defun helm-occur-buffer-substring-with-linums ()
   "Returns current-buffer contents as a string with all lines
@@ -550,7 +560,9 @@ Special commands:
     (set (make-local-variable 'helm-occur--buffer-list)
          (with-helm-buffer helm-occur--buffer-list))
     (set (make-local-variable 'revert-buffer-function)
-         #'helm-occur-mode--revert-buffer-function))
+         #'helm-occur-mode--revert-buffer-function)
+    (set (make-local-variable 'helm-occur-mode--last-pattern)
+         helm-input))
 (put 'helm-moccur-mode 'helm-only t)
 
 

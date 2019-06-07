@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.emacs.d/elpa/posframe-20190606.306/posframe.el  -*- no-byte-compile: t -*-
+(define-package "posframe" "20190606.306" "Pop a posframe (just a frame) at point" '((emacs "26")) :commit "e9547ab066da28a89daa3efe3301a36f3faaf6fc" :keywords '("tooltip") :authors '(("Feng Shu" . "tumashu@163.com")) :maintainer '("Feng Shu" . "tumashu@163.com") :url "https://github.com/tumashu/posframe")

@@ -5,7 +5,7 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20190602.2347
+;; Package-Version: 20190606.306
 ;; Version: 0.4.3
 ;; Keywords: tooltip
 ;; Package-Requires: ((emacs "26"))
@@ -115,6 +115,18 @@
 ;; (setq posframe-mouse-banish nil)
 ;; #+END_EXAMPLE
 
+;; *** Set fallback argument of posframe-show
+
+;; user can set fallback values of posframe-show's arguments with the
+;; help of `posframe-arghandler'. the below example set fallback
+;; border-width to 10 and fallback background color to green.
+
+;; #+BEGIN_EXAMPLE
+;; (setq posframe-arghandler #'my-posframe-arghandler)
+;; (defun my-posframe-arghandler (posframe-buffer arg-name value)
+;;   (let ((info '(:internal-border-width 10 :background-color "green")))
+;;     (or (plist-get info arg-name) value)))
+;; #+END_EXAMPLE
 
 ;;; Code:
 ;; * posframe's code                         :CODE:
@@ -135,11 +147,12 @@
   :group 'posframe
   :type 'boolean)
 
-(defcustom posframe-default-initialize-function nil
-  "The default :initialize function of `posframe-show'.
+(defcustom posframe-arghandler #'posframe-arghandler-default
+  "A function used to handle posframe-show's argument.
 
-If :initialize argument of `posframe-show' is nil, this function
-will be called as fallback."
+User can use this feature to set the default value of
+posframe-show's argument."
+  :group 'posframe
   :type 'function)
 
 (defvar-local posframe--frame nil
@@ -195,8 +208,7 @@ frame.")
                                      keep-ratio
                                      override-parameters
                                      respect-header-line
-                                     respect-mode-line
-                                     face-remap)
+                                     respect-mode-line)
   "Create a child-frame for posframe.
 This posframe's buffer is POSFRAME-BUFFER."
   (let ((left-fringe (or left-fringe 0))
@@ -214,8 +226,7 @@ This posframe's buffer is POSFRAME-BUFFER."
                     keep-ratio
                     override-parameters
                     respect-header-line
-                    respect-mode-line
-                    face-remap)))
+                    respect-mode-line)))
     (with-current-buffer posframe-buffer
       ;; Many variables take effect after call `set-window-buffer'
       (setq-local display-line-numbers nil)
@@ -229,7 +240,6 @@ This posframe's buffer is POSFRAME-BUFFER."
       (setq-local cursor-type nil)
       (setq-local cursor-in-non-selected-windows nil)
       (setq-local show-trailing-whitespace nil)
-      (setq-local face-remapping-alist face-remap)
       (unless respect-mode-line
         (setq-local mode-line-format nil))
       (unless respect-header-line
@@ -296,6 +306,10 @@ This posframe's buffer is POSFRAME-BUFFER."
           (set-window-buffer posframe-window posframe-buffer)))
       posframe--frame)))
 
+(defun posframe-arghandler-default (posframe-buffer arg-name value)
+  "The default value of `posframe-arghandler'"
+  value)
+
 (cl-defun posframe-show (posframe-buffer
                          &key
                          string
@@ -316,7 +330,6 @@ This posframe's buffer is POSFRAME-BUFFER."
                          background-color
                          respect-header-line
                          respect-mode-line
-                         face-remap
                          initialize
                          no-properties
                          keep-ratio
@@ -405,11 +418,6 @@ By default, posframe will force hide header-line and mode-line
 If user want to show header-line or mode-line in posframe,
 set RESPECT-HEADER-LINE or RESPECT-MODE-LINE to t.
 
-If user want to let posframe use different faces from other frame.
-user can set FACE-REMAP, more setting details can be found:
-
-  C-h v face-remapping-alist
-
 INITIALIZE is a function with no argument, it will run when
 posframe buffer is first selected with `with-current-buffer'
 in posframe-show, and only run once for speed reason, If INITIALIZE
@@ -426,12 +434,31 @@ If REFRESH is a number, posframe's frame-size will be re-adjust
 every mumber seconds.
 
 you can use `posframe-delete-all' to delete all posframes."
-  (let* ((position (or position (point)))
+  (let* ((position (or (funcall posframe-arghandler posframe-buffer :position position) (point)))
+         (poshandler (funcall posframe-arghandler posframe-buffer :poshandler poshandler))
+         (width (funcall posframe-arghandler posframe-buffer :width width))
+         (height (funcall posframe-arghandler posframe-buffer :height height))
+         (min-width (or (funcall posframe-arghandler posframe-buffer :min-width min-width) 1))
+         (min-height (or (funcall posframe-arghandler posframe-buffer :min-height min-height) 1))
+         (x-pixel-offset (or (funcall posframe-arghandler posframe-buffer :x-pixel-offset x-pixel-offset) 0))
+         (y-pixel-offset (or (funcall posframe-arghandler posframe-buffer :y-pixel-offset y-pixel-offset) 0))
+         (left-fringe (funcall posframe-arghandler posframe-buffer :left-fringe left-fringe))
+         (right-fringe (funcall posframe-arghandler posframe-buffer :right-fringe right-fringe))
+         (internal-border-width (funcall posframe-arghandler posframe-buffer :internal-border-width internal-border-width))
+         (internal-border-color (funcall posframe-arghandler posframe-buffer :internal-border-color internal-border-color))
+         (font (funcall posframe-arghandler posframe-buffer :font font))
+         (foreground-color (funcall posframe-arghandler posframe-buffer :foreground-color foreground-color))
+         (background-color (funcall posframe-arghandler posframe-buffer :background-color background-color))
+         (respect-header-line (funcall posframe-arghandler posframe-buffer :respect-header-line respect-header-line))
+         (respect-mode-line (funcall posframe-arghandler posframe-buffer :respect-mode-line respect-mode-line))
+         (initialize (funcall posframe-arghandler posframe-buffer :initialize initialize))
+         (no-properties (funcall posframe-arghandler posframe-buffer :no-properties no-properties))
+         (keep-ratio (funcall posframe-arghandler posframe-buffer :keep-ratio keep-ratio))
+         (override-parameters (funcall posframe-arghandler posframe-buffer :override-parameters override-parameters))
+         (timeout (funcall posframe-arghandler posframe-buffer :timeout timeout))
+         (refresh (funcall posframe-arghandler posframe-buffer :refresh refresh))
+         ;;-----------------------------------------------------
          (posframe-buffer (get-buffer-create posframe-buffer))
-         (x-pixel-offset (or x-pixel-offset 0))
-         (y-pixel-offset (or y-pixel-offset 0))
-         (min-width (or min-width 1))
-         (min-height (or min-height 1))
          (parent-window (selected-window))
          (parent-window-top (window-pixel-top parent-window))
          (parent-window-left (window-pixel-left parent-window))
@@ -453,7 +480,7 @@ you can use `posframe-delete-all' to delete all posframes."
 
       ;; Initialize
       (unless posframe--initialized-p
-        (let ((func (or initialize posframe-default-initialize-function)))
+        (let ((func initialize))
           (when (functionp func)
             (funcall func)
             (setq posframe--initialized-p t))))
@@ -476,7 +503,6 @@ you can use `posframe-delete-all' to delete all posframes."
              :keep-ratio keep-ratio
              :respect-header-line respect-header-line
              :respect-mode-line respect-mode-line
-             :face-remap face-remap
              :override-parameters override-parameters))
 
       ;; Insert string to posframe-buffer.
@@ -532,9 +558,11 @@ you can use `posframe-delete-all' to delete all posframes."
   "Get the font's height at POSITION."
   (if (eq position (car posframe--last-font-height-info))
       (cdr posframe--last-font-height-info)
-    (let* ((font (font-at (if (and (= position (point-max)))
-                              (- position 1)
-                            position)))
+    (let* ((font (when (and (integerp position)
+                            (not (= position 1)))
+                   (font-at (if (and (= position (point-max)))
+                                (- position 1)
+                              position))))
            (height (when (integerp position)
                      (if (or (= position 1) (not (fontp font)))
                          (default-line-height)
@@ -664,6 +692,16 @@ This posframe's buffer is POSFRAME-BUFFER."
   "Kill posframe's buffer: POSFRAME-BUFFER."
   (when (buffer-live-p posframe-buffer)
     (kill-buffer posframe-buffer)))
+
+(defun posframe-funcall (posframe-buffer function &rest arguments)
+  "Select posframe of POSFRAME-BUFFER's, and call FUNCTION.
+passing remaining arguments to it."
+  (when (get-buffer posframe-buffer)
+    (with-current-buffer posframe-buffer
+      (when (framep posframe--frame)
+        (with-selected-frame posframe--frame
+          (when (functionp function)
+            (apply function arguments)))))))
 
 ;;;###autoload
 (defun posframe-hide-all ()

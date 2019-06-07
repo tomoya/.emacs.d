@@ -5,7 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;;         Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/purcell/package-lint
-;; Package-Version: 20190519.1052
+;; Package-Version: 20190606.2210
 ;; Keywords: lisp
 ;; Version: 0
 ;; Package-Requires: ((cl-lib "0.5") (emacs "24"))
@@ -771,7 +771,8 @@ Valid definition names are:
       (let ((prefix-re
              (rx-to-string
               `(seq string-start
-                    (or (seq ,prefix (or "-" string-end))
+                    (or (seq (opt (or "define-" "defun-" "defvar-"))
+                             ,prefix (or "-" string-end))
                         (seq "global-"
                              ,prefix
                              (or "-mode"
