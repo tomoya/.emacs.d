@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.emacs.d/elpa/websocket-20190611.2347/websocket.el  -*- no-byte-compile: t -*-
+(define-package "websocket" "20190611.2347" "Emacs WebSocket client and server" '((cl-lib "0.5")) :commit "53bfd56e12d9d1384b8105aa2a6ea0d7bdacb7da" :keywords '("communication" "websocket" "server") :authors '(("Andrew Hyatt" . "ahyatt@gmail.com")) :maintainer '("Andrew Hyatt" . "ahyatt@gmail.com"))
