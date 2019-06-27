@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.emacs.d/elpa/package-lint-20190617.315/package-lint.el  -*- no-byte-compile: t -*-
-(define-package "package-lint" "20190617.315" "A linting library for elisp package authors" '((cl-lib "0.5") (emacs "24")) :commit "110edb00e23eb266da068de9a404beb6202a4814" :keywords '("lisp") :authors '(("Steve Purcell" . "steve@sanityinc.com") ("Fanael Linithien" . "fanael4@gmail.com")) :maintainer '("Steve Purcell" . "steve@sanityinc.com") :url "https://github.com/purcell/package-lint")
