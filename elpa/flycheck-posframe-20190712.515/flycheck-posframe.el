@@ -5,8 +5,8 @@
 ;; Author: Alex Murray <murray.alex@gmail.com>
 ;; Maintainer: Alex Murray <murray.alex@gmail.com>
 ;; URL: https://github.com/alexmurray/flycheck-posframe
-;; Package-Version: 20190327.1111
-;; Version: 0.5
+;; Package-Version: 20190712.515
+;; Version: 0.6
 ;; Package-Requires: ((flycheck "0.24") (emacs "26") (posframe "0.3.0"))
 
 ;; This file is not part of GNU Emacs.
@@ -43,6 +43,31 @@
   :prefix "flycheck-posframe-"
   :group 'flycheck
   :link '(url-link :tag "Github" "https://github.com/alexmurray/flycheck-posframe"))
+
+(defcustom flycheck-posframe-position 'point-bottom-left-corner
+  "Where to position the flycheck-posframe frame."
+  :group 'flycheck-posframe
+  :type '(choice
+          (const :tag "Center of the frame" frame-center)
+          (const :tag "Centered at the top of the frame" frame-top-center)
+          (const :tag "Left corner at the top of the frame" frame-top-left-corner)
+          (const :tag "Right corner at the top of the frame" frame-top-right-corner)
+          (const :tag "Left corner at the bottom of the frame" frame-bottom-left-corner)
+          (const :tag "Right corner at the bottom of the frame" frame-bottom-right-corner)
+          (const :tag "Center of the window" window-center)
+          (const :tag "Left corner at the top of the window" window-top-left-corner)
+          (const :tag "Right corner at the top of the window" window-top-right-corner)
+          (const :tag "Left corner at the bottom of the window" window-bottom-left-corner)
+          (const :tag "Right corner at the bottom of the window" window-bottom-right-corner)
+          (const :tag "Top left corner of point" point-top-left-corner)
+          (const :tag "Bottom left corner of point" point-bottom-left-corner))
+  :package-version '(flycheck-posframe . "0.6"))
+
+(defcustom flycheck-posframe-border-width 0
+  "Width of the border for a flycheck-posframe frame."
+  :group 'flycheck-posframe
+  :type 'integer
+  :package-version '(flycheck-posframe . "0.6"))
 
 (defcustom flycheck-posframe-prefix "\u27a4 "
   "String to be displayed before every default message in posframe."
@@ -98,6 +123,13 @@
 Only the `background' is used in this face."
   :group 'flycheck-posframe
   :package-version '(flycheck-posframe . "0.4"))
+
+(defface flycheck-posframe-border-face
+  '((t))
+  "The border color of the flycheck-posframe frame.
+Only the `foreground' is used in this face."
+  :group 'flycheck-posframe
+  :package-version '(flycheck-posframe . "0.6"))
 
 (defvar flycheck-posframe-buffer "*flycheck-posframe-buffer*"
   "The posframe buffer name use by flycheck-posframe.")
@@ -159,11 +191,17 @@ Only the `background' is used in this face."
   (flycheck-posframe-hide-posframe)
   (when (and errors
              (not (run-hook-with-args-until-success 'flycheck-posframe-inhibit-functions)))
-    (posframe-show
-     flycheck-posframe-buffer
-     :string (flycheck-posframe-format-errors errors)
-     :background-color (face-background 'flycheck-posframe-background-face nil t)
-     :position (point))
+    (let ((poshandler (intern (format "posframe-poshandler-%s" flycheck-posframe-position))))
+      (unless (functionp poshandler)
+        (setq poshandler nil))
+      (posframe-show
+       flycheck-posframe-buffer
+       :string (flycheck-posframe-format-errors errors)
+       :background-color (face-background 'flycheck-posframe-background-face nil t)
+       :position (point)
+       :internal-border-width flycheck-posframe-border-width
+       :internal-border-color (face-foreground'flycheck-posframe-border-face nil t)
+       :poshandler poshandler))
     (dolist (hook flycheck-posframe-hide-posframe-hooks)
       (add-hook hook #'flycheck-posframe-hide-posframe nil t))))
 
