@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "git-commit" "../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit.el"
-;;;;;;  "5f76837776d84fc0d68edc071a70136e")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit.el
+;;;### (autoloads nil "git-commit" "../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit.el"
+;;;;;;  "9337f1462af7ce858132a3d6e5b69995")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit.el
 
 (defvar global-git-commit-mode t "\
 Non-nil if Global Git-Commit mode is enabled.
@@ -40,9 +40,9 @@ if ARG is `toggle'; disable the mode otherwise.
 
 (autoload 'git-commit-setup "git-commit" nil nil nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "git-commit" "../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit.el"
+;;;### (autoloads "actual autoloads are elsewhere" "git-commit" "../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "git-commit" '("git-commit-")))
 
@@ -50,8 +50,8 @@ if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/git-commit-20190625.323/git-commit.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/git-commit-20190715.2020/git-commit.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "with-editor" "../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor.el"
-;;;;;;  "bdc8c52a0522c387a0b43959bb5c75fd")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor.el
+;;;### (autoloads nil "with-editor" "../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor.el"
+;;;;;;  "3b6dca12e6857eb4a333d70555528648")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor.el
 
 (autoload 'with-editor-export-editor "with-editor" "\
 Teach subsequent commands to use current Emacs instance as editor.
@@ -85,9 +85,9 @@ else like the former.
 \(fn COMMAND &optional OUTPUT-BUFFER ERROR-BUFFER ENVVAR)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "with-editor"
-;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "with-editor" '("server-" "shell-command--shell-command-with-editor-mode" "start-file-process--with-editor-process-filter" "with-editor")))
 
@@ -95,9 +95,9 @@ else like the former.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190511.1157/with-editor.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor-pkg.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/with-editor-20190715.2007/with-editor.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
