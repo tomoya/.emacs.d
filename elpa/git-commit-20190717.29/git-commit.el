@@ -12,7 +12,7 @@
 ;; Maintainer: Jonas Bernoulli <jonas@bernoul.li>
 
 ;; Package-Requires: ((emacs "25.1") (dash "20180910") (with-editor "20181103"))
-;; Package-Version: 20190715.2020
+;; Package-Version: 20190717.29
 ;; Keywords: git tools vc
 ;; Homepage: https://github.com/magit/magit
 
@@ -575,7 +575,8 @@ Don't use it directly, instead enable `global-git-commit-mode'."
 (put 'git-commit-mode 'permanent-local t)
 
 (defun git-commit-setup-changelog-support ()
-  "Treat ChangeLog entries as paragraphs."
+  "Treat ChangeLog entries as unindented paragraphs."
+  (setq-local fill-indent-according-to-mode t)
   (setq-local paragraph-start (concat paragraph-start "\\|\\*\\|(")))
 
 (defun git-commit-turn-on-auto-fill ()
