@@ -300,6 +300,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'ruby-mode-hook #'setup-auto-fix-rubocop)
 
 ;; TypeScript/Tide
+(flycheck-add-mode 'javascript-eslint 'typescript-mode)
 (defun setup-tide-mode ()
   "Setqup function for tide-mode."
   (interactive)
@@ -316,6 +317,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; TSX using ts-web-mode
 (flycheck-add-mode 'typescript-tslint 'ts-web-mode)
+(flycheck-add-mode 'javascript-eslint 'ts-web-mode)
 (add-hook 'ts-web-mode-hook #'setup-tide-mode)
 
 (defun my-use-local-lint ()
