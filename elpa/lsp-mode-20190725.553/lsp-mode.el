@@ -538,6 +538,7 @@ If set to `:none' neither of two will be enabled."
                                         (".*\.tsx$" . "typescriptreact")
                                         (".*\.ts$" . "typescript")
                                         (".*\.jsx$" . "javascriptreact")
+                                        (".*\.xml$" . "xml")
                                         (sh-mode . "shellscript")
                                         (scala-mode . "scala")
                                         (julia-mode . "julia")
@@ -583,7 +584,8 @@ If set to `:none' neither of two will be enabled."
                                         (f90-mode . "fortran")
                                         (elm-mode . "elm")
                                         (dart-mode . "dart")
-                                        (erlang-mode . "erlang"))
+                                        (erlang-mode . "erlang")
+                                        (dockerfile-mode . "dockerfile"))
   "Language id configuration.")
 
 (defvar lsp-method-requirements
@@ -2472,7 +2474,9 @@ in that particular folder."
                               (or (lsp--suggest-project-root) default-directory) nil t)))
   (cl-pushnew (f-canonical project-root)
               (lsp-session-folders (lsp-session)) :test 'equal)
-  (lsp--persist-session (lsp-session)))
+  (lsp--persist-session (lsp-session))
+
+  (run-hook-with-args 'lsp-workspace-folders-changed-hook (list project-root) nil))
 
 (defun lsp-workspace-folders-remove (project-root)
   "Remove PROJECT-ROOT from the list of workspace folders."
@@ -2691,10 +2695,17 @@ interface Range {
 
 (defun lsp--apply-workspace-edit (edit)
   "Apply the WorkspaceEdit object EDIT."
-  (if-let (document-changes (gethash "documentChanges" edit))
+  (if-let (document-changes (seq-reverse (gethash "documentChanges" edit)))
       (progn
         (lsp--check-document-changes-version document-changes)
-        (seq-do #'lsp--apply-text-document-edit (seq-reverse document-changes)))
+        (->> document-changes
+             (seq-filter (-lambda ((&hash "kind"))
+                           (or (not kind) (string= kind "edit"))))
+             (seq-do #'lsp--apply-text-document-edit))
+        (->> document-changes
+             (seq-filter (-lambda ((&hash "kind"))
+                           (not (or (not kind) (string= kind "edit")))))
+             (seq-do #'lsp--apply-text-document-edit)))
     (when-let (changes (gethash "changes" edit))
       (maphash
        (lambda (uri text-edits)

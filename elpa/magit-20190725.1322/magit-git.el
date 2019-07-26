@@ -864,7 +864,12 @@ tracked file."
 (defun magit-skip-worktree-files ()
   (--keep (and (and (= (aref it 0) ?S)
                     (substring it 2)))
-          (magit-git-items "ls-files" "-z" "-t")))
+          (magit-list-files "-t")))
+
+(defun magit-assume-unchanged-files ()
+  (--keep (and (and (memq (aref it 0) '(?h ?s ?m ?r ?c ?k))
+                    (substring it 2)))
+          (magit-list-files "-v")))
 
 (defun magit-revision-files (rev)
   (magit-with-toplevel
