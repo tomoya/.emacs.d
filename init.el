@@ -420,6 +420,13 @@ If buffer is associated with a file name, add that file to the
   "pdf-view" "View PDF file in Emacs" t)
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
+
+;; darkroom
+(defun darkroom-mode-hooks ()
+  (when (neo-global--window-exists-p)
+    (neotree-hide)))
+(add-hook 'darkroom-mode-hook #'darkroom-mode-hooks)
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
