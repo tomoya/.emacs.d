@@ -62,7 +62,7 @@
  '(flycheck-posframe-error-prefix "E: ")
  '(flycheck-posframe-warning-prefix "W: ")
  '(frame-tabs-filter-function 'my-frame-tabs-default-filter)
- '(frame-tabs-mode t)
+ '(frame-tabs-mode nil)
  '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
  '(global-company-mode t)
