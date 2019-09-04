@@ -510,6 +510,12 @@ are determined by the index of the element."
   :type 'number
   :group 'lsp-mode)
 
+(defcustom lsp-tcp-connection-timeout 2
+  "The timeout for tcp connection in seconds."
+  :type 'number
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "6.2"))
+
 (defconst lsp--imenu-compare-function-alist
   (list (cons 'name #'lsp--imenu-compare-name)
         (cons 'kind #'lsp--imenu-compare-kind)
@@ -4692,14 +4698,16 @@ standard I/O."
                        (cons proc proc))))
         :test? (lambda () (-> command lsp-resolve-final-function lsp-server-present?))))
 
-(defun lsp--open-network-stream (host port name &optional retry-count sleep-interval)
+(defun lsp--open-network-stream (host port name )
   "Open network stream to HOST:PORT.
   NAME will be passed to `open-network-stream'.
   RETRY-COUNT is the number of the retries.
   SLEEP-INTERVAL is the sleep interval between each retry."
-  (let ((retries 0)
-        connection)
-    (while (and (not connection) (< retries (or retry-count 100)))
+  (let* ((retries 0)
+         (sleep-interval 0.01)
+         (number-of-retries (/ lsp-tcp-connection-timeout sleep-interval))
+         connection)
+    (while (and (not connection) (< retries number-of-retries))
       (condition-case err
           (setq connection (open-network-stream name nil host port :type 'plain))
         (file-error
@@ -4708,9 +4716,9 @@ standard I/O."
                       host
                       port
                       (error-message-string err))
-           (sit-for (or sleep-interval 0.02))
+           (sleep-for sleep-interval)
            (cl-incf retries)))))
-    connection))
+    (or connection (error "Port %s was never taken. Consider increasing `lsp-tcp-connection-timeout'." port))))
 
 (defun lsp--find-available-port (host starting-port)
   "Find available port on HOST starting from STARTING-PORT."
@@ -4743,7 +4751,7 @@ process listening for TCP connections on the provided port."
                      (tcp-proc (lsp--open-network-stream host port (concat name "::tcp"))))
 
                 ;; TODO: Same :noquery issue (see above)
-                (set-process-query-on-exit-flag (get-buffer-process (get-buffer (process-name proc))) nil)
+                (set-process-query-on-exit-flag proc nil)
                 (set-process-query-on-exit-flag tcp-proc nil)
                 (set-process-filter tcp-proc filter)
                 (cons tcp-proc proc)))

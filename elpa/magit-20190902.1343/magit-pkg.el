@@ -1,9 +1,9 @@
-(define-package "magit" "20190825.1416" "A Git porcelain inside Emacs."
+(define-package "magit" "20190902.1343" "A Git porcelain inside Emacs."
   '((emacs "25.1")
     (async "20180527")
     (dash "20180910")
     (git-commit "20181104")
-    (transient "20190528")
+    (transient "20190812")
     (with-editor "20181103"))
   :keywords
   '("git" "tools" "vc"))
