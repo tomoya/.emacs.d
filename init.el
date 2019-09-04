@@ -186,18 +186,18 @@
 
 ;; font
 ;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
-;; 日本語フォントをNoto Serif CJK JPに
+;; 日本語フォントをMotoyaLCedar (Kosugi) に
 (set-fontset-font
  nil 'japanese-jisx0208
-(font-spec :family "Noto Serif CJK JP"))
+(font-spec :family "MotoyaLCedar"))
 
 ;; ひらがなとカタカナをNoto Sans CJK JPに
 ;; U+3000-303F  CJKの記号および句読点
 ;; U+3040-309F  ひらがな
 ;; U+30A0-30FF  カタカナ
-(set-fontset-font
- nil '(#x3040 . #x30ff)
- (font-spec :family "Noto Sans CJK JP"))
+;; (set-fontset-font
+;;  nil '(#x3040 . #x30ff)
+;;  (font-spec :family "Noto Sans CJK JP"))
 
 ;; fira-code-mode
 (add-hook 'prog-mode-hook 'fira-code-mode)
