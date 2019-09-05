@@ -44,7 +44,7 @@ reading a new value in the minibuffer.
    Calling a suffix command usually causes the transient to be exited
 but suffix commands can also be configured to not exit the transient.
 
-This manual is for Transient version 0.1.0 (v0.1.0-103-g68f31ed+1).
+This manual is for Transient version 0.1.0 (v0.1.0-106-g0d9a1b5+1).
 
      Copyright (C) 2018-2019 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -1090,11 +1090,8 @@ Note that an infix is a special kind of suffix.  Depending on context
      explicitly.
 
      The BODY must begin with an ‘interactive’ form that matches
-     ARGLIST.  Use the function ‘transient-args’ or the low-level
-     variable ‘current-transient-suffixes’ if the former does not give
-     you all the required details.  This should, but does not
-     necessarily have to be, done inside the ‘interactive’ form; just
-     like for ‘prefix-arg’ and ‘current-prefix-arg’.
+     ARGLIST.  The infix arguments are usually accessed by using
+     ‘transient-args’ inside ‘interactive’.
 
  -- Macro: define-infix-command name arglist [docstring] [keyword
           value]...
@@ -1671,8 +1668,58 @@ File: transient.info,  Node: Suffix Format Methods,  Prev: Suffix Value Methods,
 
 File: transient.info,  Node: Prefix Slots,  Next: Suffix Slots,  Prev: Suffix Methods,  Up: Classes and Methods
 
-6.6 *TODO* Prefix Slots
-=======================
+6.6 Prefix Slots
+================
+
+   • ‘man-page’ or ‘info-manual’ can be used to specify the
+     documentation for the prefix and its suffixes.  The command
+     ‘transient-help’ uses the method ‘transient-show-help’ (which see)
+     to lookup and use these values.
+
+   • ‘history-key’ If multiple prefix commands should share a single
+     value, then this slot has to be set to the same value for all of
+     them.  You probably don’t want that.
+
+   • ‘transient-suffix’ and ‘transient-non-suffix’ play a part when
+     determining whether the currently active transient prefix command
+     remains active/transient when a suffix or abitrary non-suffix
+     command is invoked.  See *note Transient State::.
+
+   • ‘incompatible’ A list of lists.  Each sub-list specifies a set of
+     mutually exclusive arguments.  Enabling one of these arguments
+     causes the others to be disabled.
+
+   • ‘scope’ For some transients it might be necessary to have a sort of
+     secondary value, called a "scope".  See ‘define-transient-command’.
+
+6.6.1 Internal Prefix Slots
+---------------------------
+
+These slots are mostly intended for internal use.  They should not be
+set in calls to ‘define-transient-command’.
+
+   • ‘prototype’ When a transient prefix command is invoked, then a
+     clone of that object is stored in the global variable
+     ‘transient--prefix’ and the prototype is stored in the clone’s
+     ‘prototype’ slot.
+
+   • ‘command’ The command, a symbol.  Each transient prefix command
+     consists of a command, which is stored in a symbol’s function slot
+     and an object, which is stored in the ‘transient--prefix’ property
+     of the same symbol.
+
+   • ‘level’ The level of the prefix commands.  The suffix commands
+     whose layer is equal or lower are displayed.  See *note Enabling
+     and Disabling Suffixes::.
+
+   • ‘value’ The likely outdated value of the prefix.  Instead of
+     accessing this slot directly you should use the function
+     ‘transient-get-value’, which is guaranteed to return the up-to-date
+     value.
+
+   • ‘history’ and ‘history-pos’ are used to keep track of historic
+     values.  Unless you implement your own ‘transient-infix-read’
+     method you should not have to deal with these slots.
 
 
 File: transient.info,  Node: Suffix Slots,  Next: Predicate Slots,  Prev: Prefix Slots,  Up: Classes and Methods
@@ -2242,9 +2289,9 @@ Appendix D Function Index
 * Menu:
 
 * define-infix-argument:                 Defining Suffix and Infix Commands.
-                                                              (line  66)
+                                                              (line  63)
 * define-infix-command:                  Defining Suffix and Infix Commands.
-                                                              (line  30)
+                                                              (line  27)
 * define-suffix-command:                 Defining Suffix and Infix Commands.
                                                               (line   9)
 * define-transient-command:              Defining Transients. (line  13)
@@ -2354,27 +2401,27 @@ Node: Binding Suffix and Infix Commands36734
 Node: Group Specifications37589
 Node: Suffix Specifications40922
 Node: Defining Suffix and Infix Commands44489
-Node: Using Infix Arguments47899
-Node: Transient State50119
-Node: Classes and Methods55992
-Node: Group Classes58206
-Node: Group Methods60123
-Node: Prefix Classes60768
-Node: Suffix Classes61860
-Node: Suffix Methods64104
-Node: Suffix Value Methods64425
-Node: Suffix Format Methods67185
-Node: Prefix Slots68637
-Node: Suffix Slots68801
-Node: Predicate Slots71652
-Node: Related Abstractions and Packages72900
-Node: Comparison With Prefix Keys and Prefix Arguments73187
-Node: Comparison With Other Packages83499
-Node: FAQ87690
-Node: Keystroke Index91424
-Node: Command Index93058
-Node: Function Index94845
-Node: Variable Index99002
+Node: Using Infix Arguments47674
+Node: Transient State49894
+Node: Classes and Methods55767
+Node: Group Classes57981
+Node: Group Methods59898
+Node: Prefix Classes60543
+Node: Suffix Classes61635
+Node: Suffix Methods63879
+Node: Suffix Value Methods64200
+Node: Suffix Format Methods66960
+Node: Prefix Slots68412
+Node: Suffix Slots70889
+Node: Predicate Slots73740
+Node: Related Abstractions and Packages74988
+Node: Comparison With Prefix Keys and Prefix Arguments75275
+Node: Comparison With Other Packages85587
+Node: FAQ89778
+Node: Keystroke Index93512
+Node: Command Index95146
+Node: Function Index96933
+Node: Variable Index101090
 
 End Tag Table
 
