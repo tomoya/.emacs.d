@@ -339,14 +339,14 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'typescript-mode-hook #'lsp)
 (add-hook 'ts-web-mode-hook #'lsp)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(with-eval-after-load 'lsp-clients
-  (defun lsp-typescript-javascript-tsx-jsx-activate-p (filename mode)
-  "Checks if the javascript-typescript language server should be enabled
-based on FILE-NAME and MAJOR-MODE"
-  (or (member mode '(typescript-mode typescript-tsx-mode js-mode js2-mode rjsx-mode ts-web-mode))
-      (and (eq major-mode 'web-mode)
-           (or (string-suffix-p ".tsx" filename t)
-               (string-suffix-p ".jsx" filename t))))))
+;; (with-eval-after-load 'lsp-clients
+;;   (defun lsp-typescript-javascript-tsx-jsx-activate-p (filename mode)
+;;   "Checks if the javascript-typescript language server should be enabled
+;; based on FILE-NAME and MAJOR-MODE"
+;;   (or (member mode '(typescript-mode typescript-tsx-mode js-mode js2-mode rjsx-mode ts-web-mode))
+;;       (and (eq major-mode 'web-mode)
+;;            (or (string-suffix-p ".tsx" filename t)
+;;                (string-suffix-p ".jsx" filename t))))))
 ;; company
 (push 'company-emoji company-backends)
 (push 'company-lsp company-backends)

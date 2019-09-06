@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "package-lint" "../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint.el"
-;;;;;;  "271710ea2fef7a7516e76712f6ee1629")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint.el
+;;;### (autoloads nil "package-lint" "../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint.el"
+;;;;;;  "fcfe8324985e339ea05c0cba56ee8fb4")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint.el
 
 (autoload 'package-lint-buffer "package-lint" "\
 Get linter errors and warnings for BUFFER.
@@ -37,9 +37,9 @@ otherwise." nil nil)
 Return non-nil if the current buffer appears to be intended as a package." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "package-lint"
-;;;;;;  "../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "package-lint" '("package-lint-")))
 
@@ -47,8 +47,8 @@ Return non-nil if the current buffer appears to be intended as a package." nil n
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/package-lint-20190807.1837/package-lint.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/package-lint-20190905.1847/package-lint.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

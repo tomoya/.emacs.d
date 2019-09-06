@@ -2133,14 +2133,13 @@ method.  If you fail to do so, then users might not appreciate
 the lack of history, for example.
 
 Only for very simple classes that toggle or cycle through a very
-limitted number of possible values should you replace this with a
+limited number of possible values should you replace this with a
 simple method that does not handle history.  (E.g. for a command
 line switch the only possible values are \"use it\" and \"don't use
 it\", in which case it is pointless to preserve history.)"
   (with-slots (value multi-value allow-empty choices) obj
     (if (and value
              (not multi-value)
-             (not allow-empty)
              transient--prefix)
         (oset obj value nil)
       (let* ((overriding-terminal-local-map nil)

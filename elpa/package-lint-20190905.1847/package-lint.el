@@ -5,7 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;;         Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/purcell/package-lint
-;; Package-Version: 20190807.1837
+;; Package-Version: 20190905.1847
 ;; Keywords: lisp
 ;; Version: 0
 ;; Package-Requires: ((cl-lib "0.5") (emacs "24"))
@@ -825,7 +825,7 @@ Valid definition names are:
   (let ((prefix (package-lint--get-package-prefix)))
     (when prefix
       (pcase (cadr def)
-        (`(quote ,alias)
+        ((and `(quote ,alias) (guard (symbolp alias)))
          (unless (package-lint--valid-definition-name-p (symbol-name alias) prefix)
            (package-lint--error-at-point
             'error
