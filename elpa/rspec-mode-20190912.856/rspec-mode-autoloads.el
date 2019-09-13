@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "rspec-mode" "../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode.el"
-;;;;;;  "6da17af6061dedf354b3efd93a1c1185")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode.el
+;;;### (autoloads nil "rspec-mode" "../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode.el"
+;;;;;;  "3c15bccd2cd482ee0aa3299395860004")
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode.el
 
 (autoload 'rspec-mode "rspec-mode" "\
 Minor mode for RSpec files
@@ -55,9 +55,9 @@ Return true if the current buffer is a spec." nil nil)
 
 (add-hook 'rails-minor-mode-hook 'rspec-verifiable-mode)
 
-;;;### (autoloads "actual autoloads are elsewhere" "rspec-mode" "../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "rspec-mode" "../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode.el
+;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rspec-mode" '("rspec")))
 
@@ -65,9 +65,9 @@ Return true if the current buffer is a spec." nil nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/rspec-mode-20190609.1123/rspec-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode-autoloads.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode-pkg.el"
+;;;;;;  "../../../../../../../.emacs.d/elpa/rspec-mode-20190912.856/rspec-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

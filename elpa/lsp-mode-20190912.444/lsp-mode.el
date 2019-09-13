@@ -684,7 +684,7 @@ must be used for handling a particular message.")
   :type 'number
   :group 'lsp-mode)
 
-(defcustom lsp-file-watch-threshold 300
+(defcustom lsp-file-watch-threshold 1000
   "Show warning if the files to watch are more than.
 Set to nil to disable the warning."
   :type 'number
@@ -4158,7 +4158,7 @@ unless overriden by a more specific face association."
                  (s-join ", " scope-names)))
     maybe-face))
 
-(defvar-local lsp--facemap nil)
+(defvar-local lsp--faces nil)
 
 (defun lsp--apply-semantic-highlighting (lines)
   (let (line raw-str i end el start (cur-line 1) ov tokens)
@@ -4183,17 +4183,17 @@ unless overriden by a more specific face association."
                  (setq ov (make-overlay
                            (+ (point) start)
                            (+ (point) (+ start (bindat-get-field el 'len)))))
-                 (overlay-put ov 'face (elt lsp--facemap (bindat-get-field el 'scopeIndex)))
+                 (overlay-put ov 'face (aref lsp--faces (bindat-get-field el 'scopeIndex)))
                  (overlay-put ov 'lsp-sem-highlight t))))))
 
 (defun lsp--on-semantic-highlighting (workspace params)
   ;; TODO: defer highlighting if buffer's not currently focused?
-  (unless lsp--facemap
+  (unless lsp--faces
     (let* ((capabilities (lsp--workspace-server-capabilities workspace))
            (semanticHighlighting (gethash "semanticHighlighting" capabilities))
            (scopes (or (gethash "scopes" semanticHighlighting) [])))
-      (setq lsp--facemap
-            (mapcar #'lsp--semantic-highlighting-find-face scopes))))
+      (setq lsp--faces
+            (vconcat (mapcar #'lsp--semantic-highlighting-find-face scopes)))))
   (let* ((file (lsp--uri-to-path (gethash "uri" (gethash "textDocument" params))))
          (lines (gethash "lines" params))
          (buffer (lsp--buffer-for-file file)))
@@ -4350,20 +4350,22 @@ perform the request synchronously."
     (when edits
       (lsp--apply-workspace-edit edits))))
 
+(defun lsp-show-xrefs (xrefs display-action references?)
+  (if (boundp 'xref-show-definitions-function)
+      (with-no-warnings
+        (funcall (if references? xref-show-xrefs-function xref-show-definitions-function)
+                 (-const xrefs)
+                 `((window . ,(selected-window))
+                   (display-action . ,display-action))))
+    (xref--show-xrefs xrefs display-action)))
+
 (cl-defun lsp-find-locations (method &optional extra &key display-action references?)
   "Send request named METHOD and get cross references of the symbol under point.
 EXTRA is a plist of extra parameters.
 REFERENCES? t when METHOD returns references."
   (if-let ((loc (lsp-request method
                              (append (lsp--text-document-position-params) extra))))
-      (let ((xrefs (lsp--locations-to-xref-items loc)))
-        (if (boundp 'xref-show-definitions-function)
-            (with-no-warnings
-              (funcall (if references? xref-show-xrefs-function xref-show-definitions-function)
-                       (-const xrefs)
-                       `((window . ,(selected-window))
-                         (display-action . ,display-action))))
-          (xref--show-xrefs xrefs display-action)))
+      (lsp-show-xrefs (lsp--locations-to-xref-items loc) display-action references?)
     (message "Not found for: %s" (thing-at-point 'symbol t))))
 
 (cl-defun lsp-find-declaration (&key display-action)
@@ -5667,13 +5669,26 @@ Returns nil if the project should not be added to the current SESSION."
           (t nil)))
     ('quit)))
 
+(declare-function tramp-file-name-host "tramp" (file))
+(declare-function tramp-dissect-file-name "tramp" (file))
+
+(defun lsp--files-same-host (f1 f2)
+  "Predicate on whether or not two files are on the same host."
+  (or (not (or (file-remote-p f1) (file-remote-p f2)))
+      (and (file-remote-p f1)
+           (file-remote-p f2)
+           (progn (require 'tramp)
+                  (string-equal (tramp-file-name-host (tramp-dissect-file-name f1))
+                                (tramp-file-name-host (tramp-dissect-file-name f2)))))))
+
 (defun lsp-find-session-folder (session file-name)
   "Look in the current SESSION for folder containing FILE-NAME."
   (let ((file-name-canonical (f-canonical file-name)))
     (->> session
          (lsp-session-folders)
-         (--filter (or (f-same? it file-name-canonical)
-                       (f-ancestor-of? it file-name-canonical)))
+         (--filter (and (lsp--files-same-host it file-name-canonical)
+                        (or (f-same? it file-name-canonical)
+                            (f-ancestor-of? it file-name-canonical))))
          (--max-by (> (length it)
                       (length other))))))
 

@@ -1,4 +1,4 @@
-(define-package "rspec-mode" "20190609.1123" "Enhance ruby-mode for RSpec"
+(define-package "rspec-mode" "20190912.856" "Enhance ruby-mode for RSpec"
   '((ruby-mode "1.0")
     (cl-lib "0.4"))
   :keywords
