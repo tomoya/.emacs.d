@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.emacs.d/elpa/memoize-20190915.37/memoize.el  -*- no-byte-compile: t -*-
+(define-package "memoize" "20190915.37" "Memoization functions" 'nil :commit "b4550a7949c70d037db01446a5d96ab7b5ab0df8" :authors '(("Christopher Wellons" . "mosquitopsu@gmail.com")) :maintainer '("Christopher Wellons" . "mosquitopsu@gmail.com") :url "https://github.com/skeeto/emacs-memoize")
