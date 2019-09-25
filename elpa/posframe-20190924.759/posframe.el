@@ -5,7 +5,7 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20190805.956
+;; Package-Version: 20190924.759
 ;; Version: 0.5.0
 ;; Keywords: tooltip
 ;; Package-Requires: ((emacs "26"))
@@ -305,7 +305,8 @@ This posframe's buffer is BUFFER-OR-NAME."
             (set-window-parameter posframe-window 'mode-line-format 'none))
           (unless respect-header-line
             (set-window-parameter posframe-window 'header-line-format 'none))
-          (set-window-buffer posframe-window buffer)))
+          (set-window-buffer posframe-window buffer)
+          (set-window-dedicated-p posframe-window t)))
       posframe--frame)))
 
 (defun posframe-arghandler-default (_buffer-or-name _arg-name value)
