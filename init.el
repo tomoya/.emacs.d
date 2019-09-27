@@ -191,6 +191,8 @@
  nil 'japanese-jisx0208
 (font-spec :family "MotoyaLCedar"))
 
+;; emoji
+(set-fontset-font "fontset-default" 'unicode "Apple Color Emoji" nil 'prepend)
 ;; ひらがなとカタカナをNoto Sans CJK JPに
 ;; U+3000-303F  CJKの記号および句読点
 ;; U+3040-309F  ひらがな
