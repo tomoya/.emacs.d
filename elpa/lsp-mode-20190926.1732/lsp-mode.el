@@ -299,6 +299,7 @@ the server has requested that."
   :type 'boolean
   :group 'lsp-mode
   :package-version '(lsp-mode . "6.1"))
+;;;###autoload(put 'lsp-enable-file-watchers 'safe-local-variable #'booleanp)
 
 (defcustom lsp-file-watch-ignored '(; SCM tools
                                     "[/\\\\]\\.git$"
@@ -615,6 +616,7 @@ Changes take effect only when a new session is started."
                                         (dart-mode . "dart")
                                         (erlang-mode . "erlang")
                                         (dockerfile-mode . "dockerfile")
+                                        (csharp-mode . "csharp")
                                         (plain-tex-mode . "plaintex")
                                         (latex-mode . "latex"))
   "Language id configuration.")
@@ -694,6 +696,7 @@ must be used for handling a particular message.")
 Set to nil to disable the warning."
   :type 'number
   :group 'lsp-mode)
+;;;###autoload(put 'lsp-file-watch-threshold 'safe-local-variable (lambda (i) (or (numberp i) (not i))))
 
 (defvar lsp-custom-markup-modes
   '((rust-mode "no_run" "rust,no_run" "rust,ignore" "rust,should_panic"))
@@ -3976,7 +3979,7 @@ interface DocumentRangeFormattingParams {
 
 (defun lsp--make-document-highlight-callback (buf)
   "Create a callback to process the reply of a
-'textDocument/documentHightlight' message for the buffer BUF.
+'textDocument/documentHighlight' message for the buffer BUF.
 A reference is highlighted only if it is visible in a window."
   (cl-check-type buf buffer)
   (lambda (highlights)
