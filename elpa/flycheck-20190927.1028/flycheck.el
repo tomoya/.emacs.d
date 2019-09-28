@@ -1400,16 +1400,16 @@ Safely delete all files and directories listed in
   "Translate the `(file-name)' FORM into a regular expression."
   (let ((body (or (cdr form) '((minimal-match
                                 (one-or-more not-newline))))))
-    (rx-submatch-n `(group-n 1 ,@body))))
+    (rx-to-string `(group-n 1 ,@body) t)))
 
 (defun flycheck-rx-message (form)
   "Translate the `(message)' FORM into a regular expression."
   (let ((body (or (cdr form) '((one-or-more not-newline)))))
-    (rx-submatch-n `(group-n 4 ,@body))))
+    (rx-to-string `(group-n 4 ,@body) t)))
 
 (defun flycheck-rx-id (form)
   "Translate the `(id)' FORM into a regular expression."
-  (rx-submatch-n `(group-n 5 ,@(cdr form))))
+  (rx-to-string `(group-n 5 ,@(cdr form)) t))
 
 (defun flycheck-rx-to-string (form &optional no-group)
   "Like `rx-to-string' for FORM, but with special keywords:
@@ -7810,8 +7810,9 @@ See URL `http://www.erlang.org/'."
   :enabled (lambda () (string-suffix-p ".erl" (buffer-file-name))))
 
 (defun contains-rebar-config (dir-name)
-  "Return DIR-NAME if DIR-NAME/rebar.config exists, nil otherwise."
-  (when (file-exists-p (expand-file-name "rebar.config" dir-name))
+  "Return DIR-NAME if rebar config file exists in DIR-NAME, nil otherwise."
+  (when (or (file-exists-p (expand-file-name "rebar.config" dir-name))
+            (file-exists-p (expand-file-name "rebar.config.script" dir-name)))
     dir-name))
 
 (defun locate-rebar3-project-root (file-name &optional prev-file-name acc)
