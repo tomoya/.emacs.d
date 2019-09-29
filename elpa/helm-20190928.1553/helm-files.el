@@ -1012,7 +1012,7 @@ layout."
 
 (defvar eshell-command-aliases-list nil)
 (defvar helm-eshell-command-on-file-input-history nil)
-(defun helm-find-files-eshell-command-on-file-1 (&optional map)
+(cl-defun helm-find-files-eshell-command-on-file-1 (&optional map)
   "Run `eshell-command' on CANDIDATE or marked candidates.
 This is done possibly with an eshell alias, if no alias found, you can type in
 an eshell command.
@@ -1047,27 +1047,35 @@ working."
   (require 'em-alias) (eshell-read-aliases-list)
   (when (or eshell-command-aliases-list
             (y-or-n-p "No eshell aliases found, run eshell-command without alias anyway? "))
-    (let* ((cand-list (helm-marked-candidates))
+    (let* ((cand-list (helm-marked-candidates :with-wildcard t))
            (default-directory (or helm-ff-default-directory
                                   ;; If candidate is an url *-ff-default-directory is nil
                                   ;; so keep value of default-directory.
                                   default-directory))
-           (command (helm-comp-read
-                     "Command: "
-                     (cl-loop for (a c) in (eshell-read-aliases-list)
-                              ;; Positional arguments may be double
-                              ;; quoted (Issue #1881).
-                              when (string-match "[\"]?.*\\(\\$1\\|\\$\\*\\)[\"]?\\'" c)
-                              collect (propertize a 'help-echo c) into ls
-                              finally return (sort ls 'string<))
-                     :buffer "*helm eshell on file*"
-                     :name "Eshell command"
-                     :mode-line
-                     '("Eshell alias"
-                       "C-h m: Help, \\[universal-argument]: Insert output at point")
-                     :help-message 'helm-esh-help-message
-                     :input-history
-                     'helm-eshell-command-on-file-input-history))
+           helm-display-source-at-screen-top
+           (helm-actions-inherit-frame-settings t)
+           helm-use-frame-when-more-than-two-windows
+           (command (with-helm-display-marked-candidates
+                      helm-marked-buffer-name
+                      (helm-ff--count-and-collect-dups
+                       (mapcar 'helm-basename cand-list))
+                      (with-helm-current-buffer
+                        (helm-comp-read
+                         "Command: "
+                         (cl-loop for (a c) in (eshell-read-aliases-list)
+                                  ;; Positional arguments may be double
+                                  ;; quoted (Issue #1881).
+                                  when (string-match "[\"]?.*\\(\\$1\\|\\$\\*\\)[\"]?\\'" c)
+                                  collect (propertize a 'help-echo c) into ls
+                                  finally return (sort ls 'string<))
+                         :buffer "*helm eshell on file*"
+                         :name "Eshell command"
+                         :mode-line
+                         '("Eshell alias"
+                           "C-h m: Help, \\[universal-argument]: Insert output at point")
+                         :help-message 'helm-esh-help-message
+                         :input-history
+                         'helm-eshell-command-on-file-input-history))))
            (alias-value (car (assoc-default command eshell-command-aliases-list)))
            cmd-line)
       (if (or (equal helm-current-prefix-arg '(16))
@@ -1096,9 +1104,9 @@ working."
           ;; This wont work on remote files, because tramp handlers depends
           ;; on `default-directory' (limitation).
           (let ((mapfiles (mapconcat 'eshell-quote-argument cand-list " ")))
-            (if (string-match "'%s'\\|\"%s\"\\|%s" command)
+            (if (string-match "%s" command)
                 (setq cmd-line (format command mapfiles)) ; See [1]
-                (setq cmd-line (format "%s %s" command mapfiles)))
+              (setq cmd-line (format "%s %s" command mapfiles)))
             (eshell-command cmd-line))
 
           ;; Run eshell-command on EACH marked files.
@@ -1120,7 +1128,7 @@ working."
                               "\\\\@" (file-name-sans-extension file)
                               (replace-regexp-in-string
                                "\\\\#" (format "%03d" n) command))
-                   for com = (if (string-match "'%s'\\|\"%s\"\\|%s" fcmd)
+                   for com = (if (string-match "%s" fcmd)
                                  ;; [1] This allow to enter other args AFTER filename
                                  ;; i.e <command %s some_more_args>
                                  (format fcmd file)

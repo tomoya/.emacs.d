@@ -292,6 +292,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-hook 'ts-web-mode-hook #'auto-fix-mode)
 (add-hook 'typescript-mode-hook #'auto-fix-mode)
+(add-hook 'js-mode-hook #'auto-fix-mode)
 
 ;; ruby-mode
 (defun setup-auto-fix-rubocop ()
