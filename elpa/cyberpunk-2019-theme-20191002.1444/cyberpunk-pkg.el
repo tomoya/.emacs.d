@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.emacs.d/elpa/cyberpunk-2019-theme-20191002.1444/cyberpunk.el  -*- no-byte-compile: t -*-
+(define-package "cyberpunk-2019-theme" "20191002.1444" "A retina-scorching cyberpunk theme" '((emacs "24.1")) :commit "ead04ecfcbffef53b56629cd31933ad479409c23" :keywords '("cyberpunk" "theme" "themes") :authors '(("Alex Lynham" . "alex@lynh.am")) :maintainer '("Alex Lynham" . "alex@lynh.am") :url "https://github.com/the-frey/cyberpunk-2019")

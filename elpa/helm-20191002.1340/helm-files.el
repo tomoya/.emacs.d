@@ -776,8 +776,8 @@ Should not be used among other sources.")
     ;; directory.
     (when (file-directory-p fname)
       (helm-find-files-1 fname (if helm-ff-transformer-show-only-basename
-                                   (helm-basename presel)
-                                 presel)))))
+                                   (concat "^" (regexp-quote (helm-basename presel)))
+                                 (regexp-quote presel))))))
 
 (defun helm-ff-bookmark-set ()
   "Record `helm-find-files' session in bookmarks."
@@ -1125,9 +1125,9 @@ working."
                    ;; \@ => placeholder for file without extension.
                    ;; \# => placeholder for incremental number.
                    for fcmd = (replace-regexp-in-string
-                              "\\\\@" (file-name-sans-extension file)
-                              (replace-regexp-in-string
-                               "\\\\#" (format "%03d" n) command))
+                               "\\\\@" (regexp-quote (file-name-sans-extension file))
+                               (replace-regexp-in-string
+                                "\\\\#" (format "%03d" n) command))
                    for com = (if (string-match "%s" fcmd)
                                  ;; [1] This allow to enter other args AFTER filename
                                  ;; i.e <command %s some_more_args>
@@ -1470,7 +1470,8 @@ This doesn't replace inside the files, only modify filenames."
                     (unless (string= query "!")
                       (setq query (helm-read-answer (format
                                                      "Replace `%s' by `%s' [!,y,n,q]"
-                                                     old new)
+                                                     (helm-basename old)
+                                                     (helm-basename new))
                                                     '("y" "n" "!" "q"))))
                     (when (string= query "q")
                       (cl-return (message "Operation aborted")))

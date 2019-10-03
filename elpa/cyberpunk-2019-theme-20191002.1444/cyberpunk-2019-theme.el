@@ -18,7 +18,7 @@
 ;;
 ;; Author: Alex Lynham <alex@lynh.am>
 ;; Version: 0.0.1
-;; Package-Version: 20190722.1332
+;; Package-Version: 20191002.1444
 ;; Package-Requires: ((emacs "24.1"))
 ;; Keywords: cyberpunk, theme, themes
 ;; URL: https://github.com/the-frey/cyberpunk-2019
@@ -114,6 +114,14 @@
                  :weight bold
                  :box t))))
  `(org-table ((t (:background "#372963" :foreground "#00E3FF"))))
+
+ `(flymake-error ((t (:underline (:color "#FF4081")))))
+ `(flymake-warning ((t (:underline (:color "#FF9C00")))))
+ `(flymake-info ((t (:underline (:color "#9C00FF")))))
+
+ `(flycheck-error ((t (:underline (:color "#FF4081")))))
+ `(flycheck-warning ((t (:underline (:color "#FF9C00")))))
+ `(flycheck-info ((t (:underline (:color "#9C00FF")))))
 
  `(rainbow-delimiters-depth-1-face ((t (:foreground "#00FF9C"))))
  `(rainbow-delimiters-depth-2-face ((t (:foreground "#FF4081"))))
