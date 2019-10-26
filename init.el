@@ -222,13 +222,14 @@ if you want to switch to previous buffer, set first argument non-nil."
   (let* ((previous (or previous nil))
          (bread-crumb (buffer-name)))
     (message "%s" previous)
-    (or (and previous (previous-buffer))
-        (next-buffer))
+    (if previous (previous-buffer)
+      (next-buffer))
     (while
         (and
          (ignore-buffer-p (buffer-name))
          (not (equal bread-crumb (buffer-name))))
-    (or (and previous (previous-buffer))
+      (if previous
+          (previous-buffer)
         (next-buffer)))))
 
 (defun next-code-buffer ()
