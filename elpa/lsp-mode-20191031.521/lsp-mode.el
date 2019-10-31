@@ -627,7 +627,8 @@ Changes take effect only when a new session is started."
                                         (csharp-mode . "csharp")
                                         (plain-tex-mode . "plaintex")
                                         (latex-mode . "latex")
-                                        (vhdl-mode . "vhdl"))
+                                        (vhdl-mode . "vhdl")
+                                        (terraform-mode . "terraform"))
   "Language id configuration.")
 
 (defvar lsp-method-requirements
@@ -1813,9 +1814,9 @@ BUFFER-MODIFIED? determines whether the buffer is modified or not."
 
   (setq-local lsp--lens-page (cons (window-start) (window-end)))
   (setq-local lsp--lens-refresh-timer
-              (run-with-timer lsp-lens-debounce-interval nil 'lsp--lens-refresh
-                              (current-buffer)
-                              buffer-modified?)))
+              (run-with-timer lsp-lens-debounce-interval nil 'lsp-lens-refresh
+                              buffer-modified?
+                              (current-buffer))))
 
 (defun lsp--lens-keymap (command)
   (-doto (make-sparse-keymap)
@@ -1997,7 +1998,7 @@ CALLBACK - callback for the lenses."
    (lsp-lens-mode
     (setq-local lsp--lens-idle-timer (run-with-idle-timer
                                       lsp-lens-check-interval t #'lsp--lens-idle-function (current-buffer)))
-    (lsp--lens-refresh t)
+    (lsp-lens-refresh t)
     (add-hook 'kill-buffer-hook #'lsp--lens-stop-timer nil t)
     (add-hook 'after-save-hook 'lsp--lens-after-save nil t))
    (t
@@ -3108,10 +3109,9 @@ This method is used if we do not have `buffer-replace-content'."
       (let* ((change-group (when (functionp 'undo-amalgamate-change-group)
                              (prepare-change-group)))
              (howmany (length edits))
-             (reporter (make-progress-reporter
-                        (lsp--info "Applying %s edits to `%s'..."
-                                   howmany (current-buffer))
-                        0 howmany))
+             (message (format "Applying %s edits to `%s' ..." howmany (current-buffer)))
+             (_ (message message))
+             (reporter (make-progress-reporter message 0 howmany))
              (done 0)
              (apply-edit (if (functionp 'replace-buffer-contents)
                              'lsp--apply-text-edit-replace-buffer-contents
@@ -3641,7 +3641,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
                                (insert-file-contents-literally filename)
                                (seq-map fn (cdr file-locs))))))
                      (error (ignore
-                             (lsp-warn "Failed to process xref entry for filename '%s': %s" (error-message-string err))))
+                             (lsp-warn "Failed to process xref entry for filename '%s': %s" filename (error-message-string err))))
                      (file-error (ignore
                                   (lsp-warn "Failed to process xref entry, file-error, '%s': %s" filename (error-message-string err))))))))
       (apply #'append
@@ -3713,17 +3713,18 @@ If INCLUDE-DECLARATION is non-nil, request the server to include declarations."
                        (lsp--document-highlight)))))))))))
 
 (defun lsp-describe-thing-at-point ()
-  "Display the full documentation of the thing at point."
+  "Display the type signature and documentation of the thing at
+point."
   (interactive)
   (let ((contents (-some->> (lsp--text-document-position-params)
                             (lsp--make-request "textDocument/hover")
                             (lsp--send-request)
                             (gethash "contents"))))
-
     (if (and contents (not (equal contents "")))
-        (with-current-buffer (help-buffer)
-          (with-help-window (current-buffer)
-            (insert (lsp--render-on-hover-content contents t))))
+        (let ((lsp-help-buf-name "*lsp-help*"))
+          (with-current-buffer (get-buffer-create lsp-help-buf-name)
+            (with-help-window lsp-help-buf-name
+              (insert (string-trim-right (lsp--render-on-hover-content contents t))))))
       (lsp--info "No content at point."))))
 
 (defun lsp--point-in-bounds-p (bounds)

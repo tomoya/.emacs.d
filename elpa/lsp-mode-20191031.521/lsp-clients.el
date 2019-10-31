@@ -44,6 +44,7 @@
 (require 'lsp-haxe)
 (require 'lsp-vhdl)
 (require 'lsp-yaml)
+(require 'lsp-terraform)
 
 ;;; Ada
 (defgroup lsp-ada nil
@@ -205,6 +206,7 @@ directory containing the package. Example:
                                                                 lsp-clients-typescript-server-args)))
                   :activation-fn 'lsp-typescript-javascript-tsx-jsx-activate-p
                   :priority -2
+                  :completion-in-comments? t
                   :initialization-options (lambda ()
                                             (list :plugins lsp-clients-typescript-plugins
                                                   :logVerbosity lsp-clients-typescript-log-verbosity))
