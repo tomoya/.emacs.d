@@ -12,7 +12,7 @@
 ;; Maintainer: Jonas Bernoulli <jonas@bernoul.li>
 
 ;; Package-Requires: ((emacs "25.1") (dash "20180910") (with-editor "20181103"))
-;; Package-Version: 20191107.857
+;; Package-Version: 20191116.2035
 ;; Keywords: git tools vc
 ;; Homepage: https://github.com/magit/magit
 
@@ -744,7 +744,7 @@ With a numeric prefix ARG, go forward ARG comments."
   (interactive (git-commit-read-ident))
   (git-commit-insert-header "Suggested-by" name mail))
 
-(defun git-commit-co-authored-by (name mail)
+(defun git-commit-co-authored (name mail)
   "Insert a header mentioning the person who co-authored the commit."
   (interactive (git-commit-read-ident))
   (git-commit-insert-header "Co-authored-by" name mail))
