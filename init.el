@@ -55,7 +55,7 @@
  '(diff-hl-flydiff-mode t)
  '(diff-hl-margin-mode nil)
  '(direnv-mode t nil (direnv))
- '(easy-hugo-basedir "/Users/tomoya/src/github.com/tomoya/blog.tomoya.app")
+ '(easy-hugo-basedir "/Users/tomoya/src/github.com/tomoya/blog.tomoya.dev")
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
  '(find-file-visit-truename t)
