@@ -10,3 +10,6 @@ transient
 ddskk/*
 !ddskk/init
 network-security.data
+backups
+auto-save-list
+*.elc
