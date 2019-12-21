@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.emacs.d/elpa/easy-hugo-20191013.1814/easy-hugo.el  -*- no-byte-compile: t -*-
-(define-package "easy-hugo" "20191013.1814" "Write blogs made with hugo by markdown or org-mode" '((emacs "25.1") (popup "0.5.3") (request "0.3.0")) :commit "02f7f06d9d1e66cef6df9768dc2400217f488a6f" :authors '(("Masashı Mıyaura")) :maintainer '("Masashı Mıyaura") :url "https://github.com/masasam/emacs-easy-hugo")
