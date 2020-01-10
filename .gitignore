@@ -13,3 +13,4 @@ network-security.data
 backups
 auto-save-list
 *.elc
+*.signed
