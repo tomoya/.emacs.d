@@ -349,7 +349,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; company
 (push 'company-emoji company-backends)
 (push 'company-lsp company-backends)
-;; (push 'company-tabnine company-backends)
+(push 'company-tabnine company-backends)
 (add-hook 'company-mode-hook 'company-box-mode)
 
 ;; Helm
