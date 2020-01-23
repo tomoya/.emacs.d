@@ -213,8 +213,8 @@ vectors, so don't use strings to define them."
     (define-key map (kbd "<C-M-down>") 'helm-scroll-other-window)
     (define-key map (kbd "<C-M-up>")   'helm-scroll-other-window-down)
     (define-key map (kbd "C-@")        'helm-toggle-visible-mark)
-    (define-key map (kbd "C-SPC")      'helm-toggle-visible-mark)
-    (define-key map (kbd "M-SPC")      'helm-toggle-visible-mark)
+    (define-key map (kbd "C-SPC")      'helm-toggle-visible-mark-forward)
+    (define-key map (kbd "M-SPC")      'helm-toggle-visible-mark-backward)
     (define-key map (kbd "M-[")        nil)
     (define-key map (kbd "M-(")        'helm-prev-visible-mark)
     (define-key map (kbd "M-)")        'helm-next-visible-mark)
@@ -4423,18 +4423,20 @@ the source, keeping previous candidates in display."
   "Used to set the value of `case-fold-search' in helm.
 Return t or nil depending on the value of `helm-case-fold-search'
 and `helm-pattern'."
-  (let ((helm-case-fold-search
-         (helm-aif (assq 'case-fold-search (helm-get-current-source))
-             (cdr it)
-           helm-case-fold-search))
-        ;; Only parse basename for filenames
-        ;; to avoid setting case sensitivity
-        ;; when expanded directories contains upcase
-        ;; characters.
-        (bn-or-pattern (if (string-match "[~/]*" pattern)
-                           (helm-basename pattern)
-                         pattern)))
-    (helm-set-case-fold-search-1 bn-or-pattern)))
+  (if helm-alive-p
+      (let ((helm-case-fold-search
+             (helm-aif (assq 'case-fold-search (helm-get-current-source))
+                 (cdr it)
+               helm-case-fold-search))
+            ;; Only parse basename for filenames
+            ;; to avoid setting case sensitivity
+            ;; when expanded directories contains upcase
+            ;; characters.
+            (bn-or-pattern (if (string-match "[~/]*" pattern)
+                               (helm-basename pattern)
+                             pattern)))
+        (helm-set-case-fold-search-1 bn-or-pattern))
+    case-fold-search))
 
 (defun helm-set-case-fold-search-1 (pattern)
   (cl-case helm-case-fold-search
@@ -6713,6 +6715,14 @@ If ARG is negative toggle backward."
                            (cl-return nil))
                        (funcall (cdr next-fns))))))))))
 (put 'helm-toggle-visible-mark 'helm-only t)
+
+(defun helm-toggle-visible-mark-forward ()
+  (interactive)
+  (helm-toggle-visible-mark 1))
+
+(defun helm-toggle-visible-mark-backward ()
+  (interactive)
+  (helm-toggle-visible-mark -1))
 
 (defun helm-file-completion-source-p (&optional source)
   "Return non-`nil' if current source is a file completion source."
