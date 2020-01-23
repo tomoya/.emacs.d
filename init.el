@@ -102,6 +102,14 @@
      (left . 0)
      (left-fringe . 0)))
  '(js-indent-level 2)
+ '(lsp-server-install-dir
+   (expand-file-name "lsp"
+                     (or
+                      (when-let
+                          (xdg-cache-home-dir
+                           (getenv "XDG_CACHE_HOME"))
+                        (concat xdg-cache-home-dir "/emacs"))
+                      (locate-user-emacs-file ".cache"))))
  '(markdown-command "marked")
  '(menu-bar-mode nil)
  '(neo-autorefresh t)
