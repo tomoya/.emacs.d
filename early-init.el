@@ -1,5 +1,3 @@
-(message "Start early initialization...")
-
 (setq frame-title-format
       '((:eval
          (if (buffer-file-name)
@@ -43,5 +41,3 @@
 (add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
-
-(message "Done early initialization")
