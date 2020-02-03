@@ -146,7 +146,7 @@
  '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
- '(skk-user-directory "~/.emacs.d/ddskk/")
+ '(skk-user-directory (locate-user-emacs-file "ddskk"))
  '(smartparens-global-mode t)
  '(split-height-threshold nil)
  '(tab-width 4)
