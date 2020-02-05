@@ -12,7 +12,7 @@
 ;; Maintainer: Jonas Bernoulli <jonas@bernoul.li>
 
 ;; Package-Requires: ((emacs "25.1") (dash "20180910") (transient "20190812") (with-editor "20181103"))
-;; Package-Version: 20200123.1706
+;; Package-Version: 20200204.2012
 ;; Keywords: git tools vc
 ;; Homepage: https://github.com/magit/magit
 
@@ -767,6 +767,8 @@ With a numeric prefix ARG, go forward ARG comments."
             (getenv "EMAIL")
             (ignore-errors (car (process-lines "git" "config" "user.email")))
             (read-string "Email: "))))
+
+(defvar git-commit-read-ident-history nil)
 
 (defun git-commit-read-ident (prompt)
   (if (require 'magit-git nil t)
