@@ -1,12 +1,12 @@
 ;;; posframe.el --- Pop a posframe (just a frame) at point    -*- lexical-binding:t -*-
 
-;; Copyright (C) 2018 Free Software Foundation, Inc.
+;; Copyright (C) 2018-2020 Free Software Foundation, Inc.
 
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20200110.215
-;; Version: 0.5.0
+;; Package-Version: 20200205.928
+;; Version: 0.6.0
 ;; Keywords: convenience, tooltip
 ;; Package-Requires: ((emacs "26"))
 
