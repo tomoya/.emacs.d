@@ -2096,7 +2096,8 @@ BINDINGS is a list of (key def cond)."
                     ,(format "maybe-%s" def)
                     ,def
                     :filter (lambda (item)
-                              (when (with-current-buffer lsp--describe-buffer
+                              (when (with-current-buffer (or lsp--describe-buffer
+                                                             (current-buffer))
                                       ,cond)
                                 item))))))
        macroexp-progn))
@@ -4494,6 +4495,7 @@ It will show up only if current point has signature help."
   (interactive)
   (setq-local lsp--last-signature nil)
   (setq-local lsp--last-signature-index nil)
+  (setq-local lsp--last-signature-buffer nil)
   (add-hook 'lsp-on-idle-hook #'lsp-signature nil t)
   (add-hook 'post-command-hook #'lsp-signature-maybe-stop)
   (lsp-signature-mode t))
@@ -6141,7 +6143,7 @@ SESSION is the active session."
       (lsp-request-async
        "initialize"
        (append
-        (list :processId (emacs-pid)
+        (list :processId nil
               :rootPath (lsp-file-local-name (expand-file-name root))
               :clientInfo (list :name "emacs"
                                 :version (emacs-version))
@@ -7139,6 +7141,8 @@ reporting or we are in save-mode and the buffer is not modified."
                 (not (buffer-modified-p))))
        (flycheck-buffer)))
 
+(declare-function lsp-cpp-flycheck-clang-tidy-error-explainer "lsp-cpp")
+
 (with-eval-after-load 'flycheck
   (flycheck-define-generic-checker 'lsp
     "A syntax checker using the Language Server Protocol (LSP)
@@ -7147,7 +7151,10 @@ See https://github.com/emacs-lsp/lsp-mode."
     :start #'lsp--flycheck-start
     :modes '(python-mode)
     :predicate (lambda () lsp-mode)
-    :error-explainer #'flycheck-error-message))
+    :error-explainer (lambda (e)
+                     (cond ((string-prefix-p "clang-tidy" (flycheck-error-message e))
+                            (lsp-cpp-flycheck-clang-tidy-error-explainer e))
+                           (t (flycheck-error-message e))))))
 
 (defun lsp-flycheck-add-mode (mode)
   "Register flycheck support for MODE."
@@ -7157,7 +7164,8 @@ See https://github.com/emacs-lsp/lsp-mode."
 (defun lsp-flycheck-enable (&rest _)
   "Enable flycheck integration for the current buffer."
   (flycheck-mode 1)
-  (setq-local flycheck-check-syntax-automatically nil)
+  (when lsp-flycheck-live-reporting
+    (setq-local flycheck-check-syntax-automatically nil))
   (setq-local flycheck-checker 'lsp)
   (lsp-flycheck-add-mode major-mode)
   (add-to-list 'flycheck-checkers 'lsp)
