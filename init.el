@@ -352,6 +352,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; lsp-mode
 (add-hook 'typescript-mode-hook #'lsp)
 (add-hook 'ts-web-mode-hook #'lsp)
+(add-hook 'terraform-mode-hook #'lsp)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; company
