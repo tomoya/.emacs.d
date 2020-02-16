@@ -445,6 +445,8 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "M-g a") 'magit-stage-file)
 (global-set-key (kbd "M-g c") 'magit-commit-create)
 (global-set-key (kbd "M-g d") 'magit-diff-buffer-file)
+(global-set-key (kbd "M-g p") 'diff-hl-previous-hunk)
+(global-set-key (kbd "M-g n") 'diff-hl-next-hunk)
 (global-set-key (kbd "C-c C-r") 'quickrun)
 (global-set-key (kbd "M-s-z") 'checkout-head-revision)
 (global-set-key (kbd "C-x C-j") 'skk-mode)
