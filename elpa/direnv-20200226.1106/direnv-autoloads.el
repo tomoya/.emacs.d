@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "direnv" "../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv.el"
-;;;;;;  "b8eb03f007af5d9082ebc8d01ece30a5")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv.el
+;;;### (autoloads nil "direnv" "../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv.el"
+;;;;;;  "f659485850a25a4b1b57bdfbe563397b")
+;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv.el
 
 (autoload 'direnv-update-environment "direnv" "\
 Update the environment for FILE-NAME.
@@ -61,9 +61,9 @@ Since .envrc files are shell scripts, this mode inherits from sh-mode.
 
 (add-to-list 'auto-mode-alist '("\\.envrc\\'" . direnv-envrc-mode))
 
-;;;### (autoloads "actual autoloads are elsewhere" "direnv" "../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv.el"
+;;;### (autoloads "actual autoloads are elsewhere" "direnv" "../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv.el
+;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "direnv" '("direnv-")))
 
@@ -71,8 +71,8 @@ Since .envrc files are shell scripts, this mode inherits from sh-mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/direnv-20191016.1907/direnv.el")
+;;;### (autoloads nil nil ("../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv-autoloads.el"
+;;;;;;  "../../../../../../../.config/emacs/elpa/direnv-20200226.1106/direnv.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
