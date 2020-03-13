@@ -112,6 +112,8 @@
                       (locate-user-emacs-file ".cache"))))
  '(markdown-command "marked")
  '(menu-bar-mode nil)
+ '(mouse-wheel-flip-direction t)
+ '(mouse-wheel-tilt-scroll t)
  '(neo-autorefresh t)
  '(neo-confirm-delete-directory-recursively 'off-p)
  '(neo-confirm-kill-buffers-for-files-in-directory 'off-p)
