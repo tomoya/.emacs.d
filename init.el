@@ -94,6 +94,7 @@
      ("XXXX" . "#dc752f")
      ("???" . "#dc752f")))
  '(indent-tabs-mode nil)
+ '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(initial-frame-alist
    '((width . 238)
