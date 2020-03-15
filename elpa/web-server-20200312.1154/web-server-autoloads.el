@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "web-server" "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server.el"
-;;;;;;  "905e6d951b3d7f951a8a20bdcf4471b0")
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server.el
+;;;### (autoloads nil "web-server" "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server.el"
+;;;;;;  "10354daaad42e16797ffe586824b1ae2")
+;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server.el
 
 (autoload 'ws-start "web-server" "\
 Start a server using HANDLERS and return the server object.
@@ -51,9 +51,9 @@ function.
 
 \(fn HANDLERS PORT &optional LOG-BUFFER &rest NETWORK-ARGS)" nil nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "web-server" "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server.el"
+;;;### (autoloads "actual autoloads are elsewhere" "web-server" "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server.el
+;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "web-server" '("ws-")))
 
@@ -62,18 +62,18 @@ function.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "web-server-status-codes"
-;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server-status-codes.el"
+;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server-status-codes.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server-status-codes.el
+;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server-status-codes.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "web-server-status-codes" '("ws-status-codes")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server-autoloads.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server-pkg.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server-status-codes.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200216.1126/web-server.el")
+;;;### (autoloads nil nil ("../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server-autoloads.el"
+;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server-pkg.el"
+;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server-status-codes.el"
+;;;;;;  "../../../../../../../.config/emacs/elpa/web-server-20200312.1154/web-server.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

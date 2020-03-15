@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 2.90.1 (v2.90.1-930-ge3b4ed55e+1).
+This manual is for Magit version 2.90.1 (v2.90.1-945-g99d09ff72+1).
 
      Copyright (C) 2015-2020 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -2901,15 +2901,6 @@ File: magit.info,  Node: Status Options,  Prev: Status Module Sections,  Up: Sta
         • AUTHOR-WIDTH has to be an integer.  When the name of the
           author is shown, then this specifies how much space is used to
           do so.
-
- -- User Option: magit-log-section-args
-
-     Additional Git arguments used when creating log sections.  Only
-     ‘--graph’, ‘--decorate’, and ‘--show-signature’ are supported.
-     This option is only a temporary kludge and will be removed.
-
-     Note that due to an issue in Git the use of ‘--graph’ is very slow
-     with long histories, so you probably don’t want to add this here.
 
    Also see the proceeding section for more options concerning status
 buffers.
@@ -7783,4 +7774,50 @@ Also see *note (gitman)git-worktree::.
      If there is no worktree at point, then read one in the minibuffer.
      If the worktree at point is the one whose status is already being
      displayed in the current buffer, then show it in Dired instead.
+
+
+File: magit.info,  Node: Common Commands,  Next: Wip Modes,  Prev: Worktree,  Up: Miscellaneous
+
+8.6 Common Commands
+===================
+
+These are some of the commands that can be used in all buffers whose
+major-modes derive from ‘magit-mode’.  There are other common commands
+beside the ones below, but these didn’t fit well anywhere else.
+
+‘M-w’     (‘magit-copy-section-value’)
+
+     This command saves the value of the current section to the
+     ‘kill-ring’, and, provided that the current section is a commit,
+     branch, or tag section, it also pushes the (referenced) revision to
+     the ‘magit-revision-stack’.
+
+     When the current section is a branch or a tag, and a prefix
+     argument is used, then it saves the revision at its tip to the
+     ‘kill-ring’ instead of the reference name.
+
+     When the region is active, this command saves that to the
+     ‘kill-ring’, like ‘kill-ring-save’ would, instead of behaving as
+     described above.  If a prefix argument is used and the region is
+     within a hunk, it strips the outer diff marker column before saving
+     the text.
+
+‘C-w’     (‘magit-copy-buffer-revision’)
+
+     This command saves the revision being displayed in the current
+     buffer to the ‘kill-ring’ and also pushes it to the
+     ‘magit-revision-stack’.  It is mainly intended for use in
+     ‘magit-revision-mode’ buffers, the only buffers where it is always
+     unambiguous exactly which revision should be saved.
+
+     Most other Magit buffers usually show more than one revision, in
+     some way or another, so this command has to select one of them, and
+     that choice might not always be the one you think would have been
+     the best pick.
+
+   Outside of Magit ‘M-w’ and ‘C-w’ are usually bound to
+‘kill-ring-save’ and ‘kill-region’, and these commands would also be
+useful in Magit buffers.  Therefore when the region is active, then both
+of these commands behave like ‘kill-ring-save’ instead of as described
+above.
 
