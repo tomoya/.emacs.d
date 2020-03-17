@@ -6,7 +6,7 @@
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; Maintainer: Steve Purcell <steve@sanityinc.com>
 ;; URL: https://github.com/purcell/emacs-hcl-mode
-;; Package-Version: 20200225.2130
+;; Package-Version: 20200315.2129
 ;; Version: 0.03
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -65,13 +65,18 @@
   `((,hcl--assignment-regexp 1 font-lock-variable-name-face)
     (,hcl--boolean-regexp . font-lock-constant-face)
     (,hcl--map-regexp 1 font-lock-type-face)
-    (,hcl--string-interpolation-regexp 0 font-lock-variable-name-face t)))
+    (hcl--string-interpolation-matcher 0 font-lock-variable-name-face t)))
 
 (defsubst hcl--paren-level ()
   (car (syntax-ppss)))
 
 (defsubst hcl--in-string-or-comment-p ()
   (nth 8 (syntax-ppss)))
+
+(cl-defun hcl--string-interpolation-matcher (lim)
+  (while (re-search-forward hcl--string-interpolation-regexp lim t)
+    (when (nth 3 (syntax-ppss))
+      (cl-return-from hcl--string-interpolation-matcher (point)))))
 
 (defun hcl--block-indentation ()
   (let ((curline (line-number-at-pos)))
@@ -130,6 +135,7 @@
 
 (defun hcl-end-of-defun (&optional count)
   (interactive "p")
+  (setq count (or count 1))
   (let ((paren-level (hcl--paren-level)))
     (when (or (and (looking-at-p "}") (= paren-level 1))
               (= paren-level 0))
