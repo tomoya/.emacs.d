@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "company" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company.el"
-;;;;;;  "98fdbcd3e023749263a1e1da36db8501")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company.el
+;;;### (autoloads nil "company" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company.el"
+;;;;;;  "fbc11102a38c7cfc4b3bb014794d26e9")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company.el
 
 (autoload 'company-mode "company" "\
 \"complete anything\"; is an in-buffer completion framework.
@@ -77,9 +77,9 @@ The first time this is called, the common part is inserted, the second
 time, or when the selection has been changed, the selected candidate is
 inserted." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "company" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company.el"
+;;;### (autoloads "actual autoloads are elsewhere" "company" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company" '("company-")))
 
@@ -87,9 +87,9 @@ inserted." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "company-abbrev" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-abbrev.el"
+;;;### (autoloads nil "company-abbrev" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-abbrev.el"
 ;;;;;;  "5c53bd58b979c8d570d3e6f0f4e35579")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-abbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-abbrev.el
 
 (autoload 'company-abbrev "company-abbrev" "\
 `company-mode' completion backend for abbrev.
@@ -97,9 +97,9 @@ inserted." t nil)
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-abbrev"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-abbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-abbrev.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-abbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-abbrev.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-abbrev" '("company-abbrev-insert")))
 
@@ -107,9 +107,9 @@ inserted." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "company-bbdb" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-bbdb.el"
+;;;### (autoloads nil "company-bbdb" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-bbdb.el"
 ;;;;;;  "a45e0ae40074765c5de148460d742142")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-bbdb.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-bbdb.el
 
 (autoload 'company-bbdb "company-bbdb" "\
 `company-mode' completion backend for BBDB.
@@ -117,9 +117,9 @@ inserted." t nil)
 \(fn COMMAND &optional ARG &rest IGNORE)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-bbdb"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-bbdb.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-bbdb.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-bbdb.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-bbdb.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-bbdb" '("company-bbdb-")))
 
@@ -128,35 +128,35 @@ inserted." t nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-capf"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-capf.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-capf.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-capf.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-capf.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-capf" '("company-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-clang"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-clang.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-clang.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-clang.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-clang.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-clang" '("company-clang")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-cmake"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-cmake.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-cmake.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-cmake.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-cmake.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-cmake" '("company-cmake")))
 
 ;;;***
 
-;;;### (autoloads nil "company-css" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-css.el"
+;;;### (autoloads nil "company-css" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-css.el"
 ;;;;;;  "08908e649d5189c7a96e7e95c2bfdbff")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-css.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-css.el
 
 (autoload 'company-css "company-css" "\
 `company-mode' completion backend for `css-mode'.
@@ -164,9 +164,9 @@ inserted." t nil)
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-css"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-css.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-css.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-css.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-css.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-css" '("company-css-")))
 
@@ -174,9 +174,9 @@ inserted." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "company-dabbrev" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev.el"
+;;;### (autoloads nil "company-dabbrev" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev.el"
 ;;;;;;  "789a195f95ddb9581c6b48f67a1e2d6c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev.el
 
 (autoload 'company-dabbrev "company-dabbrev" "\
 dabbrev-like `company-mode' completion backend.
@@ -184,9 +184,9 @@ dabbrev-like `company-mode' completion backend.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-dabbrev"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-dabbrev" '("company-dabbrev-")))
 
@@ -194,9 +194,9 @@ dabbrev-like `company-mode' completion backend.
 
 ;;;***
 
-;;;### (autoloads nil "company-dabbrev-code" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev-code.el"
+;;;### (autoloads nil "company-dabbrev-code" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev-code.el"
 ;;;;;;  "48580f10fbb5c8b3aadae36f968ae8f5")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev-code.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev-code.el
 
 (autoload 'company-dabbrev-code "company-dabbrev-code" "\
 dabbrev-like `company-mode' backend for code.
@@ -206,9 +206,9 @@ comments or strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-dabbrev-code"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev-code.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev-code.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev-code.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev-code.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-dabbrev-code" '("company-dabbrev-code-")))
 
@@ -217,17 +217,17 @@ comments or strings.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-eclim"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-eclim.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-eclim.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-eclim.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-eclim.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-eclim" '("company-eclim")))
 
 ;;;***
 
-;;;### (autoloads nil "company-elisp" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-elisp.el"
+;;;### (autoloads nil "company-elisp" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-elisp.el"
 ;;;;;;  "37dc6d9a70d7c716c823e52868eb1293")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-elisp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-elisp.el
 
 (autoload 'company-elisp "company-elisp" "\
 `company-mode' completion backend for Emacs Lisp.
@@ -235,9 +235,9 @@ comments or strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-elisp"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-elisp.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-elisp.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-elisp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-elisp.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-elisp" '("company-elisp-")))
 
@@ -245,9 +245,9 @@ comments or strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-etags" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-etags.el"
+;;;### (autoloads nil "company-etags" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-etags.el"
 ;;;;;;  "8594d62ca3f76d6bca1c70d3adc9dccb")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-etags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-etags.el
 
 (autoload 'company-etags "company-etags" "\
 `company-mode' completion backend for etags.
@@ -255,9 +255,9 @@ comments or strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-etags"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-etags.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-etags.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-etags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-etags.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-etags" '("company-etags-")))
 
@@ -265,9 +265,9 @@ comments or strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-files" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-files.el"
+;;;### (autoloads nil "company-files" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-files.el"
 ;;;;;;  "a4d79fa0698ed9347b90f130cfc785ba")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-files.el
 
 (autoload 'company-files "company-files" "\
 `company-mode' completion backend existing file names.
@@ -277,9 +277,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-files"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-files.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-files.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-files" '("company-file")))
 
@@ -287,9 +287,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-gtags" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-gtags.el"
+;;;### (autoloads nil "company-gtags" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-gtags.el"
 ;;;;;;  "f690d1989ec1fc8061c0caeefb8cad6c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-gtags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-gtags.el
 
 (autoload 'company-gtags "company-gtags" "\
 `company-mode' completion backend for GNU Global.
@@ -297,9 +297,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-gtags"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-gtags.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-gtags.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-gtags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-gtags.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-gtags" '("company-gtags-")))
 
@@ -307,9 +307,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-ispell" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-ispell.el"
+;;;### (autoloads nil "company-ispell" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-ispell.el"
 ;;;;;;  "40ad97c8f82cc4fbdb17da0b429e5397")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-ispell.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-ispell.el
 
 (autoload 'company-ispell "company-ispell" "\
 `company-mode' completion backend using Ispell.
@@ -317,9 +317,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-ispell"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-ispell.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-ispell.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-ispell.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-ispell.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-ispell" '("company-ispell-")))
 
@@ -327,9 +327,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-keywords" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-keywords.el"
+;;;### (autoloads nil "company-keywords" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-keywords.el"
 ;;;;;;  "454b8b979f7853c2d660e1b83bbb2b74")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-keywords.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-keywords.el
 
 (autoload 'company-keywords "company-keywords" "\
 `company-mode' backend for programming language keywords.
@@ -337,9 +337,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-keywords"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-keywords.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-keywords.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-keywords.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-keywords.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-keywords" '("company-keywords-")))
 
@@ -347,9 +347,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-nxml" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-nxml.el"
+;;;### (autoloads nil "company-nxml" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-nxml.el"
 ;;;;;;  "296292d9e829c7cd40fcf0566f085ed8")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-nxml.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-nxml.el
 
 (autoload 'company-nxml "company-nxml" "\
 `company-mode' completion backend for `nxml-mode'.
@@ -357,9 +357,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-nxml"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-nxml.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-nxml.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-nxml.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-nxml.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-nxml" '("company-nxml-")))
 
@@ -367,9 +367,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-oddmuse" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-oddmuse.el"
+;;;### (autoloads nil "company-oddmuse" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-oddmuse.el"
 ;;;;;;  "4d585ed74b0f1654770bb4486c5554da")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-oddmuse.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-oddmuse.el
 
 (autoload 'company-oddmuse "company-oddmuse" "\
 `company-mode' completion backend for `oddmuse-mode'.
@@ -377,9 +377,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-oddmuse"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-oddmuse.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-oddmuse.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-oddmuse.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-oddmuse.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-oddmuse" '("company-oddmuse-")))
 
@@ -387,9 +387,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-semantic" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-semantic.el"
+;;;### (autoloads nil "company-semantic" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-semantic.el"
 ;;;;;;  "905ad8450f74fcdff3855d8544a47bfe")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-semantic.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-semantic.el
 
 (autoload 'company-semantic "company-semantic" "\
 `company-mode' completion backend using CEDET Semantic.
@@ -397,9 +397,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-semantic"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-semantic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-semantic.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-semantic.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-semantic.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-semantic" '("company-semantic-")))
 
@@ -408,17 +408,17 @@ File paths with spaces are only supported inside strings.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-template"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-template.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-template.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-template.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-template.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-template" '("company-template-")))
 
 ;;;***
 
-;;;### (autoloads nil "company-tempo" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tempo.el"
+;;;### (autoloads nil "company-tempo" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tempo.el"
 ;;;;;;  "ef7bf243940ad89d1f44ecffcfa3949c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tempo.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tempo.el
 
 (autoload 'company-tempo "company-tempo" "\
 `company-mode' completion backend for tempo.
@@ -426,9 +426,9 @@ File paths with spaces are only supported inside strings.
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-tempo"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tempo.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tempo.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tempo.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tempo.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-tempo" '("company-tempo-")))
 
@@ -436,9 +436,9 @@ File paths with spaces are only supported inside strings.
 
 ;;;***
 
-;;;### (autoloads nil "company-tng" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tng.el"
+;;;### (autoloads nil "company-tng" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tng.el"
 ;;;;;;  "a4699108045e505b9384c506c12bd612")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tng.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tng.el
 
 (autoload 'company-tng-frontend "company-tng" "\
 When the user changes the selection at least once, this
@@ -452,9 +452,9 @@ confirm the selection and finish the completion.
 Applies the default configuration to enable company-tng." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-tng"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tng.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tng.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tng.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tng.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-tng" '("company-tng--")))
 
@@ -462,9 +462,9 @@ Applies the default configuration to enable company-tng." nil nil)
 
 ;;;***
 
-;;;### (autoloads nil "company-xcode" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-xcode.el"
+;;;### (autoloads nil "company-xcode" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-xcode.el"
 ;;;;;;  "0106fec3041ec311c0850ad16a5d099a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-xcode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-xcode.el
 
 (autoload 'company-xcode "company-xcode" "\
 `company-mode' completion backend for Xcode projects.
@@ -472,9 +472,9 @@ Applies the default configuration to enable company-tng." nil nil)
 \(fn COMMAND &optional ARG &rest IGNORED)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-xcode"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-xcode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-xcode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-xcode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-xcode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-xcode" '("company-xcode-")))
 
@@ -482,9 +482,9 @@ Applies the default configuration to enable company-tng." nil nil)
 
 ;;;***
 
-;;;### (autoloads nil "company-yasnippet" "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-yasnippet.el"
-;;;;;;  "2c658a3f7deb51d170c3cb7ffcdd59bb")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-yasnippet.el
+;;;### (autoloads nil "company-yasnippet" "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-yasnippet.el"
+;;;;;;  "441999fbbc2ef58e47f3f0d5cab7f8df")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-yasnippet.el
 
 (autoload 'company-yasnippet "company-yasnippet" "\
 `company-mode' backend for `yasnippet'.
@@ -512,9 +512,9 @@ shadow backends that come after it.  Recommended usages:
 \(fn COMMAND &optional ARG &rest IGNORE)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-yasnippet"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-yasnippet.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-yasnippet.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-yasnippet.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-yasnippet.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-yasnippet" '("company-yasnippet-")))
 
@@ -522,32 +522,32 @@ shadow backends that come after it.  Recommended usages:
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-abbrev.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-bbdb.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-capf.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-clang.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-cmake.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-css.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev-code.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-dabbrev.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-eclim.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-elisp.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-etags.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-files.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-gtags.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-ispell.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-keywords.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-nxml.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-oddmuse.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-semantic.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-template.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tempo.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-tng.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-xcode.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company-yasnippet.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.1124/company.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-abbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-bbdb.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-capf.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-clang.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-cmake.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-css.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev-code.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-dabbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-eclim.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-elisp.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-etags.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-gtags.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-ispell.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-keywords.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-nxml.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-oddmuse.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-semantic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-template.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tempo.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-tng.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-xcode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company-yasnippet.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-20200317.2312/company.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

@@ -1146,7 +1146,8 @@ can retrieve meta-data for them."
   ;; It's mory efficient to fix it only when they are displayed.
   ;; FIXME: Adopt the current text's capitalization instead?
   (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-      (concat company-prefix (substring candidate (length company-prefix)))
+      (let ((prefix (company--clean-string company-prefix)))
+        (concat prefix (substring candidate (length prefix))))
     candidate))
 
 (defun company--should-complete ()
@@ -2282,6 +2283,7 @@ character, stripping the modifiers.  That character must be a digit."
 (defun company-doc-buffer (&optional string)
   (with-current-buffer (get-buffer-create "*company-documentation*")
     (erase-buffer)
+    (fundamental-mode)
     (when string
       (save-excursion
         (insert string)
@@ -2527,7 +2529,7 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
                      (if company-common
                          (string-width company-common)
                        0)))
-         (_ (setq value (company--pre-render value)
+         (_ (setq value (company-reformat (company--pre-render value))
                   annotation (and annotation (company--pre-render annotation t))))
          (ann-ralign company-tooltip-align-annotations)
          (ann-truncate (< width
@@ -2788,7 +2790,7 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
     (dotimes (_ len)
       (let* ((value (pop lines-copy))
              (annotation (company-call-backend 'annotation value)))
-        (setq value (company--clean-string (company-reformat value)))
+        (setq value (company--clean-string value))
         (when annotation
           (setq annotation (company--clean-string annotation))
           (when company-tooltip-align-annotations
@@ -3165,7 +3167,7 @@ Delay is determined by `company-tooltip-idle-delay'."
         comp msg)
 
     (while candidates
-      (setq comp (company-reformat (pop candidates))
+      (setq comp (company-reformat (company--clean-string (pop candidates)))
             len (+ len 1 (length comp)))
       (if (< i 10)
           ;; Add number.
@@ -3174,10 +3176,10 @@ Delay is determined by `company-tooltip-idle-delay'."
                                    'face 'company-echo))
             (cl-incf len 3)
             (cl-incf i)
-            (add-text-properties 3 (+ 3 (length company-common))
+            (add-text-properties 3 (+ 3 (string-width company-common))
                                  '(face company-echo-common) comp))
         (setq comp (propertize comp 'face 'company-echo))
-        (add-text-properties 0 (length company-common)
+        (add-text-properties 0 (string-width company-common)
                              '(face company-echo-common) comp))
       (if (>= len limit)
           (setq candidates nil)

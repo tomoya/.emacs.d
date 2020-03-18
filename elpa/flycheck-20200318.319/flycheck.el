@@ -179,6 +179,7 @@ attention to case differences."
     cwl
     d-dmd
     dockerfile-hadolint
+    elixir-credo
     emacs-lisp
     emacs-lisp-checkdoc
     ember-template
@@ -4701,7 +4702,7 @@ POS defaults to `point'."
       ;; if necessary.
       (when other-file-error
         (with-current-buffer buffer
-          ;; `seq-contains-p' is only in seq >= 2.21, which isn't in ELPA
+          ;; `seq-contains-p' is only in seq >= 2.21
           (unless (with-no-warnings
                     (seq-contains flycheck-current-errors error-copy 'equal))
             (when flycheck-mode
@@ -6255,7 +6256,11 @@ about TSLint."
                  (flycheck-error-new-at
                   (+ 1 .startPosition.line)
                   (+ 1 .startPosition.character)
-                  'warning .failure
+                  (pcase .ruleSeverity
+                    ("ERROR"   'error)
+                    ("WARNING" 'warning)
+                    (_         'warning))
+                  .failure
                   :id .ruleName
                   :checker checker
                   :buffer buffer
@@ -7561,6 +7566,39 @@ See URL `http://github.com/hadolint/hadolint/'."
      (flycheck-remove-error-file-names "/dev/stdin" errors)))
   :modes dockerfile-mode)
 
+(defun flycheck-credo--working-directory (&rest _ignored)
+  "Check if `credo' is installed as dependency in the application."
+  (and buffer-file-name
+       (locate-dominating-file buffer-file-name "deps/credo")))
+
+(flycheck-def-option-var flycheck-elixir-credo-strict nil elixir-credo
+  "Enable strict mode in `credo'.
+
+When non-nil, pass the `--strict' flag to credo."
+  :type 'boolean
+  :safe #'booleanp
+  :package-version '(flycheck . "32"))
+
+(flycheck-define-checker elixir-credo
+  "An Elixir checker for static code analysis using Credo.
+
+See `http://credo-ci.org/'."
+  :command ("mix" "credo"
+            (option-flag "--strict" flycheck-elixir-credo-strict)
+            "--format" "flycheck"
+            "--read-from-stdin" source-original)
+  :standard-input t
+  :working-directory flycheck-credo--working-directory
+  :enabled flycheck-credo--working-directory
+  :error-patterns
+  ((info line-start
+         (file-name) ":" line (optional ":" column) ": "
+         (or "F" "R" "C")  ": " (message) line-end)
+   (warning line-start
+            (file-name) ":" line (optional ":" column) ": "
+            (or "D" "W")  ": " (message) line-end))
+  :modes elixir-mode)
+
 (defconst flycheck-this-emacs-executable
   (concat invocation-directory invocation-name)
   "The path to the currently running Emacs executable.")
@@ -7982,17 +8020,18 @@ used as profile."
 (defun flycheck-erlang-rebar3-get-profile ()
   "Return rebar3 profile.
 
-Use flycheck-erlang-rebar3-profile if set, otherwise use test profile if
-dirname is test or else default."
-  (cond
-   (flycheck-erlang-rebar3-profile flycheck-erlang-rebar3-profile)
-   ((and buffer-file-name
-         (string= "test"
-                  (file-name-base
-                   (directory-file-name
-                    (file-name-directory buffer-file-name)))))
-    "test")
-   (t "default")))
+Use flycheck-erlang-rebar3-profile if set, otherwise use test or eqc profile if
+directory name is \"test\" or \"eqc\", or else \"default\"."
+  (or
+   flycheck-erlang-rebar3-profile
+   (with-no-warnings
+     ;; `seq-contains-p' is only in seq >= 2.21
+     (seq-contains '("test" "eqc")
+                   (and buffer-file-name
+                        (file-name-base
+                         (directory-file-name
+                          (file-name-directory buffer-file-name))))))
+   "default"))
 
 (flycheck-define-checker erlang-rebar3
   "An Erlang syntax checker using the rebar3 build tool."
@@ -11060,10 +11099,9 @@ information about tflint."
                .line
                nil
                (pcase .type
-                 (`"ERROR"   'error)
-                 (`"WARNING" 'warning)
-                 ;; Default to error
-                 (_          'error))
+                 ("ERROR"   'error)
+                 ("WARNING" 'warning)
+                 (_         'error))
                .message
                :id .detector
                :checker checker
