@@ -4,7 +4,7 @@
 ;;
 ;; Author: Tommy Xiang <tommyx058@gmail.com>
 ;; Keywords: convenience
-;; Package-Version: 20200102.2025
+;; Package-Version: 20200327.2137
 ;; Version: 0.0.1
 ;; URL: https://github.com/TommyX12/company-tabnine/
 ;; Package-Requires: ((emacs "25") (company "0.9.3") (cl-lib "0.5") (dash "2.16.0") (s "1.12.0") (unicode-escape "1.1"))
@@ -144,11 +144,14 @@ Useful when binding keys to temporarily query other completion backends."
   :type 'integer)
 
 (defcustom company-tabnine-context-radius 3000
-  "The number of chars before and after point to send for completion.
-For example, setting this to 2000 will send 4000 chars in total per query.
-It is not recommended to change this.
+  "The number of chars before point to send for completion.
 
 Note that setting this too small will cause TabNine to not be able to read the entire license activation key."
+  :group 'company-tabnine
+  :type 'integer)
+
+(defcustom company-tabnine-context-radius-after 1000
+  "The number of chars after point to send for completion."
   :group 'company-tabnine
   :type 'integer)
 
@@ -402,7 +405,7 @@ Resets every time successful completion is returned.")
            (before-point
             (max (point-min) (- (point) company-tabnine-context-radius)))
            (after-point
-            (min (point-max) (+ (point) company-tabnine-context-radius))))
+            (min (point-max) (+ (point) company-tabnine-context-radius-after))))
 
       (list
        :version company-tabnine--protocol-version
