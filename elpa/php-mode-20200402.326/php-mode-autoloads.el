@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "php" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php.el"
+;;;### (autoloads nil "php" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php.el"
 ;;;;;;  "58e6e1cb0c8ea6780d3a8616ddc98117")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php.el
 
 (let ((loads (get 'php 'custom-loads))) (if (member '"php" loads) nil (put 'php 'custom-loads (cons '"php" loads))))
 
@@ -41,9 +41,9 @@ Find php.ini FILE by `php --ini'.
 
 \(fn &optional FILE)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "php" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php" '("php-")))
 
@@ -51,9 +51,9 @@ Find php.ini FILE by `php --ini'.
 
 ;;;***
 
-;;;### (autoloads nil "php-align" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-align.el"
+;;;### (autoloads nil "php-align" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-align.el"
 ;;;;;;  "94a78399b573b1019c4a2a6b05d8d94d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-align.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-align.el
 
 (autoload 'php-align-setup "php-align" "\
 Setup alignment configuration for PHP code." nil nil)
@@ -68,9 +68,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-align" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-align.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-align" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-align.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-align.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-align.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-align" '("php-align-")))
 
@@ -78,15 +78,15 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "php-face" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-face.el"
+;;;### (autoloads nil "php-face" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-face.el"
 ;;;;;;  "13a0db4637a744afce5ef404086ab0f8")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-face.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-face.el
 
 (let ((loads (get 'php-faces 'custom-loads))) (if (member '"php-face" loads) nil (put 'php-faces 'custom-loads (cons '"php-face" loads))))
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-face" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-face.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-face" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-face.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-face.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-face.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-face" '("php-annotations-annotation-face")))
 
@@ -94,9 +94,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "php-mode" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode.el"
+;;;### (autoloads nil "php-mode" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode.el"
 ;;;;;;  "b632fd3da7baf3d3c5fe7128d35d7d14")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode.el
 
 (let ((loads (get 'php-mode 'custom-loads))) (if (member '"php-mode" loads) nil (put 'php-mode 'custom-loads (cons '"php-mode" loads))))
 
@@ -117,9 +117,9 @@ Major mode for editing PHP code.
 
 (add-to-list 'auto-mode-alist '("\\.\\(?:php[s345]?\\|phtml\\)\\'" . php-mode-maybe))
 
-;;;### (autoloads "actual autoloads are elsewhere" "php-mode" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "php-mode" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-mode" '("php-")))
 
@@ -128,17 +128,17 @@ Major mode for editing PHP code.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-mode-debug"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode-debug.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode-debug.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode-debug.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode-debug.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-mode-debug" '("php-mode-debug")))
 
 ;;;***
 
-;;;### (autoloads nil "php-project" "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-project.el"
+;;;### (autoloads nil "php-project" "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-project.el"
 ;;;;;;  "380efab0b214fa2c7307bb4dd769ea21")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-project.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-project.el
 
 (defvar-local php-project-root 'auto "\
 Method of searching for the top level directory.
@@ -240,9 +240,9 @@ Return list of bootstrap script." nil nil)
 Return path to current PHP project." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-project"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-project.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-project.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-project.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-project.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-project" '("php-project-")))
 
@@ -251,23 +251,23 @@ Return path to current PHP project." nil nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "php-util-buffer"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-util-buffer.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-util-buffer.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-util-buffer.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-util-buffer.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "php-util-buffer" '("php-util-buffer-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-align.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-face.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode-debug.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-mode.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-project.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php-util-buffer.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200323.1215/php.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-align.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-face.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode-debug.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-project.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php-util-buffer.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/php-mode-20200402.326/php.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

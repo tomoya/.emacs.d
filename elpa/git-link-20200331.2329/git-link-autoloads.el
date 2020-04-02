@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "git-link" "../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link.el"
-;;;;;;  "b5f626ec01a0dd249c0247d744d8a331")
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link.el
+;;;### (autoloads nil "git-link" "../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link.el"
+;;;;;;  "2679a15423a0301b3dbbc99b4ce516b3")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link.el
 
 (autoload 'git-link "git-link" "\
 Create a URL representing the current buffer's location in its
@@ -38,9 +38,9 @@ is non-nil also call `browse-url'.
 
 \(fn REMOTE)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "git-link" "../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link.el"
+;;;### (autoloads "actual autoloads are elsewhere" "git-link" "../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "git-link" '("git-link-")))
 
@@ -48,8 +48,8 @@ is non-nil also call `browse-url'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link-autoloads.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/git-link-20191119.1420/git-link.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/git-link-20200331.2329/git-link.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

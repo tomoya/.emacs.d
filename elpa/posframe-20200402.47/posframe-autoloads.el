@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe.el"
-;;;;;;  "a3f4f6b7dc243ae6bc54fe3f6c52c4bb")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe.el
+;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el"
+;;;;;;  "221aedc6243baf6d4cb48c1d6934e6e2")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el
 
 (autoload 'posframe-workable-p "posframe" "\
 Test posframe workable status." nil nil)
@@ -45,6 +45,7 @@ position.  Its argument is a plist of the following form:
    :minibuffer-height
    :mode-line-height
    :header-line-height
+   :tab-line-height
    :x-pixel-offset xxx
    :y-pixel-offset xxx)
 
@@ -123,9 +124,9 @@ Hide all posframe frames." t nil)
 (autoload 'posframe-delete-all "posframe" "\
 Delete all posframe frames and buffers." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe.el"
+;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "posframe" '("posframe-")))
 
@@ -133,8 +134,8 @@ Delete all posframe frames and buffers." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20200319.907/posframe.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
