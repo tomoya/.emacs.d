@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "fira-code-mode" "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode.el"
-;;;;;;  "3c5a1b7cab09da715b2140114e21899c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode.el
+;;;### (autoloads nil "fira-code-mode" "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode.el"
+;;;;;;  "b0c88c65fa3720d765d62490fe5cd361")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode.el
 
 (autoload 'fira-code-mode "fira-code-mode" "\
 Fira Code ligatures minor mode
@@ -21,9 +21,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "fira-code-mode"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "fira-code-mode" '("fira-code-mode-")))
 
@@ -31,8 +31,8 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200316.1708/fira-code-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/fira-code-mode-20200402.736/fira-code-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

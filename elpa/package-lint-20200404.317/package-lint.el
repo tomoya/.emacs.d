@@ -674,16 +674,21 @@ Alternatively, depend on (emacs \"24.3\") or greater, in which cl-lib is bundled
        'warning
        "\"Version:\" or \"Package-Version:\" header is missing. MELPA will handle this, but other archives will not."))))
 
+(defun package-lint--liberal-package-buffer-info ()
+  "Like `package-buffer-info', but tolerate missing version header."
+  (let ((orig-buffer (current-buffer)))
+    ;; We've reported version header issues separately, so rule them out here
+    (with-temp-buffer
+      (insert-buffer-substring-no-properties orig-buffer)
+      (goto-char (point-min))
+      (package-lint--update-or-insert-version "0")
+      (package-buffer-info))))
+
 (defun package-lint--check-package-el-can-parse ()
   "Check that `package-buffer-info' can read metadata from this file.
 If it can, return the read metadata."
   (condition-case err
-      (let ((orig-buffer (current-buffer)))
-        ;; We've reported version header issues separately, so rule them out here
-        (with-temp-buffer
-          (insert-buffer-substring-no-properties orig-buffer)
-          (package-lint--update-or-insert-version "0")
-          (package-buffer-info)))
+      (package-lint--liberal-package-buffer-info)
     (error
      (package-lint--error-at-bob
       'error
@@ -769,7 +774,7 @@ Valid definition names are:
 - a NAME whose POSITION in the buffer denotes a global definition."
   (or (string-prefix-p prefix name)
       (string-match-p package-lint--sane-prefixes name)
-      (string-match-p (rx-to-string `(seq string-start (or "define" "defun" "defvar" "with") "-" ,prefix)) name)
+      (string-match-p (rx-to-string `(seq string-start (or "define" "defun" "defvar" "defface" "with") "-" ,prefix)) name)
       (string-match-p (rx-to-string  `(seq string-start "global-" ,prefix (or "-mode" (seq "-" (* any) "-mode")) string-end)) name)
       (when position
         (goto-char position)
@@ -1005,7 +1010,7 @@ The returned list is of the form (SYMBOL-NAME . POSITION)."
     (nreverse result)))
 
 (defun package-lint--provided-feature ()
-  "Return the first-provided feature name, as a string, or nil if none."
+  "Return the last-provided feature name, as a string, or nil if none."
   (save-excursion
     (goto-char (point-max))
     (cond ((re-search-backward (rx "(provide '" (group (1+ (or (syntax word) (syntax symbol))))) nil t)
