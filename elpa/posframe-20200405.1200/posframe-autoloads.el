@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el"
-;;;;;;  "221aedc6243baf6d4cb48c1d6934e6e2")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el
+;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe.el"
+;;;;;;  "94cf148bcd039f7d812695377ee5349b")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe.el
 
 (autoload 'posframe-workable-p "posframe" "\
 Test posframe workable status." nil nil)
@@ -124,9 +124,9 @@ Hide all posframe frames." t nil)
 (autoload 'posframe-delete-all "posframe" "\
 Delete all posframe frames and buffers." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el"
+;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "posframe" '("posframe-")))
 
@@ -134,8 +134,8 @@ Delete all posframe frames and buffers." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20200402.47/posframe.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20200405.1200/posframe.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
