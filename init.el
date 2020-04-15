@@ -204,7 +204,7 @@
 (when window-system
   (set-fontset-font
    nil 'japanese-jisx0208
-   (font-spec :family "MotoyaLCedar"))
+   (font-spec :family "BIZ UDGothic"))
 
   ;; emoji
   (set-fontset-font "fontset-default" 'unicode "Apple Color Emoji" nil 'prepend)
