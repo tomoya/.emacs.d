@@ -66,6 +66,7 @@
  '(frame-tabs-filter-function 'my-frame-tabs-default-filter)
  '(frame-tabs-mode nil)
  '(fringe-mode '(nil . 0) nil (fringe))
+ '(gc-cons-threshold 100000000)
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-diff-hl-mode t)

@@ -30,6 +30,12 @@
                     :family "Fira Code"
                     :height 140)
 
+;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
+;; amount of data which Emacs reads from the process. Again the emacs
+;; default is too low 4k considering that the some of the language
+;; server responses are in 800k - 3M range.
+(setq-default read-process-output-max (* 1024 1024))
+
 ;; CJKフォントの横幅を調整
 (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
 (add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
