@@ -1,4 +1,4 @@
-(define-package "company-box" "20190311.1745" "Company front-end with icons"
+(define-package "company-box" "20200429.1035" "Company front-end with icons"
   '((emacs "26.0.91")
     (dash "2.13")
     (dash-functional "1.2.0")

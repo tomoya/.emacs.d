@@ -5656,10 +5656,10 @@ don't exit and send message 'no match'."
              (empty-buffer-p (with-current-buffer helm-buffer
                                (eq (point-min) (point-max))))
              (unknown (and (not empty-buffer-p)
-                           (string= (get-text-property
-                                     0 'display
-                                     (helm-get-selection nil 'withprop src))
-                                    "[?]"))))
+                           (equal (get-text-property
+                                   0 'display
+                                   (helm-get-selection nil 'withprop src))
+                                  "[?]"))))
         (cond ((and (or empty-buffer-p unknown)
                     (memq minibuffer-completion-confirm
                           '(confirm confirm-after-completion)))
@@ -6791,14 +6791,13 @@ is not needed."
          (nomark     (assq 'nomark src))
          (src-name   (assoc-default 'name src))
          (filecomp-p (or (helm-file-completion-source-p src)
-                         (string= src-name "Files from Current Directory")))
-         (remote-p (and filecomp-p (file-remote-p helm-pattern))))
+                         (string= src-name "Files from Current Directory"))))
     ;; Note that `cl-letf' prevents edebug working properly.
     (cl-letf (((symbol-function 'message) #'ignore))
       (helm-follow-mode -1)
       (unwind-protect
           (if nomark
-              (message "Marking not allowed in this source")
+              (user-error "Marking not allowed in this source")
             (save-excursion
               (when ensure-beg-of-source
                 (goto-char (helm-get-previous-header-pos))
@@ -6821,24 +6820,19 @@ is not needed."
                     ;; autosave files/links and non--existent files.
                     (unless
                         (or (helm-this-visible-mark)
-                            (and (stringp prefix)
-                                 ;; Non existing files in HFF and RFN.
-                                 (string= prefix "[?]"))
-                            ;; Same here but maybe PREFIX is displayed
-                            ;; with e.g. an image with no string. See
-                            ;; https://github.com/yyoncho/helm-treemacs-icons/issues/5.
+                            ;; Non existing files in HFF and
+                            ;; RFN. Display may be an image. See
+                            ;; https://github.com/yyoncho/helm-treemacs-icons/issues/5
+                            ;; and also issue #2296. 
+                            (equal prefix "[?]")
+                            ;; Prefix is non-nil (an image?) and not a string.
                             (and prefix (not (stringp prefix)))
                             (and filecomp-p
                                  (or
                                   ;; autosave files
                                   (string-match-p "\\`[.]?#.*#?\\'" bn)
                                   ;; dot files
-                                  (member bn '("." ".."))
-                                  ;; We need to test here when not using
-                                  ;; a transformer that put a prefix tag
-                                  ;; before candidate.
-                                  ;; (i.e no [?] prefix on tramp).
-                                  (and remote-p (not (file-exists-p cand))))))
+                                  (member bn '("." "..")))))
                       (helm-make-visible-mark src cand)))
                   (when (helm-pos-multiline-p)
                     (goto-char
