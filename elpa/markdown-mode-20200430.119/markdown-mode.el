@@ -7,7 +7,7 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.4-dev
-;; Package-Version: 20200429.1607
+;; Package-Version: 20200430.119
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -46,9 +46,6 @@
 (defvar jit-lock-start)
 (defvar jit-lock-end)
 (defvar flyspell-generic-check-word-predicate)
-
-(declare-function eww-open-file "eww")
-(declare-function url-path-and-query "url-parse")
 
 
 ;;; Constants =================================================================
@@ -321,7 +318,7 @@ Math support can be enabled, disabled, or toggled later using
   :package-version '(markdown-mode . "2.4"))
 
 (defcustom markdown-css-paths nil
-  "URL of CSS file to link to in the output XHTML."
+  "List of URLs of CSS files to link to in the output XHTML."
   :group 'markdown
   :type '(repeat (string :tag "CSS File Path")))
 
@@ -2106,9 +2103,8 @@ Depending on your font, some reasonable choices are:
   "Syntax highlighting for Markdown files.")
 
 ;; Footnotes
-(defvar markdown-footnote-counter 0
+(defvar-local markdown-footnote-counter 0
   "Counter for footnote numbers.")
-(make-variable-buffer-local 'markdown-footnote-counter)
 
 (defconst markdown-footnote-chars
   "[[:alnum:]-]"
@@ -3218,8 +3214,7 @@ SEQ may be an atom or a sequence."
 
 (defun markdown-marginalize-update-current ()
   "Update the window configuration to create a left margin."
-  ;; Emacs 25 or later is needed for window-font-width and default-font-width.
-  (if (and (fboundp 'window-font-width) (fboundp 'default-font-width))
+  (if window-system
       (let* ((header-delimiter-font-width
               (window-font-width nil 'markdown-header-delimiter-face))
              (margin-pixel-width (* markdown-marginalize-headers-margin-width
@@ -4152,9 +4147,8 @@ if three backquotes inserted at the beginning of line."
     "mupad" "nesC" "ooc" "reStructuredText" "wisp" "xBase")
   "Language specifiers recognized by GitHub's syntax highlighting features.")
 
-(defvar markdown-gfm-used-languages nil
+(defvar-local markdown-gfm-used-languages nil
   "Language names used in GFM code blocks.")
-(make-variable-buffer-local 'markdown-gfm-used-languages)
 
 (defun markdown-trim-whitespace (str)
   (replace-regexp-in-string
@@ -5196,7 +5190,7 @@ Assumes match data is available for `markdown-regex-italic'."
 (defvar markdown-mode-mouse-map
   (let ((map (make-sparse-keymap)))
     (define-key map [follow-link] 'mouse-face)
-    (define-key map [mouse-2] 'markdown-follow-link-at-point)
+    (define-key map [mouse-2] #'markdown-follow-thing-at-point)
     map)
   "Keymap for following links with mouse.")
 
@@ -7089,7 +7083,9 @@ Standalone XHTML output is identified by an occurrence of
 
 (defun markdown-stylesheet-link-string (stylesheet-path)
   (concat "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\""
-          stylesheet-path
+          (or (and (string-prefix-p "~" stylesheet-path)
+                   (expand-file-name stylesheet-path))
+              stylesheet-path)
           "\"  />"))
 
 (defun markdown-add-xhtml-header-and-footer (title)
@@ -7108,12 +7104,10 @@ Standalone XHTML output is identified by an occurrence of
       "<meta http-equiv=\"Content-Type\" content=\"%s;charset=%s\"/>\n"
       markdown-content-type
       (or (and markdown-coding-system
-               (fboundp 'coding-system-get)
                (coding-system-get markdown-coding-system
                                   'mime-charset))
-          (and (fboundp 'coding-system-get)
-               (coding-system-get buffer-file-coding-system
-                                  'mime-charset))
+          (coding-system-get buffer-file-coding-system
+                             'mime-charset)
           "utf-8"))))
   (if (> (length markdown-css-paths) 0)
       (insert (mapconcat #'markdown-stylesheet-link-string
@@ -7193,14 +7187,12 @@ current filename, but with the extension removed and replaced with .html."
   (interactive)
   (browse-url-of-file (markdown-export)))
 
-(defvar markdown-live-preview-buffer nil
+(defvar-local markdown-live-preview-buffer nil
   "Buffer used to preview markdown output in `markdown-live-preview-export'.")
-(make-variable-buffer-local 'markdown-live-preview-buffer)
 
-(defvar markdown-live-preview-source-buffer nil
+(defvar-local markdown-live-preview-source-buffer nil
   "Source buffer from which current buffer was generated.
 This is the inverse of `markdown-live-preview-buffer'.")
-(make-variable-buffer-local 'markdown-live-preview-source-buffer)
 
 (defvar markdown-live-preview-currently-exporting nil)
 
@@ -7211,11 +7203,8 @@ This is the inverse of `markdown-live-preview-buffer'.")
 (defun markdown-live-preview-window-eww (file)
   "Preview FILE with eww.
 To be used with `markdown-live-preview-window-function'."
-  (if (require 'eww nil t)
-      (progn
-        (eww-open-file file)
-        (get-buffer "*eww*"))
-    (error "EWW is not present or not loaded on this version of Emacs")))
+  (eww-open-file file)
+  (get-buffer "*eww*"))
 
 (defun markdown-visual-lines-between-points (beg end)
   (save-excursion
@@ -7484,11 +7473,7 @@ returns nil."
          (full (url-fullness struct))
          (file url))
     ;; Parse URL, determine fullness, strip query string
-    (if (fboundp 'url-path-and-query)
-        (setq file (car (url-path-and-query struct)))
-      (when (and (setq file (url-filename struct))
-                 (string-match "\\?" file))
-        (setq file (substring file 0 (match-beginning 0)))))
+    (setq file (car (url-path-and-query struct)))
     ;; Open full URLs in browser, files in Emacs
     (if full
         (browse-url url)
@@ -8055,9 +8040,8 @@ or span."
   "Run in `hack-local-variables-hook' to update font lock rules.
 Checks to see if there is actually a ‘markdown-mode’ file local variable
 before regenerating font-lock rules for extensions."
-  (when (and (boundp 'file-local-variables-alist)
-             (or (assoc 'markdown-enable-wiki-links file-local-variables-alist)
-                 (assoc 'markdown-enable-math file-local-variables-alist)))
+  (when (or (assoc 'markdown-enable-wiki-links file-local-variables-alist)
+            (assoc 'markdown-enable-math file-local-variables-alist))
     (when (assoc 'markdown-enable-math file-local-variables-alist)
       (markdown-toggle-math markdown-enable-math))
     (markdown-reload-extensions)))
@@ -8217,8 +8201,7 @@ BEG and END are the limits of scanned region."
 
 ;;; Display inline image ======================================================
 
-(defvar markdown-inline-image-overlays nil)
-(make-variable-buffer-local 'markdown-inline-image-overlays)
+(defvar-local markdown-inline-image-overlays nil)
 
 (defun markdown-remove-inline-images ()
   "Remove inline image overlays from image links in the buffer.
@@ -9290,8 +9273,7 @@ rows and columns and the column alignment."
         (if markdown-nested-imenu-heading-index
             #'markdown-imenu-create-nested-index
           #'markdown-imenu-create-flat-index))
-  ;; For menu support in XEmacs
-  (easy-menu-add markdown-mode-menu markdown-mode-map)
+
   ;; Defun movement
   (setq-local beginning-of-defun-function #'markdown-beginning-of-defun)
   (setq-local end-of-defun-function #'markdown-end-of-defun)
@@ -9334,10 +9316,8 @@ rows and columns and the column alignment."
   ;; Cause use of ellipses for invisible text.
   (add-to-invisibility-spec '(outline . t))
   ;; ElDoc support
-  (if (eval-when-compile (fboundp 'add-function))
-      (add-function :before-until (local 'eldoc-documentation-function)
-                    #'markdown-eldoc-function)
-    (setq-local eldoc-documentation-function #'markdown-eldoc-function))
+  (add-function :before-until (local 'eldoc-documentation-function)
+                #'markdown-eldoc-function)
   ;; Inhibiting line-breaking:
   ;; Separating out each condition into a separate function so that users can
   ;; override if desired (with remove-hook)
@@ -9356,11 +9336,6 @@ rows and columns and the column alignment."
   ;; Electric quoting
   (add-hook 'electric-quote-inhibit-functions
             #'markdown--inhibit-electric-quote nil :local)
-
-  ;; Backwards compatibility with markdown-css-path
-  (when (boundp 'markdown-css-path)
-    (warn "markdown-css-path is deprecated, see markdown-css-paths.")
-    (add-to-list 'markdown-css-paths markdown-css-path))
 
   ;; Make checkboxes buttons
   (when markdown-make-gfm-checkboxes-buttons
