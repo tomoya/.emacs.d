@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "typescript-mode" "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode.el"
-;;;;;;  "e602b03f54866a1e7302c39c4634a83f")
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode.el
+;;;### (autoloads nil "typescript-mode" "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode.el"
+;;;;;;  "8f3efac057250f6c245d51952af3eed2")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode.el
 (put 'typescript-indent-level 'safe-local-variable #'integerp)
 
 (autoload 'typescript-mode "typescript-mode" "\
@@ -25,9 +25,9 @@ Key bindings:
 (add-to-list 'auto-mode-alist '("\\.ts$" . typescript-mode))
 
 ;;;### (autoloads "actual autoloads are elsewhere" "typescript-mode"
-;;;;;;  "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "typescript-mode" '("typescript-")))
 
@@ -36,18 +36,18 @@ Key bindings:
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "typescript-mode-test-utilities"
-;;;;;;  "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode-test-utilities.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode-test-utilities.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode-test-utilities.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode-test-utilities.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "typescript-mode-test-utilities" '("font-lock-test" "get-face-at" "test-with-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode-autoloads.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode-pkg.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode-test-utilities.el"
-;;;;;;  "../../../../../../../.config/emacs/elpa/typescript-mode-20200312.2235/typescript-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode-test-utilities.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/typescript-mode-20200430.1232/typescript-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

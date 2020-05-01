@@ -7,7 +7,7 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.4-dev
-;; Package-Version: 20200430.119
+;; Package-Version: 20200430.1622
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -452,7 +452,10 @@ windows based on the values of `split-width-threshold' and
 `split-height-threshold' and the available windows.  To force
 vertically split (left and right) windows, set this to 'vertical
 or 'right.  To force horizontally split (top and bottom) windows,
-set this to 'horizontal or 'below."
+set this to 'horizontal or 'below.
+
+If this value is 'any and `display-buffer-alist' is set then
+`display-buffer' is used for open buffer function"
   :group 'markdown
   :type '(choice (const :tag "Automatic" any)
                  (const :tag "Right (vertical)" right)
@@ -3108,11 +3111,16 @@ the buffer)."
 
 (defun markdown-match-inline-attributes (last)
   "Match inline attributes from point to LAST."
-  (when (markdown-match-inline-generic markdown-regex-inline-attributes last)
-    (unless (or (markdown-inline-code-at-pos-p (match-beginning 0))
-                (markdown-inline-code-at-pos-p (match-end 0))
-                (markdown-in-comment-p))
-      t)))
+  ;; #428 re-search-forward markdown-regex-inline-attributes is very slow.
+  ;; So use simple regex for re-search-forward and use markdown-regex-inline-attributes
+  ;; against matched string.
+  (when (markdown-match-inline-generic "[ \t]*\\({\\)\\([^\n]*\\)}[ \t]*$" last)
+    (if (not (string-match-p markdown-regex-inline-attributes (match-string 0)))
+        (markdown-match-inline-attributes last)
+      (unless (or (markdown-inline-code-at-pos-p (match-beginning 0))
+                  (markdown-inline-code-at-pos-p (match-end 0))
+                  (markdown-in-comment-p))
+        t))))
 
 (defun markdown-match-leanpub-sections (last)
   "Match Leanpub section markers from point to LAST."
@@ -7315,10 +7323,12 @@ displaying the rendered output."
 
 (defun markdown-display-buffer-other-window (buf)
   "Display preview or output buffer BUF in another window."
-  (let ((cur-buf (current-buffer))
-        (window (markdown-get-other-window)))
-    (set-window-buffer window buf)
-    (set-buffer cur-buf)))
+  (if (and display-buffer-alist (eq markdown-split-window-direction 'any))
+      (display-buffer buf)
+    (let ((cur-buf (current-buffer))
+          (window (markdown-get-other-window)))
+      (set-window-buffer window buf)
+      (set-buffer cur-buf))))
 
 (defun markdown-live-preview-if-markdown ()
   (when (and (derived-mode-p 'markdown-mode)
