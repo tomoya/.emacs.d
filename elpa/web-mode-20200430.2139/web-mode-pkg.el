@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.config/emacs/elpa/web-mode-20200430.2139/web-mode.el  -*- no-byte-compile: t -*-
-(define-package "web-mode" "20200430.2139" "major mode for editing web templates" '((emacs "23.1")) :commit "3381baa982fd3f361650e64f33ccc3e7bbf1dc0d" :keywords '("languages") :authors '(("François-Xavier Bois <fxbois AT Google Mail Service>")) :maintainer '("François-Xavier Bois") :url "http://web-mode.org")

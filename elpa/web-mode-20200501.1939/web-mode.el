@@ -3,8 +3,8 @@
 
 ;; Copyright 2011-2020 François-Xavier Bois
 
-;; Version: 16.0.41
-;; Package-Version: 20200430.2139
+;; Version: 17.0.0
+;; Package-Version: 20200501.1939
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Package-Requires: ((emacs "23.1"))
@@ -25,7 +25,7 @@
 
 ;;---- CONSTS ------------------------------------------------------------------
 
-(defconst web-mode-version "16.0.41"
+(defconst web-mode-version "17.0.0"
   "Web Mode version.")
 
 ;;---- GROUPS ------------------------------------------------------------------
@@ -8635,7 +8635,7 @@ another auto-completion with different ac-sources (e.g. ac-php)")
          ;;((and (member language '("javascript" "jsx" "ejs" "php"))
          ((and (member language '("php"))
                (or (and (eq prev-char ?\))
-                        (string-match-p "^\\(for\\|if\\|else[ ]*if\\|while\\)[ ]*(" prev-line))
+                        (string-match-p "^\\(for\\|foreach\\|if\\|else[ ]*if\\|while\\)[ ]*(" prev-line))
                    (and is-js
                         (web-mode-part-is-opener prev-pos reg-beg))
                    (string-match-p "^else$" prev-line))

@@ -7,7 +7,7 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.4-dev
-;; Package-Version: 20200430.1622
+;; Package-Version: 20200502.349
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -108,6 +108,11 @@ For example, a standalone Markdown previewer.  This command will
 be called with a single argument: the filename of the current
 buffer.  It can also be a function, which will be called without
 arguments."
+  :group 'markdown
+  :type '(choice file function (const :tag "None" nil)))
+
+(defcustom markdown-open-image-command nil
+  "Command used for opening image files directly at `markdown-follow-link-at-point'."
   :group 'markdown
   :type '(choice file function (const :tag "None" nil)))
 
@@ -1028,13 +1033,13 @@ Group 3 matches all attributes and whitespace following the tag name.")
 If POS is not given, use point instead."
   (get-text-property (or pos (point)) 'markdown-comment))
 
-(defun markdown-in-html-attr-p (pos)
-  "Return non-nil if POS is in a html attribute name or value."
+(defun markdown--face-p (pos faces)
+  "Return non-nil if face of POS contain FACES."
   (let ((face-prop (get-text-property pos 'face)))
     (if (listp face-prop)
         (cl-loop for face in face-prop
-                 thereis (memq face '(markdown-html-attr-name-face markdown-html-attr-value-face)))
-      (memq face-prop '(markdown-html-attr-name-face markdown-html-attr-value-face)))))
+                 thereis (memq face faces))
+      (memq face-prop faces))))
 
 (defun markdown-syntax-propertize-extend-region (start end)
   "Extend START to END region to include an entire block of text.
@@ -2765,7 +2770,9 @@ When FACELESS is non-nil, do not return matches where faces have been applied."
   (let ((regex (if (memq major-mode '(gfm-mode gfm-view-mode))
                    markdown-regex-gfm-italic markdown-regex-italic)))
     (when (and (markdown-match-inline-generic regex last)
-               (not (markdown-in-html-attr-p (match-beginning 1))))
+               (not (markdown--face-p
+                     (match-beginning 1)
+                     '(markdown-html-attr-name-face markdown-html-attr-value-face))))
       (let ((begin (match-beginning 1))
             (end (match-end 1)))
         (if (or (markdown-inline-code-at-pos-p begin)
@@ -3487,6 +3494,26 @@ prefixed with an integer from 1 to the length of
          (insert (car markdown-hr-strings))))
   (markdown-ensure-blank-line-after))
 
+(defun markdown--insert-common (start-delim end-delim regex start-group end-group face)
+  (if (use-region-p)
+      ;; Active region
+      (let ((bounds (markdown-unwrap-things-in-region
+                     (region-beginning) (region-end)
+                     regex start-group end-group)))
+        (markdown-wrap-or-insert start-delim end-delim nil (car bounds) (cdr bounds)))
+    (if (markdown--face-p (point) (list face))
+        (save-excursion
+          (while (and (markdown--face-p (point) (list face)) (not (bobp)))
+            (forward-char -1))
+          (forward-char (- (1- (length start-delim)))) ;; for delmiter
+          (unless (bolp)
+            (forward-char -1))
+          (when (looking-at regex)
+            (markdown-unwrap-thing-at-point nil start-group end-group)))
+      (if (thing-at-point-looking-at regex)
+          (markdown-unwrap-thing-at-point nil start-group end-group)
+        (markdown-wrap-or-insert start-delim end-delim 'word nil nil)))))
+
 (defun markdown-insert-bold ()
   "Insert markup to make a region or word bold.
 If there is an active region, make the region bold.  If the point
@@ -3495,16 +3522,7 @@ bold word or phrase, remove the bold markup.  Otherwise, simply
 insert bold delimiters and place the point in between them."
   (interactive)
   (let ((delim (if markdown-bold-underscore "__" "**")))
-    (if (use-region-p)
-        ;; Active region
-        (let ((bounds (markdown-unwrap-things-in-region
-                       (region-beginning) (region-end)
-                       markdown-regex-bold 2 4)))
-          (markdown-wrap-or-insert delim delim nil (car bounds) (cdr bounds)))
-      ;; Bold markup removal, bold word at point, or empty markup insertion
-      (if (thing-at-point-looking-at markdown-regex-bold)
-          (markdown-unwrap-thing-at-point nil 2 4)
-        (markdown-wrap-or-insert delim delim 'word nil nil)))))
+    (markdown--insert-common delim delim markdown-regex-bold 2 4 'markdown-bold-face)))
 
 (defun markdown-insert-italic ()
   "Insert markup to make a region or word italic.
@@ -3514,16 +3532,7 @@ italic word or phrase, remove the italic markup.  Otherwise, simply
 insert italic delimiters and place the point in between them."
   (interactive)
   (let ((delim (if markdown-italic-underscore "_" "*")))
-    (if (use-region-p)
-        ;; Active region
-        (let ((bounds (markdown-unwrap-things-in-region
-                       (region-beginning) (region-end)
-                       markdown-regex-italic 1 3)))
-          (markdown-wrap-or-insert delim delim nil (car bounds) (cdr bounds)))
-      ;; Italic markup removal, italic word at point, or empty markup insertion
-      (if (thing-at-point-looking-at markdown-regex-italic)
-          (markdown-unwrap-thing-at-point nil 1 3)
-        (markdown-wrap-or-insert delim delim 'word nil nil)))))
+    (markdown--insert-common delim delim markdown-regex-italic 1 3 'markdown-italic-face)))
 
 (defun markdown-insert-strike-through ()
   "Insert markup to make a region or word strikethrough.
@@ -3532,17 +3541,8 @@ is at a non-bold word, make the word strikethrough.  If the point is at a
 strikethrough word or phrase, remove the strikethrough markup.  Otherwise,
 simply insert bold delimiters and place the point in between them."
   (interactive)
-  (let ((delim "~~"))
-    (if (use-region-p)
-        ;; Active region
-        (let ((bounds (markdown-unwrap-things-in-region
-                       (region-beginning) (region-end)
-                       markdown-regex-strike-through 2 4)))
-          (markdown-wrap-or-insert delim delim nil (car bounds) (cdr bounds)))
-      ;; Strikethrough markup removal, strikethrough word at point, or empty markup insertion
-      (if (thing-at-point-looking-at markdown-regex-strike-through)
-          (markdown-unwrap-thing-at-point nil 2 4)
-        (markdown-wrap-or-insert delim delim 'word nil nil)))))
+  (markdown--insert-common
+   "~~" "~~" markdown-regex-strike-through 2 4 'markdown-strike-through-face))
 
 (defun markdown-insert-code ()
   "Insert markup to make a region or word an inline code fragment.
@@ -7488,7 +7488,12 @@ returns nil."
     (if full
         (browse-url url)
       (when (and file (> (length file) 0))
-        (find-file (funcall markdown-translate-filename-function file))))))
+        (let ((link-file (funcall markdown-translate-filename-function file)))
+          (if (and markdown-open-image-command (string-match-p (image-file-name-regexp) link-file))
+              (if (functionp markdown-open-image-command)
+                  (funcall markdown-open-image-command link-file)
+                (process-file markdown-open-image-command nil nil nil link-file))
+            (find-file link-file)))))))
 
 (defun markdown-follow-link-at-point ()
   "Open the current non-wiki link.
