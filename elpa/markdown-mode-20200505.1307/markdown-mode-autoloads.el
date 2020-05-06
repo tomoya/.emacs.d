@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "markdown-mode" "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode.el"
-;;;;;;  "4d35f0c1fefeef91668c117150ff365e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode.el
+;;;### (autoloads nil "markdown-mode" "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode.el"
+;;;;;;  "3517b942b90db9cee8e3293b702a4387")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode.el
 
 (autoload 'markdown-mode "markdown-mode" "\
 Major mode for editing Markdown files.
@@ -43,9 +43,9 @@ and toggle it if ARG is `toggle'; disable the mode otherwise.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "markdown-mode"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "markdown-mode" '("defun-markdown-" "gfm-" "markdown")))
 
@@ -53,8 +53,8 @@ and toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200504.1633/markdown-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/markdown-mode-20200505.1307/markdown-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
