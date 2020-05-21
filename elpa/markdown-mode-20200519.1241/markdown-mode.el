@@ -7,7 +7,7 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.4-dev
-;; Package-Version: 20200517.228
+;; Package-Version: 20200519.1241
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -721,7 +721,7 @@ Groups 1 and 3 match the opening and closing tags.
 Group 2 matches the key sequence.")
 
 (defconst markdown-regex-gfm-code-block-open
-  "^[[:blank:]]*\\(?1:```\\)\\(?2:[[:blank:]]*{?[[:blank:]]*\\)\\(?3:[^[:space:]]+?\\)?\\(?:[[:blank:]]+\\(?4:.+?\\)\\)?\\(?5:[[:blank:]]*}?[[:blank:]]*\\)$"
+  "^[[:blank:]]*\\(?1:```\\)\\(?2:[[:blank:]]*{?[[:blank:]]*\\)\\(?3:[^`[:space:]]+?\\)?\\(?:[[:blank:]]+\\(?4:.+?\\)\\)?\\(?5:[[:blank:]]*}?[[:blank:]]*\\)$"
   "Regular expression matching opening of GFM code blocks.
 Group 1 matches the opening three backquotes and any following whitespace.
 Group 2 matches the opening brace (optional) and surrounding whitespace.
@@ -9068,11 +9068,11 @@ Create new table lines if required."
   (when (markdown-table-hline-at-point-p) (end-of-line 1))
   (condition-case nil
       (progn
-        (re-search-backward "|" (markdown-table-begin))
-        (re-search-backward "|" (markdown-table-begin)))
+        (re-search-backward "\\(?:^\\|[^\\]\\)|" (markdown-table-begin))
+        (re-search-backward "\\(?:^\\|[^\\]\\)|" (markdown-table-begin)))
     (error (user-error "Cannot move to previous table cell")))
   (while (looking-at "|\\([-:]\\|[ \t]*$\\)")
-    (re-search-backward "|" (markdown-table-begin)))
+    (re-search-backward "\\(?:^\\|[^\\]\\)|" (markdown-table-begin)))
   (when (looking-at "| ?") (goto-char (match-end 0))))
 
 (defun markdown-table-transpose ()
