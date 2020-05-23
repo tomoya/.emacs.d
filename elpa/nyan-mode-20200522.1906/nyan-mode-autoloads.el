@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "nyan-mode" "../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode.el"
-;;;;;;  "5ab8d92a75891517947ed755eab59797")
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode.el
+;;;### (autoloads nil "nyan-mode" "../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode.el"
+;;;;;;  "8fffbd790b75a559c98a9aeb570d00ac")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode.el
 
 (defvar nyan-mode nil "\
 Non-nil if Nyan mode is enabled.
@@ -25,18 +25,18 @@ Use NyanCat to show buffer size and position in mode-line.
 You can customize this minor mode, see option `nyan-mode'.
 
 If called interactively, enable Nyan mode if ARG is positive, and
-disable it if ARG is zero or negative.  If called from Lisp,
-also enable the mode if ARG is omitted or nil, and toggle it
-if ARG is `toggle'; disable the mode otherwise.
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+`toggle'; disable the mode otherwise.
 
 Note: If you turn this mode on then you probably want to turn off
 option `scroll-bar-mode'.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "nyan-mode" "../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "nyan-mode" "../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "nyan-mode" '("+nyan-" "nyan-")))
 
@@ -44,9 +44,9 @@ option `scroll-bar-mode'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode-autoloads.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode-pkg.el"
-;;;;;;  "../../../../../../../.emacs.d/elpa/nyan-mode-20170423.740/nyan-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/nyan-mode-20200522.1906/nyan-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

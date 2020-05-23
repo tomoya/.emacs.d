@@ -1,4 +1,4 @@
-(define-package "nyan-mode" "20170423.740" "Nyan Cat shows position in current buffer in mode-line." 'nil :keywords
+(define-package "nyan-mode" "20200522.1906" "Nyan Cat shows position in current buffer in mode-line." 'nil :keywords
   '("nyan" "cat" "lulz" "scrolling" "pop tart cat" "build something amazing")
   :authors
   '(("Jacek \"TeMPOraL\" Zlydach" . "temporal.pl@gmail.com"))
