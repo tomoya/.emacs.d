@@ -310,6 +310,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'ts-web-mode-hook #'auto-fix-mode)
 (add-hook 'typescript-mode-hook #'auto-fix-mode)
 (add-hook 'js-mode-hook #'auto-fix-mode)
+(add-hook 'web-mode-hook #'auto-fix-mode)
 
 ;; ruby-mode
 (defun setup-auto-fix-rubocop ()
@@ -318,6 +319,10 @@ point reaches the beginning or end of the buffer, stop there."
   (auto-fix-mode +1))
 
 (add-hook 'ruby-mode-hook #'setup-auto-fix-rubocop)
+
+;; JavaScript
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; TypeScript
 (flycheck-add-mode 'javascript-eslint 'typescript-mode)
@@ -347,6 +352,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'flycheck-mode-hook #'my-use-local-lint)
 
 ;; lsp-mode
+(add-hook 'web-mode-hook #'lsp)
 (add-hook 'typescript-mode-hook #'lsp)
 (add-hook 'ts-web-mode-hook #'lsp)
 (add-hook 'terraform-mode-hook #'lsp)
