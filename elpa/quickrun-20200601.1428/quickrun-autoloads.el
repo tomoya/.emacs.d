@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun.el"
-;;;;;;  "046ed4c3c528a51d576f2bd0ab47f2c7")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun.el
+;;;### (autoloads nil "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun.el"
+;;;;;;  "59972c8811e01b7ddf14dd31a57ed457")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun.el
 
 (autoload 'quickrun-set-default "quickrun" "\
 Set `key' as default key in programing language `lang'.
@@ -71,9 +71,9 @@ Run quickrun with `anything'." t nil)
 (autoload 'helm-quickrun "quickrun" "\
 Run quickrun with `helm'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun.el"
+;;;### (autoloads "actual autoloads are elsewhere" "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "quickrun" '("helm-quickrun-" "quick")))
 
@@ -81,8 +81,8 @@ Run quickrun with `helm'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/quickrun-20200514.1506/quickrun.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/quickrun-20200601.1428/quickrun.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
