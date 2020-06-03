@@ -58,6 +58,7 @@
 (require 'xref)
 (require 'minibuffer)
 (require 'yasnippet nil t)
+(require 'lsp-protocol)
 
 (declare-function company-mode "ext:company")
 (declare-function company-doc-buffer "ext:company")
@@ -1235,28 +1236,15 @@ INHERIT-INPUT-METHOD will be proxied to `completing-read' without changes."
             (forward-char character)
             (point)))))))
 
-(defun lsp--position-to-point (params)
-  "Convert Position object in PARAMS to a point."
-  (lsp--line-character-to-point (gethash "line" params)
-                                (gethash "character" params)))
+(lsp-defun lsp--position-to-point ((&Position :line :character))
+  "Convert `Position' object in PARAMS to a point."
+  (lsp--line-character-to-point line character))
 
-(defun lsp--range-to-region (range)
-  (cons (lsp--position-to-point (gethash "start" range))
-        (lsp--position-to-point (gethash "end" range))))
+(lsp-defun lsp--range-to-region ((&Range :start :end))
+  (cons (lsp--position-to-point start) (lsp--position-to-point end)))
 
-(pcase-defmacro lsp-range (region)
-  "Build a `pcase' pattern that matches a LSP Range object.
-Elements should be of the form (START . END), where START and END are bound
-to the beginning and ending points in the range correspondingly."
-  `(and (pred hash-table-p)
-        (app (lambda (range) (lsp--position-to-point (gethash "start" range)))
-             ,(car region))
-        (app (lambda (range) (lsp--position-to-point (gethash "end" range)))
-             ,(cdr region))))
-
-(defun lsp--find-wrapping-range (current-selection-range)
-  (-let* (((&hash "parent" "range") current-selection-range)
-          ((start . end) (lsp--range-to-region range)))
+(lsp-defun lsp--find-wrapping-range ((&SelectionRange :parent? :range))
+  (-let* (((start . end) (lsp--range-to-region range)))
     (cond
      ((and
        (region-active-p)
@@ -1268,7 +1256,7 @@ to the beginning and ending points in the range correspondingly."
      ((and (<= start (point) end)
            (not (region-active-p)))
       (cons start end))
-     (parent (lsp--find-wrapping-range parent)))))
+     (parent? (lsp--find-wrapping-range parent?)))))
 
 (defun lsp--get-selection-range ()
   (or
@@ -1644,8 +1632,8 @@ WORKSPACE is the workspace that contains the progress token."
   "The scope "
   :group 'lsp-mode
   :type '(choice (const :tag "File" :file)
-                 (const :tag "Current workspace" :workspace)
-                 (const :tag "All" :global))
+                 (const :tag "Project" :workspace)
+                 (const :tag "All Projects" :global))
   :package-version '(lsp-mode . "6.3"))
 
 (defun lsp--diagnostics-modeline-statistics ()
@@ -4197,9 +4185,11 @@ if it's closing the last buffer in the workspace."
         (lsp-notify "textDocument/willSave" params))
       (when (and (lsp--send-will-save-wait-until-p) lsp-before-save-edits)
         (let ((lsp-response-timeout 0.1))
-          (lsp--apply-text-edits
-           (lsp-request "textDocument/willSaveWaitUntil"
-                        params)))))))
+          (condition-case nil
+              (lsp--apply-text-edits
+               (lsp-request "textDocument/willSaveWaitUntil"
+                            params))
+            (error)))))))
 
 (defun lsp--on-auto-save ()
   "Handler for auto-save."
