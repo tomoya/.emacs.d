@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.config/emacs/elpa/quickrun-20200601.1428/quickrun.el  -*- no-byte-compile: t -*-
-(define-package "quickrun" "20200601.1428" "Run commands quickly" '((emacs "24.3")) :commit "c6ce1f315b768af8688d06bc57d2eb403f875a63" :authors '(("Syohei YOSHIDA" . "syohex@gmail.com")) :maintainer '("Syohei YOSHIDA" . "syohex@gmail.com") :url "https://github.com/syohex/emacs-quickrun")
