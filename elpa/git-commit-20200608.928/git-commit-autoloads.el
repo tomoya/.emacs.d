@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "git-commit" "../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit.el"
-;;;;;;  "6913d6c776faaf0de06526edd90d6cd8")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit.el
+;;;### (autoloads nil "git-commit" "../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit.el"
+;;;;;;  "cba8de47879616c610e6049bde0c2099")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit.el
 
 (defvar global-git-commit-mode t "\
 Non-nil if Global Git-Commit mode is enabled.
@@ -40,9 +40,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 (autoload 'git-commit-setup "git-commit" nil nil nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "git-commit" "../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit.el"
+;;;### (autoloads "actual autoloads are elsewhere" "git-commit" "../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "git-commit" '("git-commit-")))
 
@@ -50,8 +50,8 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/git-commit-20200516.2016/git-commit.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/git-commit-20200608.928/git-commit.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

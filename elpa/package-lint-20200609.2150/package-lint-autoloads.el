@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "package-lint" "../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint.el"
-;;;;;;  "02d159863c9c982a4805845022bbbb56")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint.el
+;;;### (autoloads nil "package-lint" "../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint.el"
+;;;;;;  "dd36cb0a1beaa75f237570dfd406c0d9")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint.el
 
 (autoload 'package-lint-buffer "package-lint" "\
 Get linter errors and warnings for BUFFER.
@@ -38,9 +38,9 @@ whether or not warnings alone produce a non-zero exit code." nil nil)
 Return non-nil if the current buffer appears to be intended as a package." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "package-lint"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "package-lint" '("package-lint-")))
 
@@ -48,9 +48,9 @@ Return non-nil if the current buffer appears to be intended as a package." nil n
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200419.406/package-lint.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/package-lint-20200609.2150/package-lint.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

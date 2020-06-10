@@ -897,6 +897,7 @@ directory")
                                            (lsp--registered-capability-options)))))
                           (and (hash-table-p table)
                                (gethash "prepareProvider" table))))))
+    ("textDocument/rename" :capability "renameProvider")
     ("textDocument/rangeFormatting" :capability "documentRangeFormattingProvider")
     ("textDocument/references" :capability "referencesProvider")
     ("textDocument/selectionRange" :capability "selectionRangeProvider")
@@ -977,6 +978,32 @@ They are added to `markdown-code-lang-modes'")
   "The face used for code lens overlays."
   :group 'lsp-faces)
 
+(defcustom lsp-signature-render-documentation t
+  "Display signature documentation in `eldoc'."
+  :type 'boolean
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "6.2"))
+
+(defcustom lsp-signature-auto-activate t
+  "Auto-activate the documentation when  "
+  :type 'boolean
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "6.2"))
+
+(defcustom lsp-signature-doc-lines 20
+  "If number, limit the number of lines to show in the docs."
+  :type 'number
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "6.3"))
+
+(defcustom lsp-signature-function 'lsp-lv-message
+  "The function used for displaying signature info.
+It will be called with one param - the signature info. When
+called with nil the signature info must be cleared."
+  :type 'function
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "6.3"))
+
 (defvar-local lsp--lens-overlays nil
   "Current lenses.")
 
@@ -1026,6 +1053,17 @@ calling `remove-overlays'.")
 
 ;; Buffer local variable for storing number of lines.
 (defvar lsp--log-lines)
+
+(defvar-local lsp--eldoc-saved-message nil)
+
+(defvar lsp--on-change-timer nil)
+(defvar lsp--on-idle-timer nil)
+
+(defvar-local lsp--signature-last nil)
+(defvar-local lsp--signature-last-index nil)
+(defvar lsp--signature-last-buffer nil)
+
+(defvar-local lsp--virtual-buffer-point-max nil)
 
 (cl-defgeneric lsp-execute-command (server command arguments)
   "Ask SERVER to execute COMMAND with ARGUMENTS.")
@@ -1374,6 +1412,17 @@ INHERIT-INPUT-METHOD will be proxied to `completing-read' without changes."
   download-server-fn
   download-in-progress?
   buffers)
+
+(defvar lsp--already-widened nil)
+
+(defmacro lsp-save-restriction-and-excursion (&rest form)
+  (declare (indent 0) (debug t))
+  `(if lsp--already-widened
+       (save-excursion ,@form)
+     (-let [lsp--already-widened t]
+       (save-restriction
+         (widen)
+         (save-excursion ,@form)))))
 
 ;; from http://emacs.stackexchange.com/questions/8082/how-to-get-buffer-position-given-line-number-and-column-number
 (defun lsp--line-character-to-point (line character)
@@ -3601,7 +3650,7 @@ in that particular folder."
       (lsp--update-signature-help-hook)
 
       (lsp--semantic-highlighting-warn-about-deprecated-setting)
-     
+
       (when (and lsp-enable-semantic-highlighting
                  (lsp-feature? "textDocument/semanticTokens"))
         (lsp--semantic-tokens-initialize-buffer
@@ -3790,6 +3839,23 @@ in that particular folder."
          (with-current-buffer (-> uri lsp--uri-to-path find-file-noselect)
            (lsp--apply-text-edits text-edits)))
        changes))))
+
+(defmacro lsp-with-current-buffer (buffer-id &rest body)
+  (declare (indent 1) (debug t))
+  `(if-let (wcb (plist-get ,buffer-id :with-current-buffer))
+       (with-lsp-workspaces (plist-get ,buffer-id :workspaces)
+         (funcall wcb (lambda () ,@body)))
+     (with-current-buffer ,buffer-id
+       ,@body)))
+
+(defmacro lsp-with-filename (file &rest body)
+  "Execute BODY with FILE as a context.
+Need to handle the case when FILE indicates virtual buffer."
+  (declare (indent 1) (debug t))
+  `(if-let (lsp--virtual-buffer (get-text-property 0 'lsp-virtual-buffer ,file))
+       (lsp-with-current-buffer lsp--virtual-buffer
+         ,@body)
+     ,@body))
 
 (defun lsp--apply-text-document-edit (edit)
   "Apply the TextDocumentEdit object EDIT.
@@ -4165,8 +4231,6 @@ Added to `after-change-functions'."
   :type 'hook
   :group 'lsp-mode)
 
-(defvar lsp--on-change-timer nil)
-(defvar lsp--on-idle-timer nil)
 
 (defun lsp--idle-reschedule (buffer)
   (setq lsp--on-idle-timer (run-with-idle-timer
@@ -4847,26 +4911,6 @@ Others: TRIGGER-CHARS"
                 (lsp-translate-line (1+ (gethash "line" pos-start)))
                 (lsp-translate-column (gethash "character" pos-start))))))
 
-(defvar lsp--already-widened nil)
-
-(defmacro lsp-save-restriction-and-excursion (&rest form)
-  (declare (indent 0) (debug t))
-  `(if lsp--already-widened
-       (save-excursion ,@form)
-     (-let [lsp--already-widened t]
-       (save-restriction
-         (widen)
-         (save-excursion ,@form)))))
-
-(defmacro lsp-with-filename (file &rest body)
-  "Execute BODY with FILE as a context.
-Need to handle the case when FILE indicates virtual buffer."
-  (declare (indent 1) (debug t))
-  `(if-let (lsp--virtual-buffer (get-text-property 0 'lsp-virtual-buffer ,file))
-       (lsp-with-current-buffer lsp--virtual-buffer
-         ,@body)
-     ,@body))
-
 (defun lsp--locations-to-xref-items (locations)
   "Return a list of `xref-item' from Location[] or LocationLink[]."
   (setq locations (if (sequencep locations)
@@ -4927,11 +4971,12 @@ If INCLUDE-DECLARATION is non-nil, request the server to include declarations."
   (run-hooks 'lsp-eldoc-hook)
   eldoc-last-message)
 
-(defun dash-expand:&lsp-wks (key source)
-  `(,(intern-soft (format "lsp--workspace-%s" (eval key) )) ,source))
+(eval-when-compile
+  (defun dash-expand:&lsp-wks (key source)
+    `(,(intern-soft (format "lsp--workspace-%s" (eval key) )) ,source))
 
-(defun dash-expand:&lsp-cln (key source)
-  `(,(intern-soft (format "lsp--client-%s" (eval key) )) ,source))
+  (defun dash-expand:&lsp-cln (key source)
+    `(,(intern-soft (format "lsp--client-%s" (eval key) )) ,source)))
 
 (defun lsp--point-on-highlight? ()
   (-some? (lambda (overlay)
@@ -5235,10 +5280,6 @@ RENDER-ALL - nil if only the signature should be rendered."
 
 
 
-(defvar-local lsp--signature-last nil)
-(defvar-local lsp--signature-last-index nil)
-(defvar lsp--signature-last-buffer nil)
-
 (defvar lsp-signature-mode-map
   (-doto (make-sparse-keymap)
     (define-key (kbd "M-n") #'lsp-signature-next)
@@ -5252,32 +5293,6 @@ RENDER-ALL - nil if only the signature should be rendered."
   :keymap lsp-signature-mode-map
   :lighter ""
   :group 'lsp-mode)
-
-(defcustom lsp-signature-render-documentation t
-  "Display signature documentation in `eldoc'."
-  :type 'boolean
-  :group 'lsp-mode
-  :package-version '(lsp-mode . "6.2"))
-
-(defcustom lsp-signature-auto-activate t
-  "Auto-activate the documentation when  "
-  :type 'boolean
-  :group 'lsp-mode
-  :package-version '(lsp-mode . "6.2"))
-
-(defcustom lsp-signature-doc-lines 20
-  "If number, limit the number of lines to show in the docs."
-  :type 'number
-  :group 'lsp-mode
-  :package-version '(lsp-mode . "6.3"))
-
-(defcustom lsp-signature-function 'lsp-lv-message
-  "The function used for displaying signature info.
-It will be called with one param - the signature info. When
-called with nil the signature info must be cleared."
-  :type 'function
-  :group 'lsp-mode
-  :package-version '(lsp-mode . "6.3"))
 
 (defun lsp-signature-stop ()
   "Stop showing current signature help."
@@ -5473,7 +5488,6 @@ It will show up only if current point has signature help."
 ;; hover
 
 (defvar-local lsp--hover-saved-bounds nil)
-(defvar-local lsp--eldoc-saved-message nil)
 
 (defun lsp-hover ()
   "Display hover info (based on `textDocument/signatureHelp')."
@@ -6051,14 +6065,6 @@ REFERENCES? t when METHOD returns references."
 (defun lsp-current-buffer ()
   (or lsp--virtual-buffer
       (current-buffer)))
-
-(defmacro lsp-with-current-buffer (buffer-id &rest body)
-  (declare (indent 1) (debug t))
-  `(if-let (wcb (plist-get ,buffer-id :with-current-buffer))
-       (with-lsp-workspaces (plist-get ,buffer-id :workspaces)
-         (funcall wcb (lambda () ,@body)))
-     (with-current-buffer ,buffer-id
-       ,@body)))
 
 (defun lsp-buffer-live-p (buffer-id)
   (if-let (buffer-live (plist-get buffer-id :buffer-live?))
@@ -8256,8 +8262,6 @@ See https://github.com/emacs-lsp/lsp-mode."
                          (list :range (lsp--range (list :character 0 :line 0)
                                                   lsp--virtual-buffer-point-max)
                                :text (lsp--buffer-content))))))))
-
-(defvar-local lsp--virtual-buffer-point-max nil)
 
 (defun lsp-virtual-buffer-before-change (start _end)
   (when-let (virtual-buffer (-first (lambda (vb)
