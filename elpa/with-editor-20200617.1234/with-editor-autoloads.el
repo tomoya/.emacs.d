@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "with-editor" "../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor.el"
-;;;;;;  "b949b6db95809a131591a5d0682e8cd2")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor.el
+;;;### (autoloads nil "with-editor" "../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor.el"
+;;;;;;  "17c2f46dace9bcf546903994d3303036")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor.el
 
 (autoload 'with-editor-export-editor "with-editor" "\
 Teach subsequent commands to use current Emacs instance as editor.
@@ -85,9 +85,9 @@ else like the former.
 \(fn COMMAND &optional OUTPUT-BUFFER ERROR-BUFFER ENVVAR)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "with-editor"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "with-editor" '("server-" "shell-command--shell-command-with-editor-mode" "start-file-process--with-editor-process-filter" "with-editor")))
 
@@ -95,9 +95,9 @@ else like the former.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200616.2218/with-editor.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/with-editor-20200617.1234/with-editor.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

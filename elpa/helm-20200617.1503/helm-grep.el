@@ -239,10 +239,11 @@ doing."
   :group 'helm-grep
   :type '(repeat string))
 
-(defcustom helm-grep-input-idle-delay 0.6
-  "Same as `helm-input-idle-delay' but for grep commands.
-It have a higher value than `helm-input-idle-delay' to avoid
-flickering when updating."
+(defcustom helm-grep-input-idle-delay 0.1
+  "Idle time before updating, specified in seconds.
+A lower value (default) means Helm will display the results
+faster. Increasing it to a higher value (e.g. 0.6) prevents the
+buffer from flickering when updating."
   :group 'helm-grep
   :type 'float)
 
