@@ -1440,6 +1440,17 @@ this working."
 
 (defun helm--advice-eshell-eval-command (command &optional input)
   "Fix return value when command ends with \"&\"."
+  ;; Fix this emacs commit which is plain wrong as it returns
+  ;; either nil or an error (double because format spec doesn't
+  ;; always match specifier) whereas it should return either a
+  ;; single element (CAR DELIM) or DELIM itself if the car of
+  ;; DELIM is a process.
+  ;;
+  ;; 6b6f91b357f6fe2f1e0d72f046a1b8d8a2d6d8c3
+  ;; Author:     John Wiegley <johnw@newartisans.com>
+  ;; AuthorDate: Fri May 27 02:57:18 2005 +0000
+  ;; Commit:     John Wiegley <johnw@newartisans.com>
+  ;; CommitDate: Fri May 27 02:57:18 2005 +0000
   (if eshell-current-command
       ;; we can just stick the new command at the end of the current
       ;; one, and everything will happen as it should
@@ -1458,13 +1469,17 @@ this working."
     (let* ((delim (catch 'eshell-incomplete
 		    (eshell-resume-eval)))
            (val (car delim)))
+      ;; If the return value of `eshell-resume-eval' is wrapped in a
+      ;; list, it indicates that the command was run asynchronously.
+      ;; In that case, unwrap the value before checking the delimiter
+      ;; value.
       (if (and val
                (not (processp val))
                (not (eq val t)))
           (error "Unmatched delimiter: %S" val)
         ;; Eshell-command expect a list like (<process>) to know if the
         ;; command should be async or not.
-        (and (processp val) delim)))))
+        (or (and (processp val) delim) val)))))
 
 (defun helm-find-files-eshell-command-on-file (_candidate)
   "Run `eshell-command' on CANDIDATE or marked candidates.
@@ -3374,9 +3389,14 @@ If PATTERN is a valid directory name, return PATTERN unchanged."
            (string-match helm-ff-url-regexp pattern)
            (and (string= helm-ff-default-directory "/") tramp-p))
        ;; Don't treat wildcards ("*") as regexp char.
-       ;; (e.g ./foo/*.el => ./foo/[*].el)
+       ;; (e.g ./foo/*.el => ./foo/\\*\\.el) or ./foo/*.[ch] =>
+       ;; ./foo/\\*\\.\\[ch]
        (concat (regexp-quote bd)
-               (replace-regexp-in-string "[*]" "[*]" bn)))
+               ;; We were previously using
+               ;; (replace-regexp-in-string "[*]" "[*]" bn) but this
+               ;; doesn't handle wilcards like *.[ch], so regexp-quote
+               ;; bn as well.
+               (regexp-quote bn)))
       (t (concat (regexp-quote bd)
                  (if (>= (length bn) 2) ; wait 2nd char before concating.
                      (helm--mapconcat-pattern bn)
@@ -4649,6 +4669,10 @@ destination for the actions copy and rename."
                (setq helm-ff-cand-to-mark
                      (helm-get-dest-fnames-from-list files candidate dirflag))
                (with-helm-after-update-hook (helm-ff-maybe-mark-candidates))
+               ;; Refresh directory even if helm-ff-cache-mode is
+               ;; enabled, it will not have the time to update
+               ;; destination directory.
+               (helm-ff-directory-files candidate t)
                (if (and dirflag (eq action 'rename))
                    (helm-find-files-1 (file-name-directory target)
                                       (if helm-ff-transformer-show-only-basename
