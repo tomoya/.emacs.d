@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "transient" "../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient.el"
-;;;;;;  "14974f7acf410bee19a2f8bc4feffff0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient.el
+;;;### (autoloads nil "transient" "../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient.el"
+;;;;;;  "f24b3cab3c96c30504b334546ff13502")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient.el
 
 (autoload 'transient-insert-suffix "transient" "\
 Insert a SUFFIX into PREFIX before LOC.
@@ -64,9 +64,9 @@ See info node `(transient)Modifying Existing Transients'.
 
 (function-put 'transient-remove-suffix 'lisp-indent-function 'defun)
 
-;;;### (autoloads "actual autoloads are elsewhere" "transient" "../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient.el"
+;;;### (autoloads "actual autoloads are elsewhere" "transient" "../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "transient" '("transient-")))
 
@@ -74,9 +74,9 @@ See info node `(transient)Modifying Existing Transients'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/transient-20200622.2050/transient.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/transient-20200707.2034/transient.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
