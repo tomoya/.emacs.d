@@ -460,20 +460,6 @@ currently transfered in an help-echo in mode-line, if you use
   "Percentage unicode sign to use in Rsync reporter."
   :type 'string
   :group 'helm-files)
-
-(defcustom helm-ff-keep-cached-candidates nil
-  "When non nil do not delete the HFF cache after each session.
-Possible values are:
-- `all' or `t' : Keep all
-- `remote': Keep only remote
-- `local': Keep only locals
-- `nil' (default) : Delete all"
-  :type '(choice
-          (const :tag "Keep all"         'all)
-          (const :tag "Keep only remote" 'remote)
-          (const :tag "Keep only locals" 'local)
-          (const :tag "Delete all"       nil))
-  :group 'helm-files)
 
 ;;; Faces
 ;;
@@ -2020,7 +2006,11 @@ If MUST-MATCH is specified exit with
              ;; is specified.
              (null current-prefix-arg)
              (null helm-ff--RET-disabled)
-             (not (string= "." (helm-basename sel))))
+             (or (and (file-remote-p sel)
+                      (string= "." (helm-basename sel))
+                      (string-match-p "\\`[/].*:.*:\\'"
+                                      helm-pattern))
+                 (not (string= "." (helm-basename sel)))))
         (helm-execute-persistent-action)
       (if must-match
           (helm-confirm-and-exit-minibuffer)
@@ -2660,13 +2650,13 @@ when `helm-pattern' is equal to \"~/\"."
     (cond ((and (not (file-remote-p helm-pattern))
                 (null (file-exists-p helm-pattern))
                 (string-match-p
-                 "\\`\\([.]\\|\\s-\\)\\{2\\}[^/]+"
+                 "\\`\\([.]\\)\\{2\\}[^/]+"
                  (helm-basename helm-pattern))
                 (string-match-p "/\\'" helm-pattern))
            (helm-ff-recursive-dirs helm-pattern)
            (helm-ff--maybe-set-pattern-and-update))
           ((string-match
-            "\\(?:\\`~/\\)\\|/?\\$.*/\\|/\\./\\|/\\.\\./\\|/~.*/\\|//\\|\\(/[[:alpha:]]:/\\|\\s\\+\\)"
+            "\\(?:\\`~/\\)\\|/?\\$.*/\\|/\\./\\|/\\.\\./\\|/~.*/\\|//\\|\\(/[[:alpha:]]:/\\)"
             helm-pattern)
            (let* ((match (match-string 0 helm-pattern))
                   (input (cond ((string= match "/./")
@@ -3215,8 +3205,8 @@ in cache."
                (helm-ff-directory-files k t)))
            helm-ff--list-directory-cache))
 
-;;; [EXPERIMENTAL] helm-ff-cache-mode
-;;
+;;; `helm-ff-cache-mode'
+;;  A mode to auto refresh helm-find-files cache.
 ;;
 (defvar helm-ff--refresh-cache-timer nil)
 (defvar helm-ff--cache-mode-lighter-face 'helm-ff-cache-stopped)
@@ -3225,14 +3215,14 @@ in cache."
 (defcustom helm-ff-cache-mode-post-delay 0.5
   "Wait this delay seconds before restarting when emacs stops beeing idle.
 
-Minimum value accepted is 0.5s."
+Minimum value accepted is 0.3s."
   :type 'float
   :group 'helm-files)
 
-(defcustom helm-ff-refresh-cache-delay 1.0
+(defcustom helm-ff-refresh-cache-delay 0.5
   "`helm-ff-cache-mode' timer starts after this many seconds.
 
-Minimum value accepted is 0.5s."
+Minimum value accepted is 0.3s."
   :type 'float
   :group 'helm-files)
 
@@ -3258,44 +3248,24 @@ Minimum value accepted is 0.5s."
   "Face used for `helm-ff-cache-mode' lighter."
   :group 'helm-files-faces)
 
-;;;###autoload
-(define-minor-mode helm-ff-cache-mode
-  "Refresh `helm-ff--list-directory-cache' when emacs is idle.
-
-When Emacs is idle, refresh the cache all the
-`helm-ff-refresh-cache-delay' seconds then stop after
-`helm-ff-cache-mode-max-idle-time' if emacs is still idle."
-  :group 'helm-files
-  :global t
-  :lighter (:eval (propertize helm-ff-cache-mode-lighter
-                              'face helm-ff--cache-mode-lighter-face))
-  (condition-case err
-      (progn
-        (cl-assert helm-ff-keep-cached-candidates
-                   nil "Please set first `helm-ff-keep-cached-candidates' to a non nil value")
-        (if helm-ff-cache-mode
-            (helm-ff-cache-mode-add-hooks)
-          (helm-ff-cache-mode-remove-hooks)
-          (cancel-timer helm-ff--refresh-cache-timer)
-          (setq helm-ff--refresh-cache-timer nil)))
-    (error (progn
-             (setq helm-ff-cache-mode nil)
-             (user-error "%s" (cadr err))))))
-
 (defun helm-ff--cache-mode-refresh (&optional no-update delay)
   (when helm-ff--refresh-cache-timer
     (cancel-timer helm-ff--refresh-cache-timer))
   (if (or helm-alive-p (input-pending-p) no-update)
       (setq helm-ff--cache-mode-lighter-face 'helm-ff-cache-stopped)
     (helm-ff--cache-mode-refresh-1))
-  (setq helm-ff--refresh-cache-timer
-        (run-with-idle-timer
-         (helm-aif (current-idle-time)
-             (time-add
-              it (seconds-to-time (helm-ff--refresh-cache-delay)))
-           (or delay helm-ff-refresh-cache-delay))
-         nil
-         #'helm-ff--cache-mode-refresh)))
+  ;; When `helm-ff-keep-cached-candidates' becomes nil don't restart
+  ;; timer and set mode to nil to disable it.
+  (if helm-ff-keep-cached-candidates
+      (setq helm-ff--refresh-cache-timer
+            (run-with-idle-timer
+             (helm-aif (current-idle-time)
+                 (time-add
+                  it (seconds-to-time (helm-ff--refresh-cache-delay)))
+               (or delay helm-ff-refresh-cache-delay))
+             nil
+             #'helm-ff--cache-mode-refresh))
+    (setq helm-ff-cache-mode nil)))
 
 (defun helm-ff--cache-mode-refresh-1 ()
   (if (and helm-ff-keep-cached-candidates
@@ -3303,7 +3273,7 @@ When Emacs is idle, refresh the cache all the
            ;; Stop updating when Emacs is idle more than
            ;; helm-ff-cache-mode-max-idle-time.
            (time-less-p (current-idle-time)
-                        (seconds-to-time helm-ff-cache-mode-max-idle-time))
+                        (seconds-to-time (helm-ff--cache-mode-max-idle-time)))
            (null helm-ff--refresh-cache-done))
       (progn
         (setq helm-ff--cache-mode-lighter-face 'helm-ff-cache-updating)
@@ -3334,11 +3304,18 @@ When Emacs is idle, refresh the cache all the
 
 (defun helm-ff--refresh-cache-delay ()
   "Prevent user using less than 0.5s for `helm-ff-refresh-cache-delay'."
-  (max 0.5 helm-ff-refresh-cache-delay))
+  (max 0.3 helm-ff-refresh-cache-delay))
 
 (defun helm-ff--cache-mode-post-delay ()
   "Prevent user using less than 0.5s for `helm-ff-cache-mode-post-delay'."
-  (max 0.5 helm-ff-cache-mode-post-delay))
+  (max 0.3 helm-ff-cache-mode-post-delay))
+
+(defun helm-ff--cache-mode-max-idle-time ()
+  "Prevent user using too small value for `helm-ff-cache-mode-max-idle-time'."
+  (max (+ helm-ff-cache-mode-post-delay
+          helm-ff-refresh-cache-delay
+          1)
+       helm-ff-cache-mode-max-idle-time))
 
 (defun helm-ff-cache-mode-add-hooks ()
   (add-hook 'post-command-hook 'helm-ff--cache-mode-reset-timer)
@@ -3347,6 +3324,64 @@ When Emacs is idle, refresh the cache all the
 (defun helm-ff-cache-mode-remove-hooks ()
   (remove-hook 'post-command-hook 'helm-ff--cache-mode-reset-timer)
   (remove-hook 'focus-in-hook 'helm-ff--cache-mode-reset-timer))
+
+;;;###autoload
+(define-minor-mode helm-ff-cache-mode
+  "Auto refresh `helm-find-files' cache when emacs is idle.
+
+You will probably don't want to start this mode directly but instead
+customize `helm-ff-keep-cached-candidates' to a non nil value to
+enable it.
+With `helm-ff-keep-cached-candidates' set to a nil value the mode will
+disable itself.
+
+When Emacs is idle, refresh the cache all the
+`helm-ff-refresh-cache-delay' seconds then stop when done or after
+`helm-ff-cache-mode-max-idle-time' if emacs is still idle."
+  :group 'helm-files
+  :global t
+  :lighter (:eval (propertize helm-ff-cache-mode-lighter
+                              'face helm-ff--cache-mode-lighter-face))
+  (unless (or helm-ff-keep-cached-candidates
+              (null helm-ff-cache-mode))
+    ;; When helm-ff-keep-cached-candidates have been set to nil with
+    ;; setq, the mode will start but with no effect and die by itself
+    ;; i.e. the timer will not restart on itself and mode will be set
+    ;; to nil.
+    (display-warning
+     '(helm-ff-cached-mode)
+     "`helm-ff-keep-cached-candidates' should be set to a non nil value"))
+  (if helm-ff-cache-mode
+      (helm-ff-cache-mode-add-hooks)
+    (helm-ff-cache-mode-remove-hooks)
+    (and helm-ff--refresh-cache-timer
+         (cancel-timer helm-ff--refresh-cache-timer))
+    (setq helm-ff--refresh-cache-timer nil)))
+
+(defcustom helm-ff-keep-cached-candidates 'all
+  "When non nil do not delete the HFF cache after each session.
+
+Possible values are:
+- `all' or `t' : Keep all.
+- `remote': Keep only remote.
+- `local': Keep only locals.
+- `nil' (default) : Delete all.
+
+Starts `helm-ff-cache-mode' when non nil.
+
+Please use customize interface or `customize-set-variable' to
+configure this i.e. NOT `setq'."
+  :type '(choice
+          (const :tag "Keep all"         'all)
+          (const :tag "Keep only remote" 'remote)
+          (const :tag "Keep only locals" 'local)
+          (const :tag "Delete all"       nil))
+  :group 'helm-files
+  :set (lambda (var val)
+         (set var val)
+         (if val
+             (helm-ff-cache-mode 1)
+           (helm-ff-cache-mode -1))))
 
 (defun helm-ff-handle-backslash (fname)
   ;; Allow creation of filenames containing a backslash.
@@ -3691,7 +3726,7 @@ return directly CANDIDATES."
 (defsubst helm-ff-file-extension (file)
   "Returns FILE extension if it is not a number."
   (helm-aif (file-name-extension file)
-      (and (not (string= "0" it))
+      (and (not (string-match "\\`0+\\'" it))
            (zerop (string-to-number it))
            it)))
 
@@ -3720,7 +3755,9 @@ If SKIP-BORING-CHECK is non nil don't filter boring files."
       (helm-aif (and (not backup)
                      (not urlp)
                      (helm-ff-file-extension disp))
-          (when (string-match (format "\\.\\(%s\\)\\'" it) disp)
+          (when (condition-case _err
+                    (string-match (format "\\.\\(%s\\)\\'" it) disp)
+                  (invalid-regexp nil))
             (add-face-text-property
              (match-beginning 1) (match-end 1)
              'helm-ff-file-extension t disp)))
@@ -4248,7 +4285,7 @@ file."
 ;;; Recursive dirs completion
 ;;
 (defun helm-find-files-recursive-dirs (directory &optional input)
-  (when (string-match "\\(\\s-+\\|[.]\\)\\{2\\}" input)
+  (when (string-match "\\([.]\\)\\{2\\}" input)
     (setq input (replace-match "" nil t input)))
   (message "Recursively searching %s from %s ..."
            input (abbreviate-file-name directory))
