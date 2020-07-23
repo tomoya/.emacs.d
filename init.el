@@ -135,7 +135,7 @@
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode session nyan-mode fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix wgrep company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens tide typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+   '(string-inflection exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode session nyan-mode fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix wgrep company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens tide typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(project-vc-ignores '("node_modules" ".git" "tmp" "dist" "coverage"))
  '(projectile-enable-caching t)
@@ -467,6 +467,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "s-\\") 'neotree-toggle)
 (global-set-key (kbd "M-g l") 'git-link)
 (global-set-key (kbd "s-c") 'copy-as-format-github)
+(global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
