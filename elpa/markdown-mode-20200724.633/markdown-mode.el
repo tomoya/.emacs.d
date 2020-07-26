@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20200715.1516
-;; Package-Commit: ac59e97c154ecae7f1b7c2a543799bd604bc0266
+;; Package-Version: 20200724.633
+;; Package-Commit: fa9fa20e3236006c2cf278209356f60cc4175120
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -9394,6 +9394,8 @@ rows and columns and the column alignment."
   (setq-local comment-column 0)
   (setq-local comment-auto-fill-only-comments nil)
   (setq-local comment-use-syntax t)
+  ;; Sentence
+  (setq-local sentence-end-base "[.?!…‽][]\"'”’)}»›*_`~]*")
   ;; Syntax
   (add-hook 'syntax-propertize-extend-region-functions
             #'markdown-syntax-propertize-extend-region)
