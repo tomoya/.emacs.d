@@ -122,18 +122,22 @@ To change the number of _visible_ chandidates, see `company-tooltip-limit'"
   :group 'company-box)
 
 (defcustom company-box-tooltip-minimum-width 60
-  "`company-box' minumum width"
+  "`company-box' minimum width."
   :type 'integer
   :group 'company-box)
 
-(defcustom company-box-tooltip-maximum-width 60
-  "`company-box' maximum width"
+(defcustom company-box-tooltip-maximum-width 260
+  "`company-box' maximum width."
   :type 'integer
   :group 'company-box)
 
-(defcustom company-box-show-single-candidate nil
-  "Whether or not to display the candidate if there is only one."
-  :type 'boolean
+(defcustom company-box-show-single-candidate 'when-no-other-frontend
+  "Whether or not to display the candidate if there is only one.
+`when-no-other-frontend' will display the candidate if no other front ends are
+detected."
+  :type '(choice (const :tag "when-no-other-frontend" when-no-other-frontend)
+                 (const :tag "never" never)
+                 (const :tag "always" always))
   :group 'company-box)
 
 (defcustom company-box-icons-functions
@@ -329,6 +333,7 @@ It doesn't nothing if a font icon is used."
       (erase-buffer)
       (insert string "\n")
       (setq mode-line-format nil
+            header-line-format nil
             display-line-numbers nil
             truncate-lines t
             cursor-in-non-selected-windows nil)
@@ -436,10 +441,15 @@ It doesn't nothing if a font icon is used."
            (icons-in-terminal (or icon 'fa_question_circle)))
           (t icon))))
 
+(defun company-box--using-image-p nil
+  (not (memq company-box-icons-alist '(company-box-icons-icons-in-terminal company-box-icons-all-the-icons))))
+
 (defun company-box--add-icon (candidate)
-  (concat
-   (company-box--get-icon candidate)
-   (propertize " " 'display `(space :align-to (+ left-fringe ,(if (> company-box--space 2) 3 2))))))
+  (let ((is-image (company-box--using-image-p))
+        (icon (company-box--get-icon candidate)))
+    (concat
+     (if is-image icon (propertize icon 'display '(height 1)))
+     (propertize " " 'display `(space :align-to (+ left-fringe ,(if (> company-box--space 2) 3 2)))))))
 
 (defun company-box--get-color (backend)
   (alist-get backend company-box-backends-colors))
@@ -668,6 +678,11 @@ It doesn't nothing if a font icon is used."
            ;; See the docstring of `select-window'
            (run-with-idle-timer 0 nil (lambda nil (company-box--handle-window-changes t)))))))
 
+(defun company-box--hide-single-candidate nil
+  (or (eq company-box-show-single-candidate 'never)
+      (and (eq company-box-show-single-candidate 'when-no-other-frontend)
+           (cdr company-frontends))))
+
 (defun company-box-frontend (command)
   "`company-mode' frontend using child-frame.
 COMMAND: See `company-frontends'."
@@ -682,7 +697,8 @@ COMMAND: See `company-frontends'."
   (cond
    ((eq command 'hide)
     (company-box-hide))
-   ((and (equal company-candidates-length 1) (null company-box-show-single-candidate))
+   ((and (equal company-candidates-length 1)
+         (company-box--hide-single-candidate))
     (company-box-hide))
    ((eq command 'update)
     (company-box-show))

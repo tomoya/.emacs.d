@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20200724.633
-;; Package-Commit: fa9fa20e3236006c2cf278209356f60cc4175120
+;; Package-Version: 20200804.538
+;; Package-Commit: 0b5386b67118767b01e69019c16ae7f1ef30bde7
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -907,7 +907,7 @@ Group 5 matches the closing brace (optional) and any surrounding whitespace.
 Groups need to agree with `markdown-regex-gfm-code-block-open'.")
 
 (defconst markdown-regex-declarative-metadata
-  "^\\([[:alpha:]][[:alpha:] _-]*?\\)\\([:=][ \t]*\\)\\(.*\\)$"
+  "^[ \t]*\\(?:-[ \t]*\\)?\\([[:alpha:]][[:alpha:] _-]*?\\)\\([:=][ \t]*\\)\\(.*\\)$"
   "Regular expression for matching declarative metadata statements.
 This matches MultiMarkdown metadata as well as YAML and TOML
 assignments such as the following:
