@@ -47,6 +47,7 @@
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(completion-styles '(basic flex partial-completion emacs22))
+ '(create-lockfiles nil)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(darktooth))
  '(custom-safe-themes
