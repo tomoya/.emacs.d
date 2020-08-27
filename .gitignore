@@ -14,3 +14,4 @@ backups
 auto-save-list
 *.elc
 *.signed
+*.sqlite
