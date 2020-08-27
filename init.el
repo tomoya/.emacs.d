@@ -73,7 +73,6 @@
  '(global-diff-hl-mode t)
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
- '(global-visual-line-mode t)
  '(global-whitespace-mode t)
  '(helm-for-files-preferred-list
    '(helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-projectile-projects helm-source-files-in-current-dir))
@@ -159,6 +158,8 @@
  '(tide-always-show-documentation t)
  '(tide-completion-ignore-case t)
  '(tool-bar-mode nil)
+ '(truncate-lines t)
+ '(truncate-partial-width-windows nil)
  '(typescript-indent-level 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
@@ -402,12 +403,6 @@ If buffer is associated with a file name, add that file to the
   (interactive)
   (when killed-file-list
     (find-file (pop killed-file-list))))
-
-;; neotree
-(defun neotree-mode-hooks ()
-  (visual-line-mode -1))
-
-(add-hook 'neotree-mode-hook #'neotree-mode-hooks)
 
 (defun after-init-hooks ()
   (neotree-toggle)
