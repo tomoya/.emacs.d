@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.config/emacs/elpa/cdb-20200803.2138/cdb.el  -*- no-byte-compile: t -*-
-(define-package "cdb" "20200803.2138" "constant database (cdb) reader for Emacs Lisp" 'nil :commit "b51098ea8591c88651b5ae775ec069cd1ce96293" :keywords '("cdb") :authors '(("Yusuke Shinyama <yusuke at cs . nyu . edu>")) :maintainer '("SKK Development Team" . "skk@ring.gr.jp"))
