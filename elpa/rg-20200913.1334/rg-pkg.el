@@ -1,9 +1,8 @@
-(define-package "rg" "20200905.1605" "A search tool based on ripgrep"
+(define-package "rg" "20200913.1334" "A search tool based on ripgrep"
   '((emacs "25.1")
-    (s "1.10.0")
     (transient "0.1.0")
     (wgrep "2.1.10"))
-  :commit "4dac7ab60a7b30707aa15cc345c07804dead44ca" :keywords
+  :commit "7326691e9c761a80f64d00c0848925c6e25c53c0" :keywords
   '("matching" "tools")
   :authors
   '(("David Landell" . "david.landell@sunnyhill.email")
