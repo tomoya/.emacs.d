@@ -104,6 +104,7 @@
      (left . 0)
      (left-fringe . 0)))
  '(js-indent-level 2)
+ '(lsp-headerline-breadcrumb-enable t)
  '(lsp-print-performance t)
  '(lsp-server-install-dir
    (expand-file-name "lsp"
@@ -113,6 +114,7 @@
                            (getenv "XDG_CACHE_HOME"))
                         (concat xdg-cache-home-dir "/emacs"))
                       (locate-user-emacs-file ".cache"))))
+ '(lsp-ui-sideline-show-hover t)
  '(markdown-command "marked")
  '(menu-bar-mode nil)
  '(mouse-wheel-flip-direction t)
