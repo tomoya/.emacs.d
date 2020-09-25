@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "all-the-icons" "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons.el"
-;;;;;;  "86f6d40acf52da4212529d0980d9532a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons.el
+;;;### (autoloads nil "all-the-icons" "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons.el"
+;;;;;;  "658a4cf9cbcc6239b0ad29829d664bd0")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons.el
 
 (autoload 'all-the-icons-icon-for-dir "all-the-icons" "\
 Get the formatted icon for DIR.
@@ -59,9 +59,9 @@ When FAMILY is non-nil, limit the candidates to the icon set matching it.
 \(fn &optional ARG FAMILY)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "all-the-icons"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons.el
 
 (register-definition-prefixes "all-the-icons" '("all-the-icons-"))
 
@@ -69,10 +69,10 @@ When FAMILY is non-nil, limit the candidates to the icon set matching it.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons-faces.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200823.1605/all-the-icons.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons-faces.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/all-the-icons-20200923.1339/all-the-icons.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

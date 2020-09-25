@@ -1,7 +1,7 @@
-(define-package "all-the-icons" "20200823.1605" "A library for inserting Developer icons"
+(define-package "all-the-icons" "20200923.1339" "A library for inserting Developer icons"
   '((emacs "24.3")
     (memoize "1.0.1"))
-  :commit "afca8e75a011650da3b9873f4084fea7937dff2f" :keywords
+  :commit "6917b08f64dd8487e23769433d6cb9ba11f4152f" :keywords
   '("convenient" "lisp")
   :authors
   '(("Dominic Charlesworth" . "dgc336@gmail.com"))

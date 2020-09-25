@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun.el"
-;;;;;;  "deffa1ccd6814faf52846490a66e728e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun.el
+;;;### (autoloads nil "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun.el"
+;;;;;;  "6ef9f1d65843d7f3b4644fe9a41e33f8")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun.el
 
 (autoload 'quickrun-set-default "quickrun" "\
 Set `key' as default key in programing language `lang'.
@@ -63,6 +63,9 @@ positive, and disable it if ARG is zero or negative.  If called
 from Lisp, also enable the mode if ARG is omitted or nil, and
 toggle it if ARG is `toggle'; disable the mode otherwise.
 
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
 \(fn &optional ARG)" t nil)
 
 (autoload 'anything-quickrun "quickrun" "\
@@ -71,9 +74,9 @@ Run quickrun with `anything'." t nil)
 (autoload 'helm-quickrun "quickrun" "\
 Run quickrun with `helm'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun.el"
+;;;### (autoloads "actual autoloads are elsewhere" "quickrun" "../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun.el
 
 (register-definition-prefixes "quickrun" '("helm-quickrun-" "quick"))
 
@@ -81,8 +84,8 @@ Run quickrun with `helm'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/quickrun-20200825.154/quickrun.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/quickrun-20200924.301/quickrun.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

@@ -352,7 +352,7 @@ unless overridden by a more specific face association."
          lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm
          lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go
          lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json
-         lsp-kotlin lsp-lua lsp-nim lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh
+         lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh
          lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph
          lsp-tex lsp-terraform lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml
          lsp-yaml lsp-sqls lsp-svelte)
@@ -486,18 +486,21 @@ the server has requested that."
                                     "[/\\\\]_darcs$"
                                     "[/\\\\]\\.svn$"
                                     "[/\\\\]_FOSSIL_$"
-                                    ;; IDE tools
+                                    ;; IDE or build tools
                                     "[/\\\\]\\.idea$"
                                     "[/\\\\]\\.ensime_cache$"
                                     "[/\\\\]\\.eunit$"
                                     "[/\\\\]node_modules$"
                                     "[/\\\\]\\.fslckout$"
                                     "[/\\\\]\\.tox$"
+                                    "[/\\\\]dist$"
+                                    "[/\\\\]dist-newstyle$"
                                     "[/\\\\]\\.stack-work$"
                                     "[/\\\\]\\.bloop$"
                                     "[/\\\\]\\.metals$"
                                     "[/\\\\]target$"
                                     "[/\\\\]\\.ccls-cache$"
+                                    "[/\\\\]\\.vscode$"
                                     ;; Autotools output
                                     "[/\\\\]\\.deps$"
                                     "[/\\\\]build-aux$"
