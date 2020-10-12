@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.config/emacs/elpa/projectile-20201008.1951/projectile.el  -*- no-byte-compile: t -*-
-(define-package "projectile" "20201008.1951" "Manage and navigate projects in Emacs easily" '((emacs "25.1") (pkg-info "0.4")) :commit "4a69aa17b916754590812a6895b7f0ce2116aa1b" :keywords '("project" "convenience") :authors '(("Bozhidar Batsov" . "bozhidar@batsov.com")) :maintainer '("Bozhidar Batsov" . "bozhidar@batsov.com") :url "https://github.com/bbatsov/projectile")
