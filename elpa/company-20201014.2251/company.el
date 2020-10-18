@@ -2749,14 +2749,19 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
 (defun company--face-attribute (face attr)
   ;; Like `face-attribute', but accounts for faces that have been remapped to
   ;; another face, a list of faces, or a face spec.
-  (cond ((symbolp face)
-         (let ((remap (cadr (assq face face-remapping-alist))))
+  (cond ((null face) nil)
+        ((symbolp face)
+         (let ((remap (cdr (assq face face-remapping-alist))))
            (if remap
-               (company--face-attribute remap attr)
+               (company--face-attribute
+                ;; Faces can be remapped to their unremapped selves, but that
+                ;; would cause us infinite recursion.
+                (if (listp remap) (remq face remap) remap)
+                attr)
              (face-attribute face attr nil t))))
         ((keywordp (car-safe face))
          (or (plist-get face attr)
-             (company--face-attribute (plist-get face :inherit))))
+             (company--face-attribute (plist-get face :inherit) attr)))
         ((listp face)
          (cl-find-if #'stringp
                      (mapcar (lambda (f) (company--face-attribute f attr))
@@ -2798,7 +2803,8 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
     (let* ((nl-face (list
                      :extend t
                      :inverse-video nil
-                     :background (company--face-attribute 'default :background)))
+                     :background (or (company--face-attribute 'default :background)
+                                     (face-attribute 'default :background nil t))))
            (str (apply #'concat
                        (when nl " \n")
                        (cl-mapcan

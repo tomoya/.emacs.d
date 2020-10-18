@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20201007.507
-;; Package-Commit: 152eae2415258141043e559af97d37a72de6c4e5
+;; Package-Version: 20201015.1327
+;; Package-Commit: cf6403186119cd3d25adc702845f969071060e20
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -2774,10 +2774,10 @@ When FACELESS is non-nil, do not return matches where faces have been applied."
       (save-excursion
         (save-match-data
           (goto-char begin)
-          (and (looking-back "\\(?:^\\|[[:blank:]]\\)" (1- begin))
+          (and (looking-back "\\(?:^\\|[[:blank:][:punct:]]\\)" (1- begin))
                (progn
                  (goto-char end)
-                 (looking-at-p "\\(?:[[:blank:]]\\|$\\)"))))))))
+                 (looking-at-p "\\(?:[[:blank:][:punct:]]\\|$\\)"))))))))
 
 (defun markdown-match-bold (last)
   "Match inline bold from the point to LAST."

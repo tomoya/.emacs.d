@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "tide" "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide.el"
-;;;;;;  "75c5c6255b0b1fe0fb146b8917a68386")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide.el
+;;;### (autoloads nil "tide" "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide.el"
+;;;;;;  "3377468546c43cec7db3d8175a2fa996")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide.el
 
 (autoload 'company-tide "tide" "\
 
@@ -56,28 +56,28 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "tide" "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide.el"
+;;;### (autoloads "actual autoloads are elsewhere" "tide" "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide.el
 
-(register-definition-prefixes "tide" '("tide-" "xref-tide-xref-backend"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide" '("tide-" "xref-tide-xref-backend")))
 
 ;;;***
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "tide-lv" "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide-lv.el"
+;;;### (autoloads "actual autoloads are elsewhere" "tide-lv" "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide-lv.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide-lv.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide-lv.el
 
-(register-definition-prefixes "tide-lv" '("tide-lv-"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide-lv" '("tide-lv-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide-lv.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20200823.524/tide.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide-lv.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/tide-20201017.632/tide.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
