@@ -61,6 +61,7 @@
  '(easy-hugo-basedir "/Users/tomoya/src/github.com/tomoya/blog.tomoya.dev")
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(find-file-visit-truename t)
  '(flycheck-posframe-error-prefix "E: ")
  '(flycheck-posframe-warning-prefix "W: ")
