@@ -3,8 +3,8 @@
 ;; Copyright (C) 2013-2020 Skye Shaw and others
 ;; Author: Skye Shaw <skye.shaw@gmail.com>
 ;; Version: 0.8.1 (unreleased)
-;; Package-Version: 20200827.2326
-;; Package-Commit: c89e6e142af821814665561004613eb0778070b1
+;; Package-Version: 20201110.109
+;; Package-Commit: 93ea243277f2f2092b77928f0e1155e3e3a8da6a
 ;; Keywords: git, vc, github, bitbucket, gitlab, sourcehut, convenience
 ;; URL: http://github.com/sshaw/git-link
 ;; Package-Requires: ((emacs "24.3"))
@@ -240,6 +240,8 @@ As an example, \"gitlab\" will match with both \"gitlab.com\" and
 (defun git-link--last-commit ()
   (car (git-link--exec "--no-pager" "log" "-n1" "--pretty=format:%H")))
 
+(defvar magit-buffer-revision)
+
 (defun git-link--commit ()
   (cond
    ((git-link--using-git-timemachine)
@@ -262,6 +264,8 @@ As an example, \"gitlab\" will match with both \"gitlab.com\" and
 
 (defun git-link--branch-remote (branch)
   (git-link--get-config (format "branch.%s.remote" branch)))
+
+(declare-function magit-rev-branch "ext:magit-git")
 
 (defun git-link--branch ()
   (or (git-link--get-config "git-link.branch")
@@ -311,6 +315,8 @@ return (FILENAME . REVISION) otherwise nil."
              (file-exists-p (match-string 1 filename)))
     (cons (match-string 1 filename)
           (match-string 2 filename))))
+
+(defvar magit-buffer-file-name)
 
 (defun git-link--relative-filename ()
   (let* ((filename (buffer-file-name))

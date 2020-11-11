@@ -6,10 +6,10 @@
 ;;         Marshall T. Vandegrift <llasram@gmail.com>
 ;; Maintainer: Vasilij Schneidermann <mail@vasilij.de>
 ;; Package-Requires: ((emacs "24.1"))
-;; Package-Version: 20201031.1448
-;; Package-Commit: 831ef3a04e4d32ec3fa3d77a54dc7e7bc5b6fd81
+;; Package-Version: 20201109.1026
+;; Package-Commit: fc5e1c58f94472944c4aa838f00f6adcac6fa992
 ;; Keywords: data yaml
-;; Version: 0.0.14
+;; Version: 0.0.15
 
 ;; This file is not part of Emacs
 
@@ -119,7 +119,7 @@ that key is pressed to begin a block literal."
 
 ;; Constants
 
-(defconst yaml-mode-version "0.0.14" "Version of `yaml-mode'.")
+(defconst yaml-mode-version "0.0.15" "Version of `yaml-mode'.")
 
 (defconst yaml-blank-line-re "^ *$"
   "Regexp matching a line containing only (valid) whitespace.")

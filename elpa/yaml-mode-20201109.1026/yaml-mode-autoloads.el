@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "yaml-mode" "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode.el"
-;;;;;;  "a35311d27ce703910a2455e8144e238a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode.el
+;;;### (autoloads nil "yaml-mode" "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode.el"
+;;;;;;  "a9b9bacfac600746f999787573d8e585")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode.el
 
 (let ((loads (get 'yaml 'custom-loads))) (if (member '"yaml-mode" loads) nil (put 'yaml 'custom-loads (cons '"yaml-mode" loads))))
 
@@ -21,9 +21,9 @@ Simple mode to edit YAML.
 
 (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
 
-;;;### (autoloads "actual autoloads are elsewhere" "yaml-mode" "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "yaml-mode" "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "yaml-mode" '("yaml-")))
 
@@ -31,8 +31,8 @@ Simple mode to edit YAML.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201031.1448/yaml-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/yaml-mode-20201109.1026/yaml-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

@@ -4,8 +4,8 @@
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-terraform-mode
-;; Package-Version: 20201106.1602
-;; Package-Commit: b8003ec131566fd2b753fb423e01640eab07e12c
+;; Package-Version: 20201110.1915
+;; Package-Commit: edc22858e27c33a64d0492573888d8779f60d79b
 ;; Version: 0.06
 ;; Package-Requires: ((emacs "24.3") (hcl-mode "0.03"))
 
@@ -145,6 +145,12 @@
       (add-hook 'before-save-hook #'terraform-format-buffer nil t)
     (remove-hook 'before-save-hook #'terraform-format-buffer t)))
 
+(rx-define terraform-identifier
+  (seq
+   (optional "\"")
+   (one-or-more (or alphanumeric "_" "-")) ; resource type
+   (optional "\"")))
+
 ;;;###autoload
 (define-derived-mode terraform-mode hcl-mode "Terraform"
   "Major mode for editing terraform configuration file"
@@ -157,8 +163,20 @@
 
   ;; imenu
   (setq imenu-generic-expression
-        '(("resource" "^resource\\s-+\"[^\"]+\"\\s-+\"\\([^\"]+\\)\"" 1)
-          ("data" "^data\\s-+\"[^\"]+\"\\s-+\"\\([^\"]+\\)\"" 1)
+        `(("resource" ,(rx bol
+                           "resource"
+                           (one-or-more whitespace)
+                           (group
+                            terraform-identifier
+                            (one-or-more whitespace)
+                            terraform-identifier)) 1)
+          ("data" ,(rx bol
+                       "data"
+                       (one-or-more whitespace)
+                       (group
+                        terraform-identifier
+                        (one-or-more whitespace)
+                        terraform-identifier)) 1)
           ("provider" "^provider\\s-+\"\\([^\"]+\\)\"" 1)
           ("module" "^module\\s-+\"\\([^\"]+\\)\"" 1)
           ("variable" "^variable\\s-+\"\\([^\"]+\\)\"" 1)
