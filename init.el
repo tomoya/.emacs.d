@@ -12,9 +12,6 @@
                 (split-string (substring (shell-command-to-string "echo $PATH") 0 -1) ":"))
       do (add-to-list 'exec-path x))
 
-(defvar user-backup-directory (locate-user-emacs-file "backups")
-  "This variable is define backup directory for users.")
-
 ;; Used by custom-set-variables
 (require 'helm-projectile nil t)
 
@@ -49,9 +46,6 @@
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(auto-revert-interval 1)
- '(auto-save-file-name-transforms
-   `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,user-backup-directory t)))
- '(backup-directory-alist `((".*" \, user-backup-directory)))
  '(company-auto-commit 'ignore)
  '(company-box-doc-delay 0.3)
  '(company-box-icons-alist 'company-box-icons-all-the-icons)
@@ -206,12 +200,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flycheck-posframe-face ((t (:inherit nil :background "purple4" :box (:line-width 1 :color "purple3")))))
  '(frame-tabs-buffer-tab ((t (:inherit frame-tabs-face :foreground "gray60" :box (:line-width 5 :color "#212326")))))
  '(frame-tabs-face ((t (:background "#212326" :foreground "gray80"))))
  '(frame-tabs-higlight-tab ((t (:inherit frame-tabs-buffer-tab :background "#3d4147" :box (:line-width 5 :color "#3d4147")))))
  '(frame-tabs-selected-tab ((t (:inherit frame-tabs-buffer-tab :background "#292b2e" :foreground "white" :box (:line-width 5 :color "#292b2e")))))
- '(lsp-ui-doc-background ((t (:background "dark magenta"))))
  '(whitespace-newline ((t (:foreground "gray25")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
