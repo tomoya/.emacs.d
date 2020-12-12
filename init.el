@@ -42,6 +42,12 @@
 (unless (member "-no-splash" command-line-args)
   (require 'nano-help)
   (require 'nano-splash))
+;; pickup fron nano-default
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse
+      uniquify-separator " • "
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start auto generated configuration by customize
