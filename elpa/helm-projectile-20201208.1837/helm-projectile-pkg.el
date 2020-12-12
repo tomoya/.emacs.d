@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.config/emacs/elpa/helm-projectile-20201208.1837/helm-projectile.el  -*- no-byte-compile: t -*-
+(define-package "helm-projectile" "20201208.1837" "Helm integration for Projectile" '((helm "1.9.9") (projectile "2.2.0") (cl-lib "0.3")) :commit "e3d541c59505cd8c5843bbcf237c12e3d3288990" :keywords '("project" "convenience") :authors '(("Bozhidar Batsov")) :maintainer '("Bozhidar Batsov") :url "https://github.com/bbatsov/helm-projectile")
