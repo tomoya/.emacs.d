@@ -1,12 +1,3 @@
-(setq frame-title-format
-      '((:eval
-         (if (buffer-file-name)
-             (let ((project-name (projectile-project-name)))
-               (if (string= "-" project-name)
-                   "%f"
-                 (format "%s: %s" project-name (abbreviate-file-name (buffer-file-name)))))
-           "%b"))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,6 +19,11 @@
  '(menu-bar-mode nil)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
+ '(initial-buffer-choice nil)
+ '(frame-title-format nil)
+ '(cursor-in-non-selected-windows nil)
+ '(font-lock-maximum-decoration nil)
+ '(font-lock-maximum-size nil)
  '(x-underline-at-descent-line t)
  '(window-divider-default-right-width 24)
  '(window-divider-default-places 'right-only))
