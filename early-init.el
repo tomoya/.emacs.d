@@ -14,9 +14,11 @@
  ;; If there is more than one, they won't work right.
  '(fringe-mode '(nil . 0) nil (fringe))
  '(inhibit-startup-screen t)
+ '(inhibit-startup-message t)
+ '(initial-scratch-message nil)
  '(initial-frame-alist
-   '((width . 238)
-     (height . 72)
+   '((width . 249)
+     (height . 62)
      (top . 0)
      (left . 0)
      (left-fringe . 0)))
@@ -26,9 +28,9 @@
 
 ;; font
 ;; AsciiフォントをFira Codeに
-(set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 140)
+;; (set-face-attribute 'default nil
+;;                     :family "Fira Code"
+;;                     :height 140)
 
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
 ;; amount of data which Emacs reads from the process. Again the emacs
@@ -37,8 +39,8 @@
 (setq-default read-process-output-max (* 1024 1024))
 
 ;; CJKフォントの横幅を調整
-(add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
-(add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
+;; (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
+;; (add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
 (add-to-list 'face-font-rescale-alist '(".*BIZ UD.*" . 1.2))
 
 ;; all-the-iconsの横幅を調整

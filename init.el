@@ -4,6 +4,8 @@
 (require 'cl-lib)
 (setq default-directory "~/")
 
+(add-to-list 'load-path (locate-user-emacs-file "nano"))
+
 ;; Set PATH env and exec-path from $PATH
 (setenv "PATH" (shell-command-to-string "echo $PATH"))
 (cl-loop for x in (reverse
@@ -15,6 +17,25 @@
 
 ;; Used by custom-set-variables
 (require 'helm-projectile nil t)
+
+;; nano
+(require 'nano-layout)
+(require 'nano-theme-dark)
+(require 'nano-faces)
+(nano-faces)
+(require 'nano-theme)
+(nano-theme)
+(require 'nano-session)
+(require 'nano-modeline)
+(require 'nano-bindings)
+(let ((inhibit-message t))
+  (message "Welcome to GNU Emacs / N Λ N O edition")
+  (message (format "Initialization time: %s" (emacs-init-time))))
+;; Splash and help (optional)
+(add-to-list 'command-switch-alist '("-no-splash" . (lambda (args))))
+(unless (member "-no-splash" command-line-args)
+  (require 'nano-help)
+  (require 'nano-splash))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start auto generated configuration by customize
@@ -49,7 +70,6 @@
  '(completion-styles '(basic flex partial-completion emacs22))
  '(create-lockfiles nil)
  '(css-indent-offset 2)
- '(custom-enabled-themes '(darktooth))
  '(custom-safe-themes
    '("88049c35e4a6cedd4437ff6b093230b687d8a1fb65408ef17bfcf9b7338734f6" "7803ff416cf090613afd3b4c3de362e64063603522d4974bcae8cfa53cf1fd1b" "bb5a253b1e359db941284cc74750ecf38aa93878b208919fc0f2199daaef491e" "d90fe08e88654af93970f730a686b4fb936bad4e4b3b86ae3ce66388585ae649" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(delete-selection-mode t)
