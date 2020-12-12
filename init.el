@@ -119,7 +119,6 @@
      (left . 0)
      (left-fringe . 0)))
  '(js-indent-level 2)
- '(lsp-headerline-breadcrumb-enable t)
  '(lsp-print-performance t)
  '(lsp-server-install-dir
    (expand-file-name "lsp"
