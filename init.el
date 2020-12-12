@@ -16,7 +16,16 @@
 (require 'helm-projectile nil t)
 
 ;; nano
-(require 'nano-layout)
+;; (require 'nano-layout)
+;; extract nano-layout needed to improve fperformance or initial display
+(window-divider-mode 1)
+(setq widget-image-enable nil)
+(defface fallback '((t :family "Fira Code"
+                       :inherit 'nano-face-faded)) "Fallback")
+(set-display-table-slot standard-display-table 'truncation
+                        (make-glyph-code ?… 'fallback))
+(set-display-table-slot standard-display-table 'wrap
+                        (make-glyph-code ?↩ 'fallback))
 (require 'nano-theme-dark)
 (require 'nano-faces)
 (nano-faces)

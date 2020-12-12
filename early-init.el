@@ -12,25 +12,31 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fringe-mode '(nil . 0) nil (fringe))
  '(inhibit-startup-screen t)
  '(inhibit-startup-message t)
  '(initial-scratch-message nil)
  '(initial-frame-alist
-   '((width . 249)
-     (height . 62)
+   '((font . "Roboto Mono:style=Light:size=14")
+     (width . 248)
+     (height . 64)
+     (internal-border-width . 24)
      (top . 0)
      (left . 0)
-     (left-fringe . 0)))
+     (left-fringe . 0)
+     (right-fringe   . 0)
+     (tool-bar-lines . 0)))
  '(menu-bar-mode nil)
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(x-underline-at-descent-line t)
+ '(window-divider-default-right-width 24)
+ '(window-divider-default-places 'right-only))
 
 ;; font
 ;; AsciiフォントをFira Codeに
-;; (set-face-attribute 'default nil
-;;                     :family "Fira Code"
-;;                     :height 140)
+(set-face-attribute 'default nil
+                    :family "Roboto Mono"
+                    :height 140)
 
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
 ;; amount of data which Emacs reads from the process. Again the emacs
