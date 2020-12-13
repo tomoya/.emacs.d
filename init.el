@@ -79,6 +79,7 @@
  '(completion-styles '(basic flex partial-completion emacs22))
  '(create-lockfiles nil)
  '(css-indent-offset 2)
+ '(cursor-in-non-selected-windows nil)
  '(custom-safe-themes
    '("88049c35e4a6cedd4437ff6b093230b687d8a1fb65408ef17bfcf9b7338734f6" "7803ff416cf090613afd3b4c3de362e64063603522d4974bcae8cfa53cf1fd1b" "bb5a253b1e359db941284cc74750ecf38aa93878b208919fc0f2199daaef491e" "d90fe08e88654af93970f730a686b4fb936bad4e4b3b86ae3ce66388585ae649" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(delete-selection-mode t)
@@ -94,8 +95,11 @@
  '(find-file-visit-truename t)
  '(flycheck-posframe-error-prefix "E: ")
  '(flycheck-posframe-warning-prefix "W: ")
+ '(font-lock-maximum-decoration nil)
+ '(font-lock-maximum-size nil)
  '(frame-tabs-filter-function 'my-frame-tabs-default-filter)
  '(frame-tabs-mode nil)
+ '(frame-title-format nil t)
  '(fringe-mode '(nil . 0) nil (fringe))
  '(gc-cons-threshold 100000000)
  '(global-auto-revert-mode t)
@@ -127,12 +131,14 @@
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
+ '(initial-buffer-choice nil)
  '(initial-frame-alist
    '((width . 238)
      (height . 72)
      (top . 0)
      (left . 0)
      (left-fringe . 0)))
+ '(initial-scratch-message nil)
  '(js-indent-level 2)
  '(lsp-print-performance t)
  '(lsp-server-install-dir
@@ -205,7 +211,10 @@
                [92 9])))
  '(whitespace-space-regexp "\\(　+\\)")
  '(whitespace-style
-   '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark)))
+   '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark))
+ '(window-divider-default-places 'right-only)
+ '(window-divider-default-right-width 24)
+ '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
