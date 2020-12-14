@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "company-emoji" "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji.el"
-;;;;;;  "5db217e43359e11540258f660eeee201")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji.el
+;;;### (autoloads nil "company-emoji" "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji.el"
+;;;;;;  "bea96e9dcd754f8b772929e855dcdcfc")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji.el
 
 (autoload 'company-emoji "company-emoji" "\
 Provide a backend for company to complete emoji-words.
@@ -26,9 +26,9 @@ is a single candidate, as when COMMAND is 'annotation' or
 Add emoji to the company backends." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-emoji"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-emoji" '("company-emoji")))
 
@@ -37,18 +37,18 @@ Add emoji to the company backends." t nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "company-emoji-list"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji-list.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji-list.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji-list.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji-list.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-emoji-list" '("company-emoji-list-create")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji-list.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201020.554/company-emoji.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji-list.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/company-emoji-20201212.2325/company-emoji.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

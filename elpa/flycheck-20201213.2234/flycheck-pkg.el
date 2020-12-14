@@ -1,10 +1,10 @@
-(define-package "flycheck" "20201105.423" "On-the-fly syntax checking"
+(define-package "flycheck" "20201213.2234" "On-the-fly syntax checking"
   '((dash "2.12.1")
     (pkg-info "0.4")
     (let-alist "1.0.4")
     (seq "1.11")
     (emacs "24.3"))
-  :commit "79c9245ee0bd1722d41c865fef69aa2b1ac08fde" :keywords
+  :commit "98190b8af225990a28ea60ea54afade8a18e6107" :keywords
   ("convenience" "languages" "tools")
   :authors
   (("Sebastian Wiesner" . "swiesner@lunaryorn.com"))

@@ -4,8 +4,8 @@
 
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20201210.927
-;; Package-Commit: 312bd230fd7c56562410f0b50b1c18f2d4b598fc
+;; Package-Version: 20201214.839
+;; Package-Commit: 3b213900c8f12d3711a7790c6620d4b9dfc38ea0
 ;; Keywords: project, convenience
 ;; Version: 2.4.0-snapshot
 ;; Package-Requires: ((emacs "25.1") (pkg-info "0.4"))
@@ -2991,6 +2991,7 @@ PROJECT-ROOT is the targeted directory.  If nil, use
 `projectile-project-root'."
   (or project-root (setq project-root (projectile-project-root)))
   (cond
+   ;; first we check for a VCS marker in the project root itself
    ((projectile-file-exists-p (expand-file-name ".git" project-root)) 'git)
    ((projectile-file-exists-p (expand-file-name ".hg" project-root)) 'hg)
    ((projectile-file-exists-p (expand-file-name ".fslckout" project-root)) 'fossil)
@@ -2998,6 +2999,10 @@ PROJECT-ROOT is the targeted directory.  If nil, use
    ((projectile-file-exists-p (expand-file-name ".bzr" project-root)) 'bzr)
    ((projectile-file-exists-p (expand-file-name "_darcs" project-root)) 'darcs)
    ((projectile-file-exists-p (expand-file-name ".svn" project-root)) 'svn)
+   ;; then we check if there's a VCS marker up the directory tree
+   ;; that covers the case when a project is part of a multi-project repository
+   ;; in those cases you can still the VCS to get a list of files for
+   ;; the project in question
    ((projectile-locate-dominating-file project-root ".git") 'git)
    ((projectile-locate-dominating-file project-root ".hg") 'hg)
    ((projectile-locate-dominating-file project-root ".fslckout") 'fossil)
@@ -4026,7 +4031,7 @@ project of that type"
   "Meant to be used for `compilation-buffer-name-function`.
 Argument COMPILATION-MODE is the name of the major mode used for the compilation buffer."
   (concat "*" (downcase compilation-mode) "*"
-	  (if (projectile-project-p) (concat "<" (projectile-project-name) ">") "")))
+          (if (projectile-project-p) (concat "<" (projectile-project-name) ">") "")))
 
 (defun projectile-current-project-buffer-p ()
   "Meant to be used for `compilation-save-buffers-predicate`.
@@ -4034,7 +4039,7 @@ This indicates whether the current buffer is in the same project as the current
 window (including returning true if neither is in a project)."
   (let ((root (with-current-buffer (window-buffer) (projectile-project-root))))
     (or (not root)
-	(projectile-project-buffer-p (current-buffer) root))))
+        (projectile-project-buffer-p (current-buffer) root))))
 
 (defun projectile-compilation-command (compile-dir)
   "Retrieve the compilation command for COMPILE-DIR.
@@ -4432,7 +4437,7 @@ With a prefix ARG invokes `projectile-commander' instead of
       ;; If switch-project-action switched buffers then with-temp-buffer will
       ;; have lost that change, so switch back to the correct buffer.
       (when (buffer-live-p switched-buffer)
-          (switch-to-buffer switched-buffer)))
+        (switch-to-buffer switched-buffer)))
     (run-hooks 'projectile-after-switch-project-hook)))
 
 ;;;###autoload
