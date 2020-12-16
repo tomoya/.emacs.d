@@ -43,10 +43,10 @@
 ;; モードライン上の表示を変更する
 ;;   'left => モードラインの左端に表示する
 ;;   以外  => マイナーモードとして表示する
-;; (setq skk-status-indicator 'minor-mode)
+(setq skk-status-indicator 'minor-mode)
 
 ;; モードラインに SKK アイコンを表示する。
-(setq skk-show-icon t)
+;; (setq skk-show-icon t)
 
 ;; カーソル付近にモード切り替えを表示する
 ;; (setq skk-show-mode-show t)		; M-x skk-show-mode でトグル可。
