@@ -15,6 +15,13 @@
 ;; Used by custom-set-variables
 (require 'helm-projectile nil t)
 
+;; My function
+(defun my-get-cache-dir ()
+  "Get the cache directory."
+  (or (when-let (xdg-cache-home-dir (getenv "XDG_CACHE_HOME"))
+        (concat xdg-cache-home-dir "/emacs"))
+      (locate-user-emacs-file ".cache")))
+
 ;; nano
 ;; Fix undefined face on nano-theme.el
 (defgroup helm-swoop nil
@@ -29,6 +36,7 @@
 ;; extract nano-layout needed to improve fperformance or initial display
 (window-divider-mode 1)
 (setq widget-image-enable nil)
+;;
 (defface fallback '((t :family "Fira Code"
                        :inherit 'nano-face-faded)) "Fallback")
 (set-display-table-slot standard-display-table 'truncation
@@ -40,7 +48,7 @@
 (nano-faces)
 (require 'nano-theme)
 (nano-theme)
-(require 'nano-session)
+;; (require 'nano-session)
 (require 'nano-modeline)
 (require 'nano-bindings)
 (let ((inhibit-message t))
@@ -57,6 +65,21 @@
       uniquify-separator " • "
       uniquify-after-kill-buffer-p t
       uniquify-ignore-buffers-re "^\\*")
+;; pickup from nano-sesion
+(setq backup-directory-alist `(("." . ,(expand-file-name "backups" (my-get-cache-dir))))
+      make-backup-files t     ; backup of a file the first time it is saved.
+      backup-by-copying t     ; don't clobber symlinks
+      version-control t       ; version numbers for backup files
+      delete-old-versions t   ; delete excess backup files silently
+      kept-old-versions 6     ; oldest versions to keep when a new numbered
+                              ; backup is made (default: 2)
+      kept-new-versions 9     ; newest versions to keep when a new numbered
+                              ; backup is made (default: 2)
+      auto-save-default t     ; auto-save every buffer that visits a file
+      auto-save-timeout 20    ; number of seconds idle time before auto-save
+                              ; (default: 30)
+      auto-save-interval 200) ; number of keystrokes between auto-saves
+                              ; (default: 300)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start auto generated configuration by customize
