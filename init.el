@@ -16,6 +16,15 @@
 (require 'helm-projectile nil t)
 
 ;; nano
+;; Fix undefined face on nano-theme.el
+(defgroup helm-swoop nil
+  "Open helm-swoop."
+  :prefix "helm-swoop-" :group 'helm)
+
+(defface helm-swoop-target-line-face
+  '((t (:background "#e3e300" :foreground "#222222")))
+  "Face for helm-swoop target line"
+  :group 'helm-swoop)
 ;; (require 'nano-layout)
 ;; extract nano-layout needed to improve fperformance or initial display
 (window-divider-mode 1)
