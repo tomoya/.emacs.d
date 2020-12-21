@@ -245,7 +245,7 @@
  '(whitespace-style
    '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark))
  '(window-divider-default-places 'right-only)
- '(window-divider-default-right-width 24)
+ '(window-divider-default-right-width 16)
  '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

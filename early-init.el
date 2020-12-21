@@ -8,9 +8,9 @@
  '(initial-scratch-message nil)
  '(initial-frame-alist
    '((font . "Roboto Mono:style=Light:size=14")
-     (width . 248)
-     (height . 64)
-     (internal-border-width . 24)
+     (width . 253)
+     (height . 65)
+     (internal-border-width . 8)
      (top . 0)
      (left . 0)
      (left-fringe . 0)
@@ -25,7 +25,7 @@
  '(font-lock-maximum-decoration nil)
  '(font-lock-maximum-size nil)
  '(x-underline-at-descent-line t)
- '(window-divider-default-right-width 24)
+ '(window-divider-default-right-width 16)
  '(window-divider-default-places 'right-only))
 
 ;; font
