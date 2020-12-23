@@ -41,8 +41,9 @@ beside the ones below, but these didn’t fit well anywhere else.
      When the region is active, this command saves that to the
      ‘kill-ring’, like ‘kill-ring-save’ would, instead of behaving as
      described above.  If a prefix argument is used and the region is
-     within a hunk, it strips the outer diff marker column before saving
-     the text.
+     within a hunk, then it strips the diff marker column and keeps only
+     either the added or removed lines, depending on the sign of the
+     prefix argument.
 
 ‘M-w’     (‘magit-copy-buffer-revision’)
 
@@ -2443,7 +2444,7 @@ Appendix C Keystroke Index
 * M-p <2>:                               Editing Rebase Sequences.
                                                               (line  43)
 * M-w:                                   Blaming.             (line 127)
-* M-w <1>:                               Common Commands.     (line  27)
+* M-w <1>:                               Common Commands.     (line  28)
 * M-x magit-debug-git-executable:        Git Executable.      (line  45)
 * M-x magit-debug-git-executable <1>:    Debugging Tools.     (line  36)
 * M-x magit-describe-section-briefly:    Section Types and Values.
@@ -2783,7 +2784,7 @@ Appendix D Command Index
 * magit-commit-instant-squash:           Initiating a Commit. (line  63)
 * magit-commit-reword:                   Initiating a Commit. (line  33)
 * magit-commit-squash:                   Initiating a Commit. (line  55)
-* magit-copy-buffer-revision:            Common Commands.     (line  27)
+* magit-copy-buffer-revision:            Common Commands.     (line  28)
 * magit-copy-section-value:              Common Commands.     (line  10)
 * magit-cycle-margin-style:              Log Margin.          (line  70)
 * magit-debug-git-executable:            Git Executable.      (line  45)
