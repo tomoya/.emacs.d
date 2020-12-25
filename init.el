@@ -172,6 +172,7 @@
      (left-fringe . 0)))
  '(initial-scratch-message nil)
  '(js-indent-level 2)
+ '(lsp-headerline-breadcrumb-enable nil)
  '(lsp-print-performance t)
  '(lsp-server-install-dir
    (expand-file-name "lsp"
