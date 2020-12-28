@@ -223,6 +223,15 @@
  '(split-height-threshold nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(treemacs-eldoc-display nil)
+ '(treemacs-filewatch-mode t)
+ '(treemacs-follow-after-init t)
+ '(treemacs-follow-mode t)
+ '(treemacs-fringe-indicator-mode t)
+ '(treemacs-git-mode t)
+ '(treemacs-silent-refresh t)
+ '(treemacs-sorting 'alphabetic-case-insensitive-asc)
+ '(treemacs-width 25)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(typescript-indent-level 2)
@@ -469,6 +478,11 @@ If buffer is associated with a file name, add that file to the
   (interactive)
   (when killed-file-list
     (find-file (pop killed-file-list))))
+
+;; treemacs
+(with-eval-after-load 'treemacs
+  (require 'treemacs-all-the-icons)
+  (treemacs-load-theme "all-the-icons"))
 
 (defun after-init-hooks ()
   (neotree-toggle)
