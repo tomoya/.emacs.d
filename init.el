@@ -202,7 +202,7 @@
    '(("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(forge github-review string-inflection exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode session fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
+   '(treemacs treemacs-all-the-icons treemacs-icons-dired treemacs-magit treemacs-projectile forge github-review string-inflection exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode session fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens typescript-mode ddskk company-flx helm-ghq company helm-projectile projectile magit helm-descbinds helm diff-hl spacemacs-theme))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(project-vc-ignores '("node_modules" ".git" "tmp" "dist" "coverage"))
  '(projectile-enable-caching t)
