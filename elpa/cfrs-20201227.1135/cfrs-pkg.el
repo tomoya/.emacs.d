@@ -1,2 +1,0 @@
-;;; Generated package description from /Users/tomoya/.config/emacs/elpa/cfrs-20201227.1135/cfrs.el  -*- no-byte-compile: t -*-
-(define-package "cfrs" "20201227.1135" "Child-frame based read-string" '((emacs "26.1") (dash "2.11.0") (s "1.10.0") (posframe "0.6.0")) :commit "6477fc50513ac5a5fe2bee8c76109a026d30b6a8" :authors '(("Alexander Miller" . "alexanderm@web.de")) :maintainer '("Alexander Miller" . "alexanderm@web.de") :url "https://github.com/Alexander-Miller/cfrs")
