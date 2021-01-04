@@ -485,8 +485,7 @@ If buffer is associated with a file name, add that file to the
   (treemacs-load-theme "all-the-icons"))
 
 (defun after-init-hooks ()
-  (treemacs)
-  (switch-to-buffer "*scratch*")
+  (neotree-toggle)
   (session-initialize))
 
 (add-hook 'after-init-hook #'after-init-hooks)
