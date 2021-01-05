@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "git-rebase" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/git-rebase.el"
+;;;### (autoloads nil "git-rebase" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/git-rebase.el"
 ;;;;;;  "691a2e2c30f954ee19f86531c1316f2a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/git-rebase.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/git-rebase.el
 
 (autoload 'git-rebase-current-line "git-rebase" "\
 Parse current line into a `git-rebase-action' instance.
@@ -29,9 +29,9 @@ running 'man git-rebase' at the command line) for details.
 
 (add-to-list 'auto-mode-alist (cons git-rebase-filename-regexp 'git-rebase-mode))
 
-;;;### (autoloads "actual autoloads are elsewhere" "git-rebase" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/git-rebase.el"
+;;;### (autoloads "actual autoloads are elsewhere" "git-rebase" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/git-rebase.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/git-rebase.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/git-rebase.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "git-rebase" '("git-rebase-")))
 
@@ -39,9 +39,9 @@ running 'man git-rebase' at the command line) for details.
 
 ;;;***
 
-;;;### (autoloads nil "magit" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit.el"
+;;;### (autoloads nil "magit" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit.el"
 ;;;;;;  "bd6fc620e51f847f92204163e7007b5d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit.el
 
 (define-obsolete-variable-alias 'global-magit-file-mode 'magit-define-global-key-bindings "Magit 3.0.0")
 
@@ -137,9 +137,9 @@ and Emacs to it.
 
 \(fn &optional PRINT-DEST)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit" '("magit-")))
 
@@ -147,9 +147,9 @@ and Emacs to it.
 
 ;;;***
 
-;;;### (autoloads nil "magit-apply" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-apply.el"
+;;;### (autoloads nil "magit-apply" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-apply.el"
 ;;;;;;  "32553a1a856bd2753231eb3f5f9535e2")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-apply.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-apply.el
 
 (autoload 'magit-stage-file "magit-apply" "\
 Stage all changes to FILE.
@@ -180,9 +180,9 @@ without requiring confirmation.
 Remove all changes from the staging area." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-apply"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-apply.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-apply.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-apply.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-apply.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-apply" '("magit-")))
 
@@ -190,9 +190,9 @@ Remove all changes from the staging area." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-autorevert" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autorevert.el"
+;;;### (autoloads nil "magit-autorevert" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autorevert.el"
 ;;;;;;  "c51fbf95bc0b12d269c6d143c12d408a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autorevert.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autorevert.el
 
 (put 'magit-auto-revert-mode 'globalized-minor-mode t)
 
@@ -219,9 +219,9 @@ See `auto-revert-mode' for more information on Auto-Revert mode.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-autorevert"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autorevert.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autorevert.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autorevert.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autorevert.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-autorevert" '("auto-revert-buffer" "magit-")))
 
@@ -229,9 +229,9 @@ See `auto-revert-mode' for more information on Auto-Revert mode.
 
 ;;;***
 
-;;;### (autoloads nil "magit-bisect" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bisect.el"
+;;;### (autoloads nil "magit-bisect" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bisect.el"
 ;;;;;;  "153f301ce1baa6e19456435ba578325e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bisect.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bisect.el
  (autoload 'magit-bisect "magit-bisect" nil t)
 
 (autoload 'magit-bisect-start "magit-bisect" "\
@@ -281,9 +281,9 @@ bisect run'.
 \(fn CMDLINE &optional BAD GOOD ARGS)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-bisect"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bisect.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bisect.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bisect.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bisect.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-bisect" '("magit-")))
 
@@ -291,9 +291,9 @@ bisect run'.
 
 ;;;***
 
-;;;### (autoloads nil "magit-blame" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-blame.el"
+;;;### (autoloads nil "magit-blame" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-blame.el"
 ;;;;;;  "d188fe5989f505e162345dd2e58548ef")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-blame.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-blame.el
  (autoload 'magit-blame-echo "magit-blame" nil t)
  (autoload 'magit-blame-addition "magit-blame" nil t)
  (autoload 'magit-blame-removal "magit-blame" nil t)
@@ -301,9 +301,9 @@ bisect run'.
  (autoload 'magit-blame "magit-blame" nil t)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-blame"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-blame.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-blame.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-blame.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-blame.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-blame" '("magit-")))
 
@@ -311,9 +311,9 @@ bisect run'.
 
 ;;;***
 
-;;;### (autoloads nil "magit-bookmark" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bookmark.el"
+;;;### (autoloads nil "magit-bookmark" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bookmark.el"
 ;;;;;;  "45ba7cca4e72cce831d8d1844660d2df")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bookmark.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bookmark.el
 
 (autoload 'magit--handle-bookmark "magit-bookmark" "\
 Open a bookmark created by `magit--make-bookmark'.
@@ -324,9 +324,9 @@ with the variables' values as arguments, which were recorded by
 \(fn BOOKMARK)" nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-bookmark"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bookmark.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bookmark.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bookmark.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bookmark.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-bookmark" '("magit--make-bookmark")))
 
@@ -334,9 +334,9 @@ with the variables' values as arguments, which were recorded by
 
 ;;;***
 
-;;;### (autoloads nil "magit-branch" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-branch.el"
+;;;### (autoloads nil "magit-branch" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-branch.el"
 ;;;;;;  "589a0e72f0e12ec67d5d4f1776451ccf")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-branch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-branch.el
  (autoload 'magit-branch "magit" nil t)
 
 (autoload 'magit-checkout "magit-branch" "\
@@ -498,9 +498,9 @@ and also rename the respective reflog file.
  (autoload 'magit-branch-configure "magit-branch" nil t)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-branch"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-branch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-branch.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-branch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-branch.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-branch" '("magit-")))
 
@@ -508,9 +508,9 @@ and also rename the respective reflog file.
 
 ;;;***
 
-;;;### (autoloads nil "magit-clone" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-clone.el"
+;;;### (autoloads nil "magit-clone" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-clone.el"
 ;;;;;;  "6e26c2f9cb9d9312f905af2b4a451c09")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-clone.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-clone.el
  (autoload 'magit-clone "magit-clone" nil t)
 
 (autoload 'magit-clone-regular "magit-clone" "\
@@ -556,9 +556,9 @@ Then show the status buffer for the new repository.
 \(fn REPOSITORY DIRECTORY ARGS)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-clone"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-clone.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-clone.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-clone.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-clone.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-clone" '("magit-clone-")))
 
@@ -566,9 +566,9 @@ Then show the status buffer for the new repository.
 
 ;;;***
 
-;;;### (autoloads nil "magit-commit" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-commit.el"
-;;;;;;  "87166638838cdfb414317da7708a9eb5")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-commit.el
+;;;### (autoloads nil "magit-commit" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-commit.el"
+;;;;;;  "f184f55ff0d31294a3aa2f38610bd318")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-commit.el
  (autoload 'magit-commit "magit-commit" nil t)
 
 (autoload 'magit-commit-create "magit-commit" "\
@@ -667,9 +667,9 @@ Spread modified modules across recent commits.
  (autoload 'magit-commit-autofixup "magit-commit" nil t)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-commit"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-commit.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-commit.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-commit.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-commit.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-commit" '("magit-")))
 
@@ -677,9 +677,9 @@ Spread modified modules across recent commits.
 
 ;;;***
 
-;;;### (autoloads nil "magit-diff" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-diff.el"
+;;;### (autoloads nil "magit-diff" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-diff.el"
 ;;;;;;  "19e5aa73544ff389fbf5879bc21a507b")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-diff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-diff.el
  (autoload 'magit-diff "magit-diff" nil t)
  (autoload 'magit-diff-refresh "magit-diff" nil t)
 
@@ -756,9 +756,9 @@ for a revision.
 
 \(fn REV &optional ARGS FILES MODULE)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-diff" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-diff.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-diff" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-diff.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-diff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-diff.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-diff" '("magit-")))
 
@@ -766,9 +766,9 @@ for a revision.
 
 ;;;***
 
-;;;### (autoloads nil "magit-ediff" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-ediff.el"
+;;;### (autoloads nil "magit-ediff" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-ediff.el"
 ;;;;;;  "871853f64ee296fe6800f6fa151d672d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-ediff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-ediff.el
  (autoload 'magit-ediff "magit-ediff" nil)
 
 (autoload 'magit-ediff-resolve "magit-ediff" "\
@@ -852,9 +852,9 @@ stash that were staged.
 \(fn STASH)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-ediff"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-ediff.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-ediff.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-ediff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-ediff.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-ediff" '("magit-ediff-")))
 
@@ -862,9 +862,9 @@ stash that were staged.
 
 ;;;***
 
-;;;### (autoloads nil "magit-extras" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-extras.el"
+;;;### (autoloads nil "magit-extras" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-extras.el"
 ;;;;;;  "491331a22db6d4b45d448e6ebf238b1e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-extras.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-extras.el
 
 (autoload 'magit-run-git-gui "magit-extras" "\
 Run `git gui' for the current git repository." t nil)
@@ -1112,9 +1112,9 @@ Depending on the context, this will abort a merge, a rebase, a
 patch application, a cherry-pick, a revert, or a bisect." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-extras"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-extras.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-extras.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-extras.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-extras.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-extras" '("magit-")))
 
@@ -1122,9 +1122,9 @@ patch application, a cherry-pick, a revert, or a bisect." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-fetch" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-fetch.el"
+;;;### (autoloads nil "magit-fetch" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-fetch.el"
 ;;;;;;  "c4e7d816fd0f397a56529fed4426516a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-fetch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-fetch.el
  (autoload 'magit-fetch "magit-fetch" nil t)
  (autoload 'magit-fetch-from-pushremote "magit-fetch" nil t)
  (autoload 'magit-fetch-from-upstream "magit-fetch" nil t)
@@ -1168,9 +1168,9 @@ prefix argument fetch all remotes.
 \(fn &optional ALL)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-fetch"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-fetch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-fetch.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-fetch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-fetch.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-fetch" '("magit-")))
 
@@ -1178,9 +1178,9 @@ prefix argument fetch all remotes.
 
 ;;;***
 
-;;;### (autoloads nil "magit-files" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-files.el"
+;;;### (autoloads nil "magit-files" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-files.el"
 ;;;;;;  "8506d3297bf71849091509a7d6f1e16a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-files.el
 
 (autoload 'magit-find-file "magit-files" "\
 View FILE from REV.
@@ -1221,9 +1221,9 @@ Checkout FILE from REV.
 \(fn REV FILE)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-files"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-files.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-files.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-files" '("magit-")))
 
@@ -1231,17 +1231,17 @@ Checkout FILE from REV.
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-git" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-git.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-git" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-git.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-git.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-git.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-git" '("magit-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-gitignore" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-gitignore.el"
+;;;### (autoloads nil "magit-gitignore" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-gitignore.el"
 ;;;;;;  "4f905070d2ab3e922c77e7d6776f6e70")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-gitignore.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-gitignore.el
  (autoload 'magit-gitignore "magit-gitignore" nil t)
 
 (autoload 'magit-gitignore-in-topdir "magit-gitignore" "\
@@ -1293,9 +1293,9 @@ Call \"git update-index --no-assume-unchanged -- FILE\".
 \(fn FILE)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-gitignore"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-gitignore.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-gitignore.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-gitignore.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-gitignore.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-gitignore" '("magit-")))
 
@@ -1303,9 +1303,9 @@ Call \"git update-index --no-assume-unchanged -- FILE\".
 
 ;;;***
 
-;;;### (autoloads nil "magit-imenu" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-imenu.el"
+;;;### (autoloads nil "magit-imenu" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-imenu.el"
 ;;;;;;  "ee03427c95710c1cf5f736e23c79a863")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-imenu.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-imenu.el
 
 (autoload 'magit-imenu--log-prev-index-position-function "magit-imenu" "\
 Move point to previous line in current buffer.
@@ -1389,9 +1389,9 @@ This function is used as a value for
 beginning of the line." nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-imenu"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-imenu.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-imenu.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-imenu.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-imenu.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-imenu" '("magit-imenu--index-function")))
 
@@ -1399,9 +1399,9 @@ beginning of the line." nil nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-log" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-log.el"
+;;;### (autoloads nil "magit-log" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-log.el"
 ;;;;;;  "83e7d82dc6b20d5b9dc20c6d3af99b28")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-log.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-log.el
  (autoload 'magit-log "magit-log" nil t)
  (autoload 'magit-log-refresh "magit-log" nil t)
 
@@ -1498,9 +1498,9 @@ Show commits in a branch that are not merged in the upstream branch.
 
 \(fn HEAD UPSTREAM)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-log" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-log.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-log" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-log.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-log.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-log.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-log" '("magit-")))
 
@@ -1509,17 +1509,17 @@ Show commits in a branch that are not merged in the upstream branch.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-margin"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-margin.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-margin.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-margin.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-margin.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-margin" '("magit-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-merge" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-merge.el"
+;;;### (autoloads nil "magit-merge" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-merge.el"
 ;;;;;;  "3419cf161ccf998e1fe734985fa869ad")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-merge.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-merge.el
  (autoload 'magit-merge "magit" nil t)
 
 (autoload 'magit-merge-plain "magit-merge" "\
@@ -1595,9 +1595,9 @@ Abort the current merge operation.
 \(git merge --abort)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-merge"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-merge.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-merge.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-merge.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-merge.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-merge" '("magit-")))
 
@@ -1605,23 +1605,23 @@ Abort the current merge operation.
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-mode" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-mode" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-mode" '("disable-magit-save-buffers" "inhibit-magit-refresh" "magit-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-notes" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-notes.el"
+;;;### (autoloads nil "magit-notes" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-notes.el"
 ;;;;;;  "54ca6bf4c9476f3440a945b92fa0764e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-notes.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-notes.el
  (autoload 'magit-notes "magit" nil t)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-notes"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-notes.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-notes.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-notes.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-notes.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-notes" '("magit-notes-")))
 
@@ -1630,17 +1630,17 @@ Abort the current merge operation.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-obsolete"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-obsolete.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-obsolete.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-obsolete.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-obsolete.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-obsolete" '("magit--magit-popup-warning")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-patch" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-patch.el"
+;;;### (autoloads nil "magit-patch" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-patch.el"
 ;;;;;;  "10441498cb61ca552a06d7588c6b0f22")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-patch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-patch.el
  (autoload 'magit-patch "magit-patch" nil t)
  (autoload 'magit-patch-create "magit-patch" nil t)
  (autoload 'magit-patch-apply "magit-patch" nil t)
@@ -1681,9 +1681,9 @@ is asked to pull.  START has to be reachable from that commit.
 \(fn URL START END)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-patch"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-patch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-patch.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-patch.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-patch.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-patch" '("magit-")))
 
@@ -1692,17 +1692,17 @@ is asked to pull.  START has to be reachable from that commit.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-process"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-process.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-process.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-process.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-process.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-process" '("magit-" "tramp-sh-handle-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-pull" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pull.el"
+;;;### (autoloads nil "magit-pull" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pull.el"
 ;;;;;;  "ce967089754fdfeee9ac5225d8b6f552")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pull.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pull.el
  (autoload 'magit-pull "magit-pull" nil t)
  (autoload 'magit-pull-from-pushremote "magit-pull" nil t)
  (autoload 'magit-pull-from-upstream "magit-pull" nil t)
@@ -1712,9 +1712,9 @@ Pull from a branch read in the minibuffer.
 
 \(fn SOURCE ARGS)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-pull" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pull.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-pull" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pull.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pull.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pull.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-pull" '("magit-pull-")))
 
@@ -1722,9 +1722,9 @@ Pull from a branch read in the minibuffer.
 
 ;;;***
 
-;;;### (autoloads nil "magit-push" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-push.el"
+;;;### (autoloads nil "magit-push" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-push.el"
 ;;;;;;  "5bbbe78d61f8647c94702e06ae4e0c30")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-push.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-push.el
  (autoload 'magit-push "magit-push" nil t)
  (autoload 'magit-push-current-to-pushremote "magit-push" nil t)
  (autoload 'magit-push-current-to-upstream "magit-push" nil t)
@@ -1788,9 +1788,9 @@ these Git variables: `push.default', `remote.pushDefault',
 
 \(fn REMOTE ARGS)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-push" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-push.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-push" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-push.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-push.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-push.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-push" '("magit-")))
 
@@ -1798,9 +1798,9 @@ these Git variables: `push.default', `remote.pushDefault',
 
 ;;;***
 
-;;;### (autoloads nil "magit-reflog" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reflog.el"
+;;;### (autoloads nil "magit-reflog" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reflog.el"
 ;;;;;;  "0af163af1f07a34193ee68662b8efffa")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reflog.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reflog.el
 
 (autoload 'magit-reflog-current "magit-reflog" "\
 Display the reflog of the current branch.
@@ -1815,9 +1815,9 @@ Display the reflog of a branch or another ref.
 Display the `HEAD' reflog." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-reflog"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reflog.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reflog.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reflog.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reflog.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-reflog" '("magit-reflog-")))
 
@@ -1825,9 +1825,9 @@ Display the `HEAD' reflog." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-refs" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-refs.el"
+;;;### (autoloads nil "magit-refs" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-refs.el"
 ;;;;;;  "41f2596df2fa3fc3b77851af75c185bf")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-refs.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-refs.el
  (autoload 'magit-show-refs "magit-refs" nil t)
 
 (autoload 'magit-show-refs-head "magit-refs" "\
@@ -1848,9 +1848,9 @@ Compared with a branch read from the user.
 
 \(fn &optional REF ARGS)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-refs" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-refs.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-refs" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-refs.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-refs.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-refs.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-refs" '("magit-")))
 
@@ -1858,9 +1858,9 @@ Compared with a branch read from the user.
 
 ;;;***
 
-;;;### (autoloads nil "magit-remote" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-remote.el"
+;;;### (autoloads nil "magit-remote" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-remote.el"
 ;;;;;;  "637e6b91f7f0ad195038f6fcd8a4b936")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-remote.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-remote.el
  (autoload 'magit-remote "magit-remote" nil t)
 
 (autoload 'magit-remote-add "magit-remote" "\
@@ -1916,9 +1916,9 @@ Delete the symbolic-ref \"refs/remotes/<remote>/HEAD\".
  (autoload 'magit-remote-configure "magit-remote" nil t)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-remote"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-remote.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-remote.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-remote.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-remote.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-remote" '("magit-")))
 
@@ -1926,9 +1926,9 @@ Delete the symbolic-ref \"refs/remotes/<remote>/HEAD\".
 
 ;;;***
 
-;;;### (autoloads nil "magit-repos" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-repos.el"
+;;;### (autoloads nil "magit-repos" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-repos.el"
 ;;;;;;  "04da6ca282afbd9e15b347df1a509c2d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-repos.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-repos.el
 
 (autoload 'magit-list-repositories "magit-repos" "\
 Display a list of repositories.
@@ -1937,9 +1937,9 @@ Use the options `magit-repository-directories' to control which
 repositories are displayed." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-repos"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-repos.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-repos.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-repos.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-repos.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-repos" '("magit-")))
 
@@ -1947,9 +1947,9 @@ repositories are displayed." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-reset" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reset.el"
+;;;### (autoloads nil "magit-reset" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reset.el"
 ;;;;;;  "fb394071927a6bb5eb78e6c9f1bbb6b0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reset.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reset.el
  (autoload 'magit-reset "magit" nil t)
 
 (autoload 'magit-reset-mixed "magit-reset" "\
@@ -2004,9 +2004,9 @@ With a prefix argument reset the working tree otherwise don't.
 \(fn COMMIT &optional HARD)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-reset"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reset.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reset.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reset.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reset.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-reset" '("magit-reset-")))
 
@@ -2015,17 +2015,17 @@ With a prefix argument reset the working tree otherwise don't.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-section"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-section.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-section.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-section.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-section.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-section" '("isearch-clean-overlays@magit-mode" "magit-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-sequence" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-sequence.el"
+;;;### (autoloads nil "magit-sequence" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-sequence.el"
 ;;;;;;  "aff0190ea0280ab3377ca67810040836")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-sequence.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-sequence.el
 
 (autoload 'magit-sequencer-continue "magit-sequence" "\
 Resume the current cherry-pick or revert sequence." t nil)
@@ -2183,9 +2183,9 @@ Edit the todo list of the current rebase operation." t nil)
 Abort the current rebase operation, restoring the original branch." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-sequence"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-sequence.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-sequence.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-sequence.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-sequence.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-sequence" '("magit-")))
 
@@ -2193,9 +2193,9 @@ Abort the current rebase operation, restoring the original branch." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-stash" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-stash.el"
+;;;### (autoloads nil "magit-stash" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-stash.el"
 ;;;;;;  "5c2566f68e217e3899b59c5947f5802d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-stash.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-stash.el
  (autoload 'magit-stash "magit-stash" nil t)
 
 (autoload 'magit-stash-both "magit-stash" "\
@@ -2295,9 +2295,9 @@ Show all diffs of a stash in a buffer.
 \(fn STASH &optional ARGS FILES)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-stash"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-stash.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-stash.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-stash.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-stash.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-stash" '("magit-")))
 
@@ -2305,9 +2305,9 @@ Show all diffs of a stash in a buffer.
 
 ;;;***
 
-;;;### (autoloads nil "magit-status" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-status.el"
+;;;### (autoloads nil "magit-status" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-status.el"
 ;;;;;;  "3ba20b2760050a854f7c6da3dd824b02")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-status.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-status.el
 
 (autoload 'magit-init "magit-status" "\
 Initialize a Git repository, then show its status.
@@ -2373,9 +2373,9 @@ Like `magit-status' but with non-nil `magit-status-goto-file-position'." t nil)
 \(fn &optional DIRECTORY)" nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-status"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-status.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-status.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-status.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-status.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-status" '("magit-")))
 
@@ -2383,9 +2383,9 @@ Like `magit-status' but with non-nil `magit-status-goto-file-position'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-submodule" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-submodule.el"
+;;;### (autoloads nil "magit-submodule" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-submodule.el"
 ;;;;;;  "dbfe59bdc01953a0aa1584e4e9a1650a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-submodule.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-submodule.el
  (autoload 'magit-submodule "magit-submodule" nil t)
  (autoload 'magit-submodule-add "magit-submodule" nil t)
 
@@ -2446,9 +2446,9 @@ These sections can be expanded to show the respective commits." nil nil)
 Display a list of the current repository's submodules." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-submodule"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-submodule.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-submodule.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-submodule.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-submodule.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-submodule" '("magit-")))
 
@@ -2456,9 +2456,9 @@ Display a list of the current repository's submodules." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-subtree" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-subtree.el"
+;;;### (autoloads nil "magit-subtree" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-subtree.el"
 ;;;;;;  "0c711ce898ecd1e3617a9ca5fe851b08")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-subtree.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-subtree.el
  (autoload 'magit-subtree "magit-subtree" nil t)
  (autoload 'magit-subtree-import "magit-subtree" nil t)
  (autoload 'magit-subtree-export "magit-subtree" nil t)
@@ -2494,9 +2494,9 @@ Extract the history of the subtree PREFIX.
 \(fn PREFIX COMMIT ARGS)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-subtree"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-subtree.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-subtree.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-subtree.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-subtree.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-subtree" '("magit-")))
 
@@ -2504,9 +2504,9 @@ Extract the history of the subtree PREFIX.
 
 ;;;***
 
-;;;### (autoloads nil "magit-tag" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-tag.el"
+;;;### (autoloads nil "magit-tag" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-tag.el"
 ;;;;;;  "7cffe22a4e664a0904fe5ba220bf9af9")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-tag.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-tag.el
  (autoload 'magit-tag "magit" nil t)
 
 (autoload 'magit-tag-create "magit-tag" "\
@@ -2551,9 +2551,9 @@ like \"/path/to/foo-bar\".
 
 \(fn TAG MSG &optional ARGS)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-tag" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-tag.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-tag" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-tag.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-tag.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-tag.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-tag" '("magit-")))
 
@@ -2562,17 +2562,17 @@ like \"/path/to/foo-bar\".
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-transient"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-transient.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-transient.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-transient.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-transient.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-transient" '("magit-")))
 
 ;;;***
 
-;;;### (autoloads nil "magit-utils" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-utils.el"
+;;;### (autoloads nil "magit-utils" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-utils.el"
 ;;;;;;  "2e197851ac35e08d411723f18e47701f")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-utils.el
 
 (autoload 'magit-emacs-Q-command "magit-utils" "\
 Show a shell command that runs an uncustomized Emacs with only Magit loaded.
@@ -2593,9 +2593,9 @@ See info node `(magit)Debugging Tools' for more information." t nil)
 (advice-add 'org-man-export :around 'org-man-export--magit-gitman)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-utils"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-utils.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-utils.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-utils.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-utils" '("magit-")))
 
@@ -2603,9 +2603,9 @@ See info node `(magit)Debugging Tools' for more information." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-wip" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-wip.el"
+;;;### (autoloads nil "magit-wip" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-wip.el"
 ;;;;;;  "9c68921f40475f2f0325240182e67ab5")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-wip.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-wip.el
 
 (defvar magit-wip-mode nil "\
 Non-nil if Magit-Wip mode is enabled.
@@ -2727,9 +2727,9 @@ and can be used along-side that function, which is recommended
 because this function only backs up files that are tracked in
 a Git repository." nil nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "magit-wip" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-wip.el"
+;;;### (autoloads "actual autoloads are elsewhere" "magit-wip" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-wip.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-wip.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-wip.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-wip" '("magit-")))
 
@@ -2737,9 +2737,9 @@ a Git repository." nil nil)
 
 ;;;***
 
-;;;### (autoloads nil "magit-worktree" "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-worktree.el"
+;;;### (autoloads nil "magit-worktree" "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-worktree.el"
 ;;;;;;  "64e374052f0781b593499eff54cb50a9")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-worktree.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-worktree.el
  (autoload 'magit-worktree "magit-worktree" nil t)
 
 (autoload 'magit-worktree-checkout "magit-worktree" "\
@@ -2758,9 +2758,9 @@ Move WORKTREE to PATH.
 \(fn WORKTREE PATH)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "magit-worktree"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-worktree.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-worktree.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-worktree.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-worktree.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-worktree" '("magit-")))
 
@@ -2768,53 +2768,53 @@ Move WORKTREE to PATH.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/git-rebase.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-apply.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-autorevert.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bisect.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-blame.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-bookmark.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-branch.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-clone.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-commit.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-core.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-diff.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-ediff.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-extras.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-fetch.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-files.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-git.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-gitignore.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-imenu.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-log.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-margin.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-merge.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-mode.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-notes.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-obsolete.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-patch.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-process.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-pull.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-push.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reflog.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-refs.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-remote.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-repos.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-reset.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-section.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-sequence.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-stash.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-status.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-submodule.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-subtree.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-tag.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-transient.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-utils.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-wip.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit-worktree.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210103.1631/magit.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/git-rebase.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-apply.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-autorevert.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bisect.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-blame.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-bookmark.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-branch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-clone.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-commit.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-core.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-diff.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-ediff.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-extras.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-fetch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-git.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-gitignore.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-imenu.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-log.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-margin.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-merge.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-notes.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-obsolete.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-patch.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-process.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-pull.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-push.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reflog.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-refs.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-remote.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-repos.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-reset.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-section.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-sequence.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-stash.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-status.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-submodule.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-subtree.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-tag.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-transient.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-utils.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-wip.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit-worktree.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/magit-20210105.1030/magit.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
