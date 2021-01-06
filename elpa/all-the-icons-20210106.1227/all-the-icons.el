@@ -214,7 +214,7 @@
 
     ("\\.java$"         all-the-icons-alltheicon "java"                 :height 1.0  :face all-the-icons-purple)
 
-    ("\\.go$"           all-the-icons-alltheicon "go"                   :height 1.0  :face all-the-icons-blue)
+    ("\\.go$"           all-the-icons-fileicon "go"                     :height 1.0  :face all-the-icons-blue)
 
     ("\\.mp3$"          all-the-icons-faicon "volume-up"                :face all-the-icons-dred)
     ("\\.wav$"          all-the-icons-faicon "volume-up"                :face all-the-icons-dred)
@@ -334,7 +334,7 @@
 
     ("\\.csx?$"         all-the-icons-alltheicon "csharp-line"          :face all-the-icons-dblue)
 
-    ("\\.cljc?$"        all-the-icons-alltheicon "clojure-line"         :height 1.0 :face all-the-icons-blue :v-adjust 0.0)
+    ("\\.cljc?$"        all-the-icons-alltheicon "clojure"              :height 1.0 :face all-the-icons-blue :v-adjust 0.0)
     ("\\.cljs$"         all-the-icons-fileicon "cljs"                   :height 1.0 :face all-the-icons-dblue :v-adjust 0.0)
 
     ("\\.coffee$"       all-the-icons-alltheicon "coffeescript"         :height 1.0  :face all-the-icons-maroon)
@@ -349,7 +349,7 @@
     ;; Lisps
     ("\\.cl$"           all-the-icons-fileicon "clisp"                  :face all-the-icons-lorange)
     ("\\.l\\(isp\\)?$"  all-the-icons-fileicon "lisp"                   :face all-the-icons-orange)
-    ("\\.el$"           all-the-icons-fileicon "elisp"                  :height 1.0 :v-adjust -0.2 :face all-the-icons-purple)
+    ("\\.el$"           all-the-icons-fileicon "elisp"                  :height 1.0 :v-adjust -0.1 :face all-the-icons-purple)
 
     ;; Stylesheeting
     ("\\.css$"          all-the-icons-alltheicon "css3"                 :face all-the-icons-yellow)
@@ -500,9 +500,9 @@
 
 (defvar all-the-icons-mode-icon-alist
   '(
-    (emacs-lisp-mode           all-the-icons-fileicon "elisp"              :height 1.0 :v-adjust -0.2 :face all-the-icons-purple)
+    (emacs-lisp-mode           all-the-icons-fileicon "elisp"              :height 1.0 :v-adjust -0.1 :face all-the-icons-purple)
     (erc-mode                  all-the-icons-faicon "commenting-o"         :height 1.0 :v-adjust 0.0)
-    (inferior-emacs-lisp-mode  all-the-icons-fileicon "elisp"              :height 1.0 :v-adjust -0.2 :face all-the-icons-lblue)
+    (inferior-emacs-lisp-mode  all-the-icons-fileicon "elisp"              :height 1.0 :v-adjust -0.1 :face all-the-icons-lblue)
     (dired-mode                all-the-icons-octicon "file-directory"      :v-adjust 0.0)
     (lisp-interaction-mode     all-the-icons-fileicon "lisp"               :v-adjust -0.1 :face all-the-icons-orange)
     (sly-mrepl-mode            all-the-icons-fileicon "clisp"               :v-adjust -0.1 :face all-the-icons-orange)
@@ -543,8 +543,8 @@
     ;; Special matcher for Web Mode based on the `web-mode-content-type' of the current buffer
     (web-mode             all-the-icons--web-mode-icon)
 
-    (fundamental-mode                   all-the-icons-fileicon "elisp"            :height 1.0 :v-adjust -0.2 :face all-the-icons-dsilver)
-    (special-mode                       all-the-icons-fileicon "elisp"            :height 1.0 :v-adjust -0.2 :face all-the-icons-yellow)
+    (fundamental-mode                   all-the-icons-fileicon "elisp"            :height 1.0 :v-adjust -0.1 :face all-the-icons-dsilver)
+    (special-mode                       all-the-icons-fileicon "elisp"            :height 1.0 :v-adjust -0.1 :face all-the-icons-yellow)
     (text-mode                          all-the-icons-octicon "file-text"         :v-adjust 0.0 :face all-the-icons-cyan)
     (enh-ruby-mode                      all-the-icons-alltheicon "ruby-alt"       :face all-the-icons-lred)
     (ruby-mode                          all-the-icons-alltheicon "ruby-alt"       :face all-the-icons-lred)
@@ -569,7 +569,7 @@
     (erlang-mode                        all-the-icons-alltheicon "erlang"         :face all-the-icons-red :v-adjust -0.1 :height 0.9)
     (elixir-mode                        all-the-icons-alltheicon "elixir"         :face all-the-icons-lorange :v-adjust -0.1 :height 0.9)
     (java-mode                          all-the-icons-alltheicon "java"           :height 1.0  :face all-the-icons-purple)
-    (go-mode                            all-the-icons-alltheicon "go"             :height 1.0  :face all-the-icons-blue)
+    (go-mode                            all-the-icons-fileicon "go"               :height 1.0  :face all-the-icons-blue)
     (matlab-mode                        all-the-icons-fileicon "matlab"           :face all-the-icons-orange)
     (perl-mode                          all-the-icons-alltheicon "perl"           :face all-the-icons-lorange)
     (cperl-mode                         all-the-icons-alltheicon "perl"           :face all-the-icons-lorange)
@@ -585,8 +585,8 @@
     (c-mode                             all-the-icons-alltheicon "c-line"         :face all-the-icons-blue)
     (c++-mode                           all-the-icons-alltheicon "cplusplus-line" :v-adjust -0.2 :face all-the-icons-blue)
     (csharp-mode                        all-the-icons-alltheicon "csharp-line"    :face all-the-icons-dblue)
-    (clojure-mode                       all-the-icons-alltheicon "clojure-line"   :height 1.0  :face all-the-icons-blue)
-    (cider-repl-mode                    all-the-icons-alltheicon "clojure-line"   :height 1.0  :face all-the-icons-dblue)
+    (clojure-mode                       all-the-icons-alltheicon "clojure"        :height 1.0  :face all-the-icons-blue)
+    (cider-repl-mode                    all-the-icons-alltheicon "clojure"        :height 1.0  :face all-the-icons-green)
     (clojurescript-mode                 all-the-icons-fileicon "cljs"             :height 1.0  :face all-the-icons-dblue)
     (coffee-mode                        all-the-icons-alltheicon "coffeescript"   :height 1.0  :face all-the-icons-maroon)
     (lisp-mode                          all-the-icons-fileicon "lisp"             :face all-the-icons-orange)
@@ -928,7 +928,13 @@ When F is provided, the info function is calculated with the format
 
   (defun all-the-icons--insert-function-name (name)
     "Get the symbol for an icon insert function for icon set NAME."
-    (intern (concat "all-the-icons-insert-" (downcase (symbol-name name))))))
+    (intern (concat "all-the-icons-insert-" (downcase (symbol-name name)))))
+
+  (defun all-the-icons--family-scale-factor (family)
+    (intern (concat "all-the-icons-" (symbol-name family) "-scale-factor")))
+
+  (defun all-the-icons--family-adjust (family)
+    (intern (concat "all-the-icons-default-" (symbol-name family) "-adjust"))))
 
 ;; Icon insertion functions
 
@@ -1038,14 +1044,27 @@ FONT-NAME is the name of the .ttf file providing the font, defaults to FAMILY."
   `(progn
      (add-to-list 'all-the-icons-font-families (quote ,name))
      (add-to-list 'all-the-icons-font-names (quote ,(downcase (format "%s.ttf" (or font-name family)))))
-
+     (defcustom ,(all-the-icons--family-scale-factor name) 1.0
+       ,(format "The additional Scale Factor for the `height' face property of all %s icons."
+                (symbol-name name))
+       :group 'all-the-icons
+       :type 'number)
+     (defcustom ,(all-the-icons--family-adjust name) 0.0
+       ,(format "The additional adjustment to be made to the `raise' display property of all %s icons."
+                (symbol-name name))
+       :group 'all-the-icons
+       :type 'number)
      (defun ,(all-the-icons--family-name name) () ,family)
      (defun ,(all-the-icons--data-name name) () ,alist)
      (defun ,(all-the-icons--function-name name) (icon-name &rest args)
        (let ((icon (cdr (assoc icon-name ,alist)))
              (other-face (when all-the-icons-color-icons (plist-get args :face)))
-             (height  (* all-the-icons-scale-factor (or (plist-get args :height) 1.0)))
-             (v-adjust (* all-the-icons-scale-factor (or (plist-get args :v-adjust) all-the-icons-default-adjust)))
+             (height   (* all-the-icons-scale-factor
+                          ,(all-the-icons--family-scale-factor name)
+                          (or (plist-get args :height) 1.0)))
+             (v-adjust (* all-the-icons-scale-factor ,(all-the-icons--family-scale-factor name)
+                          (+ (or (plist-get args :v-adjust) all-the-icons-default-adjust)
+                             ,(all-the-icons--family-adjust name))))
              (family ,family))
          (unless icon
            (error (format "Unable to find icon with name `%s' in icon set `%s'" icon-name (quote ,name))))
@@ -1062,7 +1081,7 @@ FONT-NAME is the name of the .ttf file providing the font, defaults to FAMILY."
        (interactive "P")
        (all-the-icons-insert arg (quote ,name)))))
 
-(define-obsolete-function-alias 'define-icon 'all-the-icons-define-icon)
+(define-obsolete-function-alias 'define-icon 'all-the-icons-define-icon "4.0.0")
 
 (all-the-icons-define-icon alltheicon all-the-icons-data/alltheicons-alist    "all-the-icons")
 (all-the-icons-define-icon fileicon   all-the-icons-data/file-icon-alist      "file-icons")

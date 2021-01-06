@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "dockerfile-mode" "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode.el"
-;;;;;;  "e04a964d8e480d47dfe321c0d7c0851a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode.el
+;;;### (autoloads nil "dockerfile-mode" "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode.el"
+;;;;;;  "9c4f42da9d08ce611dec78d069b4776b")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode.el
 
 (autoload 'dockerfile-build-buffer "dockerfile-mode" "\
 Build an image called IMAGE-NAME based upon the buffer.
@@ -33,9 +33,9 @@ A major mode to edit Dockerfiles.
 (add-to-list 'auto-mode-alist '("Dockerfile\\(?:\\..*\\)?\\'" . dockerfile-mode))
 
 ;;;### (autoloads "actual autoloads are elsewhere" "dockerfile-mode"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "dockerfile-mode" '("dockerfile-")))
 
@@ -43,8 +43,8 @@ A major mode to edit Dockerfiles.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20201208.1348/dockerfile-mode.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/dockerfile-mode-20210106.235/dockerfile-mode.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
