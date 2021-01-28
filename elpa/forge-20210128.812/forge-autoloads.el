@@ -6,15 +6,15 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "forge" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge.el"
+;;;### (autoloads nil "forge" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge.el"
 ;;;;;;  "d9ebf2d771b445c8d2bfbdd9a95b570e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge.el
 
 (with-eval-after-load 'magit-mode (define-key magit-mode-map "'" 'forge-dispatch))
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge" '("forge-")))
 
@@ -23,17 +23,17 @@
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-bitbucket"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-bitbucket.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-bitbucket.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-bitbucket.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-bitbucket.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-bitbucket" '("forge-bitbucket-repository")))
 
 ;;;***
 
-;;;### (autoloads nil "forge-commands" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-commands.el"
-;;;;;;  "170394037e2d6e5f48951430c3e40eb0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-commands.el
+;;;### (autoloads nil "forge-commands" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-commands.el"
+;;;;;;  "c4de200eb9fff217629d32e795f07cd3")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-commands.el
  (autoload 'forge-dispatch "forge-commands" nil t)
 
 (autoload 'forge-pull "forge-commands" "\
@@ -202,9 +202,9 @@ happen a few times while the forge functionality is still under
 heavy development." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-commands"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-commands.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-commands.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-commands.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-commands.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-commands" '("forge-")))
 
@@ -212,69 +212,69 @@ heavy development." t nil)
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-core" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-core.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-core" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-core.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-core.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-core.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-core" '("forge-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-db" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-db.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-db" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-db.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-db.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-db.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-db" '("forge-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-gitea"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitea.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitea.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitea.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitea.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-gitea" '("forge-gitea-repository")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-github"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-github.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-github.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-github.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-github.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-github" '("forge-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-gitlab"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitlab.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitlab.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitlab.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitlab.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-gitlab" '("forge-gitlab-repository")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-gogs" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gogs.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-gogs" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gogs.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gogs.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gogs.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-gogs" '("forge-gogs-repository")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-issue"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-issue.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-issue.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-issue.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-issue.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-issue" '("forge-")))
 
 ;;;***
 
-;;;### (autoloads nil "forge-list" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-list.el"
+;;;### (autoloads nil "forge-list" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-list.el"
 ;;;;;;  "67ab77a2dcec83aa5b19a8f78e94382b")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-list.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-list.el
 
 (autoload 'forge-list-topics "forge-list" "\
 List topics of the current repository in a separate buffer.
@@ -344,9 +344,9 @@ and options `forge-owned-accounts' and `forge-owned-ignored'
 controls which repositories are considered to be owned by you.
 Only Github is supported for now." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-list" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-list.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-list" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-list.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-list.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-list.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-list" '("forge-")))
 
@@ -355,85 +355,85 @@ Only Github is supported for now." t nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-notify"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-notify.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-notify.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-notify.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-notify.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-notify" '("forge-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-post" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-post.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-post" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-post.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-post.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-post.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-post" '("forge-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-pullreq"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-pullreq.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-pullreq.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-pullreq.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-pullreq.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-pullreq" '("forge-")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-repo" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-repo.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-repo" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-repo.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-repo.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-repo.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-repo" '("forge-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-revnote"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-revnote.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-revnote.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-revnote.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-revnote.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-revnote" '("forge-revnote")))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "forge-semi" "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-semi.el"
+;;;### (autoloads "actual autoloads are elsewhere" "forge-semi" "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-semi.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-semi.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-semi.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-semi" '("forge-")))
 
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "forge-topic"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-topic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-topic.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-topic.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-topic.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "forge-topic" '("bug-reference-fontify" "forge-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-bitbucket.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-commands.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-core.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-db.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitea.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-github.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gitlab.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-gogs.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-issue.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-list.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-notify.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-post.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-pullreq.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-repo.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-revnote.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-semi.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge-topic.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210117.1157/forge.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-bitbucket.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-commands.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-core.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-db.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitea.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-github.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gitlab.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-gogs.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-issue.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-list.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-notify.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-post.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-pullreq.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-repo.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-revnote.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-semi.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge-topic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/forge-20210128.812/forge.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
