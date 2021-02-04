@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe.el"
-;;;;;;  "424bdc18326760e23b77597efda71b63")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe.el
+;;;### (autoloads nil "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe.el"
+;;;;;;  "0a1eab628ebac6ae313af347da531776")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe.el
 
 (autoload 'posframe-workable-p "posframe" "\
 Test posframe workable status." nil nil)
@@ -88,9 +88,15 @@ If LEFT-FRINGE or RIGHT-FRINGE is a number, left fringe or
 right fringe with be shown with the specified width.
 
 By default, posframe shows no borders, but users can specify
-borders by setting INTERNAL-BORDER-WIDTH to a positive number.
-Border color can be specified by INTERNAL-BORDER-COLOR
-or via the ‘internal-border’ face.
+borders by setting BORDER-WIDTH to a positive number.  Border
+color can be specified by BORDER-COLOR.
+
+INTERNAL-BORDER-WIDTH and INTERNAL-BORDER-COLOR are same as
+BORDER-WIDTH and INTERNAL-BORDER-COLOR, but do not suggest to use
+for the reason:
+
+   Add distinct controls for child frames' borders (Bug#45620)
+   http://git.savannah.gnu.org/cgit/emacs.git/commit/?id=ff7b1a133bfa7f2614650f8551824ffaef13fadc
 
 Posframe's font as well as foreground and background colors are
 derived from the current frame by default, but can be overridden
@@ -135,7 +141,7 @@ The builtin hidehandler functions are listed below:
 
 You can use `posframe-delete-all' to delete all posframes.
 
-\(fn BUFFER-OR-NAME &key STRING POSITION POSHANDLER WIDTH HEIGHT MIN-WIDTH MIN-HEIGHT X-PIXEL-OFFSET Y-PIXEL-OFFSET LEFT-FRINGE RIGHT-FRINGE INTERNAL-BORDER-WIDTH INTERNAL-BORDER-COLOR FONT FOREGROUND-COLOR BACKGROUND-COLOR RESPECT-HEADER-LINE RESPECT-MODE-LINE INITIALIZE NO-PROPERTIES KEEP-RATIO LINES-TRUNCATE OVERRIDE-PARAMETERS TIMEOUT REFRESH ACCEPT-FOCUS HIDEHANDLER &allow-other-keys)" nil nil)
+\(fn BUFFER-OR-NAME &key STRING POSITION POSHANDLER WIDTH HEIGHT MIN-WIDTH MIN-HEIGHT X-PIXEL-OFFSET Y-PIXEL-OFFSET LEFT-FRINGE RIGHT-FRINGE BORDER-WIDTH BORDER-COLOR INTERNAL-BORDER-WIDTH INTERNAL-BORDER-COLOR FONT FOREGROUND-COLOR BACKGROUND-COLOR RESPECT-HEADER-LINE RESPECT-MODE-LINE INITIALIZE NO-PROPERTIES KEEP-RATIO LINES-TRUNCATE OVERRIDE-PARAMETERS TIMEOUT REFRESH ACCEPT-FOCUS HIDEHANDLER &allow-other-keys)" nil nil)
 
 (autoload 'posframe-hide-all "posframe" "\
 Hide all posframe frames." t nil)
@@ -143,9 +149,9 @@ Hide all posframe frames." t nil)
 (autoload 'posframe-delete-all "posframe" "\
 Delete all posframe frames and buffers." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe.el"
+;;;### (autoloads "actual autoloads are elsewhere" "posframe" "../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "posframe" '("posframe-")))
 
@@ -153,8 +159,8 @@ Delete all posframe frames and buffers." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20210130.946/posframe.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/posframe-20210203.817/posframe.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

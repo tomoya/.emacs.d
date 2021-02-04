@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "dash" "../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash.el"
+;;;### (autoloads nil "dash" "../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash.el"
 ;;;;;;  "a3234ed82e914135b862eea1627fb07d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash.el
 
 (autoload 'dash-fontify-mode "dash" "\
 Toggle fontification of Dash special variables.
@@ -58,9 +58,9 @@ See `dash-fontify-mode' for more information on Dash-Fontify mode.
 Register the Dash Info manual with `info-lookup-symbol'.
 This allows Dash symbols to be looked up with \\[info-lookup-symbol]." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "dash" "../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash.el"
+;;;### (autoloads "actual autoloads are elsewhere" "dash" "../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "dash" '("!cdr" "!cons" "--" "->" "-a" "-butlast" "-c" "-d" "-e" "-f" "-gr" "-i" "-keep" "-l" "-m" "-non" "-only-some" "-p" "-r" "-s" "-t" "-u" "-value-to-list" "-when-let" "-zip" "dash-")))
 
@@ -68,9 +68,9 @@ This allows Dash symbols to be looked up with \\[info-lookup-symbol]." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/dash-20210131.1805/dash.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/dash-20210202.1153/dash.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

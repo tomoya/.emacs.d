@@ -68,6 +68,7 @@
 (defvar company-backends)
 (defvar yas-inhibit-overlay-modification-protection)
 (defvar yas-indent-line)
+(defvar yas-wrap-around-region)
 (defvar yas-also-auto-indent-first-line)
 (defvar dap-auto-configure-mode)
 (defvar dap-ui-menu-items)
@@ -680,6 +681,8 @@ Changes take effect only when a new session is started."
                                         (".*\\.lua$" . "lua")
                                         (".*\\.sql$" . "sql")
                                         (".*\\.html$" . "html")
+                                        (".*\\.json$" . "json")
+                                        (".*\\.jsonc$" . "jsonc")
                                         (ada-mode . "ada")
                                         (sql-mode . "sql")
                                         (vimrc-mode . "vim")
@@ -3965,6 +3968,7 @@ LSP server result."
                    (buffer-substring-no-properties
                     (line-beginning-position)
                     (point))))
+         (yas-wrap-around-region nil)
          (yas-indent-line (unless keep-whitespace 'auto))
          (yas-also-auto-indent-first-line nil)
          (indent-line-function (if (or lsp-enable-relative-indentation
@@ -4389,6 +4393,13 @@ Applies on type formatting."
            cl-rest)
       (lsp-warn "Unable to calculate the languageId for current buffer. Take a look at lsp-language-id-configuration.")))
 
+(defun lsp-activate-on (&rest languages)
+  "Returns language activation function.
+The function will return t when the `lsp-buffer-language' returns
+one of the LANGUAGES."
+  (lambda (_file-name _mode)
+    (-contains? languages (lsp-buffer-language))))
+
 (defun lsp-workspace-root (&optional path)
   "Find the workspace root for the current file or PATH."
   (-when-let* ((file-name (or path (buffer-file-name)))
@@ -4788,11 +4799,12 @@ In addition, each can have property:
   "Render STR using `major-mode' corresponding to LANGUAGE.
 When language is nil render as markup if `markdown-mode' is loaded."
   (setq str (s-replace "\r" "" (or str "")))
-  (when-let ((mode (-some (-lambda ((mode . lang))
-                            (when (and (equal lang language) (functionp mode))
-                              mode))
-                          lsp-language-id-configuration)))
-    (lsp--fontlock-with-mode str mode)))
+  (if-let ((mode (-some (-lambda ((mode . lang))
+                           (when (and (equal lang language) (functionp mode))
+                             mode))
+                         lsp-language-id-configuration)))
+      (lsp--fontlock-with-mode str mode)
+    str))
 
 (defun lsp--render-element (content)
   "Render CONTENT element."

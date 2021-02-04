@@ -76,7 +76,6 @@ Functions
 Development
 
 * Contribute::          How to contribute.
-* Change log::          List of significant changes by version.
 * Contributors::        List of contributors.
 
 
@@ -2937,11 +2936,10 @@ The Dash repository is hosted on GitHub at
 * Menu:
 
 * Contribute::          How to contribute.
-* Change log::          List of significant changes by version.
 * Contributors::        List of contributors.
 
 
-File: dash.info,  Node: Contribute,  Next: Change log,  Up: Development
+File: dash.info,  Node: Contribute,  Next: Contributors,  Up: Development
 
 3.1 Contribute
 ==============
@@ -2966,212 +2964,9 @@ require that all contributors assign copyright to the Free Software
 Foundation.  For more on this, *note (emacs)Copyright Assignment::.
 
 
-File: dash.info,  Node: Change log,  Next: Contributors,  Prev: Contribute,  Up: Development
+File: dash.info,  Node: Contributors,  Prev: Contribute,  Up: Development
 
-3.2 Change log
-==============
-
-Changes in 2.17:
-
-        • Sped up ‘-uniq’ by using hash-tables when possible (Zhu
-          Zihao).
-        • Fixed ‘-inits’ to be non-destructive (Zach Shaftel).
-        • Fixed indent rules for ‘-some->’ and family (Wouter
-          Bolsterlee).
-        • Added ‘-zip-lists’ which always returns a list of proper
-          lists, even for two input lists (see issue #135).
-
-Changes in 2.16:
-
-        • Added ‘--doto’, anaphoric version of ‘-doto’.
-        • Aliased ‘-cons-pair-p’ to ‘-cons-pair?’.
-        • Generalized ‘-rotate’ for |N| greater than the length of the
-          list (Brian Leung).
-        • Added a mechanism to extend destructuring with custom matchers
-          (Ivan Yonchovski).
-
-Changes in 2.15:
-
-     This release brought new destructuring features, some new control
-     flow functions, and performance optimizations.
-
-        • Added ‘-setq’ with destructuring binding support similar to
-          the ‘-let’ family.
-        • Added smarter key destructuring in ‘-let’ and friends where
-          variables are auto-derived from keys.
-        • Allowed ‘-let’ bindings without a source value form.
-        • Added ‘-each-r’ and ‘-each-r-while’ (Paul Pogonyshev).
-        • Added ‘-common-suffix’ (Basil L. Contovounesios).
-        • Improved performance of folds (‘-reduce’ and friends) (Basil
-          L. Contovounesios).
-
-Changes in 2.14:
-
-     This release retired support for Emacs 23.
-
-        • Added Edebug support for threading macros (Wilfred Hughes).
-        • Added ‘-unzip’.
-        • Added support for ‘-first-item’ and ‘-last-item’ as place
-          forms (*note (elisp)Generalized Variables::).
-        • Added ‘-powerset’ and ‘-permutations’ (Mark Oteiza).
-        • Added ‘-as->’ for threading a named variable (Zachary Kanfer).
-        • Added ‘-partition-after-pred’, ‘-partition-before-pred’,
-          ‘-partition-after-item’, and ‘-partition-before-item’ (Zachary
-          Kanfer).
-        • Fixed a bug in ‘-any-p’ and friends testing for ‘null’ on
-          lists containing ‘nil’.
-        • Fixed infinite loop bug in ‘-zip’ and ‘-interleave’ when
-          called with empty input.
-        • Added ‘-second-item’ through ‘-fifth-item’ as alternatives to
-          ‘nth’ (Wilfred Hughes).
-        • Added ‘-tails’ and ‘-inits’.
-        • Added ‘-running-sum’ and ‘-running-product’.
-        • Added the ‘-reductions[-r][-from]’ family of functions (like
-          ‘-reduce’ but collecting intermediate results).
-        • Added ‘-common-prefix’ (Basil L. Contovounesios).
-
-Changes in 2.13:
-
-        • ‘-let’ now supports ‘&alist’ destructuring.
-        • Various performance improvements.
-        • ‘-zip’ might change in a future release to always return a
-          list of proper lists.  Added ‘-zip-pair’ for users who
-          explicitly want the old behavior.
-        • Enabled lexical binding in ‘dash.el’ for Emacs versions 24 or
-          newer.
-        • Added ‘-select-column’ and ‘-select-columns’.
-        • Fixed ‘-map-last’ and ‘--remove-last’ to be non-destructive.
-        • Added ‘-each-indexed’ and ‘--each-indexed’.
-        • Added ‘-take-last’ and ‘-drop-last’.
-        • Added the ‘-doto’ macro.
-        • ‘-cut <>’ is now treated as a function, consistent with SRFI
-          26 (https://srfi.schemers.org/srfi-26/srfi-26.html).
-
-Changes in 2.12:
-
-        • Added GNU ELPA support (Phillip Lord).
-        • Added ‘-some->’, ‘-some->>’, and ‘-some-->’ macros (Cam Saul).
-        • ‘-is-suffix?’ is now non-destructive.
-        • Faster hash table implementation for ‘-union’.
-        • Improvements to docstrings and examples.
-
-Changes in 2.11:
-
-        • Lots of clean up w.r.t.  byte compilation, debug macros, and
-          tests.
-
-Changes in 2.10:
-
-        • Added ‘-let’ destructuring to ‘-if-let’ and ‘-when-let’
-          (Fredrik Bergroth).
-
-Changes in 2.9:
-
-        • Added ‘-let’, ‘-let*’, and ‘-lambda’ with destructuring.
-        • Added ‘-tree-seq’ and ‘-tree-map-nodes’.
-        • Added ‘-non-nil’.
-        • Added ‘-fix’.
-        • Added ‘-fixfn’ (‘dash-functional’ version 1.2).
-        • Added ‘-copy’ (Wilfred Hughes).
-
-Changes in 2.8:
-
-        • Added ‘-butlast’.
-
-Changes in 2.7:
-
-        • ‘-zip’ now supports more than two lists (Steve Lamb).
-        • Added ‘-cycle’, ‘-pad’, ‘-annotate’, and ‘-zip-fill’ (Steve
-          Lamb).
-        • Added ‘-table’, ‘-table-flat’ (finite Cartesian product).
-        • Added ‘-flatten-n’.
-        • ‘-slice’ now supports a “step” argument.
-        • Added functional combinators ‘-iteratefn’ and ‘-prodfn’.
-        • Added ‘-replace’, ‘-splice’, and ‘-splice-list’ which
-          generalize ‘-replace-at’ and ‘-insert-at’.
-        • Added ‘-compose’, ‘-iteratefn’, and ‘-prodfn’
-          (‘dash-functional’ version 1.1).
-
-Changes in 2.6:
-
-        • Added ‘-is-prefix-p’, ‘-is-suffix-p’, and ‘-is-infix-p’ (Matus
-          Goljer).
-        • Added ‘-iterate’ and ‘-unfold’ (Matus Goljer).
-        • Added ‘-split-on’ and ‘-split-when’ (Matus Goljer).
-        • Added ‘-find-last-index’ (Matus Goljer).
-        • Added ‘-list’ (Johan Andersson).
-
-Changes in 2.5:
-
-        • Added ‘-same-items?’ (Johan Andersson).
-        • Various bugfixes.
-
-Changes in 2.4:
-
-        • Added ‘-snoc’ (Matus Goljer).
-        • Added ‘-replace-at’, ‘-update-at’, ‘-remove-at’, and
-          ‘-remove-at-indices’ (Matus Goljer).
-
-Changes in 2.3:
-
-        • Added tree operations (Matus Goljer).
-        • Made Font Lock optional.
-
-Changes in 2.2:
-
-        • Added ‘-compose’ (Christina Whyte).
-
-Changes in 2.1:
-
-        • Added indexing operations (Matus Goljer).
-
-Changes in 2.0:
-
-        • Split out ‘dash-functional.el’ (Matus Goljer).
-        • Added ‘-andfn’, ‘-orfn’, ‘-not’, ‘-cut’, ‘-const’, ‘-flip’,
-          and ‘-on’ (Matus Goljer).
-        • Fixed ‘-min’, ‘-max’, ‘-min-by’, and ‘-max-by’ (Matus Goljer).
-
-Changes in 1.8:
-
-        • Added ‘-first-item’ and ‘-last-item’ (Wilfred Hughes).
-
-Changes in 1.7:
-
-        • Added ‘-rotate’ (Matus Goljer).
-
-Changes in 1.6:
-
-        • Added ‘-min’, ‘-max’, ‘-min-by’, and ‘-max-by’ (Johan
-          Andersson).
-
-Changes in 1.5:
-
-        • Added ‘-sum’ and ‘-product’ (Johan Andersson).
-
-Changes in 1.4:
-
-        • Added ‘-sort’.
-        • Added ‘-reduce-r’ (Matus Goljer).
-        • Added ‘-reduce-r-from’ (Matus Goljer).
-
-Changes in 1.3:
-
-        • Added ‘-partition-in-steps’.
-        • Added ‘-partition-all-in-steps’.
-
-Changes in 1.2:
-
-        • Added ‘-last’ (Matus Goljer).
-        • Added ‘-insert-at’ (Emanuel Evans).
-        • Added ‘-when-let’ and ‘-if-let’ (Emanuel Evans).
-        • Added ‘-when-let*’ and ‘-if-let*’ (Emanuel Evans).
-        • Various bugfixes.
-
-
-File: dash.info,  Node: Contributors,  Prev: Change log,  Up: Development
-
-3.3 Contributors
+3.2 Contributors
 ================
 
    • Matus Goljer (https://github.com/Fuco1) contributed lots of
@@ -4650,210 +4445,209 @@ Index
 
 Tag Table:
 Node: Top742
-Node: Installation2461
-Node: Using in a package3290
-Node: Fontification of special variables3790
-Node: Info symbol lookup4580
-Node: Functions5163
-Node: Maps6647
-Ref: -map6944
-Ref: -map-when7317
-Ref: -map-first7892
-Ref: -map-last8367
-Ref: -map-indexed8837
-Ref: -annotate9523
-Ref: -splice10010
-Ref: -splice-list10788
-Ref: -mapcat11247
-Ref: -copy11620
-Node: Sublist selection11808
-Ref: -filter12001
-Ref: -remove12548
-Ref: -remove-first13086
-Ref: -remove-last13928
-Ref: -remove-item14653
-Ref: -non-nil15053
-Ref: -slice15329
-Ref: -take15858
-Ref: -take-last16265
-Ref: -drop16696
-Ref: -drop-last17137
-Ref: -take-while17563
-Ref: -drop-while18178
-Ref: -select-by-indices18794
-Ref: -select-columns19305
-Ref: -select-column20008
-Node: List to list20471
-Ref: -keep20663
-Ref: -concat21227
-Ref: -flatten21521
-Ref: -flatten-n22277
-Ref: -replace22661
-Ref: -replace-first23122
-Ref: -replace-last23617
-Ref: -insert-at24105
-Ref: -replace-at24430
-Ref: -update-at24817
-Ref: -remove-at25305
-Ref: -remove-at-indices25790
-Node: Reductions26369
-Ref: -reduce-from26565
-Ref: -reduce-r-from27289
-Ref: -reduce28552
-Ref: -reduce-r29303
-Ref: -reductions-from30581
-Ref: -reductions-r-from31387
-Ref: -reductions32217
-Ref: -reductions-r32928
-Ref: -count33673
-Ref: -sum33897
-Ref: -running-sum34085
-Ref: -product34406
-Ref: -running-product34614
-Ref: -inits34955
-Ref: -tails35200
-Ref: -common-prefix35444
-Ref: -common-suffix35738
-Ref: -min36032
-Ref: -min-by36258
-Ref: -max36779
-Ref: -max-by37004
-Node: Unfolding37530
-Ref: -iterate37771
-Ref: -unfold38218
-Node: Predicates39023
-Ref: -any?39147
-Ref: -all?39467
-Ref: -none?39797
-Ref: -only-some?40099
-Ref: -contains?40584
-Ref: -same-items?40973
-Ref: -is-prefix?41358
-Ref: -is-suffix?41684
-Ref: -is-infix?42010
-Ref: -cons-pair?42364
-Node: Partitioning42689
-Ref: -split-at42877
-Ref: -split-with43541
-Ref: -split-on43941
-Ref: -split-when44614
-Ref: -separate45251
-Ref: -partition45690
-Ref: -partition-all46139
-Ref: -partition-in-steps46564
-Ref: -partition-all-in-steps47058
-Ref: -partition-by47540
-Ref: -partition-by-header47918
-Ref: -partition-after-pred48519
-Ref: -partition-before-pred48897
-Ref: -partition-before-item49282
-Ref: -partition-after-item49589
-Ref: -group-by49891
-Node: Indexing50324
-Ref: -elem-index50526
-Ref: -elem-indices50921
-Ref: -find-index51301
-Ref: -find-last-index51790
-Ref: -find-indices52294
-Ref: -grade-up52699
-Ref: -grade-down53106
-Node: Set operations53520
-Ref: -union53703
-Ref: -difference54141
-Ref: -intersection54553
-Ref: -powerset54985
-Ref: -permutations55195
-Ref: -distinct55491
-Node: Other list operations55865
-Ref: -rotate56090
-Ref: -repeat56457
-Ref: -cons*56736
-Ref: -snoc57152
-Ref: -interpose57562
-Ref: -interleave57856
-Ref: -iota58222
-Ref: -zip-with58705
-Ref: -zip59419
-Ref: -zip-lists60248
-Ref: -zip-fill60946
-Ref: -unzip61268
-Ref: -cycle62010
-Ref: -pad62409
-Ref: -table62728
-Ref: -table-flat63514
-Ref: -first64519
-Ref: -some65005
-Ref: -last65489
-Ref: -first-item65823
-Ref: -second-item66222
-Ref: -third-item66486
-Ref: -fourth-item66748
-Ref: -fifth-item67014
-Ref: -last-item67276
-Ref: -butlast67567
-Ref: -sort67812
-Ref: -list68298
-Ref: -fix68867
-Node: Tree operations69356
-Ref: -tree-seq69552
-Ref: -tree-map70407
-Ref: -tree-map-nodes70847
-Ref: -tree-reduce71694
-Ref: -tree-reduce-from72576
-Ref: -tree-mapreduce73176
-Ref: -tree-mapreduce-from74035
-Ref: -clone75320
-Node: Threading macros75647
-Ref: ->75792
-Ref: ->>76280
-Ref: -->76783
-Ref: -as->77339
-Ref: -some->77793
-Ref: -some->>78166
-Ref: -some-->78601
-Ref: -doto79150
-Node: Binding79703
-Ref: -when-let79915
-Ref: -when-let*80370
-Ref: -if-let80893
-Ref: -if-let*81253
-Ref: -let81870
-Ref: -let*87942
-Ref: -lambda88879
-Ref: -setq89685
-Node: Side effects90486
-Ref: -each90680
-Ref: -each-while91201
-Ref: -each-indexed91803
-Ref: -each-r92389
-Ref: -each-r-while92825
-Ref: -dotimes93451
-Node: Destructive operations94004
-Ref: !cons94177
-Ref: !cdr94381
-Node: Function combinators94574
-Ref: -partial94848
-Ref: -rpartial95242
-Ref: -juxt95645
-Ref: -compose96075
-Ref: -applify96628
-Ref: -on97057
-Ref: -flip97581
-Ref: -const97892
-Ref: -cut98230
-Ref: -not98710
-Ref: -orfn99019
-Ref: -andfn99452
-Ref: -iteratefn99946
-Ref: -fixfn100648
-Ref: -prodfn102210
-Node: Development103268
-Node: Contribute103621
-Node: Change log104631
-Node: Contributors112169
-Node: FDL114187
-Node: GPL139507
-Node: Index177256
+Node: Installation2397
+Node: Using in a package3226
+Node: Fontification of special variables3726
+Node: Info symbol lookup4516
+Node: Functions5099
+Node: Maps6583
+Ref: -map6880
+Ref: -map-when7253
+Ref: -map-first7828
+Ref: -map-last8303
+Ref: -map-indexed8773
+Ref: -annotate9459
+Ref: -splice9946
+Ref: -splice-list10724
+Ref: -mapcat11183
+Ref: -copy11556
+Node: Sublist selection11744
+Ref: -filter11937
+Ref: -remove12484
+Ref: -remove-first13022
+Ref: -remove-last13864
+Ref: -remove-item14589
+Ref: -non-nil14989
+Ref: -slice15265
+Ref: -take15794
+Ref: -take-last16201
+Ref: -drop16632
+Ref: -drop-last17073
+Ref: -take-while17499
+Ref: -drop-while18114
+Ref: -select-by-indices18730
+Ref: -select-columns19241
+Ref: -select-column19944
+Node: List to list20407
+Ref: -keep20599
+Ref: -concat21163
+Ref: -flatten21457
+Ref: -flatten-n22213
+Ref: -replace22597
+Ref: -replace-first23058
+Ref: -replace-last23553
+Ref: -insert-at24041
+Ref: -replace-at24366
+Ref: -update-at24753
+Ref: -remove-at25241
+Ref: -remove-at-indices25726
+Node: Reductions26305
+Ref: -reduce-from26501
+Ref: -reduce-r-from27225
+Ref: -reduce28488
+Ref: -reduce-r29239
+Ref: -reductions-from30517
+Ref: -reductions-r-from31323
+Ref: -reductions32153
+Ref: -reductions-r32864
+Ref: -count33609
+Ref: -sum33833
+Ref: -running-sum34021
+Ref: -product34342
+Ref: -running-product34550
+Ref: -inits34891
+Ref: -tails35136
+Ref: -common-prefix35380
+Ref: -common-suffix35674
+Ref: -min35968
+Ref: -min-by36194
+Ref: -max36715
+Ref: -max-by36940
+Node: Unfolding37466
+Ref: -iterate37707
+Ref: -unfold38154
+Node: Predicates38959
+Ref: -any?39083
+Ref: -all?39403
+Ref: -none?39733
+Ref: -only-some?40035
+Ref: -contains?40520
+Ref: -same-items?40909
+Ref: -is-prefix?41294
+Ref: -is-suffix?41620
+Ref: -is-infix?41946
+Ref: -cons-pair?42300
+Node: Partitioning42625
+Ref: -split-at42813
+Ref: -split-with43477
+Ref: -split-on43877
+Ref: -split-when44550
+Ref: -separate45187
+Ref: -partition45626
+Ref: -partition-all46075
+Ref: -partition-in-steps46500
+Ref: -partition-all-in-steps46994
+Ref: -partition-by47476
+Ref: -partition-by-header47854
+Ref: -partition-after-pred48455
+Ref: -partition-before-pred48833
+Ref: -partition-before-item49218
+Ref: -partition-after-item49525
+Ref: -group-by49827
+Node: Indexing50260
+Ref: -elem-index50462
+Ref: -elem-indices50857
+Ref: -find-index51237
+Ref: -find-last-index51726
+Ref: -find-indices52230
+Ref: -grade-up52635
+Ref: -grade-down53042
+Node: Set operations53456
+Ref: -union53639
+Ref: -difference54077
+Ref: -intersection54489
+Ref: -powerset54921
+Ref: -permutations55131
+Ref: -distinct55427
+Node: Other list operations55801
+Ref: -rotate56026
+Ref: -repeat56393
+Ref: -cons*56672
+Ref: -snoc57088
+Ref: -interpose57498
+Ref: -interleave57792
+Ref: -iota58158
+Ref: -zip-with58641
+Ref: -zip59355
+Ref: -zip-lists60184
+Ref: -zip-fill60882
+Ref: -unzip61204
+Ref: -cycle61946
+Ref: -pad62345
+Ref: -table62664
+Ref: -table-flat63450
+Ref: -first64455
+Ref: -some64941
+Ref: -last65425
+Ref: -first-item65759
+Ref: -second-item66158
+Ref: -third-item66422
+Ref: -fourth-item66684
+Ref: -fifth-item66950
+Ref: -last-item67212
+Ref: -butlast67503
+Ref: -sort67748
+Ref: -list68234
+Ref: -fix68803
+Node: Tree operations69292
+Ref: -tree-seq69488
+Ref: -tree-map70343
+Ref: -tree-map-nodes70783
+Ref: -tree-reduce71630
+Ref: -tree-reduce-from72512
+Ref: -tree-mapreduce73112
+Ref: -tree-mapreduce-from73971
+Ref: -clone75256
+Node: Threading macros75583
+Ref: ->75728
+Ref: ->>76216
+Ref: -->76719
+Ref: -as->77275
+Ref: -some->77729
+Ref: -some->>78102
+Ref: -some-->78537
+Ref: -doto79086
+Node: Binding79639
+Ref: -when-let79851
+Ref: -when-let*80306
+Ref: -if-let80829
+Ref: -if-let*81189
+Ref: -let81806
+Ref: -let*87878
+Ref: -lambda88815
+Ref: -setq89621
+Node: Side effects90422
+Ref: -each90616
+Ref: -each-while91137
+Ref: -each-indexed91739
+Ref: -each-r92325
+Ref: -each-r-while92761
+Ref: -dotimes93387
+Node: Destructive operations93940
+Ref: !cons94113
+Ref: !cdr94317
+Node: Function combinators94510
+Ref: -partial94784
+Ref: -rpartial95178
+Ref: -juxt95581
+Ref: -compose96011
+Ref: -applify96564
+Ref: -on96993
+Ref: -flip97517
+Ref: -const97828
+Ref: -cut98166
+Ref: -not98646
+Ref: -orfn98955
+Ref: -andfn99388
+Ref: -iteratefn99882
+Ref: -fixfn100584
+Ref: -prodfn102146
+Node: Development103204
+Node: Contribute103493
+Node: Contributors104505
+Node: FDL106523
+Node: GPL131843
+Node: Index169592
 
 End Tag Table
 

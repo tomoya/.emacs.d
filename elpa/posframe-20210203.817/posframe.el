@@ -5,8 +5,8 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20210130.946
-;; Package-Commit: fc465026765a3887891b80df2f85fa4478ce1f21
+;; Package-Version: 20210203.817
+;; Package-Commit: 5e654b0f7023055a0acae82eb4e68904819c3529
 ;; Version: 0.8.4
 ;; Keywords: convenience, tooltip
 ;; Package-Requires: ((emacs "26"))
@@ -247,6 +247,8 @@ effect.")
                                      background-color
                                      left-fringe
                                      right-fringe
+                                     border-width
+                                     border-color
                                      internal-border-width
                                      internal-border-color
                                      font
@@ -260,7 +262,10 @@ effect.")
 This posframe's buffer is BUFFER-OR-NAME."
   (let ((left-fringe (or left-fringe 0))
         (right-fringe (or right-fringe 0))
-        (internal-border-width (or internal-border-width 0))
+        ;; See emacs.git:  Add distinct controls for child frames' borders (Bug#45620)
+        ;; http://git.savannah.gnu.org/cgit/emacs.git/commit/?id=ff7b1a133bfa7f2614650f8551824ffaef13fadc
+        (border-width (or border-width internal-border-width 0))
+        (border-color (or border-color internal-border-color))
         (buffer (get-buffer-create buffer-or-name))
         (after-make-frame-functions nil)
         (x-gtk-resize-child-frames posframe-gtk-resize-child-frames)
@@ -269,6 +274,7 @@ This posframe's buffer is BUFFER-OR-NAME."
                     background-color
                     right-fringe
                     left-fringe
+                    border-width
                     internal-border-width
                     font
                     keep-ratio
@@ -328,7 +334,8 @@ This posframe's buffer is BUFFER-OR-NAME."
                        (min-width  . 0)
                        (min-height . 0)
                        (border-width . 0)
-                       (internal-border-width . ,internal-border-width)
+                       (internal-border-width . ,border-width)
+                       (child-frame-border-width . ,border-width)
                        (vertical-scroll-bars . nil)
                        (horizontal-scroll-bars . nil)
                        (left-fringe . ,left-fringe)
@@ -349,9 +356,9 @@ This posframe's buffer is BUFFER-OR-NAME."
                        (inhibit-double-buffering . ,posframe-inhibit-double-buffering)
                        ;; Do not save child-frame when use desktop.el
                        (desktop-dont-save . t))))
-        (when internal-border-color
-          (set-face-background 'internal-border
-                               internal-border-color posframe--frame))
+        (when border-color
+          (set-face-background 'internal-border border-color posframe--frame)
+          (set-face-background 'child-frame-border border-color posframe--frame))
         (let ((posframe-window (frame-root-window posframe--frame)))
           ;; This method is more stable than 'setq mode/header-line-format nil'
           (unless respect-mode-line
@@ -380,6 +387,8 @@ This posframe's buffer is BUFFER-OR-NAME."
                          y-pixel-offset
                          left-fringe
                          right-fringe
+                         border-width
+                         border-color
                          internal-border-width
                          internal-border-color
                          font
@@ -471,9 +480,15 @@ If LEFT-FRINGE or RIGHT-FRINGE is a number, left fringe or
 right fringe with be shown with the specified width.
 
 By default, posframe shows no borders, but users can specify
-borders by setting INTERNAL-BORDER-WIDTH to a positive number.
-Border color can be specified by INTERNAL-BORDER-COLOR
-or via the ‘internal-border’ face.
+borders by setting BORDER-WIDTH to a positive number.  Border
+color can be specified by BORDER-COLOR.
+
+INTERNAL-BORDER-WIDTH and INTERNAL-BORDER-COLOR are same as
+BORDER-WIDTH and INTERNAL-BORDER-COLOR, but do not suggest to use
+for the reason:
+
+   Add distinct controls for child frames' borders (Bug#45620)
+   http://git.savannah.gnu.org/cgit/emacs.git/commit/?id=ff7b1a133bfa7f2614650f8551824ffaef13fadc
 
 Posframe's font as well as foreground and background colors are
 derived from the current frame by default, but can be overridden
@@ -527,6 +542,8 @@ You can use `posframe-delete-all' to delete all posframes."
          (y-pixel-offset (or (funcall posframe-arghandler buffer-or-name :y-pixel-offset y-pixel-offset) 0))
          (left-fringe (funcall posframe-arghandler buffer-or-name :left-fringe left-fringe))
          (right-fringe (funcall posframe-arghandler buffer-or-name :right-fringe right-fringe))
+         (border-width (funcall posframe-arghandler buffer-or-name :border-width border-width))
+         (border-color (funcall posframe-arghandler buffer-or-name :border-color border-color))
          (internal-border-width (funcall posframe-arghandler buffer-or-name :internal-border-width internal-border-width))
          (internal-border-color (funcall posframe-arghandler buffer-or-name :internal-border-color internal-border-color))
          (font (funcall posframe-arghandler buffer-or-name :font font))
@@ -586,6 +603,8 @@ You can use `posframe-delete-all' to delete all posframes."
              :parent-frame parent-frame
              :left-fringe left-fringe
              :right-fringe right-fringe
+             :border-width border-width
+             :border-color border-color
              :internal-border-width internal-border-width
              :internal-border-color internal-border-color
              :foreground-color foreground-color
