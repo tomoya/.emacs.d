@@ -4,8 +4,8 @@
 
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20210222.1942
-;; Package-Commit: 1dbdb430058e36e36ce6ef856ca564d74a915bac
+;; Package-Version: 20210225.1816
+;; Package-Commit: f3f8a6505d50ca0f03f7deef99a1c8aa3bcd9e58
 ;; Keywords: project, convenience
 ;; Version: 2.4.0-snapshot
 ;; Package-Requires: ((emacs "25.1") (pkg-info "0.4"))
@@ -2798,8 +2798,8 @@ test/impl/other files as below:
 ;; Java & friends
 (projectile-register-project-type 'maven '("pom.xml")
                                   :project-file "pom.xml"
-                                  :compile "mvn clean install"
-                                  :test "mvn test"
+                                  :compile "mvn -B clean install"
+                                  :test "mvn -B test"
                                   :test-suffix "Test"
                                   :src-dir "main/src/"
                                   :test-dir "main/test/")

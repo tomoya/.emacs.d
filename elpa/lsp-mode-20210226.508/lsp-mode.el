@@ -3561,6 +3561,10 @@ yet."
                    (memq :on-trigger-char lsp-signature-auto-activate))))
       (remove-hook 'post-self-insert-hook signature-help-handler t)))))
 
+(defun lsp--after-set-visited-file-name ()
+  (lsp-disconnect)
+  (lsp))
+
 (define-minor-mode lsp-managed-mode
   "Mode for source buffers managed by lsp-mode."
   nil nil nil
@@ -3590,6 +3594,7 @@ yet."
     ;; make sure we turn off lsp-mode in case major mode changes, because major
     ;; mode change will wipe the buffer locals.
     (add-hook 'change-major-mode-hook #'lsp-disconnect nil t)
+    (add-hook 'after-set-visited-file-name-hook #'lsp--after-set-visited-file-name nil t)
 
     (let ((buffer (lsp-current-buffer)))
       (run-with-idle-timer
@@ -3626,7 +3631,9 @@ yet."
     (lsp--remove-overlays 'lsp-links)
 
     (remove-hook 'xref-backend-functions #'lsp--xref-backend t)
-    (remove-hook 'change-major-mode-hook #'lsp-disconnect t))))
+    (remove-hook 'change-major-mode-hook #'lsp-disconnect t)
+    (remove-hook 'after-set-visited-file-name-hook #'lsp--after-set-visited-file-name t)
+    (setq-local lsp-buffer-uri nil))))
 
 (defun lsp-configure-buffer ()
   "Configure LSP features for current buffer."
@@ -4951,22 +4958,30 @@ It will show up only if current point has signature help."
   (add-hook 'post-command-hook #'lsp-signature)
   (lsp-signature-mode t))
 
+(defcustom lsp-signature-cycle t
+  "Whether `lsp-signature-next' and prev should cycle."
+  :type 'boolean
+  :group 'lsp-mode)
+
 (defun lsp-signature-next ()
   "Show next signature."
   (interactive)
-  (when (and lsp--signature-last-index
-             lsp--signature-last
-             (< (1+ lsp--signature-last-index) (length (lsp:signature-help-signatures lsp--signature-last))))
-    (setq lsp--signature-last-index (1+ lsp--signature-last-index))
-    (funcall lsp-signature-function (lsp--signature->message lsp--signature-last))))
+  (let ((nsigs (length (lsp:signature-help-signatures lsp--signature-last))))
+    (when (and lsp--signature-last-index
+               lsp--signature-last
+               (or lsp-signature-cycle (< (1+ lsp--signature-last-index) nsigs)))
+      (setq lsp--signature-last-index (% (1+ lsp--signature-last-index) nsigs))
+      (funcall lsp-signature-function (lsp--signature->message lsp--signature-last)))))
 
 (defun lsp-signature-previous ()
   "Next signature."
   (interactive)
   (when (and lsp--signature-last-index
              lsp--signature-last
-             (not (zerop lsp--signature-last-index)))
-    (setq lsp--signature-last-index (1- lsp--signature-last-index))
+             (or lsp-signature-cycle (not (zerop lsp--signature-last-index))))
+    (setq lsp--signature-last-index (1- (if (zerop lsp--signature-last-index)
+                                            (length (lsp:signature-help-signatures lsp--signature-last))
+                                          lsp--signature-last-index)))
     (funcall lsp-signature-function (lsp--signature->message lsp--signature-last))))
 
 (defun lsp-signature-toggle-full-docs ()
