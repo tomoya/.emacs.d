@@ -266,6 +266,10 @@
   (flycheck-package-setup)
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
+;; tree-sitter
+(require 'tree-sitter-langs)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
 ;; markdown-preview-mode
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
