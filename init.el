@@ -139,6 +139,7 @@
  '(global-diff-hl-mode t)
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
+ '(global-tree-sitter-mode t)
  '(global-whitespace-mode t)
  '(helm-for-files-preferred-list
    '(helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-projectile-projects helm-source-files-in-current-dir))
