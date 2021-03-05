@@ -212,6 +212,7 @@
  '(projectile-mode t nil (projectile))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
+ '(ring-bell-function 'ignore)
  '(ruby-insert-encoding-magic-comment nil)
  '(savehist-mode t)
  '(scroll-bar-mode nil)
