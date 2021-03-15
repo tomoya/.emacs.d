@@ -1,0 +1,2 @@
+;;; Generated package description from /Users/tomoya/.config/emacs/elpa/flycheck-posframe-20210315.6/flycheck-posframe.el  -*- no-byte-compile: t -*-
+(define-package "flycheck-posframe" "20210315.6" "Show flycheck error messages using posframe.el" '((flycheck "0.24") (emacs "26") (posframe "0.7.0")) :commit "911368472919b33db622c2d1ad062dadb7b20ca3" :authors '(("Alex Murray" . "murray.alex@gmail.com")) :maintainer '("Alex Murray" . "murray.alex@gmail.com") :url "https://github.com/alexmurray/flycheck-posframe")
