@@ -302,6 +302,9 @@ Because some variables are buffer local.")
        (if (and language (not (string= "text" language)))
            (format "```%s\n%s\n```" language string)
          string))
+      ;; For other programming languages
+      (language (lsp--render-string (lsp-ui-doc--inline-formatted-string string) language))
+      ;; For default element content
       (t (lsp--render-element (lsp-ui-doc--inline-formatted-string string)))))))
 
 (defun lsp-ui-doc--filter-marked-string (list-marked-string)

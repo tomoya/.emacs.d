@@ -4,7 +4,8 @@
 
 ;; Author: Masahiro Hayashi <mhayashi1120@gmail.com>
 ;; Keywords: grep edit extensions
-;; Package-Version: 20200217.1030
+;; Package-Version: 20210322.2207
+;; Package-Commit: f9687c28bbc2e84f87a479b6ce04407bb97cfb23
 ;; URL: http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el
 ;; Emacs: GNU Emacs 25 or later
 ;; Version: 2.3.3
@@ -81,7 +82,7 @@
 ;; - Can handle newline insertion in *grep* buffer.
 ;; - Delete whole line include newline.
 
-;; ### Similar softwares:
+;; ### Similar software:
 
 ;; [GNU sed](https://www.gnu.org/software/sed/)
 ;; [helm-ag](https://github.com/syohex/emacs-helm-ag) has a similar feature.
@@ -124,9 +125,9 @@
 ;;; Variable / Constant
 ;;;
 
-;;
-;; Customize
-;;
+;;;;
+;;;; Customize
+;;;;
 
 (defcustom wgrep-change-readonly-file nil
   "Non-nil means to enable change read-only files."
@@ -154,9 +155,9 @@ Key to enable `wgrep-mode'."
 
 (defvar wgrep-mode-map nil)
 
-;;
-;; Internal variable
-;;
+;;;;
+;;;; Internal variable
+;;;;
 
 (defvar wgrep-readonly-state nil)
 (make-variable-buffer-local 'wgrep-readonly-state)
@@ -182,9 +183,9 @@ Key to enable `wgrep-mode'."
 ;; GNU Emacs have this variable at least version 21 or later
 (defvar auto-coding-regexp-alist)
 
-;;
-;; Constant
-;;
+;;;;
+;;;; Constant
+;;;;
 
 ;; These regexp come from `grep-regexp-alist' at grep.el
 (eval-and-compile
@@ -208,15 +209,15 @@ Key to enable `wgrep-mode'."
      wgrep-colon-file-separator-header-regexp
      "\\)")))
 
-;;
-;; Error
-;;
+;;;;
+;;;; Error
+;;;;
 
 (define-error 'wgrep-error "wgrep error")
 
-;;
-;; Overridable functions / regexp
-;;
+;;;;
+;;;; Overridable functions / regexp
+;;;;
 
 (defvar wgrep-line-file-regexp wgrep-default-line-header-regexp
   "Regexp that match to line header of grep result.
@@ -241,9 +242,9 @@ non editable region.")
 ;;; Basic utilities
 ;;;
 
-;;
-;; misc
-;;
+;;;;
+;;;; misc
+;;;;
 
 ;;Hack function
 (defun wgrep-string-replace-bom (string cs)
@@ -274,9 +275,9 @@ non editable region.")
     (or (null proc)
         (eq (process-status proc) 'exit))))
 
-;;
-;; error
-;;
+;;;;
+;;;; error
+;;;;
 
 (defun wgrep-check-file (file)
   (unless (file-exists-p file)
@@ -284,9 +285,9 @@ non editable region.")
   (unless (file-writable-p file)
     (signal 'wgrep-error (list "File is not writable."))))
 
-;;
-;; overlay
-;;
+;;;;
+;;;; overlay
+;;;;
 
 (defun wgrep-cleanup-overlays (beg end)
   (dolist (ov (overlays-in beg end))
