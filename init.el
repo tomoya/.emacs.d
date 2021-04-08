@@ -381,7 +381,6 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'auto-fix-mode-hook
           (lambda () (add-hook 'before-save-hook #'auto-fix-before-save)))
 
-(add-hook 'ts-web-mode-hook #'auto-fix-mode)
 (add-hook 'typescript-mode-hook #'auto-fix-mode)
 (add-hook 'js-mode-hook #'auto-fix-mode)
 (add-hook 'web-mode-hook #'auto-fix-mode)
@@ -400,15 +399,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; TypeScript
 (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-
-;; ts-web-mode derrived from web-mode
-(define-derived-mode ts-web-mode web-mode "TS-Web"
-  (setq-local web-mode-content-type "jsx"))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . ts-web-mode))
-
-;; TSX using ts-web-mode
-(flycheck-add-mode 'typescript-tslint 'ts-web-mode)
-(flycheck-add-mode 'javascript-eslint 'ts-web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
 (defun my-use-local-lint ()
   "Use local lint if exist it."
@@ -428,7 +419,6 @@ point reaches the beginning or end of the buffer, stop there."
 ;; lsp-mode
 (add-hook 'web-mode-hook #'lsp)
 (add-hook 'typescript-mode-hook #'lsp)
-(add-hook 'ts-web-mode-hook #'lsp)
 (add-hook 'terraform-mode-hook #'lsp)
 (add-hook 'yaml-mode-hook #'lsp)
 (add-hook 'json-mode-hook #'lsp)
