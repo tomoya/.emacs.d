@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "helm-adaptive" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-adaptive.el"
+;;;### (autoloads nil "helm-adaptive" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-adaptive.el"
 ;;;;;;  "a1b0fc0519d0db380002b42b2fa9636d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-adaptive.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-adaptive.el
 
 (defvar helm-adaptive-mode nil "\
 Non-nil if Helm-Adaptive mode is enabled.
@@ -36,9 +36,9 @@ Useful when you have a old or corrupted
 `helm-adaptive-history-file'." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-adaptive"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-adaptive.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-adaptive.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-adaptive.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-adaptive.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-adaptive" '("helm-adapt")))
 
@@ -46,9 +46,9 @@ Useful when you have a old or corrupted
 
 ;;;***
 
-;;;### (autoloads nil "helm-bookmark" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-bookmark.el"
+;;;### (autoloads nil "helm-bookmark" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-bookmark.el"
 ;;;;;;  "97e65726f68e5b7ff4d24e32ff91c5c6")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-bookmark.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-bookmark.el
 
 (autoload 'helm-bookmarks "helm-bookmark" "\
 Preconfigured `helm' for bookmarks." t nil)
@@ -59,9 +59,9 @@ Optional source `helm-source-bookmark-addressbook' is loaded only
 if external addressbook-bookmark package is installed." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-bookmark"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-bookmark.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-bookmark.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-bookmark.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-bookmark.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-bookmark" '("bmkext-jump-" "bookmark" "helm-")))
 
@@ -69,9 +69,9 @@ if external addressbook-bookmark package is installed." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-buffers" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-buffers.el"
+;;;### (autoloads nil "helm-buffers" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-buffers.el"
 ;;;;;;  "681707177ee87ab7b490d1ec13d561f4")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-buffers.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-buffers.el
 
 (autoload 'helm-buffers-list "helm-buffers" "\
 Preconfigured `helm' to list buffers." t nil)
@@ -80,9 +80,9 @@ Preconfigured `helm' to list buffers." t nil)
 Preconfigured `helm' displaying `helm-mini-default-sources'." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-buffers"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-buffers.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-buffers.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-buffers.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-buffers.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-buffers" '("helm-")))
 
@@ -90,16 +90,16 @@ Preconfigured `helm' displaying `helm-mini-default-sources'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-color" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-color.el"
+;;;### (autoloads nil "helm-color" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-color.el"
 ;;;;;;  "58986b513d54ebc769afbbba1f93b3c0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-color.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-color.el
 
 (autoload 'helm-colors "helm-color" "\
 Preconfigured `helm' for color." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-color" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-color.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-color" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-color.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-color.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-color.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-color" '("helm-")))
 
@@ -107,9 +107,9 @@ Preconfigured `helm' for color." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-comint" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-comint.el"
+;;;### (autoloads nil "helm-comint" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-comint.el"
 ;;;;;;  "042b3e412efe74808ac08d1ef73cecc4")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-comint.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-comint.el
 
 (autoload 'helm-comint-prompts "helm-comint" "\
 Pre-configured `helm' to browse the prompts of the current comint buffer." t nil)
@@ -121,9 +121,9 @@ Pre-configured `helm' to browse the prompts of all comint sessions." t nil)
 Preconfigured `helm' that provide completion of `comint' history." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-comint"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-comint.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-comint.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-comint.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-comint.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-comint" '("helm-")))
 
@@ -131,9 +131,9 @@ Preconfigured `helm' that provide completion of `comint' history." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-command" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-command.el"
+;;;### (autoloads nil "helm-command" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-command.el"
 ;;;;;;  "2cf4d8fd7c1d193f7627c9363ce09079")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-command.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-command.el
 
 (autoload 'helm-M-x "helm-command" "\
 Preconfigured `helm' for Emacs commands.
@@ -151,9 +151,9 @@ You can get help on each command by persistent action.
 \(fn ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-command"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-command.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-command.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-command.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-command.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-command" '("helm-")))
 
@@ -161,17 +161,17 @@ You can get help on each command by persistent action.
 
 ;;;***
 
-;;;### (autoloads nil "helm-dabbrev" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-dabbrev.el"
+;;;### (autoloads nil "helm-dabbrev" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-dabbrev.el"
 ;;;;;;  "406e3580a4c33148ddf5b046db998b93")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-dabbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-dabbrev.el
 
 (autoload 'helm-dabbrev "helm-dabbrev" "\
 Preconfigured helm for dynamic abbreviations." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-dabbrev"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-dabbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-dabbrev.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-dabbrev.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-dabbrev.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-dabbrev" '("helm-dabbrev-")))
 
@@ -179,9 +179,9 @@ Preconfigured helm for dynamic abbreviations." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-elisp" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp.el"
+;;;### (autoloads nil "helm-elisp" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp.el"
 ;;;;;;  "9fd7ee290b419ead5e62c496796d592b")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp.el
 
 (autoload 'helm-lisp-completion-at-point "helm-elisp" "\
 Preconfigured Helm for Lisp symbol completion at point." t nil)
@@ -217,9 +217,9 @@ Preconfigured `helm' for timers." t nil)
 (autoload 'helm-complex-command-history "helm-elisp" "\
 Preconfigured `helm' for complex command history." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-elisp" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-elisp" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-elisp" '("helm-" "with-helm-show-completion")))
 
@@ -227,9 +227,9 @@ Preconfigured `helm' for complex command history." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-elisp-package" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp-package.el"
+;;;### (autoloads nil "helm-elisp-package" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp-package.el"
 ;;;;;;  "4a6749bd47102b39a990ba802145a688")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp-package.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp-package.el
 
 (autoload 'helm-list-elisp-packages "helm-elisp-package" "\
 Preconfigured `helm' for listing and handling Emacs packages.
@@ -246,9 +246,9 @@ remote.
 \(fn ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-elisp-package"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp-package.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp-package.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp-package.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp-package.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-elisp-package" '("helm-")))
 
@@ -256,9 +256,9 @@ remote.
 
 ;;;***
 
-;;;### (autoloads nil "helm-epa" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-epa.el"
+;;;### (autoloads nil "helm-epa" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-epa.el"
 ;;;;;;  "a3c28ec348b7f36de96da346292a98d9")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-epa.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-epa.el
 
 (defvar helm-epa-mode nil "\
 Non-nil if Helm-Epa mode is enabled.
@@ -284,9 +284,9 @@ ARG is `toggle'; disable the mode otherwise.
 List all gpg keys.
 This is the helm interface for `epa-list-keys'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-epa" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-epa.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-epa" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-epa.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-epa.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-epa.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-epa" '("helm-epa")))
 
@@ -294,9 +294,9 @@ This is the helm interface for `epa-list-keys'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-eshell" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eshell.el"
+;;;### (autoloads nil "helm-eshell" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eshell.el"
 ;;;;;;  "30301da2aa728d27cf9bfe378fcb03bd")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eshell.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eshell.el
 
 (autoload 'helm-esh-pcomplete "helm-eshell" "\
 Preconfigured `helm' to provide Helm completion in Eshell." t nil)
@@ -311,9 +311,9 @@ Pre-configured `helm' to browse the prompts of the current Eshell." t nil)
 Pre-configured `helm' to browse the prompts of all Eshell sessions." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-eshell"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eshell.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eshell.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eshell.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eshell.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-eshell" '("helm-e")))
 
@@ -321,9 +321,9 @@ Pre-configured `helm' to browse the prompts of all Eshell sessions." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-eval" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eval.el"
+;;;### (autoloads nil "helm-eval" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eval.el"
 ;;;;;;  "6b02581e518dbaebdd35b4cc620f90da")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eval.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eval.el
 
 (autoload 'helm-eval-expression "helm-eval" "\
 Preconfigured `helm' for `helm-source-evaluation-result'.
@@ -336,9 +336,9 @@ Preconfigured `helm' for `helm-source-evaluation-result' with `eldoc' support." 
 (autoload 'helm-calcul-expression "helm-eval" "\
 Preconfigured `helm' for `helm-source-calculation-result'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-eval" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eval.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-eval" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eval.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eval.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eval.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-eval" '("helm-")))
 
@@ -346,9 +346,9 @@ Preconfigured `helm' for `helm-source-calculation-result'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-external" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-external.el"
+;;;### (autoloads nil "helm-external" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-external.el"
 ;;;;;;  "669d64a5d37bb3213dc9a5e6a0dddafc")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-external.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-external.el
 
 (autoload 'helm-run-external-command "helm-external" "\
 Preconfigured `helm' to run External PROGRAM asyncronously from Emacs.
@@ -359,9 +359,9 @@ You can set your own list of commands with
 \(fn PROGRAM)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-external"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-external.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-external.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-external.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-external.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-external" '("helm-")))
 
@@ -369,17 +369,17 @@ You can set your own list of commands with
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-fd" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-fd.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-fd" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-fd.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-fd.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-fd.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-fd" '("helm-fd-")))
 
 ;;;***
 
-;;;### (autoloads nil "helm-files" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-files.el"
-;;;;;;  "b86391510a44dbcd254d04bcfa59a200")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-files.el
+;;;### (autoloads nil "helm-files" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-files.el"
+;;;;;;  "705cea168342b931e9ebc1628aeb8a2f")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-files.el
 
 (autoload 'helm-projects-history "helm-files" "\
 
@@ -424,9 +424,9 @@ in Emacs < to 25.1.50.1 (See Emacs bug http://debbugs.gnu.org/cgi/bugreport.cgi?
 It allows additionally to delete more than one connection at
 once." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-files" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-files.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-files" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-files.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-files.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-files" '("eshell-command-aliases-list" "helm-")))
 
@@ -434,9 +434,9 @@ once." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-find" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-find.el"
+;;;### (autoloads nil "helm-find" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-find.el"
 ;;;;;;  "aa02f3c67bd53bb72af0067af7ae8e15")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-find.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-find.el
 
 (autoload 'helm-find "helm-find" "\
 Preconfigured `helm' for the find shell command.
@@ -458,9 +458,9 @@ are passed to \"find\" literally.
 
 \(fn ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-find" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-find.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-find" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-find.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-find.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-find.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-find" '("helm-")))
 
@@ -468,9 +468,9 @@ are passed to \"find\" literally.
 
 ;;;***
 
-;;;### (autoloads nil "helm-font" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-font.el"
+;;;### (autoloads nil "helm-font" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-font.el"
 ;;;;;;  "cf35ca77e5496b1e1e1a4b05eb37d52d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-font.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-font.el
 
 (autoload 'helm-select-xfont "helm-font" "\
 Preconfigured `helm' to select Xfont." t nil)
@@ -482,9 +482,9 @@ Called with a prefix arg force reloading cache.
 
 \(fn ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-font" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-font.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-font" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-font.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-font.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-font.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-font" '("helm-")))
 
@@ -492,9 +492,9 @@ Called with a prefix arg force reloading cache.
 
 ;;;***
 
-;;;### (autoloads nil "helm-for-files" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-for-files.el"
+;;;### (autoloads nil "helm-for-files" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-for-files.el"
 ;;;;;;  "321938beeef0b060bfaed6886ef140a0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-for-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-for-files.el
 
 (autoload 'helm-for-files "helm-for-files" "\
 Preconfigured `helm' for opening files.
@@ -512,9 +512,9 @@ searching for is already found." t nil)
 Preconfigured `helm' for `recentf'." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-for-files"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-for-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-for-files.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-for-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-for-files.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-for-files" '("helm-")))
 
@@ -523,17 +523,17 @@ Preconfigured `helm' for `recentf'." t nil)
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-global-bindings"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-global-bindings.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-global-bindings.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-global-bindings.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-global-bindings.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-global-bindings" '("helm-")))
 
 ;;;***
 
-;;;### (autoloads nil "helm-grep" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-grep.el"
+;;;### (autoloads nil "helm-grep" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-grep.el"
 ;;;;;;  "3ad401d9d58e2fa8bf389a0de8759cf3")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-grep.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-grep.el
 
 (autoload 'helm-goto-precedent-file "helm-grep" "\
 Go to previous file in Helm grep/etags buffers." t nil)
@@ -554,9 +554,9 @@ With a prefix arg ARG git-grep the whole repository.
 
 \(fn ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-grep" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-grep.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-grep" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-grep.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-grep.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-grep.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-grep" '("helm-")))
 
@@ -564,9 +564,9 @@ With a prefix arg ARG git-grep the whole repository.
 
 ;;;***
 
-;;;### (autoloads nil "helm-help" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-help.el"
+;;;### (autoloads nil "helm-help" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-help.el"
 ;;;;;;  "bbefdc0f9078a613439e45266ef36322")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-help.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-help.el
 
 (autoload 'helm-documentation "helm-help" "\
 Preconfigured `helm' for Helm documentation.
@@ -581,9 +581,9 @@ String displayed in mode-line in `helm-source-find-files'.")
 
 (defvar helm-top-mode-line "\\<helm-top-map>\\[helm-help]:Help \\<helm-map>\\[helm-select-action]:Act \\[helm-maybe-exit-minibuffer]/f1/f2/f-n:NthAct \\[helm-toggle-suspend-update]:Tog.suspend \\[helm-customize-group]:Conf")
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-help" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-help.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-help" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-help.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-help.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-help.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-help" '("helm-")))
 
@@ -591,9 +591,9 @@ String displayed in mode-line in `helm-source-find-files'.")
 
 ;;;***
 
-;;;### (autoloads nil "helm-id-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-id-utils.el"
+;;;### (autoloads nil "helm-id-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-id-utils.el"
 ;;;;;;  "3f171406578d2290e5ae2d1836e98805")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-id-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-id-utils.el
 
 (autoload 'helm-gid "helm-id-utils" "\
 Preconfigured `helm' for `gid' command line of `ID-Utils'.
@@ -603,9 +603,9 @@ Need id-utils as dependency which provide `mkid', `gid' etc..
 See <https://www.gnu.org/software/idutils/>." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-id-utils"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-id-utils.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-id-utils.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-id-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-id-utils.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-id-utils" '("helm-gid-")))
 
@@ -613,9 +613,9 @@ See <https://www.gnu.org/software/idutils/>." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-imenu" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-imenu.el"
+;;;### (autoloads nil "helm-imenu" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-imenu.el"
 ;;;;;;  "218ab2159b78a270dd68a6e439a073e0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-imenu.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-imenu.el
 
 (autoload 'helm-imenu "helm-imenu" "\
 Preconfigured `helm' for `imenu'." t nil)
@@ -626,9 +626,9 @@ A mode is similar as current if it is the same, it is derived
 i.e. `derived-mode-p' or it have an association in
 `helm-imenu-all-buffer-assoc'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-imenu" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-imenu.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-imenu" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-imenu.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-imenu.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-imenu.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-imenu" '("helm-")))
 
@@ -636,9 +636,9 @@ i.e. `derived-mode-p' or it have an association in
 
 ;;;***
 
-;;;### (autoloads nil "helm-info" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-info.el"
+;;;### (autoloads nil "helm-info" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-info.el"
 ;;;;;;  "89ee15271e5197e8d85247404d91706b")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-info.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-info.el
 
 (autoload 'helm-info "helm-info" "\
 Preconfigured `helm' for searching Info files' indices.
@@ -660,9 +660,9 @@ Info files are made available.
 (autoload 'helm-info-at-point "helm-info" "\
 Preconfigured `helm' for searching info at point." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-info" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-info.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-info" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-info.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-info.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-info.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-info" '("helm-")))
 
@@ -670,9 +670,9 @@ Preconfigured `helm' for searching info at point." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-locate" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-locate.el"
+;;;### (autoloads nil "helm-locate" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-locate.el"
 ;;;;;;  "1e87ed5f4a1dba219e62ecb1dbdc78fe")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-locate.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-locate.el
 
 (autoload 'helm-projects-find-files "helm-locate" "\
 Find files with locate in `helm-locate-project-list'.
@@ -697,9 +697,9 @@ Where db_path is a filename matched by
 \(fn ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-locate"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-locate.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-locate.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-locate.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-locate.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-locate" '("helm-")))
 
@@ -707,9 +707,9 @@ Where db_path is a filename matched by
 
 ;;;***
 
-;;;### (autoloads nil "helm-man" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-man.el"
+;;;### (autoloads nil "helm-man" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-man.el"
 ;;;;;;  "48dc36d4c544950cf513a712dd7329ec")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-man.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-man.el
 
 (autoload 'helm-man-woman "helm-man" "\
 Preconfigured `helm' for Man and Woman pages.
@@ -717,9 +717,9 @@ With a prefix arg reinitialize the cache.
 
 \(fn ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-man" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-man.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-man" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-man.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-man.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-man.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-man" '("helm-")))
 
@@ -727,9 +727,9 @@ With a prefix arg reinitialize the cache.
 
 ;;;***
 
-;;;### (autoloads nil "helm-misc" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-misc.el"
+;;;### (autoloads nil "helm-misc" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-misc.el"
 ;;;;;;  "6b71ff36eeb3658acf8c1244418adcfb")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-misc.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-misc.el
 
 (autoload 'helm-world-time "helm-misc" "\
 Preconfigured `helm' to show world time.
@@ -747,9 +747,9 @@ Preconfigured helm for stumpwm commands." t nil)
 (autoload 'helm-minibuffer-history "helm-misc" "\
 Preconfigured `helm' for `minibuffer-history'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-misc" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-misc.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-misc" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-misc.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-misc.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-misc.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-misc" '("helm-")))
 
@@ -757,9 +757,9 @@ Preconfigured `helm' for `minibuffer-history'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-mode" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-mode.el"
-;;;;;;  "41aa7deeaf46305caef010c8da76aac1")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-mode.el
+;;;### (autoloads nil "helm-mode" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-mode.el"
+;;;;;;  "88eb751f81ab33dd36a9a918f143392d")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-mode.el
 
 (autoload 'helm-comp-read "helm-mode" "\
 Read a string in the minibuffer, with helm completion.
@@ -768,7 +768,9 @@ It is helm `completing-read' equivalent.
 
 - PROMPT is the prompt name to use.
 
-- COLLECTION can be a list, vector, obarray or hash-table.
+- COLLECTION can be a list, alist, vector, obarray or hash-table.
+  For alists and hash-tables their car are use as real value of
+  candidate unless ALISTP is non-nil.
   It can be also a function that receives three arguments:
   the values string, predicate and t. See `all-completions' for more details.
 
@@ -842,7 +844,12 @@ Keys description:
 
 - NOMARK: When non--nil don't allow marking candidates.
 
-- ALISTP: (default is non--nil) See `helm-comp-read-get-candidates'.
+- ALISTP:
+  When non-nil (default) pass the value of (DISPLAY . REAL)
+  candidate in COLLECTION to action when COLLECTION is an alist or a
+  hash-table, otherwise DISPLAY is always returned as result on exit,
+  which is the default when using `completing-read'.
+  See `helm-comp-read-get-candidates'.
 
 - CANDIDATES-IN-BUFFER: when non--nil use a source build with
   `helm-source-in-buffer' which is much faster.
@@ -947,9 +954,9 @@ Note: This mode is incompatible with Emacs23.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-mode" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-mode.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-mode" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-mode.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-mode.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-mode" '("helm-")))
 
@@ -957,9 +964,9 @@ Note: This mode is incompatible with Emacs23.
 
 ;;;***
 
-;;;### (autoloads nil "helm-net" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-net.el"
+;;;### (autoloads nil "helm-net" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-net.el"
 ;;;;;;  "baba8dfcc194bcbacd7c65846157bf80")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-net.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-net.el
 
 (autoload 'helm-browse-url-firefox "helm-net" "\
 Same as `browse-url-firefox' but detach from Emacs.
@@ -1009,9 +1016,9 @@ Preconfigured `helm' to search PATTERN with search ENGINE.
 (autoload 'helm-google-suggest "helm-net" "\
 Preconfigured `helm' for Google search with Google suggest." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-net" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-net.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-net" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-net.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-net.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-net.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-net" '("helm-")))
 
@@ -1019,9 +1026,9 @@ Preconfigured `helm' for Google search with Google suggest." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-occur" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-occur.el"
+;;;### (autoloads nil "helm-occur" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-occur.el"
 ;;;;;;  "57b372be6a98839be458ab960cc36ce7")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-occur.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-occur.el
 
 (autoload 'helm-occur "helm-occur" "\
 Preconfigured helm for searching lines matching pattern in `current-buffer'.
@@ -1058,9 +1065,9 @@ The prefix arg can be set before calling
 
 To use this bind it to a key in `isearch-mode-map'." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-occur" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-occur.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-occur" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-occur.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-occur.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-occur.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-occur" '("helm-")))
 
@@ -1068,18 +1075,18 @@ To use this bind it to a key in `isearch-mode-map'." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-regexp" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-regexp.el"
+;;;### (autoloads nil "helm-regexp" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-regexp.el"
 ;;;;;;  "e4663d9778d497ea8db6cf4c1a9f7293")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-regexp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-regexp.el
 
 (autoload 'helm-regexp "helm-regexp" "\
 Preconfigured helm to build regexps.
 `query-replace-regexp' can be run from there against found regexp." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-regexp"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-regexp.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-regexp.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-regexp.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-regexp.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-regexp" '("helm-")))
 
@@ -1087,9 +1094,9 @@ Preconfigured helm to build regexps.
 
 ;;;***
 
-;;;### (autoloads nil "helm-ring" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-ring.el"
+;;;### (autoloads nil "helm-ring" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-ring.el"
 ;;;;;;  "3713e1b829d5d5c29a55a1aa31e5916e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-ring.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-ring.el
 
 (autoload 'helm-mark-ring "helm-ring" "\
 Preconfigured `helm' for `helm-source-mark-ring'." t nil)
@@ -1115,9 +1122,9 @@ Define your macros with `f3' and `f4'.
 See (info \"(emacs) Keyboard Macros\") for detailed infos.
 This command is useful when used with persistent action." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-ring" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-ring.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-ring" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-ring.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-ring.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-ring.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-ring" '("helm-")))
 
@@ -1125,9 +1132,9 @@ This command is useful when used with persistent action." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-semantic" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-semantic.el"
+;;;### (autoloads nil "helm-semantic" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-semantic.el"
 ;;;;;;  "799773dc4eca99ebe6f46cb8ede386a1")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-semantic.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-semantic.el
 
 (autoload 'helm-semantic "helm-semantic" "\
 Preconfigured `helm' for `semantic'.
@@ -1147,9 +1154,9 @@ Fill in the symbol at point by default.
 \(fn ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-semantic"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-semantic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-semantic.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-semantic.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-semantic.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-semantic" '("helm-s")))
 
@@ -1157,9 +1164,9 @@ Fill in the symbol at point by default.
 
 ;;;***
 
-;;;### (autoloads nil "helm-shell" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-shell.el"
+;;;### (autoloads nil "helm-shell" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-shell.el"
 ;;;;;;  "279dd4ed33083ac38457d1a65660a91e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-shell.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-shell.el
 
 (defalias 'helm-shell-prompts 'helm-comint-prompts)
 
@@ -1167,9 +1174,9 @@ Fill in the symbol at point by default.
 
 ;;;***
 
-;;;### (autoloads nil "helm-sys" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-sys.el"
+;;;### (autoloads nil "helm-sys" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-sys.el"
 ;;;;;;  "1e8e1d572da133a1cdaa9359dd3275cf")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-sys.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-sys.el
 
 (defvar helm-top-poll-mode nil "\
 Non-nil if Helm-Top-Poll mode is enabled.
@@ -1200,9 +1207,9 @@ Preconfigured `helm' for Emacs process." t nil)
 (autoload 'helm-xrandr-set "helm-sys" "\
 Preconfigured helm for xrandr." t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-sys" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-sys.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-sys" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-sys.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-sys.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-sys.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-sys" '("helm-")))
 
@@ -1210,9 +1217,9 @@ Preconfigured helm for xrandr." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "helm-tags" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-tags.el"
+;;;### (autoloads nil "helm-tags" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-tags.el"
 ;;;;;;  "66816e06e97cecafa4238669602b2dd1")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-tags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-tags.el
 
 (autoload 'helm-etags-select "helm-tags" "\
 Preconfigured helm for etags.
@@ -1228,9 +1235,9 @@ This function aggregates three sources of tag files:
 
 \(fn REINIT)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-tags" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-tags.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-tags" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-tags.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-tags.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-tags.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-tags" '("helm-")))
 
@@ -1238,17 +1245,17 @@ This function aggregates three sources of tag files:
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-types" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-types.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-types" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-types.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-types.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-types.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-types" '("helm-")))
 
 ;;;***
 
-;;;### (autoloads nil "helm-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-utils.el"
+;;;### (autoloads nil "helm-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-utils.el"
 ;;;;;;  "f2cbc7b939d282963b81673ac1e6f795")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-utils.el
 
 (defvar helm-popup-tip-mode nil "\
 Non-nil if Helm-Popup-Tip mode is enabled.
@@ -1270,9 +1277,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "helm-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-utils.el"
+;;;### (autoloads "actual autoloads are elsewhere" "helm-utils" "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-utils.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-utils.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-utils.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-utils" '("helm-" "with-helm-display-marked-candidates")))
 
@@ -1281,57 +1288,57 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 ;;;***
 
 ;;;### (autoloads "actual autoloads are elsewhere" "helm-x-files"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-x-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-x-files.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-x-files.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-x-files.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-x-files" '("helm-")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-adaptive.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-bookmark.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-buffers.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-color.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-comint.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-command.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-config.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-dabbrev.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-easymenu.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp-package.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-elisp.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-epa.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eshell.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-eval.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-external.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-fd.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-files.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-find.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-font.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-for-files.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-global-bindings.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-grep.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-help.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-id-utils.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-imenu.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-info.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-locate.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-man.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-misc.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-mode.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-net.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-occur.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-regexp.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-ring.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-semantic.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-shell.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-sys.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-tags.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-types.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-utils.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210326.1959/helm-x-files.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-adaptive.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-bookmark.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-buffers.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-color.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-comint.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-command.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-config.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-dabbrev.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-easymenu.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp-package.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-elisp.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-epa.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eshell.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-eval.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-external.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-fd.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-find.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-font.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-for-files.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-global-bindings.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-grep.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-help.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-id-utils.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-imenu.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-info.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-locate.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-man.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-misc.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-mode.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-net.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-occur.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-regexp.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-ring.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-semantic.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-shell.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-sys.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-tags.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-types.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-utils.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/helm-20210409.1016/helm-x-files.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

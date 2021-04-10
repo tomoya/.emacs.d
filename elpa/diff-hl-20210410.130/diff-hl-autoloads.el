@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "diff-hl" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl.el"
-;;;;;;  "7fd41881a353286842a9c4b5d7a272c4")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl.el
+;;;### (autoloads nil "diff-hl" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl.el"
+;;;;;;  "0e8fe9939ee99b70be192e1c9de4ed50")
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl.el
 
 (autoload 'diff-hl-mode "diff-hl" "\
 Toggle VC diff highlighting.
@@ -75,9 +75,9 @@ See `diff-hl-mode' for more information on Diff-Hl mode.
 
 \(fn &optional ARG)" t nil)
 
-;;;### (autoloads "actual autoloads are elsewhere" "diff-hl" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl.el"
+;;;### (autoloads "actual autoloads are elsewhere" "diff-hl" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl" '("diff-hl-")))
 
@@ -85,9 +85,9 @@ See `diff-hl-mode' for more information on Diff-Hl mode.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-amend" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-amend.el"
+;;;### (autoloads nil "diff-hl-amend" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-amend.el"
 ;;;;;;  "eeb4a7192a7f0ea765803434c4a21fa6")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-amend.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-amend.el
 
 (autoload 'diff-hl-amend-mode "diff-hl-amend" "\
 Show changes against the second-last revision in `diff-hl-mode'.
@@ -127,9 +127,9 @@ See `diff-hl-amend-mode' for more information on Diff-Hl-Amend mode.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-amend"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-amend.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-amend.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-amend.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-amend.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-amend" '("diff-hl-amend-setup" "turn-on-diff-hl-amend-mode")))
 
@@ -137,9 +137,9 @@ See `diff-hl-amend-mode' for more information on Diff-Hl-Amend mode.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-dired" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-dired.el"
+;;;### (autoloads nil "diff-hl-dired" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-dired.el"
 ;;;;;;  "1f20914d538fd32e9766efb84121eb9e")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-dired.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-dired.el
 
 (autoload 'diff-hl-dired-mode "diff-hl-dired" "\
 Toggle VC diff highlighting on the side of a Dired window.
@@ -154,9 +154,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 (autoload 'diff-hl-dired-mode-unless-remote "diff-hl-dired" nil nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-dired"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-dired.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-dired.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-dired.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-dired.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-dired" '("diff-hl-dired-")))
 
@@ -164,9 +164,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-flydiff" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-flydiff.el"
+;;;### (autoloads nil "diff-hl-flydiff" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-flydiff.el"
 ;;;;;;  "551c1734d500368518582383c5ba4b0c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-flydiff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-flydiff.el
 
 (defvar diff-hl-flydiff-mode nil "\
 Non-nil if Diff-Hl-Flydiff mode is enabled.
@@ -190,9 +190,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-flydiff"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-flydiff.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-flydiff.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-flydiff.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-flydiff.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-flydiff" '("diff-hl-flydiff")))
 
@@ -200,9 +200,9 @@ toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-inline-popup" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-inline-popup.el"
+;;;### (autoloads nil "diff-hl-inline-popup" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-inline-popup.el"
 ;;;;;;  "f2a9de84a5351c18b8f18687ee35e098")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-inline-popup.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-inline-popup.el
 
 (autoload 'diff-hl-inline-popup-hide "diff-hl-inline-popup" "\
 Hide the current inline popup." t nil)
@@ -216,9 +216,9 @@ is closed.
 \(fn LINES &optional HEADER FOOTER KEYMAP CLOSE-HOOK POINT HEIGHT)" nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-inline-popup"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-inline-popup.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-inline-popup.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-inline-popup.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-inline-popup.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-inline-popup" '("diff-hl-inline-popup-")))
 
@@ -226,9 +226,9 @@ is closed.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-margin" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-margin.el"
+;;;### (autoloads nil "diff-hl-margin" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-margin.el"
 ;;;;;;  "7fefbc4d3fdb4044aa153022e69fd43d")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-margin.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-margin.el
 
 (defvar diff-hl-margin-mode nil "\
 Non-nil if Diff-Hl-Margin mode is enabled.
@@ -262,9 +262,9 @@ and toggle it if ARG is `toggle'; disable the mode otherwise.
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-margin"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-margin.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-margin.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-margin.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-margin.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-margin" '("diff-hl-")))
 
@@ -272,9 +272,9 @@ and toggle it if ARG is `toggle'; disable the mode otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-show-hunk" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk.el"
+;;;### (autoloads nil "diff-hl-show-hunk" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk.el"
 ;;;;;;  "b524c499cf282d0d6f9d59bca116e3c0")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk.el
 
 (autoload 'diff-hl-show-hunk-inline-popup "diff-hl-show-hunk" "\
 Implementation to show the hunk in a inline popup.
@@ -333,9 +333,9 @@ See `diff-hl-show-hunk-mouse-mode' for more information on Diff-Hl-Show-Hunk-Mou
 \(fn &optional ARG)" t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-show-hunk"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-show-hunk" '("diff-hl-show-hunk-")))
 
@@ -343,9 +343,9 @@ See `diff-hl-show-hunk-mouse-mode' for more information on Diff-Hl-Show-Hunk-Mou
 
 ;;;***
 
-;;;### (autoloads nil "diff-hl-show-hunk-posframe" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk-posframe.el"
+;;;### (autoloads nil "diff-hl-show-hunk-posframe" "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk-posframe.el"
 ;;;;;;  "3f9053cbd44b01102b566805ea8f6f09")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk-posframe.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk-posframe.el
 
 (autoload 'diff-hl-show-hunk-posframe "diff-hl-show-hunk-posframe" "\
 Implementation to show the hunk in a posframe.
@@ -353,9 +353,9 @@ Implementation to show the hunk in a posframe.
 \(fn BUFFER &optional LINE)" nil nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "diff-hl-show-hunk-posframe"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk-posframe.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk-posframe.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk-posframe.el
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk-posframe.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "diff-hl-show-hunk-posframe" '("diff-hl-show-hunk-")))
 
@@ -363,16 +363,16 @@ Implementation to show the hunk in a posframe.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-amend.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-dired.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-flydiff.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-inline-popup.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-margin.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk-posframe.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl-show-hunk.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210405.1131/diff-hl.el")
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-amend.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-dired.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-flydiff.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-inline-popup.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-margin.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk-posframe.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl-show-hunk.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/diff-hl-20210410.130/diff-hl.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
