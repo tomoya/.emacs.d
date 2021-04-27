@@ -31,6 +31,7 @@
 (require 'cl-lib)
 (require 'compile)
 (require 'dash)
+(require 'epg)
 (require 'ewoc)
 (require 'f)
 (require 'filenotify)
@@ -68,7 +69,6 @@
 (declare-function dap-mode "ext:dap-mode")
 (declare-function dap-auto-configure-mode "ext:dap-mode")
 
-(defvar company-backends)
 (defvar yas-inhibit-overlay-modification-protection)
 (defvar yas-indent-line)
 (defvar yas-wrap-around-region)
@@ -685,6 +685,7 @@ Changes take effect only when a new session is started."
                                         (".*\\.jsonc$" . "jsonc")
                                         (".*\\.php$" . "php")
                                         (ada-mode . "ada")
+                                        (nxml-mode . "xml")
                                         (sql-mode . "sql")
                                         (vimrc-mode . "vim")
                                         (sh-mode . "shellscript")
@@ -2939,49 +2940,61 @@ If NO-WAIT is non-nil send the request as notification."
            resp-result resp-error done?)
       (unwind-protect
           (progn
-            (lsp-request-async method params (lambda (res) (setf resp-result (or res :finished)))
-                               :error-handler (lambda (err) (setf resp-error err))
+            (lsp-request-async method params
+                               (lambda (res) (setf resp-result (or res :finished)) (throw 'lsp-done '_))
+                               :error-handler (lambda (err) (setf resp-error err) (throw 'lsp-done '_))
                                :no-merge no-merge
                                :mode 'detached
                                :cancel-token :sync-request)
             (while (not (or resp-error resp-result))
-              (accept-process-output nil 0.001)
-              (when (< expected-time (time-to-seconds (current-time)))
-                (error "Timeout while waiting for response. Method: %s." method)))
+              (catch 'lsp-done
+                (accept-process-output nil (- expected-time send-time)))
+              (setq send-time (time-to-seconds (current-time)))
+              (when (< expected-time send-time)
+                (error "Timeout while waiting for response.  Method: %s" method)))
             (setq done? t)
             (cond
              ((eq resp-result :finished) nil)
              (resp-result resp-result)
              ((lsp-json-error? resp-error) (error (lsp:json-error-message resp-error)))
-             (t (error (lsp:json-error-message (cl-first resp-error))))))
+             ((lsp-json-error? (cl-first resp-error))
+              (error (lsp:json-error-message (cl-first resp-error))))))
         (unless done?
           (lsp-cancel-request-by-token :sync-request))))))
 
 (cl-defun lsp-request-while-no-input (method params)
   "Send request METHOD with PARAMS and waits until there is no input.
 Return same value as `lsp--while-no-input' and respecting `non-essential'."
-  (let* (resp-result resp-error done?)
-    (unwind-protect
-        (progn
-          (lsp-request-async method
-                             params
-                             (lambda (res) (setf resp-result (or res :finished)))
-                             :error-handler (lambda (err) (setf resp-error err))
-                             :mode 'detached
-                             :cancel-token :sync-request)
-          (while (not (or resp-error resp-result
-                          (and non-essential (input-pending-p))))
-            (accept-process-output nil 0.001))
-          (setq done? t)
-          (cond
-           ((eq resp-result :finished) nil)
-           (resp-result resp-result)
-           ((lsp-json-error? resp-error) (error (lsp:json-error-message resp-error)))
-           ((input-pending-p) (when lsp--throw-on-input
-                                (throw 'input :interrupted)))
-           (t (error (lsp:json-error-message (cl-first resp-error))))))
-      (unless done?
-        (lsp-cancel-request-by-token :sync-request)))))
+  (if non-essential
+    (let* ((send-time (time-to-seconds (current-time)))
+           ;; max time by which we must get a response
+           (expected-time (+ send-time lsp-response-timeout))
+           resp-result resp-error done?)
+        (unwind-protect
+            (progn
+              (lsp-request-async method params
+                                 (lambda (res) (setf resp-result (or res :finished)) (throw 'lsp-done '_))
+                                 :error-handler (lambda (err) (setf resp-error err) (throw 'lsp-done '_))
+                                 :mode 'detached
+                                 :cancel-token :sync-request)
+              (while (not (or resp-error resp-result (input-pending-p)))
+                (catch 'lsp-done
+                  (sit-for (- expected-time send-time)))
+                (setq send-time (time-to-seconds (current-time)))
+                (when (< expected-time send-time)
+                  (error "Timeout while waiting for response.  Method: %s" method)))
+              (setq done? (or resp-error resp-result))
+              (cond
+               ((eq resp-result :finished) nil)
+               (resp-result resp-result)
+               ((lsp-json-error? resp-error) (error (lsp:json-error-message resp-error)))
+               ((lsp-json-error? (cl-first resp-error))
+                (error (lsp:json-error-message (cl-first resp-error))))))
+          (unless done?
+            (lsp-cancel-request-by-token :sync-request))
+          (when (and (input-pending-p) lsp--throw-on-input)
+            (throw 'input :interrupted))))
+    (lsp-request method params)))
 
 (defvar lsp--cancelable-requests (ht))
 
@@ -3368,15 +3381,22 @@ disappearing, unset all the variables related to it."
    (make-lsp--registered-capability :id id :method method :options register-options?)
    (lsp--workspace-registered-server-capabilities lsp--cur-workspace)))
 
+(defmacro lsp--with-workspace-temp-buffer (workspace-root &rest body)
+  "With a temp-buffer under `WORKSPACE-ROOT' and evaluate `BODY', useful to access dir-local variables."
+  (declare (indent 1) (debug t))
+  `(with-temp-buffer
+     ;; Set the buffer's name to something under the root so that we can hack the local variables
+     ;; This file doesn't need to exist and will not be created due to this.
+     (setq-local buffer-file-name (expand-file-name "lsp-mode-temp" (expand-file-name ,workspace-root)))
+     (hack-local-variables)
+     (prog1 ,@body
+       (setq-local buffer-file-name nil))))
+
 (defun lsp--get-ignored-regexes-for-workspace-root (workspace-root)
   "Return a list of the form (lsp-file-watch-ignored-files lsp-file-watch-ignored-directories) for the given WORKSPACE-ROOT."
   ;; The intent of this function is to provide per-root workspace-level customization of the
   ;; lsp-file-watch-ignored-directories and lsp-file-watch-ignored-files variables.
-  (with-temp-buffer
-    ;; Set the buffer's name to something under the root so that we can hack the local variables
-    ;; This file doesn't need to exist and will not be created due to this.
-    (setq-local buffer-file-name (expand-file-name "lsp-mode-temp" (expand-file-name workspace-root)))
-    (hack-local-variables)
+  (lsp--with-workspace-temp-buffer workspace-root
     (list lsp-file-watch-ignored-files lsp-file-watch-ignored-directories)))
 
 
@@ -4439,21 +4459,14 @@ Added to `after-revert-hook'."
 If KEEP-WORKSPACE-ALIVE is non-nil, do not shutdown the workspace
 if it's closing the last buffer in the workspace."
   (lsp-foreach-workspace
-   (with-demoted-errors "Error on ‘lsp--text-document-did-close’: %S"
-     (let ((old-buffers (lsp--workspace-buffers lsp--cur-workspace)))
-       ;; remove buffer from the current workspace's list of buffers
-       ;; do a sanity check first
-       (when (memq (lsp-current-buffer) old-buffers)
-         (setf (lsp--workspace-buffers lsp--cur-workspace)
-               (delq (lsp-current-buffer) old-buffers))
-         (with-demoted-errors "Error sending didClose notification in ‘lsp--text-document-did-close’: %S"
-           (lsp-notify
-            "textDocument/didClose"
-            `(:textDocument ,(lsp--text-document-identifier))))
-         (when (and (not lsp-keep-workspace-alive)
-                    (not keep-workspace-alive)
-                    (not (lsp--workspace-buffers lsp--cur-workspace)))
-           (lsp--shutdown-workspace)))))))
+   (cl-callf2 delq (lsp-current-buffer) (lsp--workspace-buffers lsp--cur-workspace))
+   (with-demoted-errors "Error sending didClose notification in ‘lsp--text-document-did-close’: %S"
+     (lsp-notify "textDocument/didClose"
+                 `(:textDocument ,(lsp--text-document-identifier))))
+   (when (and (not lsp-keep-workspace-alive)
+              (not keep-workspace-alive)
+              (not (lsp--workspace-buffers lsp--cur-workspace)))
+     (lsp--shutdown-workspace))))
 
 (defun lsp--will-save-text-document-params (reason)
   (list :textDocument (lsp--text-document-identifier)
@@ -5974,7 +5987,11 @@ WORKSPACE is the active workspace."
                                         :json-false))))
                      ((equal method "workspace/configuration")
                       (with-lsp-workspace workspace
-                        (lsp--build-workspace-configuration-response params)))
+                        (if-let ((buf (car buffers)))
+                            (lsp-with-current-buffer buf
+                              (lsp--build-workspace-configuration-response params))
+                          (lsp--with-workspace-temp-buffer (lsp--workspace-root workspace)
+                            (lsp--build-workspace-configuration-response params)))))
                      ((equal method "workspace/workspaceFolders")
                       (let ((folders (or (-> workspace
                                              (lsp--workspace-client)
@@ -6928,6 +6945,7 @@ SESSION is the active session."
 
            (when initialized-fn (funcall initialized-fn workspace))
 
+           (cl-callf2 -filter #'lsp-buffer-live-p (lsp--workspace-buffers workspace))
            (->> workspace
                 (lsp--workspace-buffers)
                 (mapc (lambda (buffer)
@@ -6976,6 +6994,12 @@ SESSION is the active session."
   :risky t
   :type 'directory
   :package-version '(lsp-mode . "6.3")
+  :group 'lsp-mode)
+
+(defcustom lsp-verify-signature t
+  "Whether to check GPG signatures of downloaded files."
+  :type 'boolean
+  :package-version '(lsp-mode . "7.1")
   :group 'lsp-mode)
 
 (defvar lsp--dependencies (ht))
@@ -7241,7 +7265,7 @@ nil."
 
 
 ;; Download URL handling
-(cl-defun lsp-download-install (callback error-callback &key url store-path decompress &allow-other-keys)
+(cl-defun lsp-download-install (callback error-callback &key url asc-url pgp-key store-path decompress &allow-other-keys)
   (let* ((url (lsp-resolve-value url))
          (store-path (lsp-resolve-value store-path))
          ;; (decompress (lsp-resolve-value decompress))
@@ -7261,6 +7285,30 @@ nil."
              (mkdir (f-parent download-path) t)
              (url-copy-file url download-path)
              (lsp--info "Finished downloading %s..." download-path)
+             (when (and lsp-verify-signature asc-url pgp-key)
+               (if (executable-find epg-gpg-program)
+                   (let ((asc-download-path (concat download-path ".asc"))
+                         (context (epg-make-context))
+                         (fingerprint)
+                         (signature))
+                     (when (f-exists? asc-download-path)
+                       (f-delete asc-download-path))
+                     (lsp--info "Starting to download %s to %s..." asc-url asc-download-path)
+                     (url-copy-file asc-url asc-download-path)
+                     (lsp--info "Finished downloading %s..." asc-download-path)
+                     (epg-import-keys-from-string context pgp-key)
+                     (setq fingerprint (epg-import-status-fingerprint
+                                        (car
+                                         (epg-import-result-imports
+                                          (epg-context-result-for context 'import)))))
+                     (lsp--info "Verifying signature %s..." asc-download-path)
+                     (epg-verify-file context asc-download-path download-path)
+                     (setq signature (car (epg-context-result-for context 'verify)))
+                     (unless (and
+                              (eq (epg-signature-status signature) 'good)
+                              (equal (epg-signature-fingerprint signature) fingerprint))
+                       (error "Failed to verify GPG signature: %s" (epg-signature-to-string signature))))
+                 (lsp--warn "GPG is not installed, skipping the signature check.")))
              (when decompress
                (lsp--info "Decompressing %s..." download-path)
                (pcase decompress
@@ -8078,16 +8126,6 @@ This avoids overloading the server with many files when starting Emacs."
   (or (lsp-virtual-buffer-call :real->virtual-line line)
       line))
 
-;; (defun lsp-virtual-buffer-line (line)
-;;   "Translate LINE taking into account virtual buffers."
-;;   (or (lsp-virtual-buffer-call :real<-virtual-line line)
-;;       line))
-
-;; (defun lsp-buffer-column (column)
-;;   "Translate COLUMN taking into account virtual buffers."
-;;   (or (lsp-virtual-buffer-call :real<-virtual-char column)
-;;       column))
-
 
 ;; lsp internal validation.
 
@@ -8104,8 +8142,6 @@ This avoids overloading the server with many files when starting Emacs."
                                        (res (propertize "OK" 'face 'success))
                                        (t (propertize "ERROR" 'face 'error)))))))
                  (-partition 2 checks))))))
-
-(defvar company-backends)
 
 (define-obsolete-function-alias 'lsp-diagnose
   'lsp-doctor "lsp-mode 7.1")
