@@ -16,3 +16,4 @@ auto-save-list
 *.signed
 *.sqlite
 .cache
+eln-cache
