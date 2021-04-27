@@ -1,4 +1,4 @@
-;;; vterm-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
+;;; vterm-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
 
@@ -6,15 +6,14 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el"
-;;;;;;  (0 0 0 0))
+;;;### (autoloads nil "vterm" "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el"
+;;;;;;  "0ee69c8bd8a7fe818594b5e80440d4af")
 ;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el
 
-(autoload 'vterm-module-compile "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm" "\
+(autoload 'vterm-module-compile "vterm" "\
 Compile vterm-module." t nil)
 
-(autoload 'vterm-next-error-function "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm" "\
+(autoload 'vterm-next-error-function "vterm" "\
 Advance to the next error message and visit the file where the error was.
 This is the value of `next-error-function' in Compilation
 buffers.  Prefix arg N says how many error messages to move
@@ -24,7 +23,7 @@ Optional argument RESET clears all the errors.
 
 \(fn N &optional RESET)" t nil)
 
-(autoload 'vterm "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm" "\
+(autoload 'vterm "vterm" "\
 Create an interactive Vterm buffer.
 Start a new Vterm session, or switch to an already active
 session.  Return the buffer selected (or created).
@@ -42,7 +41,7 @@ value of `vterm-buffer-name'.
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'vterm-other-window "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm" "\
+(autoload 'vterm-other-window "vterm" "\
 Create an interactive Vterm buffer in another window.
 Start a new Vterm session, or switch to an already active
 session.  Return the buffer selected (or created).
@@ -59,13 +58,20 @@ The buffer name used for Vterm sessions is determined by the
 value of `vterm-buffer-name'.
 
 \(fn &optional ARG)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "vterm" "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el
 
-(register-definition-prefixes "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm" '("vterm-"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "vterm" '("vterm-")))
+
+;;;***
 
 ;;;***
 
 ;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm-pkg.el")
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm-pkg.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/vterm-20210409.1558/vterm.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***
