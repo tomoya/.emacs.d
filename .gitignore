@@ -17,3 +17,4 @@ auto-save-list
 *.sqlite
 .cache
 eln-cache
+*/vterm-*/build/
