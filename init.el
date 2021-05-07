@@ -189,6 +189,7 @@
  '(menu-bar-mode nil)
  '(mouse-wheel-flip-direction t)
  '(mouse-wheel-tilt-scroll t)
+ '(native-comp-async-report-warnings-errors nil)
  '(neo-autorefresh t)
  '(neo-confirm-delete-directory-recursively 'off-p)
  '(neo-confirm-kill-buffers-for-files-in-directory 'off-p)
