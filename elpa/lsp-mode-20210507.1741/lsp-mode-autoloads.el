@@ -569,6 +569,13 @@ it is disabled.
 
 ;;;***
 
+;;;### (autoloads nil "lsp-pylsp" "lsp-pylsp.el" (0 0 0 0))
+;;; Generated autoloads from lsp-pylsp.el
+
+(register-definition-prefixes "lsp-pylsp" '("lsp-"))
+
+;;;***
+
 ;;;### (autoloads nil "lsp-r" "lsp-r.el" (0 0 0 0))
 ;;; Generated autoloads from lsp-r.el
 
