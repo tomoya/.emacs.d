@@ -277,6 +277,9 @@
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
 ;; font
+;; フォントの確認
+;; (font-family-list)
+;; (x-list-fonts "BIZ UDGothic")
 ;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
 ;; 日本語フォントをMotoyaLCedar (Kosugi) に
 (when window-system
