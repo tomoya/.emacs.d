@@ -4964,8 +4964,11 @@ When `helm-trash-default-directory' is set use it as trash directory."
 				    "~/.local/share"))))))
     (expand-file-name "files" xdg-data-dir)))
       
-(defun helm-ff-refuse-trashing-already-trashed (file &optional trash-alist)
-  "Return an error when FILE to trash is already in trash."
+(defun helm-ff-file-already-trashed (file &optional trash-alist)
+  "Return FILE when it is already in trash.
+
+Optional arg TRASH-ALIST should be an alist as what
+`helm-ff-trash-list' returns."
   (unless (fboundp 'system-move-file-to-trash)
     (let ((trash-files-dir (helm-trash-directory)))
       (cl-loop for (_bn . fn) in (or trash-alist (helm-ff-trash-list trash-files-dir))
@@ -5033,7 +5036,7 @@ is nil."
           (trash (or trash (helm-ff--delete-by-moving-to-trash file)))
           (delete-by-moving-to-trash trash)
           (already-trashed
-           (and trash (helm-ff-refuse-trashing-already-trashed file))))
+           (and trash (helm-ff-file-already-trashed file))))
       (cond (already-trashed
              ;; We use message here to avoid exiting loop when
              ;; deleting more than one file.
@@ -5197,7 +5200,7 @@ directories are always deleted with no warnings."
          (already-trashed
           (and trash
                (cl-loop for f in files
-                        when (helm-ff-refuse-trashing-already-trashed f trash-alist)
+                        when (helm-ff-file-already-trashed f trash-alist)
                         collect f))))
     (setq helm-ff--trash-flag trash)
     (with-helm-display-marked-candidates
