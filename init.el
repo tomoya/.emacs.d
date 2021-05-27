@@ -270,6 +270,10 @@
   (flycheck-package-setup)
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
+(when (fboundp 'icomplete-vertical-mode)
+  (icomplete-mode)
+  (icomplete-vertical-mode))
+
 ;; tree-sitter
 (require 'tree-sitter-langs)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
