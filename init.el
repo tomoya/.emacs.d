@@ -14,6 +14,7 @@
 
 ;; Used by custom-set-variables
 (require 'helm-projectile nil t)
+(require 'orderless nil t)
 
 ;; My function
 (defun my-get-cache-dir ()
@@ -108,7 +109,7 @@
  '(company-tooltip-align-annotations t)
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
- '(completion-styles '(basic flex partial-completion emacs22))
+ '(completion-styles '(orderless flex partial-completion))
  '(create-lockfiles nil)
  '(css-indent-offset 2)
  '(cursor-in-non-selected-windows nil)
