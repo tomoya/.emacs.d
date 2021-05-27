@@ -1,0 +1,158 @@
+This is affe.info, produced by makeinfo version 6.7 from affe.texi.
+
+INFO-DIR-SECTION Emacs
+START-INFO-DIR-ENTRY
+* Affe: (affe).         Asynchronous Fuzzy Finder for Emacs.
+END-INFO-DIR-ENTRY
+
+
+File: affe.info,  Node: Top,  Next: Installation and Configuration,  Up: (dir)
+
+affe.el - Asynchronous Fuzzy Finder for Emacs
+*********************************************
+
+This package provides an asynchronous fuzzy finder similar to the fzf
+command-line fuzzy finder (https://github.com/junegunn/fzf), written in
+pure Elisp.  A producer process is started in the background, e.g.,
+‘find’, ‘fd’ or ‘ripgrep’.  The output produced by this process is
+filtered by an external asynchronous Emacs process.  The Emacs UI always
+stays responsive since the work is completely off-loaded to other
+processes.  The results are presented in the minibuffer using Consult
+(https://github.com/minad/consult), which allows to quickly select from
+the available items.
+
+* Menu:
+
+* Installation and Configuration::
+* Available commands::
+* Related packages::
+* Details::
+* Alternatives::
+
+
+File: affe.info,  Node: Installation and Configuration,  Next: Available commands,  Prev: Top,  Up: Top
+
+1 Installation and Configuration
+********************************
+
+The package is available on MELPA and can be installed using the Emacs
+package manager.  The default regular expression transformation is
+limited.  It is recommended to use Orderless
+(https://github.com/oantolin/orderless) as pattern compiler for the
+filter expressions.  Furthermore a manual preview key should be set for
+‘affe-grep’.
+
+     (use-package affe
+       :after orderless
+       :config
+       ;; Configure Orderless
+       (setq affe-regexp-function #'orderless-pattern-compiler
+             affe-highlight-function #'orderless-highlight-matches)
+
+       ;; Manual preview key for `affe-grep'
+       (consult-customize affe-grep :preview-key (kbd "M-.")))
+
+   Affe requires the ‘find’ and ‘ripgrep’ command line programs to be
+available.  The producer processes can be customized by adjusting the
+variables ‘affe-find-command’ and ‘affe-grep-command’.
+
+
+File: affe.info,  Node: Available commands,  Next: Related packages,  Prev: Installation and Configuration,  Up: Top
+
+2 Available commands
+********************
+
+   • ‘affe-grep’: Filters the content of all text files in the current
+     directory, similar to ‘consult-grep’.
+   • ‘affe-find’: Filters the file paths of all files in the current
+     directory, similar to ‘consult-find’.
+
+
+File: affe.info,  Node: Related packages,  Next: Details,  Prev: Available commands,  Up: Top
+
+3 Related packages
+******************
+
+Affe depends on Consult and works best with the Selectrum or Vertico
+completion UIs.
+
+   • Consult (https://github.com/minad/consult): Many useful search and
+     navigation commands (Dependency of Affe).
+   • Marginalia (https://github.com/minad/marginalia): File annotations
+     in the minibuffer.
+   • Embark (https://github.com/oantolin/embark): Minibuffer actions on
+     files.
+   • Orderless (https://github.com/oantolin/orderless): Advanced
+     completion style, can be plugged together with Affe.
+   • Selectrum (https://github.com/raxod502/selectrum), Vertico
+     (https://github.com/minad/vertico) or Icomplete-vertical
+     (https://github.com/oantolin/icomplete-vertical): Vertical
+     completion systems (Icomplete-vertical is only needed for Emacs 27,
+     built-in on Emacs 28)
+
+
+File: affe.info,  Node: Details,  Next: Alternatives,  Prev: Related packages,  Up: Top
+
+4 Details
+*********
+
+The Affe frontend transforms the input string to a list of regular
+expressions by calling the ‘affe-regexp-function’.  The regular
+expressions are passed to the Affe backend via the ‘emacsclient’
+protocol.  The backend controls a producer process, which generates
+lines of text.  The lines are filtered using the regular expressions
+submitted by the frontend.  For performance reasons, ‘all-completions’
+is used for the filtering.  The backend returns only a limited amount of
+matching candidates, hopefully the most plausible ones.  The frontend
+calls the ‘affe-highlight-function’ on the returned matches, to
+highlight the input pattern.
+
+   Affe uses a more primitive matching technique than ‘fzf’, which uses
+the Smith-Waterman algorithm
+(https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm).  Affe
+does not perform any ranking or sorting; it matches the lines in the
+order returned by the producer process against a list of regular
+expressions.  On the upside, this allows plugging Affe together with the
+Orderless (https://github.com/oantolin/orderless) completion style,
+which can give a consistent fuzzy filtering experience across all Emacs
+commands, including synchronous and asynchronous commands.
+
+   As possible enhancement of Affe, one could implement alphabetical and
+sorting by length in the backend.  By using a bucket sorting technique
+the sorting complexity will stay sufficiently linear such that the
+performance impact should be acceptable.  However implementing a
+scoring-based sorting is probably not feasible since this requires
+heavier computations in Elisp.  But maybe nativecomp Emacs is a game
+changer here?
+
+
+File: affe.info,  Node: Alternatives,  Prev: Details,  Up: Top
+
+5 Alternatives
+**************
+
+   • fzf.el (https://github.com/bling/fzf.el): Runs the fzf command line
+     program in an Emacs terminal
+   • fuzzy-finder.el (https://github.com/10sr/fuzzy-finder-el): Similar
+     to fzf.el
+   • counsel-fzf (https://github.com/abo-abo/swiper): Ivy-specific,
+     restarts find+fzf when updating the input pattern.
+   • consult-grep/consult-find (https://github.com/minad/consult):
+     Perform the filtering in the frontend.
+
+
+
+Tag Table:
+Node: Top194
+Node: Installation and Configuration1079
+Node: Available commands2139
+Node: Related packages2549
+Node: Details3494
+Node: Alternatives5274
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:
