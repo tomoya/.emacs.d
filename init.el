@@ -476,6 +476,7 @@ If buffer is associated with a file name, add that file to the
 
 (defun after-init-hooks ()
   (neotree-toggle)
+  (marginalia-mode)
   (session-initialize))
 
 (add-hook 'after-init-hook #'after-init-hooks)
