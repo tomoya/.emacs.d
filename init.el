@@ -520,6 +520,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'consult-buffer)
+(global-set-key (kbd "s-r") 'consult-recent-file)
 (global-set-key (kbd "C-]") 'helm-ghq)
 (global-set-key (kbd "M-g s") 'magit-status)
 (global-set-key (kbd "M-g a") 'magit-stage-file)
