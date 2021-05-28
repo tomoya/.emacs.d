@@ -535,6 +535,8 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "M-g l") 'git-link)
 (global-set-key (kbd "s-c") 'copy-as-format-github)
 (global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
+(global-set-key (kbd "M-A") 'marginalia-cycle)
+(define-key minibuffer-local-map (kbd "M-A") 'marginalia-cycle)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
