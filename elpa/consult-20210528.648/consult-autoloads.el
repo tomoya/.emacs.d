@@ -37,7 +37,7 @@ The symbol at point is added to the future history." t nil)
 (autoload 'consult-line "consult" "\
 Search for a matching line and jump to the line beginning.
 
-The default candidate is a non-empty line closest to point.
+The default candidate is the non-empty line next to point.
 This command obeys narrowing. Optional INITIAL input can be provided.
 The search starting point is changed if the START prefix argument is set.
 The symbol at point and the last `isearch-string' is added to the future history.

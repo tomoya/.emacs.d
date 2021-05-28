@@ -5,7 +5,6 @@
 ;; Author: Daniel Mendler and Consult contributors
 ;; Maintainer: Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
-;; License: GPL-3.0-or-later
 ;; Version: 0.7
 ;; Package-Requires: ((emacs "26.1"))
 ;; Homepage: https://github.com/minad/consult
@@ -2210,17 +2209,13 @@ The symbol at point is added to the future history."
   (let* ((default-cand)
          (candidates)
          (line (line-number-at-pos (point-min) consult-line-numbers-widen))
-         (curr-line (line-number-at-pos (point) consult-line-numbers-widen))
-         (default-delta most-positive-fixnum))
+         (curr-line (line-number-at-pos (point) consult-line-numbers-widen)))
     (consult--each-line beg end
       (let ((str (consult--buffer-substring beg end)))
         (unless (string-blank-p str)
-          (let ((cand (consult--location-candidate str (point-marker) line))
-                (delta (abs (- curr-line line))))
-            (push cand candidates)
-            (when (< delta default-delta)
-              (setq default-cand candidates
-                    default-delta delta))))
+          (push (consult--location-candidate str (point-marker) line) candidates)
+          (when (and (not default-cand) (>= line curr-line))
+            (setq default-cand candidates)))
         (setq line (1+ line))))
     (unless candidates
       (user-error "No lines"))
@@ -2282,7 +2277,7 @@ CAND is the currently selected candidate."
 (defun consult-line (&optional initial start)
   "Search for a matching line and jump to the line beginning.
 
-The default candidate is a non-empty line closest to point.
+The default candidate is the non-empty line next to point.
 This command obeys narrowing. Optional INITIAL input can be provided.
 The search starting point is changed if the START prefix argument is set.
 The symbol at point and the last `isearch-string' is added to the future history."
@@ -2291,7 +2286,7 @@ The symbol at point and the last `isearch-string' is added to the future history
                      (consult--line-candidates
                       (not (eq start consult-line-start-from-top))))))
     (consult--read
-     (cdr candidates)
+     candidates
      :prompt "Go to line: "
      :annotate (consult--line-prefix)
      :category 'consult-location
