@@ -482,6 +482,12 @@ If buffer is associated with a file name, add that file to the
 
 (add-hook 'after-init-hook #'after-init-hooks)
 
+;; vertico
+(advice-add #'vertico--setup :after
+            (lambda (&rest _)
+              (setq-local completion-auto-help nil
+                          completion-show-inline-help nil)))
+
 ;; frame-tabs
 (defun my-frame-tabs-default-filter (buffer _frame)
   "Default filter function for frame tabs."
