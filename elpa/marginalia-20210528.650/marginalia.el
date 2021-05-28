@@ -5,10 +5,9 @@
 ;; Author: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Maintainer: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
-;; License: GPL-3.0-or-later
 ;; Version: 0.5
-;; Package-Version: 20210525.637
-;; Package-Commit: 3f33b38b7c1ecd7086942e1bd8284c54a6fd30a3
+;; Package-Version: 20210528.650
+;; Package-Commit: 529aee603964484080646536deb4d20040e2443e
 ;; Package-Requires: ((emacs "26.1"))
 ;; Homepage: https://github.com/minad/marginalia
 
@@ -33,8 +32,9 @@
 
 ;;; Code:
 
-(require 'subr-x)
-(eval-when-compile (require 'cl-lib))
+(eval-when-compile
+  (require 'subr-x)
+  (require 'cl-lib))
 
 ;;;; Customization
 
