@@ -525,7 +525,6 @@ If buffer is associated with a file name, add that file to the
   (consult-line (thing-at-point 'symbol)))
 
 ;; Key bindings
-(keyboard-translate ?\C-h ?\C-?)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'consult-buffer)
