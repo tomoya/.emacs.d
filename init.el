@@ -519,11 +519,17 @@ If buffer is associated with a file name, add that file to the
 (with-eval-after-load 'consult
   (defalias 'goto-line 'consult-goto-line))
 
+(defun consult-line-symbol-at-point ()
+  "Consult-line use things-at-point."
+  (interactive)
+  (consult-line (thing-at-point 'symbol)))
+
 ;; Key bindings
 (keyboard-translate ?\C-h ?\C-?)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'consult-buffer)
+(global-set-key (kbd "C-s") 'consult-line-symbol-at-point)
 (global-set-key (kbd "s-r") 'consult-recent-file)
 (global-set-key (kbd "C-]") 'helm-ghq)
 (global-set-key (kbd "M-g o") 'consult-outline)
