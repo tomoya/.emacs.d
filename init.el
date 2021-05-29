@@ -515,6 +515,10 @@ If buffer is associated with a file name, add that file to the
     (neotree-hide)))
 (add-hook 'darkroom-mode-hook #'darkroom-mode-hooks)
 
+;; consult
+(with-eval-after-load 'consult
+  (defalias 'goto-line 'consult-goto-line))
+
 ;; Key bindings
 (keyboard-translate ?\C-h ?\C-?)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
