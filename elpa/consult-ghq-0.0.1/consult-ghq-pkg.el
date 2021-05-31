@@ -1,0 +1,2 @@
+;;; Generated package description from consult-ghq.el  -*- no-byte-compile: t -*-
+(define-package #("consult-ghq" 0 11 (face nil)) "0.0.1" "Ghq interface using consult" '((emacs "26.1") (consult "0.8")) :authors '(("Tomoya Otake" . "tomoya.ton@gmail.com")) :maintainer '("Tomoya Otake" . "tomoya.ton@gmail.com") :keywords '("convenience" "usability" "consult" "ghq") :url "https://github.com/tomoya/consult-ghq")
