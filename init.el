@@ -567,7 +567,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-/") 'undo-tree-undo)
 (global-set-key (kbd "C-'") 'undo-tree-redo)
 (global-set-key (kbd "<s-return>") 'cua-rectangle-mark-mode)
-(global-set-key (kbd "s-F") 'projectile-ripgrep)
+(global-set-key (kbd "s-F") 'affe-grep-in-project)
 (global-set-key (kbd "s-f") 'affe-grep)
 (global-set-key (kbd "s-\\") 'neotree-toggle)
 (global-set-key (kbd "M-g l") 'git-link)
