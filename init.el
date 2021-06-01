@@ -441,9 +441,6 @@ point reaches the beginning or end of the buffer, stop there."
 ;; (push 'company-tabnine company-backends)
 (add-hook 'company-mode-hook 'company-box-mode)
 
-;; Helm
-(helm-descbinds-mode)
-
 ;; undo-tree
 (global-undo-tree-mode)
 
@@ -545,6 +542,7 @@ If buffer is associated with a file name, add that file to the
   (defalias 'goto-line 'consult-goto-line))
 
 ;; Key bindings
+(global-set-key (kbd "C-h b") 'embark-bindings)
 (global-set-key (kbd "s-e") 'embark-act)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
