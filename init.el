@@ -521,27 +521,28 @@ If buffer is associated with a file name, add that file to the
 (with-eval-after-load 'consult
   (with-eval-after-load 'embark
     (require 'embark-consult))
+
+  (defun consult-line-symbol-at-point ()
+    "Consult-line use things-at-point."
+    (interactive)
+    (consult-line (thing-at-point 'symbol)))
+
+  (with-eval-after-load 'affe
+    (defun affe-find-in-project ()
+      "Find file in project using affe."
+      (interactive)
+      (if-let (project-dir (cdr (project-current)))
+          (affe-find project-dir)
+        (error "Failed: Buffer is not in project")))
+
+    (defun affe-grep-in-project ()
+      "Grep files in project using affe."
+      (interactive)
+      (if-let (project-dir (cdr (project-current)))
+          (affe-grep project-dir)
+        (error "Failed: Buffer is not in project"))))
+
   (defalias 'goto-line 'consult-goto-line))
-
-(defun consult-line-symbol-at-point ()
-  "Consult-line use things-at-point."
-  (interactive)
-  (consult-line (thing-at-point 'symbol)))
-
-(with-eval-after-load 'affe
-  (defun affe-find-in-project ()
-    "Find file in project using affe."
-    (interactive)
-    (if-let (project-dir (cdr (project-current)))
-        (affe-find project-dir)
-      (error "Failed: Buffer is not in project")))
-
-  (defun affe-grep-in-project ()
-    "Grep files in project using affe."
-    (interactive)
-    (if-let (project-dir (cdr (project-current)))
-        (affe-grep project-dir)
-      (error "Failed: Buffer is not in project"))))
 
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
