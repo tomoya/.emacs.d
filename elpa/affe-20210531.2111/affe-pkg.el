@@ -1,7 +1,7 @@
-(define-package "affe" "20210524.1805" "Asynchronous Fuzzy Finder for Emacs"
+(define-package "affe" "20210531.2111" "Asynchronous Fuzzy Finder for Emacs"
   '((emacs "27.1")
     (consult "0.7"))
-  :commit "7792c8be50e54772fda94527b19b831c278b1109" :authors
+  :commit "6367699cf00cfb8618dbf22fd561f7969f3e1da7" :authors
   '(("Daniel Mendler"))
   :maintainer
   '("Daniel Mendler")

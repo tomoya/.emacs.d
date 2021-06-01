@@ -95,7 +95,7 @@
      (lambda (&rest _)
        (unless (equal rest "")
          (funcall callback (list rest))))
-     :coding buffer-file-coding-system
+     :coding 'no-conversion
      :family 'local
      :service (expand-file-name name server-socket-dir))))
 
@@ -132,7 +132,9 @@ See `completion-try-completion' for the arguments STR, TABLE, PRED and POINT."
           (lambda (lines)
             (dolist (line lines)
               (pcase (read line)
-                (`(debug . ,msg) (message "Affe: %S" msg))
+                (`(log ,msg)
+                 (with-current-buffer (get-buffer-create " *affe*")
+                   (insert msg)))
                 ('flush (funcall async 'flush))
                 (`(producer ,total ,done)
                  (setq indicator-total total indicator-done done))
