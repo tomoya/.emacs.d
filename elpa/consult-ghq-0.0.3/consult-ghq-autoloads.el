@@ -9,8 +9,11 @@
 ;;;### (autoloads nil "consult-ghq" "consult-ghq.el" (0 0 0 0))
 ;;; Generated autoloads from consult-ghq.el
 
-(autoload 'consult-ghq "consult-ghq" "\
+(autoload 'consult-ghq-find "consult-ghq" "\
 Find file from selected repo using ghq." t nil)
+
+(autoload 'consult-ghq-grep "consult-ghq" "\
+Grep from selected repo using ghq." t nil)
 
 (register-definition-prefixes "consult-ghq" '("consult-ghq-"))
 
