@@ -16,10 +16,6 @@ Find file from selected repo using ghq." t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("consult-ghq-pkg.el") (0 0 0 0))
-
-;;;***
-
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
