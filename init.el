@@ -236,6 +236,7 @@
  '(truncate-partial-width-windows nil)
  '(typescript-indent-level 2)
  '(vertico-count 20)
+ '(vertico-cycle t)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-comment-interpolation t)
