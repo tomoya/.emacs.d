@@ -519,6 +519,8 @@ If buffer is associated with a file name, add that file to the
 
 ;; consult
 (with-eval-after-load 'consult
+  (with-eval-after-load 'embark
+    (require 'embark-consult))
   (defalias 'goto-line 'consult-goto-line))
 
 (defun consult-line-symbol-at-point ()
