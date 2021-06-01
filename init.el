@@ -526,6 +526,21 @@ If buffer is associated with a file name, add that file to the
   (interactive)
   (consult-line (thing-at-point 'symbol)))
 
+(with-eval-after-load 'affe
+  (defun affe-find-in-project ()
+    "Find file in project using affe."
+    (interactive)
+    (if-let (project-dir (cdr (project-current)))
+        (affe-find project-dir)
+      (error "Failed: Buffer is not in project")))
+
+  (defun affe-grep-in-project ()
+    "Grep files in project using affe."
+    (interactive)
+    (if-let (project-dir (cdr (project-current)))
+        (affe-grep project-dir)
+      (error "Failed: Buffer is not in project"))))
+
 ;; Key bindings
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
