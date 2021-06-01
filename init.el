@@ -113,7 +113,7 @@
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(completion-styles '(orderless flex partial-completion))
- '(consult-find-command "fd --full-path --follow")
+ '(consult-find-command "fd --full-path --follow ARG OPTS")
  '(create-lockfiles nil)
  '(css-indent-offset 2)
  '(cursor-in-non-selected-windows nil)
