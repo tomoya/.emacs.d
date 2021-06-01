@@ -501,12 +501,13 @@ Size of private unicode plane b.")
   "Set property PROP to VAL of commands CMDS."
   (dolist (cmd cmds)
     (cond
-     ((commandp cmd)
+     ((and (boundp cmd) (consp (symbol-value cmd)))
+      (set cmd (plist-put (symbol-value cmd) prop val)))
+     ((functionp cmd)
       (setf (alist-get cmd consult--read-config)
             (plist-put (alist-get cmd consult--read-config) prop val)))
-     ((boundp cmd)
-      (set cmd (plist-put (symbol-value cmd) prop val)))
-     (t (user-error "%s is neither a Consult command nor a Consult source"))))
+     (t (user-error "%s is neither a Consult command nor a Consult source"
+                    cmd))))
   nil)
 
 (defmacro consult-customize (&rest args)
@@ -1813,12 +1814,13 @@ KEYMAP is a command-specific keymap."
           keymap category initial narrow add-history annotate
           state preview-key sort lookup title group)
   (apply #'consult--read-1 candidates
-         (append (alist-get this-command consult--read-config)
-                 options
-                 (list :prompt "Select: "
-                       :preview-key consult-preview-key
-                       :sort t
-                       :lookup (lambda (_input _cands x) x)))))
+         (append
+          (alist-get this-command consult--read-config)
+          options
+          (list :prompt "Select: "
+                :preview-key consult-preview-key
+                :sort t
+                :lookup (lambda (_input _cands x) x)))))
 
 ;;;; Internal API: consult--multi
 
@@ -2023,11 +2025,12 @@ KEYMAP is a command-specific keymap."
   (ignore prompt history add-history initial default
           keymap state preview-key transform)
   (apply #'consult--prompt-1
-         (append (alist-get this-command consult--read-config)
-                 options
-                 (list :prompt "Input: "
-                       :preview-key consult-preview-key
-                       :transform #'identity))))
+         (append
+          (alist-get this-command consult--read-config)
+          options
+          (list :prompt "Input: "
+                :preview-key consult-preview-key
+                :transform #'identity))))
 
 ;;;; Commands
 
