@@ -578,11 +578,12 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
 (global-set-key (kbd "M-A") 'marginalia-cycle)
 (define-key minibuffer-local-map (kbd "M-A") 'marginalia-cycle)
-(define-key vertico-map (kbd "C-r") 'vertico-previous)
-(define-key vertico-map (kbd "C-s") 'vertico-next)
 (define-key company-active-map [tab] 'company-complete-selection)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
+(with-eval-after-load 'vertico
+  (define-key vertico-map (kbd "C-r") 'vertico-previous)
+  (define-key vertico-map (kbd "C-s") 'vertico-next))
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
