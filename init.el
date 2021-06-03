@@ -520,10 +520,15 @@ If buffer is associated with a file name, add that file to the
   (with-eval-after-load 'embark
     (require 'embark-consult))
 
-  (defun consult-line-symbol-at-point ()
-    "Consult-line use things-at-point."
-    (interactive)
-    (consult-line (thing-at-point 'symbol)))
+  (setq register-preview-function #'consult-register-format)
+  (advice-add #'register-preview :override #'consult-register-window)
+
+  (defun my-consult-line (&optional at-point)
+    "Consult-line uses things-at-point if set C-u prefix."
+    (interactive "P")
+    (if at-point
+        (consult-line (thing-at-point 'symbol))
+      (consult-line)))
 
   (with-eval-after-load 'affe
     (defun affe-find-in-project ()
@@ -548,7 +553,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "s-t") 'consult-buffer)
-(global-set-key (kbd "C-s") 'consult-line-symbol-at-point)
+(global-set-key (kbd "C-s") 'my-consult-line)
 (global-set-key (kbd "s-r") 'consult-recent-file)
 (global-set-key (kbd "C-]") 'consult-ghq-find)
 (global-set-key (kbd "C-}") 'consult-ghq-grep)
