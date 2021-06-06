@@ -1592,28 +1592,26 @@ Note that `consult-narrow-key' and `consult-widen-key' are bound dynamically.")
 ;;;; Internal API: consult--read
 
 (defun consult--add-history (async items)
-  "Add ITEMS to the minibuffer history via `minibuffer-default-add-function'.
+  "Add ITEMS to the minibuffer future history.
 ASYNC must be non-nil for async completion functions."
-  (setq-local minibuffer-default-add-function
-              (lambda ()
-                (delete-dups
-                 (append
-                  ;; the defaults are at the beginning of the future history
-                  (if (listp minibuffer-default)
-                      minibuffer-default
-                    (list minibuffer-default))
-                  ;; then our custom items
-                  (delete "" (delq nil (if (listp items)
-                                           items
-                                         (list items))))
-                  ;; Add all the completions for non-async commands. For async commands this feature
-                  ;; is not useful, since if one selects a completion candidate, the async search is
-                  ;; restarted using that candidate string. This usually does not yield a desired
-                  ;; result since the async input uses a special format, e.g., `#grep#filter'.
-                  (unless async
-                    (all-completions ""
-                                     minibuffer-completion-table
-                                     minibuffer-completion-predicate)))))))
+  (delete-dups
+   (append
+    ;; the defaults are at the beginning of the future history
+    (if (listp minibuffer-default)
+        minibuffer-default
+      (list minibuffer-default))
+    ;; then our custom items
+    (remove "" (remq nil (if (listp items)
+                             items
+                           (list items))))
+    ;; Add all the completions for non-async commands. For async commands this feature
+    ;; is not useful, since if one selects a completion candidate, the async search is
+    ;; restarted using that candidate string. This usually does not yield a desired
+    ;; result since the async input uses a special format, e.g., `#grep#filter'.
+    (unless async
+      (all-completions ""
+                       minibuffer-completion-table
+                       minibuffer-completion-predicate)))))
 
 (defun consult--setup-keymap (keymap async narrow preview-key)
   "Setup minibuffer keymap.
@@ -1692,14 +1690,6 @@ PREVIEW-KEY is the preview key."
     (add-text-properties 0 (length str) '(invisible t consult-strip t) str)
     str))
 
-(cl-defun consult--read-setup (candidates &key keymap add-history narrow preview-key &allow-other-keys)
-  "Minibuffer setup for `consult--read'.
-
-See `consult--read' for the CANDIDATES, KEYMAP, ADD-HISTORY, NARROW and PREVIEW-KEY arguments."
-  (add-hook 'after-change-functions #'consult--fry-the-tofus nil 'local)
-  (consult--setup-keymap keymap (functionp candidates) narrow preview-key)
-  (consult--add-history (functionp candidates) add-history))
-
 (defun consult--read-annotate (fun cand)
   "Annotate CAND with annotation function FUN."
   (pcase (funcall fun cand)
@@ -1721,17 +1711,20 @@ See `consult--read' for the CANDIDATES, KEYMAP, ADD-HISTORY, NARROW and PREVIEW-
                         (propertize ann 'face 'completions-annotations))))))
           cands))
 
-(cl-defun consult--read-1 (candidates &rest options &key
+(cl-defun consult--read-1 (candidates &key
                                       prompt predicate require-match history default
                                       keymap category initial narrow add-history annotate
                                       state preview-key sort lookup title group)
-  "See `consult--read' for documentation."
-  (ignore narrow add-history keymap)
+  "See `consult--read' for the documentation of the arguments."
   (when title
     (message "Deprecation: `%s' passed obsolete :title argument to `consult--read'" this-command)
     (setq group title))
   (consult--minibuffer-with-setup-hook
-      (:append (lambda () (apply #'consult--read-setup candidates options)))
+      (:append (lambda ()
+                 (add-hook 'after-change-functions #'consult--fry-the-tofus nil 'local)
+                 (consult--setup-keymap keymap (functionp candidates) narrow preview-key)
+                 (setq-local minibuffer-default-add-function
+                             (apply-partially #'consult--add-history (functionp candidates) add-history))))
     (consult--with-async (async candidates)
       ;; NOTE: Do not unnecessarily let-bind the lambdas to avoid
       ;; overcapturing in the interpreter. This will make closures and the
@@ -1756,25 +1749,9 @@ See `consult--read' for the CANDIDATES, KEYMAP, ADD-HISTORY, NARROW and PREVIEW-
                                                       'consult--completion-candidate-hook)
                 (completing-read prompt
                                  (lambda (str pred action)
-                                   (pcase action
-                                     ;; Return completion metadata
-                                     ('metadata metadata)
-                                     ;; Return completion boundaries; Currently unused by Consult.
-                                     ;; The boundaries specify the part of the input string which is
-                                     ;; supposed to be used for filtering. In the future we may want
-                                     ;; to use boundaries in order to implement async filtering.
-                                     (`(boundaries . ,_) nil)
-                                     ;; Try to complete `str' prefix and return completed string.
-                                     ;; This is feature is only used by prefix completion styles
-                                     ;; like `basic'.
-                                     ('nil (try-completion str (funcall async nil) pred))
-                                     ;; Return all candidates matching the prefix `str'.
-                                     ;; Usually this called with the empty string, except
-                                     ;; when using `basic' completion. For other completion
-                                     ;; styles the actual filtering takes place later.
-                                     ('t (all-completions str (funcall async nil) pred))
-                                     ;; Return t if the input `str' matches one of the candidates.
-                                     (_ (test-completion str (funcall async nil) pred))))
+                                   (if (eq action 'metadata)
+                                       metadata
+                                     (complete-with-action action (funcall async nil) str pred)))
                                  predicate require-match initial
                                  (if (symbolp history) history (cadr history))
                                  default))))
@@ -2009,7 +1986,8 @@ Optional source fields:
   (consult--minibuffer-with-setup-hook
       (:append (lambda ()
                  (consult--setup-keymap keymap nil nil preview-key)
-                 (consult--add-history nil add-history)))
+                 (setq-local minibuffer-default-add-function
+                             (apply-partially #'consult--add-history nil add-history))))
     (car (consult--with-preview preview-key state
                                 (lambda (inp _) (funcall transform inp)) (lambda () t)
            (read-from-minibuffer prompt initial nil nil history default)))))
