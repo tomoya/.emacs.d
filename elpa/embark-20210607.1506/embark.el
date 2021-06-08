@@ -162,7 +162,7 @@ a string, or nil to indicate it found no target."
   "Alist associating type to functions for transforming targets.
 Each function should take a target string and return a pair of
 the form a `cons' of the new type and the new target."
-  :type 'hook)
+  :type '(alist :key-type symbol :value-type function))
 
 (defcustom embark-become-keymaps
   '(embark-become-help-map
@@ -329,7 +329,7 @@ window should only be used if it displays `embark--target-buffer'.")
   "Guess a reasonable default directory for the current candidates."
   (if (and (minibufferp) minibuffer-completing-file-name)
       (let ((end (minibuffer-prompt-end))
-            (idx (embark--minibuffer-point)))
+            (contents (minibuffer-contents)))
         (expand-file-name
          (buffer-substring
           end
@@ -337,11 +337,12 @@ window should only be used if it displays `embark--target-buffer'.")
              (or (cdr
                   (last
                    (completion-all-completions
-                    (minibuffer-contents)
+                    contents
                     minibuffer-completion-table
                     minibuffer-completion-predicate
-                    idx)))
-                 idx)))))
+                    (embark--minibuffer-point))))
+                 (cl-position ?/ contents :from-end t)
+                 0)))))
     default-directory))
 
 (defun embark--target-buffer ()
@@ -1361,15 +1362,18 @@ key binding for it.  Or alternatively you might want to enable
           (while (/= pos dis)
             (let ((inv (next-single-property-change pos 'invisible string dis)))
               (unless (get-text-property pos 'invisible string)
-                (setq width (+ width
-                               ;; bug#47712: Emacs 28 can compute `string-width' of substrings
-                               (embark--static-if (= 3 (cdr (func-arity #'string-width)))
-                                   (string-width string pos inv)
-                                 (string-width
-                                  ;; Avoid allocation for the full string.
-                                  (if (and (= pos 0) (= inv len))
-                                      string
-                                    (substring-no-properties string pos inv)))))))
+                (setq width
+                      (+ width
+                         ;; bug#47712: Emacs 28 can compute `string-width'
+                         ;; of substrings
+                         (embark--static-if (= (cdr (func-arity #'string-width))
+                                               3)
+                             (string-width string pos inv)
+                           (string-width
+                            ;; Avoid allocation for the full string.
+                            (if (and (= pos 0) (= inv len))
+                                string
+                              (substring-no-properties string pos inv)))))))
               (setq pos inv))))))
     width))
 
@@ -1799,10 +1803,12 @@ buffer for each type of completion."
                    (let ((file (file-name-nondirectory path)))
                      (or (string= file ".") (string= file ".."))))
                  files)))
-  (let ((buf (dired-noselect (cons
-                              ;; TODO: is it worth finding the deepest common containing directory?
-                              (if (cl-every #'file-name-absolute-p files) "/" default-directory)
-                              files))))
+  (let ((buf
+         (dired-noselect
+          (cons
+           ;; TODO: is it worth finding the deepest common containing directory?
+           (if (cl-every #'file-name-absolute-p files) "/" default-directory)
+           files))))
     (with-current-buffer buf
       (rename-buffer (format "*Embark Export Dired %s*" default-directory)))
     (pop-to-buffer buf)))

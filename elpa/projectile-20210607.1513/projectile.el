@@ -4,8 +4,8 @@
 
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20210531.547
-;; Package-Commit: 5e6fdabd59ec5507c1d54f3b11ee16ddc05821d3
+;; Package-Version: 20210607.1513
+;; Package-Commit: 155fdb44176347c9599357c7935993033260a930
 ;; Keywords: project, convenience
 ;; Version: 2.4.0
 ;; Package-Requires: ((emacs "25.1") (pkg-info "0.4"))
@@ -2830,7 +2830,7 @@ test/impl/other files as below:
   "Get CMake user and system COMMAND-TYPE presets."
   (projectile-flatten
    (mapcar (lambda (filename) (projectile--cmake-command-presets filename command-type))
-           '("CMakeUserPresets.json" "CMakeSystemPresets.json"))))
+           '("CMakeUserPresets.json" "CMakePresets.json"))))
 
 (defun projectile--cmake-command-preset-names (command-type)
   "Get names of CMake user and system COMMAND-TYPE presets."

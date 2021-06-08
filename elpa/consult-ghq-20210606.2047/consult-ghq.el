@@ -3,9 +3,9 @@
 ;; Copyright (C) 2021 Tomoya Otake
 
 ;; Author: Tomoya Otake <tomoya.ton@gmail.com>
-;; Version: 0.0.3
-;; Package-Version: 20210601.341
-;; Package-Commit: 56d4d7fc6553b4bec29c19f822c4f50fbb4157f9
+;; Version: 0.0.4
+;; Package-Version: 20210606.2047
+;; Package-Commit: c8619d66bd8f8728e43ed15096078b89eb4d2083
 ;; Homepage: https://github.com/tomoya/consult-ghq
 ;; Keywords: convenience, usability, consult, ghq
 ;; Package-Requires: ((emacs "26.1") (consult "0.8") (affe "0.1"))
@@ -75,7 +75,7 @@
           (line-beginning-position) (line-end-position))
          paths)
         (forward-line 1))
-      (reverse paths))))
+      (nreverse paths))))
 
 ;;;###autoload
 (defun consult-ghq-find ()
