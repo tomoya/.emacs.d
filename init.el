@@ -476,13 +476,13 @@ If buffer is associated with a file name, add that file to the
   (when killed-file-list
     (find-file (pop killed-file-list))))
 
-(defun after-init-hooks ()
+(defun after-init-hook ()
   (neotree-toggle)
   (vertico-mode)
   (marginalia-mode)
   (session-initialize))
 
-(add-hook 'after-init-hook #'after-init-hooks)
+(add-hook 'after-init-hook #'after-init-hook)
 
 ;; vertico
 (advice-add #'vertico--setup :after
