@@ -523,6 +523,11 @@ If buffer is associated with a file name, add that file to the
 
   (setq register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project)))))
+  (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
 
   (defun my-consult-line (&optional at-point)
     "Consult-line uses things-at-point if set C-u prefix."
