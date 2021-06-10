@@ -536,21 +536,6 @@ If buffer is associated with a file name, add that file to the
         (consult-line (thing-at-point 'symbol))
       (consult-line)))
 
-  (with-eval-after-load 'affe
-    (defun affe-find-in-project ()
-      "Find file in project using affe."
-      (interactive)
-      (if-let (project-dir (cdr (project-current)))
-          (affe-find project-dir)
-        (error "Failed: Buffer is not in project")))
-
-    (defun affe-grep-in-project ()
-      "Grep files in project using affe."
-      (interactive)
-      (if-let (project-dir (cdr (project-current)))
-          (affe-grep project-dir)
-        (error "Failed: Buffer is not in project"))))
-
   (defalias 'goto-line 'consult-goto-line))
 
 ;; Key bindings
@@ -581,7 +566,6 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-/") 'undo-tree-undo)
 (global-set-key (kbd "C-'") 'undo-tree-redo)
 (global-set-key (kbd "<s-return>") 'cua-rectangle-mark-mode)
-(global-set-key (kbd "s-F") 'affe-grep-in-project)
 (global-set-key (kbd "s-f") 'affe-grep)
 (global-set-key (kbd "s-\\") 'neotree-toggle)
 (global-set-key (kbd "M-g l") 'git-link)
