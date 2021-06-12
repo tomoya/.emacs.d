@@ -273,6 +273,12 @@
 ;; End customize configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; prefer local variables to major-mode hook
+(defun run-local-vars-mode-hook ()
+  "Run `major-mode' hook after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
+
 (with-eval-after-load 'flycheck
   (flycheck-package-setup)
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
@@ -431,7 +437,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; lsp-mode
 (add-hook 'web-mode-hook #'lsp)
-(add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'typescript-mode-local-vars-hook #'lsp)
 (add-hook 'terraform-mode-hook #'lsp)
 (add-hook 'yaml-mode-hook #'lsp)
 (add-hook 'json-mode-hook #'lsp)
