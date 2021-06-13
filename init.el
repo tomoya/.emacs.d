@@ -27,8 +27,6 @@
 (setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
 (setq no-littering-var-directory (expand-file-name "var/" user-emacs-directory))
 (require 'no-littering)
-(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-(load custom-file)
 (require 'recentf)
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
@@ -92,6 +90,10 @@
                               ; (default: 30)
       auto-save-interval 200) ; number of keystrokes between auto-saves
                               ; (default: 300)
+
+;; custom-file
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+(load custom-file)
 
 ;; prefer local variables to major-mode hook
 (defun run-local-vars-mode-hook ()
