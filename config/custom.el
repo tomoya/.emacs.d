@@ -141,6 +141,7 @@
  '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(session-initialize '(session places))
+ '(session-save-file (no-littering-expand-var-file-name ".session"))
  '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
