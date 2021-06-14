@@ -138,6 +138,7 @@
  '(register-preview-delay 0)
  '(ring-bell-function 'ignore)
  '(ruby-insert-encoding-magic-comment nil)
+ '(safe-local-variable-values '((lsp-disabled-clients ts-ls jsts-ls)))
  '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(session-initialize '(session places))
