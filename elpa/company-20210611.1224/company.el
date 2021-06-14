@@ -3419,6 +3419,9 @@ Delay is determined by `company-tooltip-idle-delay'."
              (run-with-timer company-tooltip-idle-delay nil
                              'company-pseudo-tooltip-unless-just-one-frontend-with-delay
                              'post-command))))
+    (unhide
+     (when (overlayp company-pseudo-tooltip-overlay)
+       (company-pseudo-tooltip-unless-just-one-frontend command)))
     (t
      (company-pseudo-tooltip-unless-just-one-frontend command))))
 
@@ -3479,11 +3482,15 @@ Delay is determined by `company-tooltip-idle-delay'."
     (`pre-command (company-preview-hide))
     (`unhide
      (when company-selection
-       (let ((company-prefix (buffer-substring
-                              (- company-point (length company-prefix))
-                              (point))))
-         (company-preview-show-at-point (point)
-                                        (nth company-selection company-candidates)))))
+       (let* ((current (nth company-selection company-candidates))
+              (company-prefix (if (equal current company-prefix)
+                                  ;; Would be more accurate to compare lengths,
+                                  ;; but this is shorter.
+                                  current
+                                (buffer-substring
+                                 (- company-point (length company-prefix))
+                                 (point)))))
+         (company-preview-show-at-point (point) current))))
     (`post-command
      (when company-selection
        (company-preview-show-at-point (point)

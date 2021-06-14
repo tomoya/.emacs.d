@@ -6,16 +6,18 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "orderless" "orderless.el" (0 0 0 0))
-;;; Generated autoloads from orderless.el
+;;;### (autoloads nil "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless.el
 
-(autoload 'orderless-filter "orderless" "\
+(autoload 'orderless-filter "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless" "\
 Split STRING into components and find entries TABLE matching all.
 The predicate PRED is used to constrain the entries in TABLE.
 
 \(fn STRING TABLE &optional PRED)" nil nil)
 
-(autoload 'orderless-all-completions "orderless" "\
+(autoload 'orderless-all-completions "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless" "\
 Split STRING into components and find entries TABLE matching all.
 The predicate PRED is used to constrain the entries in TABLE.  The
 matching portions of each candidate are highlighted.
@@ -23,7 +25,7 @@ This function is part of the `orderless' completion style.
 
 \(fn STRING TABLE PRED POINT)" nil nil)
 
-(autoload 'orderless-try-completion "orderless" "\
+(autoload 'orderless-try-completion "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless" "\
 Complete STRING to unique matching entry in TABLE.
 This uses `orderless-all-completions' to find matches for STRING
 in TABLE among entries satisfying PRED.  If there is only one
@@ -36,7 +38,7 @@ This function is part of the `orderless' completion style.
 
 (add-to-list 'completion-styles-alist '(orderless orderless-try-completion orderless-all-completions "Completion of multiple components, in any order."))
 
-(autoload 'orderless-ivy-re-builder "orderless" "\
+(autoload 'orderless-ivy-re-builder "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless" "\
 Convert STR into regexps for use with ivy.
 This function is for integration of orderless with ivy, use it as
 a value in `ivy-re-builders-alist'.
@@ -45,11 +47,13 @@ a value in `ivy-re-builders-alist'.
 
 (with-eval-after-load 'ivy (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
-(register-definition-prefixes "orderless" '("orderless-"))
+(register-definition-prefixes "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless" '("orderless-"))
 
 ;;;***
 
-;;;### (autoloads nil nil ("orderless-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless-autoloads.el"
+;;;;;;  "../../../../../../../../../.config/emacs/elpa/orderless-20210613.1723/orderless-pkg.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
