@@ -133,6 +133,7 @@
  '(projectile-globally-ignored-directories
    '(".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "__snapshots__"))
  '(projectile-mode t nil (projectile))
+ '(psession-mode t)
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
  '(register-preview-delay 0)
