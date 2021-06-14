@@ -126,7 +126,7 @@
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-native-compile t)
  '(package-selected-packages
-   '(no-littering consult consult-ghq consult-lsp embark-consult vertico marginalia orderless affe tide elisp-benchmarks multi-term vterm ligature helm-c-moccur color-moccur tree-sitter tree-sitter-langs forge github-review string-inflection exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode session fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens typescript-mode ddskk company-flx company helm-projectile projectile magit helm diff-hl spacemacs-theme))
+   '(no-littering consult consult-ghq consult-lsp embark-consult vertico marginalia orderless affe tide elisp-benchmarks multi-term vterm ligature helm-c-moccur color-moccur tree-sitter tree-sitter-langs forge github-review string-inflection exec-path-from-shell projectile-ripgrep rg json-mode terraform-mode dockerfile-mode copy-as-format git-link csv-mode quickrun zone-nyan darktooth-theme darkroom company-tabnine yaml-mode php-mode cyberpunk-2019-theme flycheck-posframe rspec-mode fira-code-mode pdf-tools company-box frame-tabs all-the-icons neotree flycheck-package easy-hugo htmlize markdown-preview-mode auto-fix company-emoji company-lsp lsp-ui lsp-mode web-mode direnv darkburn-theme undo-tree markdown-mode smartparens typescript-mode ddskk company-flx company helm-projectile projectile magit helm diff-hl spacemacs-theme))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(project-vc-ignores '("node_modules" ".git" "tmp" "dist" "coverage"))
  '(projectile-enable-caching t)
@@ -141,9 +141,6 @@
  '(safe-local-variable-values '((lsp-disabled-clients ts-ls jsts-ls)))
  '(savehist-mode t)
  '(scroll-bar-mode nil)
- '(session-initialize '(session places))
- '(session-save-file (no-littering-expand-var-file-name ".session"))
- '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(skk-byte-compile-init-file t)
  '(skk-user-directory (locate-user-emacs-file "ddskk"))
