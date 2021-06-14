@@ -65,11 +65,16 @@ front-end that provides a completion UI.  Any completion style can be
 used with the default Emacs completion UI (sometimes called minibuffer
 tab completion), with the built-in Icomplete package (which is similar
 to the more well-known Ido Mode), or with some third party completion
-frameworks such as Selectrum (https://github.com/raxod502/selectrum) or
-icomplete-vertical (https://github.com/oantolin/icomplete-vertical).  To
-use a completion style in this fashion simply add it as an entry in the
-variables ‘completion-styles’ and ‘completion-category-overrides’ (see
-their documentation).  You may also want to modify the
+frameworks such as Vertico (https://github.com/minad/vertico), Selectrum
+(https://github.com/raxod502/selectrum) (in its default configuration),
+or icomplete-vertical (https://github.com/oantolin/icomplete-vertical)
+(note there is also a _built-in_ package named icomplete-vertical in the
+unreleased version 28 of Emacs, which will eventually make the third
+party icomplete-vertical obsolete —orderless works equally well with
+both icomplete-vertical packages).  To use a completion style with any
+of these completion UIs simply add it as an entry in the variables
+‘completion-styles’ and ‘completion-category-overrides’ (see their
+documentation).  You may also want to modify the
 ‘completion-category-defaults’ variable, which serves as a default value
 for ‘completion-category-overrides’: if you want to use ‘orderless’
 exclusively, set both variables to ‘nil’.
@@ -408,8 +413,9 @@ File: orderless.info,  Node: Selectrum,  Next: Company,  Prev: Ivy,  Up: Integra
 =============
 
 Recent versions of Selectrum default to using whatever completion styles
-you have configured.  You can use ‘orderless’ that way, or you can use
-this configuration:
+you have configured.  If you stick with that default configuration you
+can use ‘orderless’ just by adding it to ‘completion-styles’.
+Alternatively, you can use this configuration:
 
      (setq selectrum-refine-candidates-function #'orderless-filter)
      (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
@@ -477,7 +483,7 @@ The well-known and hugely powerful completion frameworks Ivy
 (https://github.com/emacs-helm/helm) also provide for matching
 space-separated component regexps in any order.  In Ivy, this is done
 with the ‘ivy--regex-ignore-order’ matcher.  In Helm, it is the default,
-called "multi pattern matching".
+called “multi pattern matching”.
 
    This package is significantly smaller than either of those because it
 solely defines a completion style, meant to be used with any completion
@@ -511,7 +517,7 @@ be used with either the Selectrum
 (https://github.com/abo-abo/swiper) completion UIs (it does not offer a
 completion-style that could be used with Emacs’ default completion UI or
 with Icomplete).  The components can be matched literally, as regexps,
-as initialisms or in the flex style (called "fuzzy" in prescient).  In
+as initialisms or in the flex style (called “fuzzy” in prescient).  In
 addition to matching, ‘prescient.el’ also supports sorting of candidates
 (‘orderless’ leaves that up to the candidate source and the completion
 UI).
@@ -544,22 +550,22 @@ out of order matching!
 Tag Table:
 Node: Top221
 Node: Overview946
-Node: Customization3089
-Node: Component matching styles3447
-Node: Style dispatchers6248
-Node: Component separator regexp8499
-Node: Defining custom orderless styles9736
-Node: Faces for component matches11628
-Node: Pattern compiler12432
-Node: Interactively changing the configuration13034
-Node: Integration with other completion UIs14497
-Node: Ivy15288
-Node: Selectrum15541
-Node: Company16122
-Node: Related packages17615
-Node: Ivy and Helm17913
-Node: Prescient19248
-Node: Restricting to current matches in Icicles Ido and Ivy20098
+Node: Customization3429
+Node: Component matching styles3787
+Node: Style dispatchers6588
+Node: Component separator regexp8839
+Node: Defining custom orderless styles10076
+Node: Faces for component matches11968
+Node: Pattern compiler12772
+Node: Interactively changing the configuration13374
+Node: Integration with other completion UIs14837
+Node: Ivy15628
+Node: Selectrum15881
+Node: Company16555
+Node: Related packages18048
+Node: Ivy and Helm18346
+Node: Prescient19685
+Node: Restricting to current matches in Icicles Ido and Ivy20539
 
 End Tag Table
 

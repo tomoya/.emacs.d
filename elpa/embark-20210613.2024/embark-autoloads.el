@@ -51,7 +51,7 @@ ARG is the prefix argument.
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'embark-default-action "embark" "\
+(autoload 'embark-dwim "embark" "\
 Run the default action on the current target.
 The target of the action is chosen by `embark-target-finders'.
 
@@ -63,7 +63,11 @@ For targets that do not come from minibuffer completion
 \(typically some thing at point in a regular buffer) and whose
 type is not listed in `embark-default-action-overrides', the
 default action is given by whatever binding RET has in the action
-keymap for the target's type." t nil)
+keymap for the target's type.
+
+See `embark-act' for the meaning of the prefix ARG.
+
+\(fn &optional ARG)" t nil)
 
 (autoload 'embark-become "embark" "\
 Make current command become a different command.

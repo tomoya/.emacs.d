@@ -35,6 +35,13 @@
 
 ;;;***
 
+;;;### (autoloads nil "lsp-beancount" "lsp-beancount.el" (0 0 0 0))
+;;; Generated autoloads from lsp-beancount.el
+
+(register-definition-prefixes "lsp-beancount" '("lsp-beancount-"))
+
+;;;***
+
 ;;;### (autoloads nil "lsp-clangd" "lsp-clangd.el" (0 0 0 0))
 ;;; Generated autoloads from lsp-clangd.el
 
