@@ -179,7 +179,7 @@ styles."
                                    (lambda ()
                                      (cons (lsp-package-path 'html-language-server)
                                            lsp-html-server-command-args)))
-                  :activation-fn (lsp-activate-on "html")
+                  :major-modes '(html-mode sgml-mode mhtml-mode web-mode)
                   :priority -4
                   :completion-in-comments? t
                   :server-id 'html-ls

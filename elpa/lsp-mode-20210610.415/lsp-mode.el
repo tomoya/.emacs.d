@@ -167,7 +167,7 @@ As defined by the Language Server Protocol 3.16."
   :package-version '(lsp-mode . "6.1"))
 
 (defcustom lsp-client-packages
-  '(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-beancount lsp-clangd lsp-clojure lsp-cmake
+  '(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake
          lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm
          lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go
          lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json
@@ -680,13 +680,11 @@ Changes take effect only when a new session is started."
                                         (".*\\.tsx$" . "typescriptreact")
                                         (".*\\.ts$" . "typescript")
                                         (".*\\.jsx$" . "javascriptreact")
-                                        (".*\\.js$" . "javascript")
                                         (".*\\.xml$" . "xml")
                                         (".*\\.hx$" . "haxe")
                                         (".*\\.lua$" . "lua")
                                         (".*\\.sql$" . "sql")
                                         (".*\\.html$" . "html")
-                                        (".*\\.css" . "css")
                                         (".*/settings.json$" . "jsonc")
                                         (".*\\.json$" . "json")
                                         (".*\\.jsonc$" . "jsonc")
@@ -720,6 +718,7 @@ Changes take effect only when a new session is started."
                                         (c-mode . "c")
                                         (c++-mode . "cpp")
                                         (objc-mode . "objective-c")
+                                        (web-mode . "html")
                                         (html-mode . "html")
                                         (sgml-mode . "html")
                                         (mhtml-mode . "html")
@@ -778,8 +777,7 @@ Changes take effect only when a new session is started."
                                         (d-mode . "d")
                                         (zig-mode . "zig")
                                         (text-mode . "plaintext")
-                                        (markdown-mode . "markdown")
-                                        (beancount-mode . "beancount"))
+                                        (markdown-mode . "markdown"))
   "Language id configuration.")
 
 (defvar lsp--last-active-workspaces nil
@@ -1796,7 +1794,7 @@ regex in IGNORED-FILES."
     lsp-python-ms lsp-rescript lsp-sonarlint lsp-sourcekit lsp-tailwindcss lsp-treemacs
     lsp-ui swift-helpful
     ;; clients
-    lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-beancount lsp-clangd
+    lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-clangd
     lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dhall
     lsp-dockerfile lsp-elixir lsp-elm lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript
     lsp-go lsp-groovy lsp-hack lsp-haxe lsp-html lsp-javascript lsp-json lsp-kotlin lsp-lua
@@ -4478,12 +4476,7 @@ Applies on type formatting."
   (let* ((parsed-url (url-generic-parse-url (url-unhex-string url)))
          (type (url-type parsed-url)))
     (pcase type
-      ("file"
-       (find-file (lsp--uri-to-path url))
-       (-when-let ((_ line column) (s-match (rx "#" (group (1+ num)) "," (group (1+ num))) url))
-         (goto-char (lsp--position-to-point
-                     (lsp-make-position :character (1- (string-to-number column))
-                                        :line (1- (string-to-number line)))))))
+      ("file" (find-file (lsp--uri-to-path url)))
       ((or "http" "https") (browse-url url))
       (type (if-let ((handler (lsp--get-uri-handler type)))
                 (funcall handler url)

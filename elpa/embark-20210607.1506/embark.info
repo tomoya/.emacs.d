@@ -211,8 +211,8 @@ process can be streamlined with ‘embark-become’: while still in the
    You can bind ‘embark-become’ to a key in ‘minibuffer-local-map’, but
 it is also available as an action under the letter ‘B’ (uppercase), so
 you don’t need a binding if you already have one for ‘embark-act’.  So,
-assuming I have ‘embark-act’ bound to, say, ‘C-.’, once I realize I
-haven’t open the file I can type ‘C-. B C-x C-f’ to have
+assuming I have ‘embark-act’ bound to, say, ‘C-S-a’, once I realize I
+haven’t open the file I can type ‘C-S-a B C-x C-f’ to have
 ‘switch-to-buffer’ become ‘find-file’ without losing what I have already
 typed in the minibuffer.
 
@@ -229,7 +229,7 @@ a buffer for a file I haven’t opened yet, ‘embark-become’ finds that the
 command I ran, ‘switch-to-buffer’, is in the keymap
 ‘embark-become-file+buffer-map’, so it activates that keymap (and any
 others that also contain a binding for ‘switch-to-buffer’).  The end
-result is that I can type ‘C-. B f’ to switch to ‘find-file’.
+result is that I can type ‘C-S-a B f’ to switch to ‘find-file’.
 
 
 File: embark.info,  Node: Configuration,  Next: Embark Marginalia and Consult,  Prev: Overview,  Up: Top
@@ -269,8 +269,7 @@ reasonable starting configuration:
        :ensure t
 
        :bind
-       (("C-." . embark-act)         ;; pick some comfortable binding
-        ("C-;" . embark-dwim)        ;; good alternative: M-.
+       (("C-S-a" . embark-act)       ;; pick some comfortable binding
         ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
        :init
@@ -304,12 +303,6 @@ feel free to bind them directly if you so wish.  If you do choose to
 bind them directly, you’ll probably want to bind them in
 ‘minibuffer-local-map’, since they are most useful in the minibuffer (in
 fact, ‘embark-become’ only works in the minibuffer).
-
-   The command ‘embark-dwim’ executes the default action at point.
-Another good keybinding for ‘embark-dwim’ is ‘M-.’ since ‘embark-dwim’
-acts like ‘xref-find-definitions’ on the symbol at point.  ‘C-.’ can be
-seen as a right-click context menu at point and ‘M-.’ acts like
-left-click.  The keybindings are mnemonic, both act at the point (‘.’).
 
    Embark needs to know what your minibuffer completion system considers
 to be the list of candidates and which one is the current one.  Embark
@@ -680,19 +673,19 @@ Node: Overview1132
 Node: Acting on targets1381
 Node: Working with sets of possible targets5899
 Node: Switching to a different command without losing what you've typed8890
-Node: Configuration11464
-Node: Quick start11907
-Node: Showing a reminder of available actions15265
-Node: Quitting the minibuffer after an action16686
-Node: Allowing the target to be edited before acting on it18435
-Node: Running some setup after injecting the target19755
-Node: Creating your own keymaps20975
-Node: Defining actions for new categories of targets21959
-Node: New minibuffer target example - tab-bar tabs22719
-Ref: Telling Embark about commands that prompt for tabs by name23435
-Ref: Defining and configuring a keymap for tab actions26279
-Node: New target example in regular buffers - short Wikipedia links27969
-Node: Embark Marginalia and Consult29714
+Node: Configuration11470
+Node: Quick start11913
+Node: Showing a reminder of available actions14830
+Node: Quitting the minibuffer after an action16251
+Node: Allowing the target to be edited before acting on it18000
+Node: Running some setup after injecting the target19320
+Node: Creating your own keymaps20540
+Node: Defining actions for new categories of targets21524
+Node: New minibuffer target example - tab-bar tabs22284
+Ref: Telling Embark about commands that prompt for tabs by name23000
+Ref: Defining and configuring a keymap for tab actions25844
+Node: New target example in regular buffers - short Wikipedia links27534
+Node: Embark Marginalia and Consult29279
 
 End Tag Table
 
