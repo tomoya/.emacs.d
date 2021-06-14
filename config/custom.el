@@ -45,7 +45,7 @@
  '(easy-hugo-root "/")
  '(easy-hugo-url "")
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(find-file-visit-truename t)
+ '(find-file-visit-truename nil)
  '(flycheck-posframe-error-prefix "E: ")
  '(flycheck-posframe-warning-prefix "W: ")
  '(font-lock-maximum-decoration nil)
