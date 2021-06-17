@@ -13,7 +13,6 @@
          do (add-to-list 'exec-path x))
 
 ;; Used by custom-set-variables
-(require 'helm-projectile nil t)
 (require 'orderless nil t)
 
 ;; My function
@@ -33,15 +32,6 @@
 (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 ;; nano
-;; Fix undefined face on nano-theme.el
-(defgroup helm-swoop nil
-  "Open helm-swoop."
-  :prefix "helm-swoop-" :group 'helm)
-
-(defface helm-swoop-target-line-face
-  '((t (:background "#e3e300" :foreground "#222222")))
-  "Face for helm-swoop target line"
-  :group 'helm-swoop)
 ;; (require 'nano-layout)
 ;; extract nano-layout needed to improve fperformance or initial display
 (window-divider-mode 1)
@@ -102,8 +92,7 @@
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
 
 (with-eval-after-load 'flycheck
-  (flycheck-package-setup)
-  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+  (flycheck-package-setup))
 
 ;; tree-sitter
 (require 'tree-sitter-langs)
