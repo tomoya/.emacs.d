@@ -1,4 +1,4 @@
-;;; rg-autoloads.el --- automatically extracted autoloads
+;;; rg-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -6,9 +6,8 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "rg" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg.el"
-;;;;;;  "e09e8a6ede1e384e1dd94044cb94b3c5")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg.el
+;;;### (autoloads nil "rg" "rg.el" (0 0 0 0))
+;;; Generated autoloads from rg.el
 
 (defvar rg-keymap-prefix "\3s" "\
 Prefix for global `rg' keymap.")
@@ -119,70 +118,47 @@ files with the same name pattern still will be searched.
 \(fn &optional CURDIR)" t nil)
  (autoload 'rg-literal "rg.el" "" t)
  (autoload 'rg "rg.el" "" t)
-
-;;;### (autoloads "actual autoloads are elsewhere" "rg" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg" '("kill-rg" "rg-")))
-
-;;;***
+(register-definition-prefixes "rg" '("kill-rg" "rg-"))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "rg-header" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-header.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-header.el
+;;;### (autoloads nil "rg-header" "rg-header.el" (0 0 0 0))
+;;; Generated autoloads from rg-header.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-header" '("rg-")))
-
-;;;***
-
-;;;### (autoloads "actual autoloads are elsewhere" "rg-history" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-history.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-history.el
-
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-history" '("rg-history-")))
+(register-definition-prefixes "rg-header" '("rg-"))
 
 ;;;***
 
-;;;### (autoloads nil "rg-ibuffer" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-ibuffer.el"
-;;;;;;  "0267afbd72eeea901b958c85f864abad")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-ibuffer.el
+;;;### (autoloads nil "rg-history" "rg-history.el" (0 0 0 0))
+;;; Generated autoloads from rg-history.el
+
+(register-definition-prefixes "rg-history" '("rg-history-"))
+
+;;;***
+
+;;;### (autoloads nil "rg-ibuffer" "rg-ibuffer.el" (0 0 0 0))
+;;; Generated autoloads from rg-ibuffer.el
 
 (autoload 'rg-list-searches "rg-ibuffer" "\
 List all `rg-mode' buffers in `ibuffer'." t nil)
-
-;;;### (autoloads "actual autoloads are elsewhere" "rg-ibuffer" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-ibuffer.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-ibuffer.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-ibuffer" '("rg-")))
-
-;;;***
+(register-definition-prefixes "rg-ibuffer" '("rg-"))
 
 ;;;***
 
-;;;### (autoloads nil "rg-isearch" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-isearch.el"
-;;;;;;  "22d91eccc6480f1675c7961907fc3735")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-isearch.el
+;;;### (autoloads nil "rg-isearch" "rg-isearch.el" (0 0 0 0))
+;;; Generated autoloads from rg-isearch.el
  (autoload 'rg-isearch-current-file "rg-isearch.el" "" t)
  (autoload 'rg-isearch-current-dir "rg-isearch.el" "" t)
  (autoload 'rg-isearch-project "rg-isearch.el" "" t)
-
-;;;### (autoloads "actual autoloads are elsewhere" "rg-isearch" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-isearch.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-isearch.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-isearch" '("rg-get-isearch-string")))
-
-;;;***
+(register-definition-prefixes "rg-isearch" '("rg-get-isearch-string"))
 
 ;;;***
 
-;;;### (autoloads nil "rg-menu" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-menu.el"
-;;;;;;  "03aaf8c6c1db3fefae738d195638783a")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-menu.el
+;;;### (autoloads nil "rg-menu" "rg-menu.el" (0 0 0 0))
+;;; Generated autoloads from rg-menu.el
  (autoload 'rg-menu "rg-menu.el" "" t)
 
 (autoload 'rg-enable-menu "rg-menu" "\
@@ -190,56 +166,32 @@ Bind `rg-menu' to PREFIX key.
 If prefix is not supplied `rg-keymap-prefix' is used.
 
 \(fn &optional PREFIX)" t nil)
-
-;;;### (autoloads "actual autoloads are elsewhere" "rg-menu" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-menu.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-menu.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-menu" '("rg-menu-")))
-
-;;;***
+(register-definition-prefixes "rg-menu" '("rg-menu-"))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "rg-result" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-result.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-result.el
+;;;### (autoloads nil "rg-result" "rg-result.el" (0 0 0 0))
+;;; Generated autoloads from rg-result.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rg-result" '("rg-")))
+(register-definition-prefixes "rg-result" '("rg-"))
 
 ;;;***
 
-;;;### (autoloads nil "wgrep-rg" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/wgrep-rg.el"
-;;;;;;  "97f2d09cfcde352a1ead02d456a0cc2c")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/wgrep-rg.el
+;;;### (autoloads nil "wgrep-rg" "wgrep-rg.el" (0 0 0 0))
+;;; Generated autoloads from wgrep-rg.el
 
 (autoload 'wgrep-rg-setup "wgrep-rg" "\
 Setup wgrep rg support." nil nil)
 
 (add-hook 'rg-mode-hook 'wgrep-rg-setup)
-
-;;;### (autoloads "actual autoloads are elsewhere" "wgrep-rg" "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/wgrep-rg.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/wgrep-rg.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "wgrep-rg" '("wgrep-rg-")))
-
-;;;***
+(register-definition-prefixes "wgrep-rg" '("wgrep-rg-"))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-header.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-history.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-ibuffer.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-info-hack.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-isearch.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-menu.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-pkg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg-result.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/rg.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/rg-20210305.1621/wgrep-rg.el")
-;;;;;;  (0 0 0 0))
+;;;### (autoloads nil nil ("rg-info-hack.el" "rg-pkg.el") (0 0 0
+;;;;;;  0))
 
 ;;;***
 
