@@ -1826,6 +1826,35 @@ regex in IGNORED-FILES."
 ;;  lsp-downstream-deps)
 
 
+;; loading code-workspace files
+
+;;;###autoload
+(defun lsp-load-vscode-workspace (file)
+  "Load vscode workspace from FILE"
+  (interactive "fSelect file to import: ")
+  (mapc #'lsp-workspace-folders-remove (lsp-session-folders (lsp-session)))
+
+  (let ((dir (f-dirname file)))
+    (->> file
+         (json-read-file)
+         (alist-get 'folders)
+         (-map (-lambda ((&alist 'path))
+                 (lsp-workspace-folders-add (expand-file-name path dir)))))))
+
+;;;###autoload
+(defun lsp-save-vscode-workspace (file)
+  "Save vscode workspace to FILE"
+  (interactive "FSelect file to save to: ")
+
+  (let ((json-encoding-pretty-print t))
+    (f-write-text (json-encode
+                   `((folders . ,(->> (lsp-session)
+                                      (lsp-session-folders)
+                                      (--map `((path . ,it)))))))
+                  'utf-8
+                  file)))
+
+
 (defmacro lsp-foreach-workspace (&rest body)
   "Execute BODY for each of the current workspaces."
   (declare (debug (form body)))
@@ -3461,7 +3490,7 @@ disappearing, unset all the variables related to it."
   ;; The intent of this function is to provide per-root workspace-level customization of the
   ;; lsp-file-watch-ignored-directories and lsp-file-watch-ignored-files variables.
   (lsp--with-workspace-temp-buffer workspace-root
-    (list lsp-file-watch-ignored-files lsp-file-watch-ignored-directories)))
+    (list lsp-file-watch-ignored-files (lsp-file-watch-ignored-directories))))
 
 
 (defun lsp--cleanup-hanging-watches ()
@@ -6240,59 +6269,62 @@ deserialization.")
       (setf chunk (if (s-blank? leftovers)
                       input
                     (concat leftovers input)))
-      (while (not (s-blank? chunk))
-        (if (not body-length)
-            ;; Read headers
-            (if-let ((body-sep-pos (string-match-p "\r\n\r\n" chunk)))
-                ;; We've got all the headers, handle them all at once:
-                (setf body-length (lsp--get-body-length
-                                   (mapcar #'lsp--parse-header
-                                           (split-string
-                                            (substring-no-properties chunk
-                                                       (or (string-match-p "Content-Length" chunk)
-                                                           (error "Unable to find Content-Length header."))
-                                                       body-sep-pos)
-                                            "\r\n")))
-                      body-received 0
-                      leftovers nil
-                      chunk (substring-no-properties chunk (+ body-sep-pos 4)))
 
-              ;; Haven't found the end of the headers yet. Save everything
-              ;; for when the next chunk arrives and await further input.
-              (setf leftovers chunk
-                    chunk nil))
-          (let* ((chunk-length (string-bytes chunk))
-                 (left-to-receive (- body-length body-received))
-                 (this-body (if (< left-to-receive chunk-length)
-                                (prog1 (substring-no-properties chunk 0 left-to-receive)
-                                  (setf chunk (substring-no-properties chunk left-to-receive)))
-                              (prog1 chunk
-                                (setf chunk nil))))
-                 (body-bytes (string-bytes this-body)))
-            (push this-body body)
-            (setf body-received (+ body-received body-bytes))
-            (when (>= chunk-length left-to-receive)
-              (lsp--parser-on-message
-               (condition-case err
-                   (with-temp-buffer
-                     (apply #'insert
-                            (nreverse
-                             (prog1 body
-                               (setf leftovers nil
-                                     body-length nil
-                                     body-received nil
-                                     body nil))))
-                     (decode-coding-region (point-min)
-                                           (point-max)
-                                           'utf-8)
-                     (goto-char (point-min))
-                     (lsp-json-read-buffer))
+      (let (messages)
+        (while (not (s-blank? chunk))
+          (if (not body-length)
+              ;; Read headers
+              (if-let ((body-sep-pos (string-match-p "\r\n\r\n" chunk)))
+                  ;; We've got all the headers, handle them all at once:
+                  (setf body-length (lsp--get-body-length
+                                     (mapcar #'lsp--parse-header
+                                             (split-string
+                                              (substring-no-properties chunk
+                                                                       (or (string-match-p "Content-Length" chunk)
+                                                                           (error "Unable to find Content-Length header."))
+                                                                       body-sep-pos)
+                                              "\r\n")))
+                        body-received 0
+                        leftovers nil
+                        chunk (substring-no-properties chunk (+ body-sep-pos 4)))
 
-                 (error
-                  (lsp-warn "Failed to parse the following chunk:\n'''\n%s\n'''\nwith message %s"
-                            (concat leftovers input)
-                            err)))
-               workspace))))))))
+                ;; Haven't found the end of the headers yet. Save everything
+                ;; for when the next chunk arrives and await further input.
+                (setf leftovers chunk
+                      chunk nil))
+            (let* ((chunk-length (string-bytes chunk))
+                   (left-to-receive (- body-length body-received))
+                   (this-body (if (< left-to-receive chunk-length)
+                                  (prog1 (substring-no-properties chunk 0 left-to-receive)
+                                    (setf chunk (substring-no-properties chunk left-to-receive)))
+                                (prog1 chunk
+                                  (setf chunk nil))))
+                   (body-bytes (string-bytes this-body)))
+              (push this-body body)
+              (setf body-received (+ body-received body-bytes))
+              (when (>= chunk-length left-to-receive)
+                (condition-case err
+                    (with-temp-buffer
+                      (apply #'insert
+                             (nreverse
+                              (prog1 body
+                                (setf leftovers nil
+                                      body-length nil
+                                      body-received nil
+                                      body nil))))
+                      (decode-coding-region (point-min)
+                                            (point-max)
+                                            'utf-8)
+                      (goto-char (point-min))
+                      (push (lsp-json-read-buffer) messages))
+
+                  (error
+                   (lsp-warn "Failed to parse the following chunk:\n'''\n%s\n'''\nwith message %s"
+                             (concat leftovers input)
+                             err)))))))
+        (mapc (lambda (msg)
+                (lsp--parser-on-message msg workspace))
+              (nreverse messages))))))
 
 (defvar-local lsp--line-col-to-point-hash-table nil
   "Hash table with keys (line . col) and values that are either point positions

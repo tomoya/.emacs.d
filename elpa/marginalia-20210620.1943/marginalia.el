@@ -5,9 +5,9 @@
 ;; Author: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Maintainer: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
-;; Version: 0.6
-;; Package-Version: 20210618.1316
-;; Package-Commit: 10301075a3b84afd708db4fc1ef72c56d421d040
+;; Version: 0.7
+;; Package-Version: 20210620.1943
+;; Package-Commit: 9796fada769f44cb8e05914bd6be3fcc15d791e2
 ;; Package-Requires: ((emacs "26.1"))
 ;; Homepage: https://github.com/minad/marginalia
 

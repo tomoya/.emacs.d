@@ -29,6 +29,7 @@ vertico.el - VERTical Interactive COmpletion
 Problematic completion commands
 
 * org-set-tags-command::
+* org-refile::
 * tmm-menubar::
 
 
@@ -38,13 +39,16 @@ File: vertico.info,  Node: Introduction,  Next: Features,  Prev: Top,  Up: Top
 1 Introduction
 **************
 
-Vertico provides a minimalistic vertical completion UI, which is based
-on the default completion system.  By reusing the default system,
-Vertico achieves full compatibility with built-in Emacs commands and
-completion tables.  Vertico is pretty bare-bone and comes with only a
-minimal set of commands.  The code base is small (~500 lines of code
-without whitespace and comments).  Additional enhancements can be
-installed separately via complementary packages.
+Vertico provides a performant and minimalistic vertical completion UI,
+which is based on the default completion system.  By reusing the
+built-in facilities system, Vertico achieves _full compatibility_ with
+built-in Emacs completion commands and completion tables.  Vertico only
+provides the completion UI and comes with a minimal set of commands.
+The code base is small and maintainable (~600 lines of code without
+whitespace and comments).
+
+   Additional enhancements can be installed separately via complementary
+packages.
 
 
 File: vertico.info,  Node: Features,  Next: Configuration,  Prev: Introduction,  Up: Top
@@ -62,8 +66,9 @@ File: vertico.info,  Node: Features,  Next: Configuration,  Prev: Introduction, 
    • Sorting by history position, string length and alphabetically
    • Long candidates with newlines are formatted to take up less space
    • Deferred completion style highlighting for performance
-   • Support for ‘annotation-function’, ‘affixation-function’ and
-     ‘group-function’
+   • Support for annotations (‘annotation-function’ and
+     ‘affixation-function’)
+   • Support for grouping and group cycling commands (‘group-function’)
 
    <https://github.com/minad/vertico/blob/main/screenshot.svg?raw=true>
 
@@ -144,6 +149,8 @@ and the bindings of ‘vertico-exit/exit-input’.
    • ‘next-line’, ‘next-line-or-history-element’ -> ‘vertico-next’
    • ‘previous-line’, ‘previous-line-or-history-element’ ->
      ‘vertico-previous’
+   • ‘forward-paragraph’ -> ‘vertico-next-group’
+   • ‘backward-paragraph’ -> ‘vertico-previous-group’
    • ‘exit-minibuffer’ -> ‘vertico-exit’
    • ‘kill-ring-save’ -> ‘vertico-save’
    • ‘<C-return>’ -> ‘vertico-exit-input’
@@ -176,15 +183,14 @@ with ‘substring’, or not use ‘orderless’ at all.
      (setq completion-styles '(substring orderless))
      (setq completion-styles '(basic substring partial-completion flex))
 
-   If Vertico is active, it makes sense to disable the automatic
-‘*Completions*’ buffer by setting ‘completion-auto-help’ to ‘nil’.
-TAB-completion can be made less noisy by setting
-‘completion-show-inline-help’ to ‘nil’.
+   Because Vertico is fully compatible with Emacs default completion
+system, further customization of completion behavior can be achieved by
+setting the designated Emacs variables.  For example, one may wish to
+disable case-sensitivity for file and buffer matching when built-in
+completion styles are used instead of ‘orderless’:
 
-     (advice-add #'vertico--setup :after
-                 (lambda (&rest _)
-                   (setq-local completion-auto-help nil
-                               completion-show-inline-help nil)))
+     (setq read-file-name-completion-ignore-case t
+           read-buffer-completion-ignore-case t)
 
 
 File: vertico.info,  Node: Complementary packages,  Next: Alternatives,  Prev: TAB completion,  Up: Top
@@ -220,15 +226,16 @@ File: vertico.info,  Node: Alternatives,  Next: Problematic completion commands,
 **************
 
 There are many alternative completion UIs, each UI with its own
-advantages and disadvantages.  The Selectrum readme
-(https://github.com/raxod502/selectrum) gives an extensive comparison of
-many available completion systems from the perspective of Selectrum.
+advantages and disadvantages.
 
-   Vertico aims to be fully compliant with all Emacs commands and
+   Vertico aims to be 100% compliant with all Emacs commands and
 achieves that with a minimal code base, relying purely on
 ‘completing-read’ while avoiding to invent its own APIs.  Inventing a
 custom API as Helm or Ivy is explicitly avoided in order to increase
-flexibility and package reuse.
+flexibility and package reuse.  Due to its small code base and reuse of
+the Emacs built-in facilities, bugs are less likely to occur in
+comparison to completion UIs or full completion systems, which
+reimplement a lot of functionality.
 
    Since Vertico only provides the UI, you may want to combine it with
 some of the complementary packages, to give a full-featured completion
@@ -237,20 +244,28 @@ crafting their Emacs precisely to their liking - completion plays an
 integral part in how the users interacts with Emacs.  There are at least
 two other interactive completion UIs, which follow a similar philosophy:
 
-   • Selectrum (https://github.com/raxod502/selectrum): If you are
-     looking for a less minimalistic and more full-featured (but also
-     more complex) package, you may be interested in Selectrum, which
-     has a similar UI as Vertico.  Additionally Selectrum supports
-     Avy-style quick keys, a horizontal display and a configurable
-     buffer display.
+   • Selectrum (https://github.com/raxod502/selectrum): Selectrum has a
+     similar UI as Vertico.  Vertico offers more commands for grouping
+     support.  Selectrum supports additional Avy-style quick keys and a
+     horizontal display.  On the other hand, Selectrum is significantly
+     more complex and not fully compatible with every Emacs completion
+     command (Issue #481
+     (https://github.com/raxod502/selectrum/issues/481)), since it uses
+     its own filtering infrastructure, which deviates from the standard
+     Emacs completion facilities.
    • Icomplete-vertical
      (https://github.com/oantolin/icomplete-vertical): This package
      enhances the Emacs builtin Icomplete with a vertical display.  In
      contrast to Vertico, the candidates are rotated such that the
      current candidate always appears at the top.  From my perspective,
      candidate rotation feels a bit less intuitive than the UI of
-     Vertico or Selectrum.  Note that Emacs 28 offers an built-in
+     Vertico or Selectrum.  Note that Emacs 28 offers a built-in
      ‘icomplete-vertical-mode’.
+
+   See also the Selectrum readme
+(https://github.com/raxod502/selectrum), which gives an extensive
+comparison of many available completion systems from the perspective of
+Selectrum.
 
 
 File: vertico.info,  Node: Problematic completion commands,  Next: Contributions,  Prev: Alternatives,  Up: Top
@@ -266,10 +281,11 @@ and as such require minor workarounds.
 * Menu:
 
 * org-set-tags-command::
+* org-refile::
 * tmm-menubar::
 
 
-File: vertico.info,  Node: org-set-tags-command,  Next: tmm-menubar,  Up: Problematic completion commands
+File: vertico.info,  Node: org-set-tags-command,  Next: org-refile,  Up: Problematic completion commands
 
 8.1 ‘org-set-tags-command’
 ==========================
@@ -294,9 +310,32 @@ list
 (https://lists.gnu.org/archive/html/emacs-orgmode/2020-07/msg00222.html).
 
 
-File: vertico.info,  Node: tmm-menubar,  Prev: org-set-tags-command,  Up: Problematic completion commands
+File: vertico.info,  Node: org-refile,  Next: tmm-menubar,  Prev: org-set-tags-command,  Up: Problematic completion commands
 
-8.2 ‘tmm-menubar’
+8.2 ‘org-refile’
+================
+
+‘org-refile’ uses ‘org-olpath-completing-read’ to complete the outline
+path in steps, when ‘org-refile-use-outline-path’ is non-nil.
+
+   Unfortunately the implementation of this Org completion table is
+broken.  In order to fix the issue at the root, the completion table
+should make use of completion boundaries and should be written in the
+same way as the built-in file completion table.
+
+   In order to workaround the issues with the current implementation it
+is recommended to disable the outline path completion in steps.  The
+completion on the full path is also faster since the input string
+matches directly against the full path, which works very well with
+Orderless.
+
+     (setq org-refile-use-outline-path 'file
+           org-outline-path-complete-in-steps nil)
+
+
+File: vertico.info,  Node: tmm-menubar,  Prev: org-refile,  Up: Problematic completion commands
+
+8.3 ‘tmm-menubar’
 =================
 
 The text menu bar works well with Vertico but always shows a
@@ -319,17 +358,18 @@ copyright assignment to the FSF.
 
 Tag Table:
 Node: Top196
-Node: Introduction657
-Node: Features1231
-Node: Configuration2043
-Node: Key bindings4126
-Node: TAB completion5236
-Node: Complementary packages6876
-Node: Alternatives7941
-Node: Problematic completion commands9920
-Node: org-set-tags-command10408
-Node: tmm-menubar11521
-Node: Contributions11936
+Node: Introduction672
+Node: Features1312
+Node: Configuration2194
+Node: Key bindings4277
+Node: TAB completion5510
+Node: Complementary packages7145
+Node: Alternatives8210
+Node: Problematic completion commands10609
+Node: org-set-tags-command11112
+Node: org-refile12224
+Node: tmm-menubar13176
+Node: Contributions13581
 
 End Tag Table
 

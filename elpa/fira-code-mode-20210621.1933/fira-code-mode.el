@@ -5,8 +5,8 @@
 
 ;; Author: Jonathan Ming <jming422@gmail.com>
 ;; Version: 1.0
-;; Package-Version: 20201005.1607
-;; Package-Commit: b51966524ddd89f59943f99257fdb9dce52bf0e3
+;; Package-Version: 20210621.1933
+;; Package-Commit: 85e0eba018bca70040faea19996b43ce8e543cad
 ;; Package-Requires: ((emacs "24.4"))
 ;; Keywords: faces, ligatures, fonts, programming-ligatures
 ;; URL: https://github.com/jming422/fira-code-mode
@@ -173,13 +173,17 @@ option; if \"x\" is disabled but this option is enabled, then strings like
   fira-code-mode)
 
 ;; Extra utility functions
-(defun fira-code-mode--setup ()
+;;;###autoload
+(defun fira-code-mode-set-font ()
   "Setup Fira Code Symbols font.
-The following function isn't normally required, but if the range #Xe100 to
-#Xe16f has been previously customized by `set-fontset-font', then this function
-will ensure that this range is resolved using the Fira Code Symbol font instead."
+This function isn't normally required, but if the range #Xe100 to #Xe16f is
+being rendered by some other font besides Fira Code Symbol, then this function
+will ensure that this range is resolved using the Fira Code Symbol font
+instead."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
+
+(defvaralias 'fira-code-mode--setup 'fira-code-mode-set-font)
 
 ;;;###autoload
 (defun fira-code-mode-install-fonts (&optional pfx)

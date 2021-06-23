@@ -434,6 +434,16 @@ Click lsp lens using `avy' package." t nil)
 (put 'lsp-enable-file-watchers 'safe-local-variable #'booleanp)
 (put 'lsp-file-watch-threshold 'safe-local-variable (lambda (i) (or (numberp i) (not i))))
 
+(autoload 'lsp-load-vscode-workspace "lsp-mode" "\
+Load vscode workspace from FILE
+
+\(fn FILE)" t nil)
+
+(autoload 'lsp-save-vscode-workspace "lsp-mode" "\
+Save vscode workspace to FILE
+
+\(fn FILE)" t nil)
+
 (autoload 'lsp "lsp-mode" "\
 Entry point for the server startup.
 When ARG is t the lsp mode will start new language server even if

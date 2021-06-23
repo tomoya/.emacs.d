@@ -4,8 +4,8 @@
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-terraform-mode
-;; Package-Version: 20201208.1827
-;; Package-Commit: a9fa5bdaf58e9cae32ee44b7d0883f5600441b05
+;; Package-Version: 20210621.1953
+;; Package-Commit: e560caaa9d9a11b0868adf6d9dcae5ebb5055730
 ;; Version: 0.06
 ;; Package-Requires: ((emacs "24.3") (hcl-mode "0.03") (dash "2.17.0"))
 
@@ -138,6 +138,22 @@
           (set-window-start nil window-start))
       (message "terraform fmt: %s" (with-current-buffer buf (buffer-string))))
     (kill-buffer buf)))
+
+(defun terraform-format-region ()
+  "Rewrite current region in a canonical format using terraform fmt."
+  (interactive)
+  (let ((buf (get-buffer-create "*terraform-fmt*")))
+    (when (use-region-p)
+    (if (zerop (call-process-region (region-beginning) (region-end)
+                                    "terraform" nil buf nil "fmt" "-"))
+        (let ((point (region-end))
+              (window-start (region-beginning)))
+          (delete-region window-start point)
+          (insert-buffer-substring buf)
+          (goto-char point)
+          (set-window-start nil window-start))
+      (message "terraform fmt: %s" (with-current-buffer buf (buffer-string))))
+    (kill-buffer buf))))
 
 (define-minor-mode terraform-format-on-save-mode
   "Run terraform-format-buffer before saving current buffer."

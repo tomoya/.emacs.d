@@ -5,7 +5,7 @@
 ;; Author: Daniel Mendler and Consult contributors
 ;; Maintainer: Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
-;; Version: 0.8
+;; Version: 0.9
 ;; Package-Requires: ((emacs "26.1"))
 ;; Homepage: https://github.com/minad/consult
 
@@ -452,7 +452,8 @@ should not be considered as stable as the public API.")
 
 (defvar-local consult--preview-function nil
   "Minibuffer-local variable which exposes the current preview function.
-This function can be called by custom completion systems from outside the minibuffer.")
+This function can be called by custom completion systems from
+outside the minibuffer.")
 
 (defconst consult--tofu-char #x100000
   "Special character used to encode line prefixes for disambiguation.
@@ -803,19 +804,6 @@ Otherwise the `default-directory' is returned."
   "Ensure that region between START and END is fontified."
   (when (and consult-fontify-preserve jit-lock-mode)
     (jit-lock-fontify-now start end)))
-
-(defun consult--define-key (map key cmd desc)
-  "Bind CMD to KEY with DESC in MAP.
-Also create a which-key pseudo key to show the description."
-  (define-key map key (cons desc cmd))
-  ;; The which-key description is potentially fragile if something is changed on the side
-  ;; of which-key. Keep an eye on that. An alternative more standard-compliant method
-  ;; would be to use `menu-item', but this is unfortunately not yet supported by which-key
-  ;; and `describe-buffer-bindings'.
-  ;; See https://github.com/justbur/emacs-which-key/issues/177
-  (let ((idx (1- (length key))))
-    (define-key map (vconcat (seq-take key idx) (vector 'which-key (elt key idx)))
-      `(which-key (,(copy-sequence desc))))))
 
 (defmacro consult--with-increased-gc (&rest body)
   "Temporarily increase the gc limit in BODY to optimize for throughput."
@@ -1224,11 +1212,11 @@ to make it available for commands with narrowing."
           consult--narrow-keys settings)))
   (when consult-narrow-key
     (dolist (pair consult--narrow-keys)
-      (consult--define-key map
-                           (vconcat consult-narrow-key (vector (car pair)))
-                           #'consult-narrow (cdr pair))))
+      (define-key map
+        (vconcat consult-narrow-key (vector (car pair)))
+        (cons (cdr pair) #'consult-narrow))))
   (when-let (widen (consult--widen-key))
-    (consult--define-key map widen #'consult-narrow "All")))
+    (define-key map widen (cons "All" #'consult-narrow))))
 
 ;;;; Splitting completion style
 
