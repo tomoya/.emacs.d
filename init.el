@@ -352,7 +352,9 @@ If buffer is associated with a file name, add that file to the
         (consult-line (thing-at-point 'symbol))
       (consult-line)))
 
-  (defalias 'goto-line 'consult-goto-line))
+  (defalias 'goto-line 'consult-goto-line)
+  (with-eval-after-load 'consult-flycheck
+    (global-set-key [remap flycheck-list-errors] 'consult-flycheck)))
 
 ;; Key bindings
 (global-set-key (kbd "C-h b") 'embark-bindings)
