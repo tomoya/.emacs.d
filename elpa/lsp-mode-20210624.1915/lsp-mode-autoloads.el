@@ -712,6 +712,13 @@ it is disabled.
 
 ;;;***
 
+;;;### (autoloads nil "lsp-v" "lsp-v.el" (0 0 0 0))
+;;; Generated autoloads from lsp-v.el
+
+(register-definition-prefixes "lsp-v" '("lsp-v-vls-executable"))
+
+;;;***
+
 ;;;### (autoloads nil "lsp-vala" "lsp-vala.el" (0 0 0 0))
 ;;; Generated autoloads from lsp-vala.el
 

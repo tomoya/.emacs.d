@@ -173,7 +173,7 @@ As defined by the Language Server Protocol 3.16."
          lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json
          lsp-kotlin lsp-ltex lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh
          lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet
-         lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml
+         lsp-tex lsp-terraform lsp-v lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml
          lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)
   "List of the clients to be automatically required."
   :group 'lsp-mode
@@ -756,6 +756,7 @@ Changes take effect only when a new session is started."
                                         (csharp-tree-sitter-mode . "csharp")
                                         (plain-tex-mode . "plaintex")
                                         (latex-mode . "latex")
+                                        (v-mode . "v")
                                         (vhdl-mode . "vhdl")
                                         (verilog-mode . "verilog")
                                         (terraform-mode . "terraform")
@@ -1802,7 +1803,7 @@ regex in IGNORED-FILES."
     lsp-go lsp-groovy lsp-hack lsp-haxe lsp-html lsp-javascript lsp-json lsp-kotlin lsp-lua
     lsp-markdown lsp-nim lsp-nix lsp-ocaml lsp-perl lsp-php lsp-prolog lsp-purescript lsp-pwsh
     lsp-pyls lsp-pylsp lsp-racket lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-sqls
-    lsp-steep lsp-svelte lsp-terraform lsp-tex lsp-vala lsp-verilog lsp-vetur lsp-vhdl
+    lsp-steep lsp-svelte lsp-terraform lsp-tex lsp-v lsp-vala lsp-verilog lsp-vetur lsp-vhdl
     lsp-vimscript lsp-xml lsp-yaml lsp-zig)
   "List of downstream deps.")
 
@@ -3333,7 +3334,15 @@ disappearing, unset all the variables related to it."
                    (executeCommand . ((dynamicRegistration . :json-false)))
                    ,@(when lsp-enable-file-watchers '((didChangeWatchedFiles . ((dynamicRegistration . t)))))
                    (workspaceFolders . t)
-                   (configuration . t)))
+                   (configuration . t)
+                   ,@(when lsp-semantic-tokens-enable '((semanticTokens . ((refreshSupport . :json-false)))))
+                   ,@(when lsp-lens-enable '((codeLens . ((refreshSupport . :json-false)))))
+                   (fileOperations . ((didCreate . :json-false)
+                                      (willCreate . :json-false)
+                                      (didRename . :json-false)
+                                      (willRename . :json-false)
+                                      (didDelete . :json-false)
+                                      (willDelete . :json-false)))))
      (textDocument . ((declaration . ((linkSupport . t)))
                       (definition . ((linkSupport . t)))
                       (implementation . ((linkSupport . t)))
@@ -3391,8 +3400,12 @@ disappearing, unset all the variables related to it."
                       (callHierarchy . ((dynamicRegistration . :json-false)))
                       (publishDiagnostics . ((relatedInformation . t)
                                              (tagSupport . ((valueSet . [1 2])))
-                                             (versionSupport . t)))))
-     (window . ((workDoneProgress . t))))
+                                             (versionSupport . t)))
+                      (moniker . nil)
+                      (linkedEditingRange . nil)))
+     (window . ((workDoneProgress . t)
+                (showMessage . nil)
+                (showDocument . nil))))
    custom-capabilities))
 
 (defun lsp-find-roots-for-workspace (workspace session)
