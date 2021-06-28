@@ -122,7 +122,18 @@
  '(projectile-globally-ignored-directories
    '(".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "__snapshots__"))
  '(projectile-mode t nil (projectile))
+ '(psession-autosave-mode t)
  '(psession-mode t)
+ '(psession-object-to-save-alist
+   '((extended-command-history . "extended-command-history.el")
+     (regexp-search-ring . "regexp-search-ring.el")
+     (search-ring . "search-ring.el")
+     (file-name-history . "file-name-history.el")
+     (kill-ring . "kill-ring.el")
+     (kill-ring-yank-pointer . "kill-ring-yank-pointer.el")
+     (register-alist . "register-alist.el")
+     (psession--winconf-alist . "psession-winconf-alist.el")
+     (psession--selected-frame-parameters . "psession-selected-frame-parameters.el")))
  '(recentf-max-saved-items 100000)
  '(recentf-mode t)
  '(register-preview-delay 0)
