@@ -23,16 +23,20 @@ This command supports narrowing to a heading level and candidate preview.
 The symbol at point is added to the future history." t nil)
 
 (autoload 'consult-mark "consult" "\
-Jump to a marker in the buffer-local `mark-ring'.
+Jump to a marker in MARKERS list (defaults to buffer-local `mark-ring').
 
 The command supports preview of the currently selected marker position.
-The symbol at point is added to the future history." t nil)
+The symbol at point is added to the future history.
+
+\(fn &optional MARKERS)" t nil)
 
 (autoload 'consult-global-mark "consult" "\
-Jump to a marker in `global-mark-ring'.
+Jump to a marker in MARKERS list (defaults to `global-mark-ring').
 
 The command supports preview of the currently selected marker position.
-The symbol at point is added to the future history." t nil)
+The symbol at point is added to the future history.
+
+\(fn &optional MARKERS)" t nil)
 
 (autoload 'consult-line "consult" "\
 Search for a matching line and jump to the line beginning.

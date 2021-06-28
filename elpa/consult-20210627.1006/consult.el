@@ -518,7 +518,6 @@ Size of private unicode plane b.")
 (defmacro consult-customize (&rest args)
   "Set properties of commands or sources.
 ARGS is a list of commands or sources followed by the list of keyword-value pairs."
-  ;;(declare (indent 2))
   (let ((setter))
     (while args
       (let ((cmds (seq-take-while (lambda (x) (not (keywordp x))) args)))
@@ -1372,7 +1371,7 @@ SPLIT is the splitting function."
       (_ (funcall async action)))))
 
 (defun consult--async-log (formatted &rest args)
-  "Log FORMATTED ARGS to `v/consult--async-log'."
+  "Log FORMATTED ARGS to variable `consult--async-log'."
   (with-current-buffer (get-buffer-create consult--async-log)
     (goto-char (point-max))
     (insert (apply #'format formatted args))))
@@ -1387,7 +1386,9 @@ PROPS are optional properties passed to `make-process'."
     (lambda (action)
       (pcase action
         ("" ;; If no input is provided kill current process
-         (ignore-errors (delete-process proc))
+         (when proc
+           (delete-process proc)
+           (setq proc nil))
          (setq last-args nil))
         ((pred stringp)
          (let ((args (funcall cmd action))
@@ -1396,7 +1397,9 @@ PROPS are optional properties passed to `make-process'."
                (rest ""))
            (unless (equal args last-args)
              (setq last-args args)
-             (ignore-errors (delete-process proc))
+             (when proc
+               (delete-process proc)
+               (setq proc nil))
              (when args
                (overlay-put indicator 'display #("*" 0 1 (face consult-async-running)))
                (consult--async-log "consult--async-process started %S\n" args)
@@ -1454,7 +1457,9 @@ PROPS are optional properties passed to `make-process'."
                        (insert "<<<<< stderr <<<<<\n")
                        (kill-buffer stderr-buffer)))))))))))
         ('destroy
-         (ignore-errors (delete-process proc))
+         (when proc
+           (delete-process proc)
+           (setq proc nil))
          (delete-overlay indicator)
          (funcall async 'destroy))
         ('setup
@@ -1473,8 +1478,6 @@ The DEBOUNCE delay defaults to `consult-async-input-debounce'."
   (let ((input "") (last) (timer))
     (lambda (action)
       (pcase action
-        ('setup
-         (funcall async 'setup))
         ((pred stringp)
          (unless (string= action input)
            (when timer
@@ -2102,17 +2105,17 @@ The symbol at point is added to the future history."
 
 ;;;;; Command: consult-mark
 
-(defun consult--mark-candidates ()
-  "Return alist of lines containing markers.
-The alist contains (string . position) pairs."
+(defun consult--mark-candidates (markers)
+  "Return list of candidates strings for MARKERS."
   (consult--forbid-minibuffer)
-  (unless (marker-position (mark-marker))
-    (user-error "No marks"))
-  (let ((candidates))
+  (let ((candidates)
+        (current-buf (current-buffer)))
     (save-excursion
-      (dolist (marker (cons (mark-marker) mark-ring))
-        (let ((pos (marker-position marker)))
-          (when (consult--in-range-p pos)
+      (dolist (marker markers)
+        (when-let ((pos (marker-position marker))
+                   (buf (marker-buffer marker)))
+          (when (and (eq buf current-buf)
+                     (consult--in-range-p pos))
             (goto-char pos)
             ;; `line-number-at-pos' is a very slow function, which should be replaced everywhere.
             ;; However in this case the slow line-number-at-pos does not hurt much, since
@@ -2121,17 +2124,21 @@ The alist contains (string . position) pairs."
                    (consult--line-with-cursor marker) marker
                    (line-number-at-pos pos consult-line-numbers-widen))
                   candidates)))))
+    (unless candidates
+      (user-error "No marks"))
     (nreverse (delete-dups candidates))))
 
 ;;;###autoload
-(defun consult-mark ()
-  "Jump to a marker in the buffer-local `mark-ring'.
+(defun consult-mark (&optional markers)
+  "Jump to a marker in MARKERS list (defaults to buffer-local `mark-ring').
 
 The command supports preview of the currently selected marker position.
 The symbol at point is added to the future history."
   (interactive)
   (consult--read
-   (consult--with-increased-gc (consult--mark-candidates))
+   (consult--with-increased-gc
+    (consult--mark-candidates
+     (or markers (cons (mark-marker) mark-ring))))
    :prompt "Go to mark: "
    :annotate (consult--line-prefix)
    :category 'consult-location
@@ -2144,17 +2151,15 @@ The symbol at point is added to the future history."
 
 ;;;;; Command: consult-global-mark
 
-(defun consult--global-mark-candidates ()
-  "Return alist of lines containing markers.
-
-The alist contains (string . position) pairs."
+(defun consult--global-mark-candidates (markers)
+  "Return list of candidates strings for MARKERS."
   (consult--forbid-minibuffer)
   (let ((candidates))
     (save-excursion
-      (dolist (marker global-mark-ring)
-        (let ((pos (marker-position marker))
-              (buf (marker-buffer marker)))
-          (when (and pos (buffer-live-p buf) (not (minibufferp buf)))
+      (dolist (marker markers)
+        (when-let ((pos (marker-position marker))
+                   (buf (marker-buffer marker)))
+          (unless (minibufferp buf)
             (with-current-buffer buf
               (when (consult--in-range-p pos)
                 (goto-char pos)
@@ -2172,14 +2177,16 @@ The alist contains (string . position) pairs."
     (nreverse (delete-dups candidates))))
 
 ;;;###autoload
-(defun consult-global-mark ()
-  "Jump to a marker in `global-mark-ring'.
+(defun consult-global-mark (&optional markers)
+  "Jump to a marker in MARKERS list (defaults to `global-mark-ring').
 
 The command supports preview of the currently selected marker position.
 The symbol at point is added to the future history."
   (interactive)
   (consult--read
-   (consult--with-increased-gc (consult--global-mark-candidates))
+   (consult--with-increased-gc
+    (consult--global-mark-candidates
+     (or markers global-mark-ring)))
    :prompt "Go to global mark: "
    ;; Despite `consult-global-mark' formating the candidates in grep-like
    ;; style, we are not using the 'consult-grep category, since the candidates
@@ -2810,7 +2817,8 @@ If no MODES are specified, use currently active major and minor modes."
   (consult--lookup-member
    nil kill-ring
    (consult--read
-    (consult--remove-dups kill-ring)
+    (consult--remove-dups
+     (or kill-ring (user-error "Kill ring is empty")))
     :prompt "Yank from kill-ring: "
     :history t ;; disable history
     :sort nil

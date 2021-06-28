@@ -1899,6 +1899,8 @@ A.2 FAQ - Issues and Errors
 * My Git hooks work on the command-line but not inside Magit::
 * git-commit-mode isn't used when committing from the command-line::
 * Point ends up inside invisible text when jumping to a file-visiting buffer::
+* I am unable to stage when using Tramp from MS Windows::
+* I am no longer able to save popup defaults::
 
 
 File: magit.info,  Node: Magit is slow,  Next: I changed several thousand files at once and now Magit is unusable,  Up: FAQ - Issues and Errors
@@ -2104,7 +2106,7 @@ that succeeds, do nothing else.  Otherwise start ‘emacs &’ (and
 ‘init.el’ must call ‘server-start’) and try to use ‘emacsclient’ again.
 
 
-File: magit.info,  Node: Point ends up inside invisible text when jumping to a file-visiting buffer,  Prev: git-commit-mode isn't used when committing from the command-line,  Up: FAQ - Issues and Errors
+File: magit.info,  Node: Point ends up inside invisible text when jumping to a file-visiting buffer,  Next: I am unable to stage when using Tramp from MS Windows,  Prev: git-commit-mode isn't used when committing from the command-line,  Up: FAQ - Issues and Errors
 
 A.2.12 Point ends up inside invisible text when jumping to a file-visiting buffer
 ---------------------------------------------------------------------------------
@@ -2115,6 +2117,43 @@ file at the respective position.  One solution to this problem is to use
 visible.  If that is too drastic for your taste, then you may instead
 use ‘magit-diff-visit-file-hook’ to reveal the text, possibly using
 ‘reveal-post-command’ or for Org buffers ‘org-reveal’.
+
+
+File: magit.info,  Node: I am unable to stage when using Tramp from MS Windows,  Next: I am no longer able to save popup defaults,  Prev: Point ends up inside invisible text when jumping to a file-visiting buffer,  Up: FAQ - Issues and Errors
+
+A.2.13 I am unable to stage when using Tramp from MS Windows
+------------------------------------------------------------
+
+Magit may be unable to stage (or otherwise apply) individual hunks when
+you are connected to remote machine using Tramp and the local machine
+uses MS Windows.
+
+   There appears to be a problem with ‘process-send-eof’ in this
+scenario, as mentioned at the end of ‘tramp-tests.el’.  I have contacted
+the Tramp maintainer about this.  For now this unfortunately means that
+it just doesn’t work and we cannot do anything about it.  If you have
+more information, then please comment on
+<https://github.com/magit/magit/issues/3624>.
+
+
+File: magit.info,  Node: I am no longer able to save popup defaults,  Prev: I am unable to stage when using Tramp from MS Windows,  Up: FAQ - Issues and Errors
+
+A.2.14 I am no longer able to save popup defaults
+-------------------------------------------------
+
+Magit used to use Magit-Popup to implement the transient popup menus.
+Now it used Transient instead, which is Magit-Popup’s successor.
+
+   In the older Magit-Popup menus, it was possible to save user settings
+(e.g.  setting the gpg signing key for commits) by using ‘C-c C-c’ in
+the popup buffer.  This would dismiss the popup, but save the settings
+as the defaults for future popups.
+
+   When switching to Transient menus, this functionality is now
+available via ‘C-x C-s’ instead; the ‘C-x’ prefix has other options as
+well when using Transient, which will be displayed when it is typed.
+See <https://magit.vc/manual/transient/Saving-Values.html#Saving-Values>
+for more details.
 
 
 File: magit.info,  Node: Debugging Tools,  Next: Keystroke Index,  Prev: FAQ,  Up: Top

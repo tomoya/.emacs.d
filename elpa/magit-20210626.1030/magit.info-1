@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 3.0.0 (v3.0.0-13-g3820ca58+1).
+This manual is for Magit version 3.0.0 (v3.0.0-15-gf592e367d+1).
 
      Copyright (C) 2015-2021 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -319,6 +319,8 @@ FAQ - Issues and Errors
 * My Git hooks work on the command-line but not inside Magit::
 * git-commit-mode isn't used when committing from the command-line::
 * Point ends up inside invisible text when jumping to a file-visiting buffer::
+* I am unable to stage when using Tramp from MS Windows::
+* I am no longer able to save popup defaults::
 
 
 
