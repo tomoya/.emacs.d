@@ -537,11 +537,17 @@ acts similarly to `completing-read', except for the following:
     (prompt choices &optional predicate require-match initial-input hist def)
   "Magit wrapper for standard `completing-read' function."
   (unless (or (bound-and-true-p helm-mode)
+              (bound-and-true-p ivy-mode)
+              (bound-and-true-p vertico-mode)
+              (bound-and-true-p selectrum-mode))
+    (setq prompt (magit-prompt-with-default prompt def)))
+  (unless (or (bound-and-true-p helm-mode)
               (bound-and-true-p ivy-mode))
-    (setq prompt (magit-prompt-with-default prompt def))
     (setq choices (magit--completion-table choices)))
-  (cl-letf (((symbol-function 'completion-pcm--all-completions)
-             #'magit-completion-pcm--all-completions))
+  (cl-letf (((symbol-function 'completion-pcm--all-completions)))
+    (when (< emacs-major-version 26)
+      (fset 'completion-pcm--all-completions
+            'magit-completion-pcm--all-completions))
     (let ((ivy-sort-functions-alist nil))
       (completing-read prompt choices
                        predicate require-match
@@ -561,6 +567,7 @@ When KEYMAP is nil, it defaults to `crm-local-completion-map'.
 
 Unlike `completing-read-multiple', the return value is not split
 into a list."
+  (declare (obsolete magit-completing-read-multiple* "Magit 3.1.0"))
   (let* ((crm-separator (or sep crm-default-separator))
          (crm-completion-table (magit--completion-table choices))
          (choose-completion-string-functions
@@ -571,8 +578,10 @@ into a list."
          (helm-crm-default-separator nil)
          (ivy-sort-matches-functions-alist nil)
          (input
-          (cl-letf (((symbol-function 'completion-pcm--all-completions)
-                     #'magit-completion-pcm--all-completions))
+          (cl-letf (((symbol-function 'completion-pcm--all-completions)))
+            (when (< emacs-major-version 26)
+              (fset 'completion-pcm--all-completions
+                    'magit-completion-pcm--all-completions))
             (read-from-minibuffer
              (concat prompt (and default (format " (%s)" default)) ": ")
              nil (or keymap crm-local-completion-map)
@@ -584,37 +593,52 @@ into a list."
 
 (defun magit-completing-read-multiple*
     (prompt table &optional predicate require-match initial-input
-            hist def inherit-input-method)
+            hist def inherit-input-method
+            no-split)
   "Read multiple strings in the minibuffer, with completion.
 Like `completing-read-multiple' but don't mess with order of
-TABLE.  Also bind `helm-completion-in-region-default-sort-fn'
-to nil."
-  (unwind-protect
-      (cl-letf (((symbol-function 'completion-pcm--all-completions)
-                 #'magit-completion-pcm--all-completions))
-        (add-hook 'choose-completion-string-functions
-                  'crm--choose-completion-string)
-        (let* ((minibuffer-completion-table #'crm--collection-fn)
-               (minibuffer-completion-predicate predicate)
-               ;; see completing_read in src/minibuf.c
-               (minibuffer-completion-confirm
-                (unless (eq require-match t) require-match))
-               (crm-completion-table (magit--completion-table table))
-               (map (if require-match
-                        crm-local-must-match-map
-                      crm-local-completion-map))
-               (helm-completion-in-region-default-sort-fn nil)
-               (ivy-sort-matches-functions-alist nil)
-               ;; If the user enters empty input, `read-from-minibuffer'
-               ;; returns the empty string, not DEF.
-               (input (read-from-minibuffer
-                       prompt initial-input map
-                       nil hist def inherit-input-method)))
-          (and def (string-equal input "") (setq input def))
-          ;; Remove empty strings in the list of read strings.
-          (split-string input crm-separator t)))
-    (remove-hook 'choose-completion-string-functions
-                 'crm--choose-completion-string)))
+TABLE and take an additional argument NO-SPLIT, which causes
+the user input to be returned as a single unmodified string.
+Also work around various misfeatures of various third-party
+completion frameworks."
+  (cl-letf*
+      (;; To implement NO-SPLIT we have to manipulate the respective
+       ;; `split-string' invocation.  We cannot simply advice it to
+       ;; return the input string because `SELECTRUM' would choke on
+       ;; it that string.  Use a variable to pass along the raw user
+       ;; input string. aa5f098ab
+       (input nil)
+       (split-string (symbol-function 'split-string))
+       ((symbol-function 'split-string)
+        (lambda (string &optional separators omit-nulls trim)
+          (when (and no-split
+                     (equal separators crm-separator)
+                     (equal omit-nulls t))
+            (setq input string))
+          (funcall split-string string separators omit-nulls trim)))
+       ;; In Emacs 25 this function has a bug, so we use a copy of the
+       ;; version from Emacs 26. bef9c7aa3
+       ((symbol-function 'completion-pcm--all-completions)
+        (if (< emacs-major-version 26)
+            'magit-completion-pcm--all-completions
+          (symbol-function 'completion-pcm--all-completions)))
+       ;; Prevent `BUILT-IN' completion from messing up our existing
+       ;; order of the completion candidates. aa5f098ab
+       (table (magit--completion-table table))
+       ;; Prevent `IVY' from messing up our existing order. c7af78726
+       (ivy-sort-matches-functions-alist nil)
+       ;; Prevent `HELM' from messing up our existing order.  6fcf994bd
+       (helm-completion-in-region-default-sort-fn nil)
+       ;; Prevent `HELM' from automatically appending the separator,
+       ;; which is counterproductive when NO-SPLIT is non-nil and/or
+       ;; when reading commit ranges. 798aff564
+       (helm-crm-default-separator
+        (if no-split nil helm-crm-default-separator))
+       ;; And now, the moment we have all been waiting for...
+       (values (completing-read-multiple
+                prompt table predicate require-match initial-input
+                hist def inherit-input-method)))
+    (if no-split input values)))
 
 (defun magit-ido-completing-read
     (prompt choices &optional predicate require-match initial-input hist def)
@@ -1024,27 +1048,26 @@ and https://github.com/magit/magit/issues/2295."
   (advice-add 'auto-revert-handler :around 'auto-revert-handler@bug21559)
   )
 
-;; `completion-pcm--all-completions' reverses the completion list.  To
-;; preserve the order of our pre-sorted completions, we'll temporarily
-;; override it with the function below.  bug#24676
-(defun magit-completion-pcm--all-completions (prefix pattern table pred)
-  (if (completion-pcm--pattern-trivial-p pattern)
-      (all-completions (concat prefix (car pattern)) table pred)
-    (let* ((regex (completion-pcm--pattern->regex pattern))
-           (case-fold-search completion-ignore-case)
-           (completion-regexp-list (cons regex completion-regexp-list))
-           (compl (all-completions
-                   (concat prefix
-                           (if (stringp (car pattern)) (car pattern) ""))
-                   table pred)))
-      (if (not (functionp table))
-          compl
-        (let ((poss ()))
-          (dolist (c compl)
-            (when (string-match-p regex c) (push c poss)))
-          ;; This `nreverse' call is the only code change made to the
-          ;; `completion-pcm--all-completions' that shipped with Emacs 25.1.
-          (nreverse poss))))))
+(when (< emacs-major-version 26)
+  ;; In Emacs 25 `completion-pcm--all-completions' reverses the
+  ;; completion list.  This is the version from Emacs 26, which
+  ;; fixes that issue.  bug#24676
+  (defun magit-completion-pcm--all-completions (prefix pattern table pred)
+    (if (completion-pcm--pattern-trivial-p pattern)
+        (all-completions (concat prefix (car pattern)) table pred)
+      (let* ((regex (completion-pcm--pattern->regex pattern))
+             (case-fold-search completion-ignore-case)
+             (completion-regexp-list (cons regex completion-regexp-list))
+             (compl (all-completions
+                     (concat prefix
+                             (if (stringp (car pattern)) (car pattern) ""))
+                     table pred)))
+        (if (not (functionp table))
+            compl
+          (let ((poss ()))
+            (dolist (c compl)
+              (when (string-match-p regex c) (push c poss)))
+            (nreverse poss)))))))
 
 (defun magit-which-function ()
   "Return current function name based on point.
