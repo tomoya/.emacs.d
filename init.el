@@ -23,8 +23,8 @@
       (locate-user-emacs-file ".cache")))
 
 ;; no-littering
-(setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
-(setq no-littering-var-directory (expand-file-name "var/" user-emacs-directory))
+(defvar no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
+(defvar no-littering-var-directory (expand-file-name "var/" user-emacs-directory))
 (require 'no-littering)
 (require 'recentf)
 (add-to-list 'recentf-exclude no-littering-var-directory)
