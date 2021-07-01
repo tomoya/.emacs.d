@@ -255,6 +255,17 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; company
+;; Show first candidate inline
+;; https://github.com/company-mode/company-mode/wiki/Switching-from-AC#setting-up-similar-popup-behavior
+(defun my-company-visible-and-explicit-action-p ()
+  "No document."
+  (and (company-tooltip-visible-p)
+       (company-explicit-action-p)))
+(setq company-require-match nil)
+(setq company-auto-commit #'my-company-visible-and-explicit-action-p)
+(setq company-frontends '(company-echo-metadata-frontend
+                          company-pseudo-tooltip-unless-just-one-frontend-with-delay
+                          company-preview-frontend))
 (push 'company-emoji company-backends)
 ;; (push 'company-lsp company-backends)
 ;; (push 'company-tabnine company-backends)
