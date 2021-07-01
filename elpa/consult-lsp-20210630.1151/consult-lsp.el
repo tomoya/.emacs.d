@@ -2,12 +2,12 @@
 
 ;; Licence: MIT
 ;; Keywords: tools, completion, lsp
-;; Package-Version: 20210628.713
-;; Package-Commit: c882749e91e4de3bae17d825ac9950cc074b1595
+;; Package-Version: 20210630.1151
+;; Package-Commit: e8a50f2c94f40c86934ca2eaff007f9c00586272
 ;; Author: Gerry Agbobada
 ;; Maintainer: Gerry Agbobada
-;; Package-Requires: ((emacs "27.1") (lsp-mode "5.0") (consult "0.8") (f "0.20.0"))
-;; Version: 0.4
+;; Package-Requires: ((emacs "27.1") (lsp-mode "5.0") (consult "0.9") (f "0.20.0"))
+;; Version: 0.5
 ;; Homepage: https://github.com/gagbo/consult-lsp
 
 ;; Copyright (c) 2021 Gerry Agbobada
@@ -298,7 +298,8 @@ CURRENT-WORKSPACE? has the same meaning as in `lsp-diagnostics'."
 (defun consult-lsp-symbols (arg)
   "Query workspace symbols. When ARG is set through prefix, query all workspaces."
   (interactive "P")
-  (let* ((all-workspaces? arg)
+  (let* ((initial "")
+         (all-workspaces? arg)
          (ws (or (and all-workspaces? (-uniq (-flatten (ht-values (lsp-session-folder->servers (lsp-session))))))
                  (lsp-workspaces)
                  (gethash (lsp-workspace-root default-directory)
@@ -316,7 +317,7 @@ CURRENT-WORKSPACE? has the same meaning as in `lsp-diagnostics'."
      :prompt "LSP Symbols "
      :require-match t
      :history t
-     :initial consult-async-default-split
+     :initial (consult--async-split-initial initial)
      :category 'consult-lsp-symbols
      :lookup #'consult--lookup-candidate
      :group (consult--type-group consult-lsp--symbols--narrow)

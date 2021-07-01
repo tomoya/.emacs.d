@@ -1,2 +1,0 @@
-;;; Generated package description from consult-lsp.el  -*- no-byte-compile: t -*-
-(define-package "consult-lsp" "20210628.713" "LSP-mode Consult integration" '((emacs "27.1") (lsp-mode "5.0") (consult "0.8") (f "0.20.0")) :commit "c882749e91e4de3bae17d825ac9950cc074b1595" :authors '(("Gerry Agbobada")) :maintainer '("Gerry Agbobada") :keywords '("tools" "completion" "lsp") :url "https://github.com/gagbo/consult-lsp")

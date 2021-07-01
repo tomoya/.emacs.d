@@ -1676,10 +1676,15 @@ This set of allowed chars is enough for hexifying local file paths.")
            (seq-do (lambda (f)
                      (unless (file-directory-p f)
                        (funcall callback (list nil 'created f)))))))
-     ((and (not (file-directory-p file-name))
-           (not (lsp--string-match-any ignored-files file-name))
-           (memq event-type '(created deleted changed)))
-      (funcall callback event)))))
+     ((and (memq event-type '(created deleted changed))
+           (not (file-directory-p file-name))
+           (not (lsp--string-match-any ignored-files file-name)))
+      (funcall callback event))
+     ((and (memq event-type '(renamed))
+           (not (file-directory-p file-name))
+           (not (lsp--string-match-any ignored-files file-name)))
+      (funcall callback `(,(cl-first event) deleted ,(cl-third event)))
+      (funcall callback `(,(cl-first event) created ,(cl-fourth event)))))))
 
 (defun lsp--ask-about-watching-big-repo (number-of-directories dir)
   "Ask the user if they want to watch NUMBER-OF-DIRECTORIES from a repository DIR.
@@ -5072,10 +5077,12 @@ RENDER-ALL - nil if only the signature should be rendered."
     (define-key (kbd "M-n") #'lsp-signature-next)
     (define-key (kbd "M-p") #'lsp-signature-previous)
     (define-key (kbd "M-a") #'lsp-signature-toggle-full-docs)
-    (define-key (kbd "C-c C-k") #'lsp-signature-stop))
-  "Keymap for `lsp-signature-mode-map'")
+    (define-key (kbd "C-c C-k") #'lsp-signature-stop)
+    (define-key (kbd "C-g") #'lsp-signature-stop))
+  "Keymap for `lsp-signature-mode-map'.")
 
-(define-minor-mode lsp-signature-mode ""
+(define-minor-mode lsp-signature-mode
+  "Mode used to show signature popup."
   :keymap lsp-signature-mode-map
   :lighter ""
   :group 'lsp-mode)
@@ -7275,6 +7282,10 @@ are still shown."
                 'mouse-face 'highlight)))
 
 (defun lsp--install-server-internal (client &optional update?)
+  (unless (lsp--client-download-server-fn client)
+    (user-error "There is no automatic installation for `%s', you have to install it manually following lsp-mode's documentation."
+                (lsp--client-server-id client)))
+
   (setf (lsp--client-download-in-progress? client) t)
   (add-to-list 'global-mode-string '(t (:eval (lsp--download-status))))
   (cl-flet ((done
@@ -7327,6 +7338,7 @@ Check `*lsp-install*' and `*lsp-log*' buffer."
             lsp-client-packages)
     (setq lsp--client-packages-required t)))
 
+;;;###autoload
 (defun lsp-install-server (update? &optional server-id)
   "Interactively install server.
 When prefix UPDATE? is t force installation even if the server is present."
@@ -7348,6 +7360,16 @@ When prefix UPDATE? is t force installation even if the server is present."
         nil
         t))
    update?))
+
+;;;###autoload
+(defun lsp-ensure-server (server-id)
+  "Ensure server SERVER-ID"
+  (lsp--require-packages)
+  (if-let ((client (gethash server-id lsp-clients)))
+      (unless (lsp--server-binary-present? client)
+        (lsp--info "Server `%s' is not preset, installing..." server-id)
+        (lsp-install-server nil server-id))
+    (warn "Unable to find server registration with id %s" server-id)))
 
 (defun lsp-async-start-process (callback error-callback &rest command)
   "Start async process COMMAND with CALLBACK and ERROR-CALLBACK."

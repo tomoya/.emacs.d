@@ -1,4 +1,4 @@
-(define-package "lsp-mode" "20210628.1435" "LSP mode"
+(define-package "lsp-mode" "20210630.2003" "LSP mode"
   '((emacs "26.1")
     (dash "2.18.0")
     (f "0.20.0")
@@ -6,7 +6,7 @@
     (spinner "1.7.3")
     (markdown-mode "2.3")
     (lv "0"))
-  :commit "fc30baf3d66b9b5c695e851f7e54af926a453c12" :authors
+  :commit "7b183d397f8bc17eceb4d156e24575a47a1d807f" :authors
   '(("Vibhav Pant, Fangrui Song, Ivan Yonchovski"))
   :maintainer
   '("Vibhav Pant, Fangrui Song, Ivan Yonchovski")
