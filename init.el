@@ -36,7 +36,7 @@
 ;; extract nano-layout needed to improve fperformance or initial display
 (window-divider-mode 1)
 (setq widget-image-enable nil)
-;;
+
 (defface fallback '((t :family "Fira Code"
                        :inherit 'nano-face-faded)) "Fallback")
 (set-display-table-slot standard-display-table 'truncation
