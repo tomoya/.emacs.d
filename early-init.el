@@ -82,7 +82,7 @@
            (chars (abs (- beg end))))
       (propertize
        (format "%s行/%s語/%s字 " lines words chars)
-       'face '(:inherit compilation-info)))))
+       'face '(:foreground "#8282f6")))))
 
 (setq-default mini-modeline-l-format '("%f"))
 (setq-default mini-modeline-r-format '("%e"
