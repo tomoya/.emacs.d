@@ -57,7 +57,7 @@
 (setq-default mini-modeline-l-format '("%f"))
 (setq-default mini-modeline-r-format '("%e"
                                        mode-line-mule-info
-                                       " %I %p %n"
+                                       "%I %p %n"
                                        (vc-mode vc-mode)
                                        " "
                                        flycheck-mode-line))
