@@ -94,18 +94,18 @@
 (with-eval-after-load 'flycheck
   (defun my-flycheck-mode-line-status-text (&optional status)
     (let ((text (pcase (or status flycheck-last-status-change)
-                  (`not-checked "😇")
+                  (`not-checked "😴")
                   (`no-checker "😎")
-                  (`running "😤")
+                  (`running "🤔")
                   (`errored "😭")
                   (`finished
                    (let-alist (flycheck-count-errors flycheck-current-errors)
                      (if (or .error .warning)
                          (concat
-                          "😱"
-                          (propertize (format "%s" (or .error 0)) 'face '(:foreground "#bc1c74"))
-                          " 🤔"
-                          (propertize (format "%s" (or .warning 0)) 'face '(:foreground "#c4a600"))
+                          "😰"
+                          (propertize (format "%s" (or .error 0)) 'face '(:foreground "#ec5aaa"))
+                          " 😥"
+                          (propertize (format "%s" (or .warning 0)) 'face '(:foreground "#fad900"))
                           )
                        "🤩")))
                   (`interrupted "🤯")
