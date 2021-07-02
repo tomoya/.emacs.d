@@ -66,8 +66,8 @@
                 (if (and diff-count
                          (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff-count))
                     (concat
-                     (propertize (format "+%s" (match-string 1 diff-count)) 'face '(:foreground "#44b556"))
-                     (propertize (format "-%s" (match-string 2 diff-count)) 'face '(:foreground "#d83790")))
+                     (propertize (format "+%s" (match-string 1 diff-count)) 'face '(:foreground "#58e06f"))
+                     (propertize (format "-%s" (match-string 2 diff-count)) 'face '(:foreground "#f56bb7")))
                   (propertize "✓" 'face '(:inherit compilation-info :weight bold)))))
           (format "%s %s"
                   (truncate-string-to-width branch 21 nil nil "…")
@@ -82,7 +82,7 @@
            (chars (abs (- beg end))))
       (propertize
        (format "%s行/%s語/%s字 " lines words chars)
-       'face '(:foreground "#8282f6")))))
+       'face '(:foreground "#9090fa")))))
 
 (setq-default mini-modeline-l-format '("%f"))
 (setq-default mini-modeline-r-format '("%e"
