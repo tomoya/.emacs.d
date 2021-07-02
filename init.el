@@ -307,6 +307,7 @@ If buffer is associated with a file name, add that file to the
 (defun after-init-hook ()
   (neotree-toggle)
   (vertico-mode)
+  (mini-modeline-mode)
   (marginalia-mode))
 
 (add-hook 'after-init-hook #'after-init-hook)

@@ -52,3 +52,13 @@
 (add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
+
+;; mini-modeline formats
+(setq-default mini-modeline-l-format '("%f"))
+(setq-default mini-modeline-r-format '("%e"
+                                       mode-line-mule-info
+                                       " %I %p %n"
+                                       (vc-mode vc-mode)
+                                       " "
+                                       flycheck-mode-line
+                                       ))
