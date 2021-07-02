@@ -92,6 +92,21 @@
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
 
 (with-eval-after-load 'flycheck
+  (defun my-flycheck-mode-line-status-text (&optional status)
+    (let ((text (pcase (or status flycheck-last-status-change)
+                  (`not-checked "😇")
+                  (`no-checker "😎")
+                  (`running "😤")
+                  (`errored "😭")
+                  (`finished
+                   (let-alist (flycheck-count-errors flycheck-current-errors)
+                     (if (or .error .warning)
+                         (format "😱%s 🤔%s" (or .error 0) (or .warning 0))
+                       "🤩")))
+                  (`interrupted "🤯")
+                  (`suspicious "🙃"))))
+      text))
+  (setq flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
   (flycheck-package-setup))
 
 ;; tree-sitter
