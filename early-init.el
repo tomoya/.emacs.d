@@ -60,5 +60,4 @@
                                        " %I %p %n"
                                        (vc-mode vc-mode)
                                        " "
-                                       flycheck-mode-line
-                                       ))
+                                       flycheck-mode-line))
