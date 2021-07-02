@@ -101,7 +101,12 @@
                   (`finished
                    (let-alist (flycheck-count-errors flycheck-current-errors)
                      (if (or .error .warning)
-                         (format "😱%s 🤔%s" (or .error 0) (or .warning 0))
+                         (concat
+                          "😱"
+                          (propertize (format "%s" (or .error 0)) 'face '(:foreground "#bc1c74"))
+                          " 🤔"
+                          (propertize (format "%s" (or .warning 0)) 'face '(:foreground "#c4a600"))
+                          )
                        "🤩")))
                   (`interrupted "🤯")
                   (`suspicious "🙃"))))
