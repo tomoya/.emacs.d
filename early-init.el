@@ -54,10 +54,29 @@
 (add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
 
 ;; mini-modeline formats
+(with-eval-after-load 'vc-git
+  (defun my-mode-line-vc ()
+    (let ((file (buffer-file-name)))
+      (if (or (null file) (null vc-mode)) nil
+        (let* ((branch
+                (let ((backend (vc-backend file)))
+                  (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
+               (diff-count (vc-git--run-command-string file "diff" "--numstat" "--"))
+               (diff-count-text
+                (if (and diff-count
+                         (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff-count))
+                    (concat
+                     (propertize (format "+%s" (match-string 1 diff-count)) 'face '(:foreground "#44b556"))
+                     (propertize (format "-%s" (match-string 2 diff-count)) 'face '(:foreground "#d83790")))
+                  (propertize "✓" 'face '(:inherit compilation-info :weight bold)))))
+          (format "%s %s"
+                  (truncate-string-to-width branch 21 nil nil "…")
+                  diff-count-text))))))
+
 (setq-default mini-modeline-l-format '("%f"))
 (setq-default mini-modeline-r-format '("%e"
                                        mode-line-mule-info
                                        "%I %p %n"
-                                       (vc-mode vc-mode)
+                                       (:eval (my-mode-line-vc))
                                        " "
                                        flycheck-mode-line))
