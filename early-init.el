@@ -73,8 +73,20 @@
                   (truncate-string-to-width branch 21 nil nil "…")
                   diff-count-text))))))
 
+(defun my-mode-line-region-info ()
+  (when mark-active
+    (let* ((beg (region-beginning))
+           (end (region-end))
+           (lines (count-lines beg end))
+           (words (count-words beg end))
+           (chars (abs (- beg end))))
+      (propertize
+       (format "%s行/%s語/%s字 " lines words chars)
+       'face '(:inherit compilation-info)))))
+
 (setq-default mini-modeline-l-format '("%f"))
 (setq-default mini-modeline-r-format '("%e"
+                                       (:eval (my-mode-line-region-info))
                                        mode-line-mule-info
                                        "%I %p %n"
                                        (:eval (my-mode-line-vc))
