@@ -13,7 +13,6 @@
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(auto-revert-interval 1)
- '(company-auto-commit 'ignore)
  '(company-box-doc-delay 0.3)
  '(company-box-icons-alist 'company-box-icons-all-the-icons)
  '(company-dabbrev-code-ignore-case t)
