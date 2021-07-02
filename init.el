@@ -91,6 +91,7 @@
   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
 
+;; modeline
 (with-eval-after-load 'flycheck
   (defun my-flycheck-mode-line-status-text (&optional status)
     (let ((text (pcase (or status flycheck-last-status-change)
@@ -113,6 +114,46 @@
       text))
   (setq flycheck-mode-line '(:eval (my-flycheck-mode-line-status-text)))
   (flycheck-package-setup))
+
+;; mini-modeline formats
+(with-eval-after-load 'vc-git
+  (defun my-mode-line-vc ()
+    (let ((file (buffer-file-name)))
+      (if (or (null file) (null vc-mode)) nil
+        (let* ((branch
+                (let ((backend (vc-backend file)))
+                  (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
+               (diff-count (vc-git--run-command-string file "diff" "--numstat" "--"))
+               (diff-count-text
+                (if (and diff-count
+                         (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff-count))
+                    (concat
+                     (propertize (format "+%s" (match-string 1 diff-count)) 'face '(:foreground "#58e06f"))
+                     (propertize (format "-%s" (match-string 2 diff-count)) 'face '(:foreground "#f56bb7")))
+                  (propertize "✓" 'face '(:inherit compilation-info :weight bold)))))
+          (format "%s %s"
+                  (truncate-string-to-width branch 21 nil nil "…")
+                  diff-count-text))))))
+
+(defun my-mode-line-region-info ()
+  (when mark-active
+    (let* ((beg (region-beginning))
+           (end (region-end))
+           (lines (count-lines beg end))
+           (words (count-words beg end))
+           (chars (abs (- beg end))))
+      (propertize
+       (format "%s行/%s語/%s字 " lines words chars)
+       'face '(:foreground "#9090fa")))))
+
+(setq-default mini-modeline-l-format '("%f"))
+(setq-default mini-modeline-r-format '("%e"
+                                       (:eval (my-mode-line-region-info))
+                                       mode-line-mule-info
+                                       "%I %p %n"
+                                       (:eval (my-mode-line-vc))
+                                       " "
+                                       flycheck-mode-line))
 
 ;; tree-sitter
 (require 'tree-sitter-langs)
