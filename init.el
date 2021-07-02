@@ -131,7 +131,8 @@
                      (propertize (format "+%s" (match-string 1 diff-count)) 'face '(:foreground "#58e06f"))
                      (propertize (format "-%s" (match-string 2 diff-count)) 'face '(:foreground "#f56bb7")))
                   (propertize "✓" 'face '(:inherit compilation-info :weight bold)))))
-          (format "%s %s"
+          (format "%s %s %s"
+                  (all-the-icons-octicon "git-branch" :v-adjust 0.1)
                   (truncate-string-to-width branch 21 nil nil "…")
                   diff-count-text))))))
 
