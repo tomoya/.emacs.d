@@ -157,7 +157,7 @@
 (setq-default mini-modeline-r-format '("%e"
                                        (:eval (my-mode-line-region-info))
                                        mode-line-mule-info
-                                       "%I %p %n"
+                                       "%I  %p %n "
                                        (:eval (my-mode-line-vc))
                                        " "
                                        flycheck-mode-line))
