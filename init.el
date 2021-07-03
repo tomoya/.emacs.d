@@ -147,7 +147,13 @@
        (format "%s行/%s語/%s字 " lines words chars)
        'face '(:foreground "#9090fa")))))
 
-(setq-default mini-modeline-l-format '("%f"))
+(defun my-mode-line-buffer-file-name ()
+  (let ((file (buffer-file-name)))
+    (if (buffer-modified-p)
+         (propertize (concat file "*") 'face '(:foreground "#f56bb7"))
+      file)))
+
+(setq-default mini-modeline-l-format '((:eval (my-mode-line-buffer-file-name))))
 (setq-default mini-modeline-r-format '("%e"
                                        (:eval (my-mode-line-region-info))
                                        mode-line-mule-info
