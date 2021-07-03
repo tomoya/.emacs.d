@@ -146,7 +146,7 @@
            (chars (abs (- beg end))))
       (propertize
        (format "%s行/%s語/%s字 " lines words chars)
-       'face '(:foreground "#9090fa")))))
+       'face '(:foreground "#9090fa" :height 1)))))
 
 (defun my-mode-line-buffer-file-name ()
   (let ((file (buffer-file-name)))
