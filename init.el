@@ -32,6 +32,7 @@
 (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 ;; nano
+(defvar nano-font-family-monospaced "Fira Code")
 ;; (require 'nano-layout)
 ;; extract nano-layout needed to improve fperformance or initial display
 (window-divider-mode 1)

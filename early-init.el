@@ -7,9 +7,8 @@
  '(inhibit-startup-message t)
  '(initial-scratch-message nil)
  '(initial-frame-alist
-   '((font . "Roboto Mono:style=Light:size=14")
-     (width . 253)
-     (height . 65)
+   '((width . 224)
+     (height . 73)
      (internal-border-width . 8)
      (top . 0)
      (left . 0)
@@ -31,7 +30,7 @@
 ;; font
 ;; AsciiフォントをFira Codeに
 (set-face-attribute 'default nil
-                    :family "Roboto Mono"
+                    :family "Fira Code"
                     :height 140)
 
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
