@@ -40,9 +40,13 @@
 (setq-default read-process-output-max (* 1024 1024))
 
 ;; CJKフォントの横幅を調整
+;; 12121212121212121212
+;; あいうえおかきくけこ
 ;; (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
 ;; (add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
-(add-to-list 'face-font-rescale-alist '(".*BIZ UD.*" . 1.2))
+;; (add-to-list 'face-font-rescale-alist '(".*BIZ UD.*" . 1.2))
+(add-to-list 'face-font-rescale-alist '(".*Source Han Code JP.*" . 1.3))
+(add-to-list 'face-font-rescale-alist '(".*Adobe Clean Han.*" . 1.3))
 
 ;; all-the-iconsの横幅を調整
 (add-to-list 'face-font-rescale-alist '(".*all-the-icons.*" . 0.8))

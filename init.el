@@ -173,13 +173,13 @@
 ;; font
 ;; フォントの確認
 ;; (font-family-list)
-;; (x-list-fonts "BIZ UDGothic")
+;; (x-list-fonts "Source Han Code JP")
+;; (x-list-fonts "Adobe Clean Han")
 ;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
-;; 日本語フォントをMotoyaLCedar (Kosugi) に
 (when window-system
   (set-fontset-font
    nil 'japanese-jisx0208
-   (font-spec :family "BIZ UDGothic"))
+   (font-spec :family "Adobe Clean Han" :weight 'light))
 
   ;; emoji 😋
   (set-fontset-font "fontset-default" 'unicode "Apple Color Emoji" nil 'prepend)
