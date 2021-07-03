@@ -114,7 +114,8 @@ should be used as the upstream.
 This option allows specifying the branch that should be used as
 the upstream when branching certain remote branches.  The value
 is an alist of the form ((UPSTREAM . RULE)...).  The first
-matching element is used, the following elements are ignored.
+element is used whose UPSTREAM exists and whose RULE matches
+the name of the new branch.  Subsequent elements are ignored.
 
 UPSTREAM is the branch to be used as the upstream for branches
 specified by RULE.  It can be a local or a remote branch.
@@ -128,7 +129,7 @@ part of the name of the branch that is being branched from.
 If you use a finite set of non-ephemeral branches across all your
 repositories, then you might use something like:
 
-  ((\"origin/master\" \"master\" \"next\" \"maint\"))
+  ((\"origin/master\" . (\"master\" \"next\" \"maint\")))
 
 Or if the names of all your ephemeral branches contain a slash,
 at least in some repositories, then a good value could be:
@@ -139,6 +140,16 @@ Of course you can also fine-tune:
 
   ((\"origin/maint\" . \"\\\\\\=`hotfix/\")
    (\"origin/master\" . \"\\\\\\=`feature/\"))
+
+UPSTREAM can be a local branch:
+
+  ((\"master\" . (\"master\" \"next\" \"maint\")))
+
+Because the main branch is no longer almost always named \"master\"
+you should also account for other common names:
+
+  ((\"main\"  . (\"main\" \"master\" \"next\" \"maint\"))
+   (\"master\" . (\"main\" \"master\" \"next\" \"maint\")))
 
 If you use remote branches as UPSTREAM, then you might also want
 to set `magit-branch-prefer-remote-upstream' to a non-nil value.
@@ -364,10 +375,13 @@ when using `magit-branch-and-checkout'."
                (magit-get-indirect-upstream-branch start-point))
           (and (magit-remote-branch-p start-point)
                (let ((name (cdr (magit-split-branch-name start-point))))
-                 (car (--first (if (listp (cdr it))
-                                   (not (member name (cdr it)))
-                                 (string-match-p (cdr it) name))
-                               magit-branch-adjust-remote-upstream-alist)))))
+                 (-some (pcase-lambda (`(,upstream . ,rule))
+                          (and (magit-branch-p upstream)
+                               (if (listp rule)
+                                   (not (member name rule))
+                                 (string-match-p rule name))
+                               upstream))
+                        magit-branch-adjust-remote-upstream-alist))))
     (magit-call-git "branch" (concat "--set-upstream-to=" it) branch)))
 
 ;;;###autoload

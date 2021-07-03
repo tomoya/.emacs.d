@@ -2876,8 +2876,8 @@ Appendix D Command Index
 * magit-branch-configure <3>:            Branch Commands.     (line  32)
 * magit-branch-create:                   Branch Commands.     (line  57)
 * magit-branch-delete:                   Branch Commands.     (line 147)
-* magit-branch-or-checkout:              Branch Commands.     (line 257)
-* magit-branch-orphan:                   Branch Commands.     (line 252)
+* magit-branch-or-checkout:              Branch Commands.     (line 267)
+* magit-branch-orphan:                   Branch Commands.     (line 262)
 * magit-branch-rename:                   Branch Commands.     (line 153)
 * magit-branch-reset:                    Branch Commands.     (line 131)
 * magit-branch-shelve:                   Auxiliary Branch Commands.
@@ -3301,8 +3301,8 @@ Appendix E Function Index
 * magit-add-section-hook:                Section Hooks.       (line  20)
 * magit-after-save-refresh-status:       Automatic Refreshing of Magit Buffers.
                                                               (line  59)
-* magit-branch-or-checkout:              Branch Commands.     (line 257)
-* magit-branch-orphan:                   Branch Commands.     (line 252)
+* magit-branch-or-checkout:              Branch Commands.     (line 267)
+* magit-branch-orphan:                   Branch Commands.     (line 262)
 * magit-branch-shelve:                   Auxiliary Branch Commands.
                                                               (line   9)
 * magit-branch-unshelve:                 Auxiliary Branch Commands.

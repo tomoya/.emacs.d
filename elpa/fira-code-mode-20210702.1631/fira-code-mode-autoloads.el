@@ -11,20 +11,23 @@
 ;;; Generated autoloads from fira-code-mode.el
 
 (autoload 'fira-code-mode "fira-code-mode" "\
-Fira Code ligatures minor mode
+("Fira Code ligatures minor mode
 
-If called interactively, toggle `Fira-Code mode'.  If the prefix
-argument is positive, enable the mode, and if it is zero or
-negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Fira-Code mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
 
+To check whether the minor mode is enabled in the current buffer,
+evaluate `fira-code-mode'.
+
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
 
-\(fn &optional ARG)" t nil)
+\(fn &optional ARG)" 92 101 (face nil)) t nil)
 
 (put 'global-fira-code-mode 'globalized-minor-mode t)
 
@@ -39,7 +42,7 @@ or call the function `global-fira-code-mode'.")
 (custom-autoload 'global-fira-code-mode "fira-code-mode" nil)
 
 (autoload 'global-fira-code-mode "fira-code-mode" "\
-Toggle Fira-Code mode in all buffers.
+("Toggle Fira-Code mode in all buffers.
 With prefix ARG, enable Global Fira-Code mode if ARG is positive;
 otherwise, disable it.  If called from Lisp, enable the mode if ARG is
 omitted or nil.
@@ -49,7 +52,7 @@ would do it.
 
 See `fira-code-mode' for more information on Fira-Code mode.
 
-\(fn &optional ARG)" t nil)
+\(fn &optional ARG)" 7 16 (face nil) 192 201 (face nil) 240 254 (face nil) 275 289 (face nil) 315 324 (face nil)) t nil)
 
 (autoload 'fira-code-mode-set-font "fira-code-mode" "\
 Setup Fira Code Symbols font.
