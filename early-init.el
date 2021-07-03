@@ -52,3 +52,4 @@
 (add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
 (add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Apple Color Emoji.*" . 0.9))
