@@ -106,7 +106,7 @@
                          (concat
                           "😰"
                           (propertize (format "%s" (or .error 0)) 'face '(:foreground "#ec5aaa"))
-                          " 😥"
+                          "😥"
                           (propertize (format "%s" (or .warning 0)) 'face '(:foreground "#fad900"))
                           )
                        "🤩")))
