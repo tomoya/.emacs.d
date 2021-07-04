@@ -12,13 +12,16 @@
 (autoload 'diff-hl-mode "diff-hl" "\
 Toggle VC diff highlighting.
 
-If called interactively, toggle `Diff-Hl mode'.  If the prefix
-argument is positive, enable the mode, and if it is zero or
-negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl mode' mode.  If the prefix argument is positive, enable
+the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `diff-hl-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -94,13 +97,16 @@ Most useful with backends that support rewriting local commits,
 and most importantly, \"amending\" the most recent one.
 Currently only supports Git, Mercurial and Bazaar.
 
-If called interactively, toggle `Diff-Hl-Amend mode'.  If the
-prefix argument is positive, enable the mode, and if it is zero
-or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Amend mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `diff-hl-amend-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -142,13 +148,16 @@ See `diff-hl-amend-mode' for more information on Diff-Hl-Amend mode.
 (autoload 'diff-hl-dired-mode "diff-hl-dired" "\
 Toggle VC diff highlighting on the side of a Dired window.
 
-If called interactively, toggle `Diff-Hl-Dired mode'.  If the
-prefix argument is positive, enable the mode, and if it is zero
-or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Dired mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `diff-hl-dired-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -179,13 +188,16 @@ or call the function `diff-hl-flydiff-mode'.")
 Perform highlighting on-the-fly.
 This is a global minor mode.  It alters how `diff-hl-mode' works.
 
-If called interactively, toggle `Diff-Hl-Flydiff mode'.  If the
-prefix argument is positive, enable the mode, and if it is zero
-or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Flydiff mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value 'diff-hl-flydiff-mode)'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -232,13 +244,16 @@ or call the function `diff-hl-margin-mode'.")
 (autoload 'diff-hl-margin-mode "diff-hl-margin" "\
 Toggle displaying `diff-hl-mode' highlights on the margin.
 
-If called interactively, toggle `Diff-Hl-Margin mode'.  If the
-prefix argument is positive, enable the mode, and if it is zero
-or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Margin mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value 'diff-hl-margin-mode)'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -249,13 +264,17 @@ it is disabled.
 Toggle displaying `diff-hl-mode' highlights on the margin locally.
 You probably shouldn't use this function directly.
 
-If called interactively, toggle `Diff-Hl-Margin-Local mode'.  If
-the prefix argument is positive, enable the mode, and if it is
-zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Margin-Local mode' mode.  If the prefix argument is
+positive, enable the mode, and if it is zero or negative, disable
+the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `diff-hl-margin-local-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
@@ -295,13 +314,17 @@ customizable.  It can be also invoked with the command
 `diff-hl-show-hunk'
 \\{diff-hl-show-hunk-mouse-mode-map}
 
-If called interactively, toggle `Diff-Hl-Show-Hunk-Mouse mode'.
-If the prefix argument is positive, enable the mode, and if it is
-zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Diff-Hl-Show-Hunk-Mouse mode' mode.  If the prefix argument is
+positive, enable the mode, and if it is zero or negative, disable
+the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `diff-hl-show-hunk-mouse-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.

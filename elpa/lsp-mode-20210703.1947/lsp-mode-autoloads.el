@@ -755,27 +755,6 @@ it is disabled.
 
 ;;;***
 
-;;;### (autoloads nil "lsp-use-package" "lsp-use-package.el" (0 0
-;;;;;;  0 0))
-;;; Generated autoloads from lsp-use-package.el
-
-(autoload 'use-package-normalize-ensure-servers "lsp-use-package" "\
-Normalize the arguments to diminish down to a list of one of two forms:
-     SYMBOL
-     (SYMBOL . STRING)
-
-\(fn NAME LABEL ARG &optional RECURSED)" nil nil)
-
-(autoload 'use-package-normalize/:ensure-servers "lsp-use-package" "\
-
-
-\(fn NAME KEYWORD ARGS)" nil nil)
- (with-eval-after-load 'use-package (add-to-list 'use-package-keywords :ensure-servers t))
-
-(register-definition-prefixes "lsp-use-package" '("use-package-handler/:ensure-servers"))
-
-;;;***
-
 ;;;### (autoloads nil "lsp-v" "lsp-v.el" (0 0 0 0))
 ;;; Generated autoloads from lsp-v.el
 
