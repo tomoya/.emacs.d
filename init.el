@@ -145,7 +145,7 @@
            (words (count-words beg end))
            (chars (abs (- beg end))))
       (propertize
-       (format "%s行/%s語/%s字 " lines words chars)
+       (format " %s行/%s語/%s字" lines words chars)
        'face '(:foreground "#9090fa" :height 1)))))
 
 (defun my-mode-line-buffer-file-name ()
@@ -156,12 +156,12 @@
 
 (setq-default mini-modeline-l-format '((:eval (my-mode-line-buffer-file-name))))
 (setq-default mini-modeline-r-format '("%e"
-                                       (:eval (my-mode-line-region-info))
                                        mode-line-mule-info
                                        "%I  %p %n "
                                        (:eval (my-mode-line-vc))
                                        " "
-                                       flycheck-mode-line))
+                                       flycheck-mode-line
+                                       (:eval (my-mode-line-region-info))))
 
 ;; tree-sitter
 (require 'tree-sitter-langs)
