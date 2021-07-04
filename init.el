@@ -192,6 +192,7 @@
   ;;  (font-spec :family "Noto Sans CJK JP"))
   ;; fira-code-mode
   (when (require 'fira-code-mode nil t)
+    (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
     (add-hook 'prog-mode-hook 'fira-code-mode)))
 
 (defvar ignore-buffer-regex "^\\(\*\\|magit.?+:\\)"
