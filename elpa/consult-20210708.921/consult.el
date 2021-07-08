@@ -316,6 +316,11 @@ don't want to see epa password prompts."
 Each element of the list must have the form '(char name handler)."
   :type '(repeat (list character string function)))
 
+(defcustom consult-crm-prefix
+  (cons "  " (propertize "✓ " 'face 'success))
+  "Prefix for `consult-completing-read-multiple' candidates."
+  :type '(cons string string))
+
 ;;;; Faces
 
 (defgroup consult-faces nil
@@ -388,6 +393,10 @@ Used by `consult-completion-in-region', `consult-yank' and `consult-history'.")
   '((t))
   "Face used to highlight buffers in `consult-buffer'.")
 
+(defface consult-crm-selected
+  '((t :inherit secondary-selection))
+  "Face used to highlight selected items in `consult-completing-read-multiple'.")
+
 (defface consult-line-number-prefix
   '((t :inherit line-number))
   "Face used to highlight line numbers in selections.")
@@ -412,6 +421,7 @@ Used by `consult-completion-in-region', `consult-yank' and `consult-history'.")
 (defvar consult--mode-command-history nil)
 (defvar consult--kmacro-history nil)
 (defvar consult--buffer-history nil)
+(defvar consult--crm-history nil)
 
 ;;;; Internal variables
 
@@ -1577,7 +1587,12 @@ ARGS is a list of `make-process' properties and transforms."
 
 ;;;; Special keymaps
 
-(defvar consult-async-map (make-sparse-keymap)
+(defvar consult-async-map
+  (let ((map (make-sparse-keymap)))
+    ;; Async keys overwriting some unusable defaults for the default completion
+    (define-key map [remap minibuffer-complete-word] #'self-insert-command)
+    (define-key map [remap minibuffer-complete] #'minibuffer-completion-help)
+    map)
   "Keymap added for commands with asynchronous candidates.")
 
 (defvar consult-preview-map (make-sparse-keymap)
@@ -1586,7 +1601,7 @@ ARGS is a list of `make-process' properties and transforms."
 (defvar consult-narrow-map
   (let ((map (make-sparse-keymap)))
     (define-key map " " consult--narrow-space)
-    (define-key map [127] consult--narrow-delete)
+    (define-key map "\d" consult--narrow-delete)
     map)
   "Narrowing keymap which is added to the local minibuffer map.
 Note that `consult-narrow-key' and `consult-widen-key' are bound dynamically.")
@@ -1624,13 +1639,6 @@ NARROW are the narrow settings.
 PREVIEW-KEY are the preview keys."
   (let ((old-map (current-local-map))
         (map (make-sparse-keymap)))
-
-    ;; Async keys overwriting some unusable defaults for the default completion
-    (when async
-      (when (eq (lookup-key old-map " ") #'minibuffer-complete-word)
-        (define-key map " " #'self-insert-command))
-      (when (eq (lookup-key old-map "\t") #'minibuffer-complete)
-        (define-key map "\t" #'minibuffer-completion-help)))
 
     ;; Add narrow keys
     (when narrow
@@ -2017,6 +2025,263 @@ KEYMAP is a command-specific keymap."
           (list :prompt "Input: "
                 :preview-key consult-preview-key
                 :transform #'identity))))
+
+;;;; Functions
+
+;;;;; Function: consult-completion-in-region
+
+(defun consult--insertion-preview (start end)
+  "State function for previewing a candidate in a specific region.
+The candidates are previewed in the region from START to END. This function is
+used as the `:state' argument for `consult--read' in the `consult-yank' family
+of functions and in `consult-completion-in-region'."
+  (unless (minibufferp)
+    (let (ov)
+      (lambda (cand restore)
+        (if restore
+            (when ov (delete-overlay ov))
+          (unless ov (setq ov (consult--overlay start end
+                                                'invisible t
+                                                'window (selected-window))))
+          ;; Use `add-face-text-property' on a copy of "cand in order to merge face properties
+          (setq cand (copy-sequence cand))
+          (add-face-text-property 0 (length cand) 'consult-preview-insertion t cand)
+          ;; Use the `before-string' property since the overlay might be empty.
+          (overlay-put ov 'before-string cand))))))
+
+;; Use minibuffer completion as the UI for completion-at-point
+;;;###autoload
+(defun consult-completion-in-region (start end collection &optional predicate)
+  "Prompt for completion of region in the minibuffer if non-unique.
+
+The function is called with 4 arguments: START END COLLECTION PREDICATE.
+The arguments and expected return value are as specified for
+`completion-in-region'. Use as a value for `completion-in-region-function'.
+
+The function can be configured via `consult-customize'.
+
+    (consult-customize consult-completion-in-region
+                       :completion-styles (basic)
+                       :cycle-threshold 3)
+
+These configuration options are supported:
+
+    * :cycle-threshold - Cycling threshold (def: `completion-cycle-threshold')
+    * :completion-styles - Use completion styles (def: `completion-styles')
+    * :require-match - Require matches when completing (def: nil)
+    * :prompt - The prompt string shown in the minibuffer"
+  (cl-letf* ((config (alist-get #'consult-completion-in-region consult--read-config))
+             ;; Overwrite both the local and global value of `completion-styles', such that the
+             ;; `completing-read' minibuffer sees the overwritten value in any case. This is
+             ;; necessary if `completion-styles' is buffer-local.
+             ;; NOTE: The completion-styles will be overwritten for recursive editing sessions!
+             (cs (or (plist-get config :completion-styles) completion-styles))
+             (completion-styles cs)
+             ((default-value 'completion-styles) cs)
+             (prompt (or (plist-get config :prompt) "Completion: "))
+             (require-match (plist-get config :require-match))
+             (preview-key (if (plist-member config :preview-key)
+                              (plist-get config :preview-key)
+                            consult-preview-key))
+             (initial (buffer-substring-no-properties start end))
+             (metadata (completion-metadata initial collection predicate))
+             (threshold (or (plist-get config :cycle-threshold) (completion--cycle-threshold metadata)))
+             (all (completion-all-completions initial collection predicate (length initial))))
+    ;; error if `threshold' is t or the improper list `all' is too short
+    (if (and threshold
+	     (or (not (consp (ignore-errors (nthcdr threshold all))))
+		 (and completion-cycling completion-all-sorted-completions)))
+        (completion--in-region start end collection predicate)
+      (let* ((limit (car (completion-boundaries initial collection predicate "")))
+             (category (completion-metadata-get metadata 'category))
+             (exit-status 'finished)
+             (buffer (current-buffer))
+             (completion
+              (cond
+               ((atom all) nil)
+               ((and (consp all) (atom (cdr all)))
+                (setq exit-status 'sole)
+                (concat (substring initial 0 limit) (car all)))
+               (t (car
+                   (consult--with-preview
+                       preview-key
+                       ;; preview state
+                       (consult--insertion-preview start end)
+                       ;; transformation function
+                       (if (eq category 'file)
+                           (if (file-name-absolute-p initial)
+                               (lambda (_inp cand) (substitute-in-file-name cand))
+                             (lambda (_inp cand) (file-relative-name (substitute-in-file-name cand))))
+                         (lambda (_inp cand) cand))
+                       ;; candidate function
+                       (apply-partially #'run-hook-with-args-until-success
+                                        'consult--completion-candidate-hook)
+                     (let ((enable-recursive-minibuffers t))
+                       (if (eq category 'file)
+                           ;; When completing files with consult-completion-in-region, the point in the
+                           ;; minibuffer gets placed initially at the beginning of the last path component.
+                           ;; By using the filename as DIR argument (second argument of read-file-name), it
+                           ;; starts at the end of minibuffer contents, as for other types of completion.
+                           ;; However this is undefined behavior since initial does not only contain the
+                           ;; directory, but also the filename.
+                           (read-file-name prompt initial initial require-match nil predicate)
+                         (completing-read prompt
+                                          ;; Evaluate completion table in the original buffer.
+                                          ;; This is a reasonable thing to do and required
+                                          ;; by some completion tables in particular by lsp-mode.
+                                          ;; See https://github.com/minad/vertico/issues/61.
+                                          (if (functionp collection)
+                                              (lambda (&rest args)
+                                                (with-current-buffer buffer
+                                                  (apply collection args)))
+                                            collection)
+                                          predicate require-match initial)))))))))
+        (if completion
+            (progn
+              (delete-region start end)
+              (insert (substring-no-properties completion))
+              (when-let (exit (plist-get completion-extra-properties :exit-function))
+                (funcall exit completion exit-status))
+              t)
+          (message "No completion")
+          nil)))))
+
+;;;;; Function: consult-completing-read-multiple
+
+;;;###autoload
+(defun consult-completing-read-multiple (prompt table &optional
+                                                pred require-match initial-input
+                                                hist def inherit-input-method)
+  "Enhanced replacement for `completing-read-multiple'.
+See `completing-read-multiple' for the documentation of the arguments."
+  (let* ((orig-items
+          (funcall
+           (if-let (prefix (car consult-crm-prefix))
+               (apply-partially #'mapcar (lambda (item) (propertize item 'line-prefix prefix)))
+             #'identity)
+           (all-completions "" table pred)))
+         (format-item
+          (lambda (item)
+            ;; Restore original candidate in order to preserve formatting
+            (setq item (propertize (or (car (member item orig-items)) item)
+                                   'consult--crm-selected t
+                                   'line-prefix (cdr consult-crm-prefix)))
+            (add-face-text-property 0 (length item) 'consult-crm-selected 'append item)
+            item))
+         (separator (or (bound-and-true-p crm-separator) "[ \t]*,[ \t]*"))
+         (hist-sym (pcase hist
+                     ('nil 'minibuffer-history)
+                     ('t 'consult--crm-history)
+                     (`(,sym . ,_) sym) ;; ignore history position
+                     (_ hist)))
+         (hist-val (symbol-value hist-sym))
+         (selected
+          (and initial-input
+               (or
+                ;; initial-input is multiple items
+                (string-match-p separator initial-input)
+                ;; initial-input is a single candidate
+                (member initial-input orig-items))
+               (prog1
+                   (mapcar format-item
+                           (split-string initial-input separator 'omit-nulls))
+                 (setq initial-input nil))))
+         (consult--crm-history (append (mapcar #'substring-no-properties selected) hist-val))
+         (items (append selected
+                        (seq-remove (lambda (x) (member x selected))
+                                    orig-items)))
+         (orig-md (and (functionp table) (cdr (funcall table "" nil 'metadata))))
+         (group-fun (alist-get 'group-function orig-md))
+         (sort-fun
+          (lambda (sort)
+            (pcase (alist-get sort orig-md)
+              ('identity `((,sort . identity)))
+              ((and sort (guard sort))
+               `((,sort . ,(lambda (cands)
+                             (setq cands (funcall sort cands))
+                             (nconc
+                              (seq-filter (lambda (x) (member x selected)) cands)
+                              (seq-remove (lambda (x) (member x selected)) cands)))))))))
+         (md
+          `(metadata
+            (group-function
+             . ,(lambda (cand transform)
+                  (if (get-text-property 0 'consult--crm-selected cand)
+                      (if transform cand "Selected")
+                    (or (and group-fun (funcall group-fun cand transform))
+                        (if transform cand "Select multiple")))))
+            ,@(funcall sort-fun 'cycle-sort-function)
+            ,@(funcall sort-fun 'display-sort-function)
+            ,@(seq-filter (lambda (x) (memq (car x) '(annotation-function
+                                                      affixation-function
+                                                      category)))
+                          orig-md)))
+         (overlay)
+         (command)
+         (depth (1+ (recursion-depth)))
+         (hook (make-symbol "consult--crm-post-command-hook"))
+         (wrapper (make-symbol "consult--crm-command-wrapper")))
+    (fset wrapper
+          (lambda ()
+            (interactive)
+            (pcase (catch 'exit
+                     (call-interactively (setq this-command command))
+                     'continue)
+              ('nil
+               (with-selected-window (active-minibuffer-window)
+                 (let ((item (minibuffer-contents-no-properties)))
+                   (when (equal item "")
+                     (throw 'exit nil))
+                   (delete-minibuffer-contents)
+                   (setq selected (if (member item selected)
+                                      ;; Multi selections are not possible.
+                                      ;; This is probably no problem, since this is rarely desired.
+                                      (delete item selected)
+                                    (nconc selected (list (funcall format-item item))))
+                         consult--crm-history (append (mapcar #'substring-no-properties selected) hist-val)
+                         items (append selected
+                                       (seq-remove (lambda (x) (member x selected))
+                                                   orig-items)))
+                   (when overlay
+                     (overlay-put overlay 'display
+                                  (when selected
+                                    (format " (%s selected): " (length selected)))))
+                   (run-hook-with-args 'consult--completion-refresh-hook 'reset))))
+              ('t (throw 'exit t)))))
+    (fset hook (lambda ()
+                 (when (and this-command (= depth (recursion-depth)))
+                   (setq command this-command this-command wrapper))))
+    (unwind-protect
+        (consult--minibuffer-with-setup-hook
+            (lambda ()
+              (when-let (pos (string-match-p "\\(?: (default[^)]+)\\)?: \\'" prompt))
+                (setq overlay (make-overlay (+ (point-min) pos) (+ (point-min) (length prompt))))
+                (when selected
+                  (overlay-put overlay 'display (format " (%s selected): " (length selected))))))
+          (add-hook 'pre-command-hook hook 90)
+          (let ((result
+                 (completing-read
+                  prompt
+                  (lambda (str pred action)
+                    (if (eq action 'metadata)
+                        md
+                      (complete-with-action action items str pred)))
+                  nil ;; predicate
+                  require-match
+                  initial-input
+                  'consult--crm-history
+                  "" ;; default
+                  inherit-input-method)))
+            (unless (or (equal result "") selected)
+              (setq selected (list result)))))
+      (remove-hook 'pre-command-hook hook))
+    (setq selected (mapcar #'substring-no-properties selected))
+    (set hist-sym (append selected hist-val))
+    (when (consp def)
+      (setq def (car def)))
+    (if (and def (not (equal "" def)) (not selected))
+        (split-string def separator 'omit-nulls)
+      selected)))
 
 ;;;; Commands
 
@@ -2591,124 +2856,6 @@ narrowing and the settings `consult-goto-line-numbers' and
                     (_ "xdg-open"))
                   nil 0 nil
                   (expand-file-name file))))
-
-;;;;; Command: consult-completion-in-region
-
-(defun consult--insertion-preview (start end)
-  "State function for previewing a candidate in a specific region.
-The candidates are previewed in the region from START to END. This function is
-used as the `:state' argument for `consult--read' in the `consult-yank' family
-of functions and in `consult-completion-in-region'."
-  (unless (minibufferp)
-    (let (ov)
-      (lambda (cand restore)
-        (if restore
-            (when ov (delete-overlay ov))
-          (unless ov (setq ov (consult--overlay start end
-                                                'invisible t
-                                                'window (selected-window))))
-          ;; Use `add-face-text-property' on a copy of "cand in order to merge face properties
-          (setq cand (copy-sequence cand))
-          (add-face-text-property 0 (length cand) 'consult-preview-insertion t cand)
-          ;; Use the `before-string' property since the overlay might be empty.
-          (overlay-put ov 'before-string cand))))))
-
-;; Use minibuffer completion as the UI for completion-at-point
-;;;###autoload
-(defun consult-completion-in-region (start end collection &optional predicate)
-  "Prompt for completion of region in the minibuffer if non-unique.
-
-The function is called with 4 arguments: START END COLLECTION PREDICATE.
-The arguments and expected return value are as specified for
-`completion-in-region'. Use as a value for `completion-in-region-function'.
-
-The function can be configured via `consult-customize'.
-
-    (consult-customize consult-completion-in-region
-                       :completion-styles (basic)
-                       :cycle-threshold 3)
-
-These configuration options are supported:
-
-    * :cycle-threshold - Cycling threshold (def: `completion-cycle-threshold')
-    * :completion-styles - Use completion styles (def: `completion-styles')
-    * :require-match - Require matches when completing (def: nil)
-    * :prompt - The prompt string shown in the minibuffer"
-  (cl-letf* ((config (alist-get #'consult-completion-in-region consult--read-config))
-             ;; Overwrite both the local and global value of `completion-styles', such that the
-             ;; `completing-read' minibuffer sees the overwritten value in any case. This is
-             ;; necessary if `completion-styles' is buffer-local.
-             ;; NOTE: The completion-styles will be overwritten for recursive editing sessions!
-             (cs (or (plist-get config :completion-styles) completion-styles))
-             (completion-styles cs)
-             ((default-value 'completion-styles) cs)
-             (prompt (or (plist-get config :prompt) "Completion: "))
-             (require-match (plist-get config :require-match))
-             (preview-key (if (plist-member config :preview-key)
-                              (plist-get config :preview-key)
-                            consult-preview-key))
-             (initial (buffer-substring-no-properties start end))
-             (metadata (completion-metadata initial collection predicate))
-             (threshold (or (plist-get config :cycle-threshold) (completion--cycle-threshold metadata)))
-             (all (completion-all-completions initial collection predicate (length initial))))
-    ;; error if `threshold' is t or the improper list `all' is too short
-    (if (and threshold
-	     (or (not (consp (ignore-errors (nthcdr threshold all))))
-		 (and completion-cycling completion-all-sorted-completions)))
-        (completion--in-region start end collection predicate)
-      (let* ((limit (car (completion-boundaries initial collection predicate "")))
-             (category (completion-metadata-get metadata 'category))
-             (exit-status 'finished)
-             (buffer (current-buffer))
-             (completion
-              (cond
-               ((atom all) nil)
-               ((and (consp all) (atom (cdr all)))
-                (setq exit-status 'sole)
-                (concat (substring initial 0 limit) (car all)))
-               (t (car
-                   (consult--with-preview
-                       preview-key
-                       ;; preview state
-                       (consult--insertion-preview start end)
-                       ;; transformation function
-                       (if (eq category 'file)
-                           (if (file-name-absolute-p initial)
-                               (lambda (_inp cand) (substitute-in-file-name cand))
-                             (lambda (_inp cand) (file-relative-name (substitute-in-file-name cand))))
-                         (lambda (_inp cand) cand))
-                       ;; candidate function
-                       (apply-partially #'run-hook-with-args-until-success
-                                        'consult--completion-candidate-hook)
-                     (let ((enable-recursive-minibuffers t))
-                       (if (eq category 'file)
-                           ;; When completing files with consult-completion-in-region, the point in the
-                           ;; minibuffer gets placed initially at the beginning of the last path component.
-                           ;; By using the filename as DIR argument (second argument of read-file-name), it
-                           ;; starts at the end of minibuffer contents, as for other types of completion.
-                           ;; However this is undefined behavior since initial does not only contain the
-                           ;; directory, but also the filename.
-                           (read-file-name prompt initial initial require-match nil predicate)
-                         (completing-read prompt
-                                          ;; Evaluate completion table in the original buffer.
-                                          ;; This is a reasonable thing to do and required
-                                          ;; by some completion tables in particular by lsp-mode.
-                                          ;; See https://github.com/minad/vertico/issues/61.
-                                          (if (functionp collection)
-                                              (lambda (&rest args)
-                                                (with-current-buffer buffer
-                                                  (apply collection args)))
-                                            collection)
-                                          predicate require-match initial)))))))))
-        (if completion
-            (progn
-              (delete-region start end)
-              (insert (substring-no-properties completion))
-              (when-let (exit (plist-get completion-extra-properties :exit-function))
-                (funcall exit completion exit-status))
-              t)
-          (message "No completion")
-          nil)))))
 
 ;;;;; Command: consult-mode-command
 

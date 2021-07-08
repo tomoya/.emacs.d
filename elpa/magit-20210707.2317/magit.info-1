@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 3.1.1 (v3.1.1-2-g5e734c022+1).
+This manual is for Magit version 3.1.1 (v3.1.1-17-g2105fcf03+1).
 
      Copyright (C) 2015-2021 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -2948,6 +2948,12 @@ File: magit.info,  Node: Repository List,  Next: Logging,  Prev: Status Buffer, 
      with ‘default-directory’ bound to the toplevel of its working tree.
      It has to return a string to be inserted or nil.  PROPS is an alist
      that supports the keys ‘:right-align’ and ‘:pad-right’.
+
+     You may wish to display a range of numeric columns using just one
+     character per column and without any padding between columns, in
+     which case you should use an appropriat HEADER, set WIDTH to 1, and
+     set ‘:pad-right’ to 0.  ‘+’ is substituted for numbers higher than
+     9.
 
    The following functions can be added to the above option:
 

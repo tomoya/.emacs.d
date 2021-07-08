@@ -9,6 +9,34 @@
 ;;;### (autoloads nil "consult" "consult.el" (0 0 0 0))
 ;;; Generated autoloads from consult.el
 
+(autoload 'consult-completion-in-region "consult" "\
+Prompt for completion of region in the minibuffer if non-unique.
+
+The function is called with 4 arguments: START END COLLECTION PREDICATE.
+The arguments and expected return value are as specified for
+`completion-in-region'. Use as a value for `completion-in-region-function'.
+
+The function can be configured via `consult-customize'.
+
+    (consult-customize consult-completion-in-region
+                       :completion-styles (basic)
+                       :cycle-threshold 3)
+
+These configuration options are supported:
+
+    * :cycle-threshold - Cycling threshold (def: `completion-cycle-threshold')
+    * :completion-styles - Use completion styles (def: `completion-styles')
+    * :require-match - Require matches when completing (def: nil)
+    * :prompt - The prompt string shown in the minibuffer
+
+\(fn START END COLLECTION &optional PREDICATE)" nil nil)
+
+(autoload 'consult-completing-read-multiple "consult" "\
+Enhanced replacement for `completing-read-multiple'.
+See `completing-read-multiple' for the documentation of the arguments.
+
+\(fn PROMPT TABLE &optional PRED REQUIRE-MATCH INITIAL-INPUT HIST DEF INHERIT-INPUT-METHOD)" nil nil)
+
 (autoload 'consult-multi-occur "consult" "\
 Improved version of `multi-occur' based on `completing-read-multiple'.
 
@@ -92,28 +120,6 @@ Find recent using `completing-read'." t nil)
 Open FILE externally using the default application of the system.
 
 \(fn FILE)" t nil)
-
-(autoload 'consult-completion-in-region "consult" "\
-Prompt for completion of region in the minibuffer if non-unique.
-
-The function is called with 4 arguments: START END COLLECTION PREDICATE.
-The arguments and expected return value are as specified for
-`completion-in-region'. Use as a value for `completion-in-region-function'.
-
-The function can be configured via `consult-customize'.
-
-    (consult-customize consult-completion-in-region
-                       :completion-styles (basic)
-                       :cycle-threshold 3)
-
-These configuration options are supported:
-
-    * :cycle-threshold - Cycling threshold (def: `completion-cycle-threshold')
-    * :completion-styles - Use completion styles (def: `completion-styles')
-    * :require-match - Require matches when completing (def: nil)
-    * :prompt - The prompt string shown in the minibuffer
-
-\(fn START END COLLECTION &optional PREDICATE)" nil nil)
 
 (autoload 'consult-mode-command "consult" "\
 Run a command from any of the given MODES.
