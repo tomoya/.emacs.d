@@ -631,7 +631,7 @@ The line beginning/ending BEG/END is bound in BODY."
               (unless (get-text-property pos 'invisible string)
                 (setq width (+ width
                                ;; bug#47712: Emacs 28 can compute `string-width' of substrings
-                               (consult--static-if (= 3 (cdr (func-arity #'string-width)))
+                               (consult--static-if (eq 3 (cdr (func-arity #'string-width)))
                                    (string-width string pos nexti)
                                  (string-width
                                   ;; Avoid allocation for the full string.
@@ -1919,20 +1919,27 @@ INHERIT-INPUT-METHOD, if non-nil the minibuffer inherits the input method."
                                       sources)))
     (let ((last-fun))
       (pcase-lambda (`(,cand . ,src) restore)
-        (if restore
-            ;; Restore all state functions
-            (dolist (state states)
-              (funcall (cdr state) (and (eq (car state) src) cand) t))
-          ;; Get state function to call for preview
-          (let ((fun (cdr (assq src states))))
+        ;; Get state function
+        (let ((selected-fun (cdr (assq src states))))
+          (if restore
+              (progn
+                ;; If the candidate source changed, destruct first the last source.
+                (when (and last-fun (not (eq last-fun selected-fun)))
+                  (funcall last-fun nil t))
+                ;; Destruct all the sources, except the last and selected source
+                (dolist (state states)
+                  (let ((fun (cdr state)))
+                    (unless (or (eq fun last-fun) (eq fun selected-fun))
+                      (funcall fun nil t))))
+                ;; Finally destruct the source with the selected candidate
+                (when selected-fun (funcall selected-fun cand t)))
             ;; If the candidate source changed during preview communicate to
             ;; the last source, that none of its candidates is previewed anymore.
-            (when (and last-fun (not (eq last-fun fun)))
+            (when (and last-fun (not (eq last-fun selected-fun)))
               (funcall last-fun nil nil))
-            (setq last-fun fun)
+            (setq last-fun selected-fun)
             ;; Call the state function.
-            (when fun
-              (funcall fun cand nil))))))))
+            (when selected-fun (funcall selected-fun cand nil))))))))
 
 (defun consult--multi (sources &rest options)
   "Select from candidates taken from a list of SOURCES.
@@ -3509,9 +3516,8 @@ If NORECORD is non-nil, do not record the buffer switch in the buffer list."
          (mapcar #'buffer-name
                  (seq-filter
                   (lambda (x)
-                    (string-prefix-p
-                     root
-                     (expand-file-name (buffer-local-value 'default-directory x))))
+                    (when-let (dir (buffer-local-value 'default-directory x))
+                      (string-prefix-p root (expand-file-name dir))))
                   (consult--cached-buffers))))))
   "Project buffer candidate source for `consult-buffer'.")
 

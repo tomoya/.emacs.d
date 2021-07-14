@@ -1,12 +1,12 @@
 ;;; string-inflection.el --- underscore -> UPCASE -> CamelCase -> lowerCamelCase conversion of names -*- lexical-binding: t -*-
 
-;; Copyright (C) 2004,2014,2016,2017,2018,2020 Free Software Foundation, Inc.
+;; Copyright (C) 2004,2014,2016,2017,2018,2020,2021 Free Software Foundation, Inc.
 
 ;; Author: akicho8 <akicho8@gmail.com>
 ;; Keywords: elisp
-;; Package-Version: 20200927.747
-;; Package-Commit: c4a519be102cb99dd86be3ee8c387f008d097635
-;; Version: 1.0.11
+;; Package-Version: 20210712.755
+;; Package-Commit: bf60b0c943cc0934aa188ada7c1c16053517df07
+;; Version: 1.0.13
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -208,7 +208,9 @@
          (str (buffer-substring start end)))
     (prog1
         (if (use-region-p)
-            (replace-regexp-in-string "[[:space:].:/]+" "_" str) ; 'aa::bb.cc dd/ee' => 'aa_bb_cc_dd_ee'
+            ;; https://github.com/akicho8/string-inflection/issues/31
+            ;; Multiple lines will be one line because [:space:] are included to line breaks
+            (replace-regexp-in-string "[.:/]+" "_" str) ; 'aa::bb.cc dd/ee' => 'aa_bb_cc dd_ee'
           str)
       (delete-region start end))))
 

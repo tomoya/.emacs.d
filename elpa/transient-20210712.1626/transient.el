@@ -1442,7 +1442,7 @@ to `transient-predicate-map'.")
 (defvar transient-map
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map transient-base-map)
-    (define-key map (kbd "C-p") 'universal-argument)
+    (define-key map (kbd "C-u") 'universal-argument)
     (define-key map (kbd "C--") 'negative-argument)
     (define-key map (kbd "C-t") 'transient-show)
     (define-key map (kbd "?")   'transient-help)
@@ -2209,7 +2209,18 @@ to `transient--do-warn'."
            (propertize "?"   'face 'transient-key)
            (propertize (symbol-name (transient--suffix-symbol
                                      this-original-command))
-                       'face 'font-lock-warning-face)))
+                       'face 'font-lock-warning-face))
+  (unless (and transient--transient-map
+               (memq transient--transient-map overriding-terminal-local-map))
+    (let ((transient--prefix (or transient--prefix 'sic)))
+      (transient--emergency-exit))
+    (view-lossage)
+    (other-window 1)
+    (display-warning 'transient "Inconsistent transient state detected.
+This should never happen.
+Please open an issue and post the shown command log.
+This is a heisenbug, so any additional details might help.
+Thanks!" :error)))
 
 (defun transient-toggle-common ()
   "Toggle whether common commands are always shown."
@@ -3395,6 +3406,7 @@ resumes the suspended transient.")
               ;; Yes, I know that this is wrong(tm).
               ;; Unfortunately it is also necessary.
               (setq this-original-command command)
+              (transient--pre-command)
               (call-interactively command))))
 
 (defvar transient-popup-navigation-map

@@ -1,4 +1,4 @@
-;;; string-inflection-autoloads.el --- automatically extracted autoloads
+;;; string-inflection-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "string-inflection" "../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection.el"
-;;;;;;  "264148ec8c142ea181e6eeaad360add8")
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection.el
+;;;### (autoloads nil "string-inflection" "string-inflection.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from string-inflection.el
 
 (autoload 'string-inflection-ruby-style-cycle "string-inflection" "\
 foo_bar => FOO_BAR => FooBar => foo_bar" t nil)
@@ -42,21 +42,8 @@ FOO_BAR format" t nil)
 
 (autoload 'string-inflection-kebab-case "string-inflection" "\
 foo-bar format" t nil)
-
-;;;### (autoloads "actual autoloads are elsewhere" "string-inflection"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection.el
 
 (register-definition-prefixes "string-inflection" '("string-inflection-"))
-
-;;;***
-
-;;;***
-
-;;;### (autoloads nil nil ("../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection-autoloads.el"
-;;;;;;  "../../../../../../../../../.config/emacs/elpa/string-inflection-20200927.747/string-inflection.el")
-;;;;;;  (0 0 0 0))
 
 ;;;***
 
