@@ -2092,7 +2092,17 @@ These configuration options are supported:
              (initial (buffer-substring-no-properties start end))
              (metadata (completion-metadata initial collection predicate))
              (threshold (or (plist-get config :cycle-threshold) (completion--cycle-threshold metadata)))
-             (all (completion-all-completions initial collection predicate (length initial))))
+             (all (completion-all-completions initial collection predicate (length initial)))
+             ;; Provide `:annotation-function' if `:company-docsig' is specified
+             (completion-extra-properties
+              (if-let (fun (and (not (plist-get completion-extra-properties :annotation-function))
+                                (plist-get completion-extra-properties :company-docsig)))
+                  `(:annotation-function
+                    ,(lambda (cand)
+                       (concat (propertize " " 'display '(space :align-to center))
+                               (funcall fun cand)))
+                    ,@completion-extra-properties)
+                completion-extra-properties)))
     ;; error if `threshold' is t or the improper list `all' is too short
     (if (and threshold
 	     (or (not (consp (ignore-errors (nthcdr threshold all))))
@@ -2894,7 +2904,8 @@ narrowing and the settings `consult-goto-line-numbers' and
 
 The list of features is searched for files belonging to the modes.
 From these files, the commands are extracted."
-  (let* ((command-filter (consult--regexp-filter (seq-filter #'stringp consult-mode-command-filter)))
+  (let* ((buffer (current-buffer))
+         (command-filter (consult--regexp-filter (seq-filter #'stringp consult-mode-command-filter)))
          (feature-filter (seq-filter #'symbolp consult-mode-command-filter))
          (minor-hash (consult--string-hash minor-mode-list))
          (minor-local-modes (seq-filter (lambda (m)
@@ -2932,16 +2943,21 @@ From these files, the commands are extracted."
                       ?g))))
           (when key
             (dolist (cmd (cdr feature))
-              (when (and (consp cmd)
-                         (eq (car cmd) 'defun)
-                         (commandp (cdr cmd))
-                         (not (get (cdr cmd) 'byte-obsolete-info)))
-                (let ((name (symbol-name (cdr cmd))))
-                  (unless (string-match-p command-filter name)
-                    (push (propertize name
-                                      'consult--candidate (cdr cmd)
-                                      'consult--type key)
-                          commands)))))))))))
+              (let ((sym (cdr-safe cmd)))
+                (when (and (consp cmd)
+                           (eq (car cmd) 'defun)
+                           (commandp sym)
+                           (not (get sym 'byte-obsolete-info))
+                           ;; Emacs 28 has a `read-extended-command-predicate'
+                           (if (bound-and-true-p read-extended-command-predicate)
+                               (funcall read-extended-command-predicate sym buffer)
+                             t))
+                  (let ((name (symbol-name sym)))
+                    (unless (string-match-p command-filter name)
+                      (push (propertize name
+                                        'consult--candidate sym
+                                        'consult--type key)
+                            commands))))))))))))
 
 ;;;###autoload
 (defun consult-mode-command (&rest modes)

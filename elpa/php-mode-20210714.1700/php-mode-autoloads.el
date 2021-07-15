@@ -53,13 +53,16 @@ Setup alignment configuration for PHP code." nil nil)
 (autoload 'php-align-mode "php-align" "\
 Alignment lines for PHP script.
 
-If called interactively, toggle `Php-Align mode'.  If the prefix
-argument is positive, enable the mode, and if it is zero or
-negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Php-Align mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `php-align-mode'.
 
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
