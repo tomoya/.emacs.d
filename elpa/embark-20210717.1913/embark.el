@@ -124,19 +124,17 @@
     (symbol . embark-symbol-map)
     (command . embark-command-map)
     (variable . embark-variable-map)
+    (function . embark-function-map)
     (minor-mode . embark-command-map)
     (unicode-name . embark-unicode-name-map)
     (package . embark-package-map)
     (bookmark . embark-bookmark-map)
-    (region . embark-region-map))
+    (region . embark-region-map)
+    (t . embark-general-map))
   "Alist of action types and corresponding keymaps.
 For any type not listed here, `embark-act' will use
 `embark-general-map'."
   :type '(alist :key-type symbol :value-type variable))
-
-(defvar embark-overriding-keymap nil
-  "Can be bound to short circuit `embark-keymap-alist'.
-Embark will set the parent of this map to `embark-general-map'.")
 
 (defcustom embark-target-finders
   '(embark-target-top-minibuffer-completion
@@ -574,17 +572,12 @@ relative path."
                     (abbreviate-file-name (expand-file-name raw))
                   raw)))))))
 
-(defvar embark-general-map)             ; forward declarations
-(defvar embark-meta-map)
-
 (defun embark--action-keymap (type)
   "Return action keymap for targets of given TYPE."
   (make-composed-keymap
-   (or embark-overriding-keymap
-       (make-composed-keymap
-        `(keymap (13 . ,(embark--default-action type)))
-        (symbol-value (alist-get type embark-keymap-alist))))
-   (if (eq type 'region) embark-meta-map embark-general-map)))
+   `(keymap (13 . ,(embark--default-action type)))
+   (symbol-value (or (alist-get type embark-keymap-alist)
+                     (alist-get t embark-keymap-alist)))))
 
 (defun embark--show-indicator (indicator keymap target)
   "Show INDICATOR for a pending action or a instance of becoming.
@@ -867,7 +860,11 @@ minibuffer before executing the action."
   (cons (or (when-let ((symbol (intern-soft target)))
               (cond
                ((commandp symbol) 'command)
-               ((boundp symbol) 'variable)))
+               ((boundp symbol) 'variable)
+               ;; Prefer variables over functions for backward compatibility.
+               ;; Command > variable > function > symbol seems like a
+               ;; reasonable order with decreasing usefulness of the actions.
+               ((fboundp symbol) 'function)))
             'symbol)
         target))
 
@@ -942,8 +939,10 @@ type is not listed in `embark-default-action-overrides', the
 default action is given by whatever binding RET has in the action
 keymap for the given type."
   (or (alist-get type embark-default-action-overrides)
+      (alist-get t embark-default-action-overrides)
       embark--command
-      (lookup-key (symbol-value (alist-get type embark-keymap-alist))
+      (lookup-key (symbol-value (or (alist-get type embark-keymap-alist)
+                                    (alist-get t embark-keymap-alist)))
                   (kbd "RET"))))
 
 ;;;###autoload
@@ -1016,8 +1015,7 @@ See `embark-act' for the meaning of the prefix ARG."
    (cl-loop for keymap-name in embark-become-keymaps
             for keymap = (symbol-value keymap-name)
             when (where-is-internal embark--command (list keymap))
-            collect keymap)
-   embark-meta-map))
+            collect keymap)))
 
 ;;;###autoload
 (defun embark-become (&optional full)
@@ -1064,11 +1062,21 @@ point."
 (defmacro embark-define-keymap (name doc &rest bindings)
   "Define keymap variable NAME.
 DOC is the documentation string.
-BINDINGS is the list of bindings."
+
+BINDINGS specifies the key bindings as (string command) pairs;
+the strings are passed to `kbd' to determine which key sequence
+to bind.
+
+Before the actual list of binding pairs you can include the
+keyword `:parent' followed by a keymap, to specify a parent for
+the defined keymap.  If the `:parent' keymap is absent,
+`embark-general-map' is used by default."
   (declare (indent 1))
   (let* ((map (make-symbol "map"))
-         (parent (if (eq :parent (car bindings)) (cadr bindings)))
-         (bindings (if parent (cddr bindings) bindings)))
+         (parent (if (eq :parent (car bindings))
+                     (cadr bindings)
+                   'embark-general-map))
+         (bindings (if (eq :parent (car bindings)) (cddr bindings) bindings)))
     `(defvar ,name
        (let ((,map (make-sparse-keymap)))
          ,@(mapcar (pcase-lambda (`(,key ,fn))
@@ -1130,11 +1138,6 @@ The key t is also allowed in the alist, and the corresponding
 value indicates the default function to use for other types.  The
 default is `embark-collect-snapshot'."
   :type '(alist :key-type symbol :value-type function))
-
-(defvar embark-overriding-export-function nil
-  "Can be bound to short circuit `embark-exporters-alist'.
-The expected format is the same as for functions in
-`embark-exporters-alist'.")
 
 (defcustom embark-after-export-hook nil
   "Hook run after `embark-export' in the newly created buffer."
@@ -1348,6 +1351,7 @@ For other Embark Collect buffers, run the default action on ENTRY."
 
 (embark-define-keymap embark-collect-mode-map
   "Keymap for Embark collect mode."
+  :parent tabulated-list-mode-map
   ("a" embark-act)
   ("A" embark-collect-direct-action-minor-mode)
   ("z" embark-collect-zebra-minor-mode)
@@ -1772,13 +1776,12 @@ buffer for each type of completion."
                (run-hook-with-args-until-success 'embark-candidate-collectors)))
     (if (null candidates)
         (user-error "No candidates for export")
-      (let ((exporter (or embark-overriding-export-function
-                          (alist-get type embark-exporters-alist)
+      (let ((exporter (or (alist-get type embark-exporters-alist)
                           (alist-get t embark-exporters-alist)))
             (transformer (alist-get type embark-transformer-alist)))
 
         ;; check to see if all candidates transform to same type
-        (when (and (not embark-overriding-export-function) transformer)
+        (when transformer
           (pcase-let* ((`(,new-type . ,first-cand)
                         (funcall transformer (car candidates))))
             (unless (eq type new-type)
@@ -2143,6 +2146,7 @@ and leaves the point to the left of it."
 
 (embark-define-keymap embark-meta-map
   "Keymap for non-action Embark functions."
+  :parent nil
   ("C-h" embark-keymap-help))
 
 (embark-define-keymap embark-general-map
@@ -2258,6 +2262,12 @@ and leaves the point to the left of it."
   ("c" customize-set-variable)
   ("u" customize-variable))
 
+(embark-define-keymap embark-function-map
+  "Keymap for Embark function actions."
+  :parent embark-symbol-map
+  ("t" trace-function)
+  ("T" untrace-function))
+
 (embark-define-keymap embark-package-map
   "Keymap for Embark package actions."
   ("h" describe-package)
@@ -2290,6 +2300,7 @@ and leaves the point to the left of it."
 
 (embark-define-keymap embark-become-help-map
   "Keymap for Embark help actions."
+  :parent embark-meta-map
   ("V" apropos-variable)
   ("U" apropos-user-option)
   ("C" apropos-command)
@@ -2304,6 +2315,7 @@ and leaves the point to the left of it."
 
 (embark-define-keymap embark-become-file+buffer-map
   "Embark become keymap for files and buffers."
+  :parent embark-meta-map
   ("f" find-file)
   ("." find-file-at-point)
   ("p" project-find-file)
@@ -2314,6 +2326,7 @@ and leaves the point to the left of it."
 
 (embark-define-keymap embark-become-shell-command-map
   "Embark become keymap for shell commands."
+  :parent embark-meta-map
   ("!" shell-command)
   ("&" async-shell-command)
   ("c" comint-run)
@@ -2321,6 +2334,7 @@ and leaves the point to the left of it."
 
 (embark-define-keymap embark-become-match-map
   "Embark become keymap for search."
+  :parent embark-meta-map
   ("o" occur)
   ("k" keep-lines)
   ("f" flush-lines)

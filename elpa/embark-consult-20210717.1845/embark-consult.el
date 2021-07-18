@@ -4,8 +4,8 @@
 
 ;; Author: Omar Antolín Camarena <omar@matem.unam.mx>
 ;; Keywords: convenience
-;; Package-Version: 20210525.1515
-;; Package-Commit: 0da967adf0b1c17c59d1c0a1c166c983afe640b2
+;; Package-Version: 20210717.1845
+;; Package-Commit: 9d56be162badbbfee405595f2ebdfe16a5bca47d
 ;; Version: 0.1
 ;; Homepage: https://github.com/oantolin/embark
 ;; Package-Requires: ((emacs "25.1") (embark "0.9") (consult "0.1"))
@@ -243,6 +243,7 @@ actual type."
 
 (embark-define-keymap embark-consult-non-async-search-map
   "Keymap for Consult non-async search commands"
+  :parent nil
   ("o" consult-outline)
   ("i" consult-imenu)
   ("p" consult-project-imenu)
@@ -250,6 +251,7 @@ actual type."
 
 (embark-define-keymap embark-consult-async-search-map
   "Keymap for Consult async search commands"
+  :parent nil
   ("g" consult-grep)
   ("r" consult-ripgrep)
   ("G" consult-git-grep)
@@ -260,18 +262,19 @@ actual type."
   (keymap-canonicalize
    (make-composed-keymap embark-consult-non-async-search-map
                          embark-consult-async-search-map))
-  "Keymap for Consult async search commands.")
+  "Keymap for all Consult search commands.")
 
 (define-key embark-become-match-map "C" embark-consult-non-async-search-map)
 
-(add-to-list 'embark-become-keymaps 'embark-consult-async-search-map)
+(cl-pushnew 'embark-consult-async-search-map embark-become-keymaps)
 
 (define-key embark-general-map "C" embark-consult-search-map)
 
-(dolist (bind (cdr embark-consult-search-map))
-  (add-to-list 'embark-allow-edit-commands (cdr bind)))
+(map-keymap
+ (lambda (_key cmd) (cl-pushnew cmd embark-allow-edit-commands))
+ embark-consult-search-map)
 
-(defun embark-consult-unique-match ()
+(defun embark-consult--unique-match ()
   "If there is a unique matching candidate, accept it.
 This is intended to be used in `embark-setup-overrides' for some
 actions that are on `embark-allow-edit-commands'."
@@ -284,10 +287,10 @@ actions that are on `embark-allow-edit-commands'."
         (add-hook 'post-command-hook #'exit-minibuffer nil t)))))
 
 (dolist (cmd '(consult-outline consult-imenu consult-project-imenu))
-  (cl-pushnew #'embark-consult-unique-match
+  (cl-pushnew #'embark-consult--unique-match
               (alist-get cmd embark-setup-overrides)))
 
-(defun embark-consult-accept-tofu ()
+(defun embark-consult--accept-tofu ()
   "Accept input if it already has the unicode suffix.
 This is intended to be used in `embark-setup-overrides' for the
 `consult-line' and `consult-outline' actions."
@@ -300,10 +303,10 @@ This is intended to be used in `embark-setup-overrides' for the
       (add-hook 'post-command-hook #'exit-minibuffer nil t))))
 
 (dolist (cmd '(consult-line consult-outline))
-  (cl-pushnew #'embark-consult-accept-tofu
+  (cl-pushnew #'embark-consult--accept-tofu
               (alist-get cmd embark-setup-overrides)))
 
-(defun embark-consult-add-async-separator ()
+(defun embark-consult--add-async-separator ()
   "Add Consult's async separator at the beginning.
 This is intended to be used in `embark-setup-hook' for any action
 that is a Consult async command."
@@ -320,9 +323,11 @@ that is a Consult async command."
       (goto-char (point-max))
       (insert separator)))))
 
-(dolist (bind (cdr embark-consult-async-search-map))
-  (cl-pushnew #'embark-consult-add-async-separator
-              (alist-get (cdr bind) embark-setup-overrides)))
+(map-keymap
+ (lambda (_key cmd)
+   (cl-pushnew #'embark-consult--add-async-separator
+               (alist-get cmd embark-setup-overrides)))
+ embark-consult-async-search-map)
 
 (provide 'embark-consult)
 ;;; embark-consult.el ends here

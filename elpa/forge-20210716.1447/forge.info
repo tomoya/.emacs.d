@@ -26,7 +26,7 @@ Forge User and Developer Manual
 Forge allows you to work with Git forges, such as Github and Gitlab,
 from the comfort of Magit and the rest of Emacs.
 
-This manual is for Forge version 0.2.1 (v0.2.1-1-g6062b41c+1).
+This manual is for Forge version 0.2.1 (v0.2.1-10-gcd1ea6f3+1).
 
      Copyright (C) 2018-2021 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -314,7 +314,7 @@ File: forge.info,  Node: Getting Started,  Next: Usage,  Prev: Supported Forges 
 3 Getting Started
 *****************
 
-Getting started using Forge should be fairly easy provide you take the
+Getting started using Forge should be fairly easy provided you take the
 time to read the documentation.  First see *note (ghub)Getting Started::
 from Ghub’s manual.  Ghub is the library that Forge uses to communicate
 with forge APIs.  While Ghub can be used independently of Forge, its
@@ -998,6 +998,20 @@ a post visits that post in a browser.
 
      This command deletes the comment at point.
 
+‘m a [if enabled]’     (‘forge-merge’)
+
+     This command merge the current pull-request using the forge’s API.
+     If there is no current pull-request or with a prefix argument, then
+     it reads a pull-request to visit instead.
+
+     The "merge method" to be used is read from the user.
+
+     Use of this command is discouraged.  Unless the remote repository
+     is configured to disallow that, you should instead merge locally
+     and then push the target branch.  Forges detect that you have done
+     that and respond by automatically marking the pull-request as
+     merged.
+
    Creating a new post and editing an existing post are similar to
 creating a new commit and editing the message of an existing commit.  In
 both cases the message has to be written in a separate buffer and then
@@ -1124,7 +1138,7 @@ Appendix B Keystroke Index
 * b Y:                                   Branching.           (line  12)
 * b y:                                   Branching.           (line 106)
 * C-c C-c:                               Editing Topics and Posts.
-                                                              (line  84)
+                                                              (line  98)
 * C-c C-e [on "Assignees" section]:      Editing Topics and Posts.
                                                               (line  58)
 * C-c C-e [on "Labels" section]:         Editing Topics and Posts.
@@ -1142,7 +1156,7 @@ Appendix B Keystroke Index
 * C-c C-e [on a post section]:           Editing Topics and Posts.
                                                               (line  27)
 * C-c C-k:                               Editing Topics and Posts.
-                                                              (line  89)
+                                                              (line 103)
 * C-c C-k [on a comment section]:        Editing Topics and Posts.
                                                               (line  73)
 * C-c C-n:                               Editing Topics and Posts.
@@ -1156,6 +1170,8 @@ Appendix B Keystroke Index
 * C-c C-w <1>:                           Visiting Topics.     (line  15)
 * f y:                                   Pulling.             (line  11)
 * f Y:                                   Pulling.             (line  23)
+* m a [if enabled]:                      Editing Topics and Posts.
+                                                              (line  77)
 * M-x forge-edit-topic-note:             Editing Topics and Posts.
                                                               (line  69)
 * M-x forge-pull-pullreq:                Pulling.             (line  46)
@@ -1229,10 +1245,12 @@ Appendix C Command Index
                                                               (line  70)
 * forge-list-requested-reviews:          Listing Topics and Notifications.
                                                               (line  98)
+* forge-merge:                           Editing Topics and Posts.
+                                                              (line  77)
 * forge-post-cancel:                     Editing Topics and Posts.
-                                                              (line  89)
+                                                              (line 103)
 * forge-post-submit:                     Editing Topics and Posts.
-                                                              (line  84)
+                                                              (line  98)
 * forge-pull:                            Pulling.             (line  11)
 * forge-pull-notifications:              Pulling.             (line  23)
 * forge-pull-pullreq:                    Pulling.             (line  46)
@@ -1307,54 +1325,54 @@ Appendix E Variable Index
 
 Tag Table:
 Node: Top751
-Node: Introduction2322
-Node: Supported Forges and Hosts2885
-Node: Supported Forges4135
-Ref: Github4291
-Ref: Github Caveats4434
-Ref: Github Hosts4788
-Ref: Gitlab4844
-Ref: Gitlab Caveats4859
-Ref: Gitlab Hosts4984
-Node: Partially Supported Forges5106
-Ref: Gitea https//giteaio5312
-Ref: Gogs https//gogsio5576
-Ref: Gogs Hosts5779
-Ref: Bitbucket https//bitbucketorg5837
-Ref: Bitbucket Caveats6035
-Ref: Bitbucket Hosts6932
-Node: Supported Semi-Forges6997
-Ref: Gitweb https//git-scmcom/docs/gitweb7168
-Ref: Gitweb Caveats7247
-Ref: Cgit https//gitzx2c4com/cgit/about7487
-Ref: Cgit Caveats7564
-Ref: Cgit Hosts7913
-Ref: Stgit https//codemadnessorg/git/stagit/file/READMEhtml8042
-Ref: Stgit Caveats8159
-Ref: Stgit Hosts8445
-Ref: Srht https//metasrht8505
-Ref: Srht Caveats8554
-Ref: Srht Hosts8837
-Node: Getting Started8888
-Node: Token Creation9858
-Node: Initial Pull11117
-Node: Repository Detection12512
-Node: Caveats14415
-Node: Usage15516
-Node: Pulling16793
-Node: Branching19661
-Node: Working with Topics25777
-Node: Visiting Topics26150
-Node: Listing Topics and Notifications27879
-Node: Creating Topics32912
-Node: Editing Topics and Posts33475
-Node: Miscellaneous37030
-Node: FAQ39357
-Node: Is it possible to create a single pull-request without pulling everything?39557
-Node: Keystroke Index39962
-Node: Command Index43848
-Node: Function Index49289
-Node: Variable Index52047
+Node: Introduction2323
+Node: Supported Forges and Hosts2886
+Node: Supported Forges4136
+Ref: Github4292
+Ref: Github Caveats4435
+Ref: Github Hosts4789
+Ref: Gitlab4845
+Ref: Gitlab Caveats4860
+Ref: Gitlab Hosts4985
+Node: Partially Supported Forges5107
+Ref: Gitea https//giteaio5313
+Ref: Gogs https//gogsio5577
+Ref: Gogs Hosts5780
+Ref: Bitbucket https//bitbucketorg5838
+Ref: Bitbucket Caveats6036
+Ref: Bitbucket Hosts6933
+Node: Supported Semi-Forges6998
+Ref: Gitweb https//git-scmcom/docs/gitweb7169
+Ref: Gitweb Caveats7248
+Ref: Cgit https//gitzx2c4com/cgit/about7488
+Ref: Cgit Caveats7565
+Ref: Cgit Hosts7914
+Ref: Stgit https//codemadnessorg/git/stagit/file/READMEhtml8043
+Ref: Stgit Caveats8160
+Ref: Stgit Hosts8446
+Ref: Srht https//metasrht8506
+Ref: Srht Caveats8555
+Ref: Srht Hosts8838
+Node: Getting Started8889
+Node: Token Creation9860
+Node: Initial Pull11119
+Node: Repository Detection12514
+Node: Caveats14417
+Node: Usage15518
+Node: Pulling16795
+Node: Branching19663
+Node: Working with Topics25779
+Node: Visiting Topics26152
+Node: Listing Topics and Notifications27881
+Node: Creating Topics32914
+Node: Editing Topics and Posts33477
+Node: Miscellaneous37628
+Node: FAQ39955
+Node: Is it possible to create a single pull-request without pulling everything?40155
+Node: Keystroke Index40560
+Node: Command Index44586
+Node: Function Index50167
+Node: Variable Index52925
 
 End Tag Table
 

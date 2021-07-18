@@ -399,7 +399,11 @@ Used by `consult-completion-in-region', `consult-yank' and `consult-history'.")
 
 (defface consult-line-number-prefix
   '((t :inherit line-number))
-  "Face used to highlight line numbers in selections.")
+  "Face used to highlight line number prefixes.")
+
+(defface consult-line-number-wrapped
+  '((t :inherit consult-line-number-prefix :inherit font-lock-warning-face))
+  "Face used to highlight line number prefixes, if the line number wrapped around.")
 
 (defface consult-separator
   '((((class color) (min-colors 88) (background light))
@@ -835,14 +839,17 @@ Otherwise the `default-directory' is returned."
             (forward-char column))
           (point-marker))))))
 
-(defun consult--line-prefix ()
-  "Annotate `consult-location' candidates with line numbers."
+(defun consult--line-prefix (&optional curr-line)
+  "Annotate `consult-location' candidates with line numbers given the current line CURR-LINE."
+  (setq curr-line (or curr-line -1))
   (let* ((width (length (number-to-string (line-number-at-pos
                                            (point-max)
                                            consult-line-numbers-widen))))
-         (fmt (propertize (format "%%%dd " width) 'face 'consult-line-number-prefix)))
+         (fmt-before (propertize (format "%%%dd " width) 'face 'consult-line-number-wrapped))
+         (fmt-after (propertize (format "%%%dd " width) 'face 'consult-line-number-prefix)))
     (lambda (cand)
-      (list cand (format fmt (cdr (get-text-property 0 'consult-location cand))) ""))))
+      (let ((line (cdr (get-text-property 0 'consult-location cand))))
+        (list cand (format (if (< line curr-line) fmt-before fmt-after) line) "")))))
 
 (defun consult--location-candidate (cand marker line &rest props)
   "Add MARKER and LINE as 'consult-location text property to CAND.
@@ -2488,14 +2495,15 @@ The symbol at point is added to the future history."
 
 ;;;;; Command: consult-line
 
-(defun consult--line-candidates (top)
-  "Return list of line candidates; start from top if TOP non-nil."
+(defun consult--line-candidates (top curr-line)
+  "Return list of line candidates.
+Start from top if TOP non-nil.
+CURR-LINE is the current line number."
   (consult--forbid-minibuffer)
   (consult--fontify-all)
   (let* ((default-cand)
          (candidates)
-         (line (line-number-at-pos (point-min) consult-line-numbers-widen))
-         (curr-line (line-number-at-pos (point) consult-line-numbers-widen)))
+         (line (line-number-at-pos (point-min) consult-line-numbers-widen)))
     (consult--each-line beg end
       (let ((str (consult--buffer-substring beg end)))
         (unless (string-blank-p str)
@@ -2568,13 +2576,15 @@ This command obeys narrowing. Optional INITIAL input can be provided.
 The search starting point is changed if the START prefix argument is set.
 The symbol at point and the last `isearch-string' is added to the future history."
   (interactive (list nil (not (not current-prefix-arg))))
-  (let ((candidates (consult--with-increased-gc
-                     (consult--line-candidates
-                      (not (eq start consult-line-start-from-top))))))
+  (let* ((curr-line (line-number-at-pos (point) consult-line-numbers-widen))
+         (candidates (consult--with-increased-gc
+                      (consult--line-candidates
+                       (not (eq start consult-line-start-from-top))
+                       curr-line))))
     (consult--read
      candidates
      :prompt "Go to line: "
-     :annotate (consult--line-prefix)
+     :annotate (consult--line-prefix curr-line)
      :category 'consult-location
      :sort nil
      :require-match t
@@ -2746,14 +2756,18 @@ INITIAL is the initial input."
                   (setq li (cdr li) ov (cdr ov))))
               (setq last-input input)))))
       (when restore
-        (if (not input)
-            (goto-char point-orig)
+        (cond
+         ((not input)
+          (goto-char point-orig))
+         ((equal input "")
+          (consult-focus-lines 'show))
+         (t
           ;; Sucessfully terminated -> Remember invisible overlays
           (dolist (ov overlays)
             (if (overlay-get ov 'invisible)
                 (push ov consult--focus-lines-overlays)
               (delete-overlay ov)))
-          (setq overlays nil))
+          (setq overlays nil)))
         ;; Destroy remaining overlays
         (mapc #'delete-overlay overlays)))))
 
@@ -2764,8 +2778,9 @@ INITIAL is the initial input."
 The selected lines are shown and the other lines hidden. When called
 interactively, the lines selected are those that match the minibuffer input. In
 order to match the inverse of the input, prefix the input with `! '. With
-optional prefix argument SHOW reveal the hidden lines. When called from elisp,
-the filtering is performed by a FILTER function. This command obeys narrowing.
+optional prefix argument SHOW reveal the hidden lines. Alternatively the
+command can be restarted to reveal the lines. When called from elisp, the
+filtering is performed by a FILTER function. This command obeys narrowing.
 
 FILTER is the filter function.
 INITIAL is the initial input."
@@ -2775,14 +2790,18 @@ INITIAL is the initial input."
            ;; Use consult-location completion category when filtering lines
            (consult--completion-filter-dispatch
             pattern cands 'consult-location nil))))
-  (consult--forbid-minibuffer)
   (if show
       (progn
         (mapc #'delete-overlay consult--focus-lines-overlays)
-        (setq consult--focus-lines-overlays nil))
+        (setq consult--focus-lines-overlays nil)
+        (message "All lines revealed"))
+    (consult--forbid-minibuffer)
     (consult--with-increased-gc
      (consult--prompt
-      :prompt "Focus on lines: "
+      :prompt
+      (if consult--focus-lines-overlays
+          "Focus on lines (RET to reveal): "
+        "Focus on lines: ")
       :initial initial
       :history 'consult--keep-lines-history
       :state (consult--focus-lines-state filter)))))

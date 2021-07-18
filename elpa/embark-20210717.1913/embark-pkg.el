@@ -1,6 +1,6 @@
-(define-package "embark" "20210615.1833" "Conveniently act on minibuffer completions"
+(define-package "embark" "20210717.1913" "Conveniently act on minibuffer completions"
   '((emacs "26.1"))
-  :commit "acbe1cba548832d295449da348719f69b9685c6f" :authors
+  :commit "9d56be162badbbfee405595f2ebdfe16a5bca47d" :authors
   '(("Omar Antolín Camarena" . "omar@matem.unam.mx"))
   :maintainer
   '("Omar Antolín Camarena" . "omar@matem.unam.mx")

@@ -6,8 +6,8 @@
 ;; Maintainer: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
 ;; Version: 0.7
-;; Package-Version: 20210714.2020
-;; Package-Commit: 060c49dc5703dbd54f7323324b86088235848952
+;; Package-Version: 20210716.2148
+;; Package-Commit: d4c2028c7917b2ff926b3a67c3acc0351be658cc
 ;; Package-Requires: ((emacs "26.1"))
 ;; Homepage: https://github.com/minad/marginalia
 
@@ -377,6 +377,7 @@ C interactive-only command
 m macro
 p pure
 s side-effect-free
+@ autoloaded
 ! advised
 - obsolete
 
@@ -402,6 +403,7 @@ t cl-type"
         ((commandp s) (if (get s 'interactive-only) "C" "c"))
         ((eq (car-safe (symbol-function s)) 'macro) "m")
         (t "f"))
+       (and (autoloadp (symbol-function s)) "@")
        (and (marginalia--advised s) "!")
        (and (get s 'byte-obsolete-info) "-")))
     (when (boundp s)
@@ -488,16 +490,16 @@ keybinding since CAND includes it."
   (when-let (sym (intern-soft cand))
     (marginalia--fields
      ((marginalia--symbol-class sym) :face 'marginalia-type)
-     ((if (seq-find (lambda (r) (string-match-p r cand))
-                    marginalia-censor-variables)
-          "*****"
-        (let ((val (if (boundp sym) (symbol-value sym) 'unbound))
-              (print-escape-newlines t)
-              (print-escape-control-characters t)
-              (print-escape-multibyte t)
-              (print-level 10)
-              (print-length marginalia-truncate-width))
-          (prin1-to-string val)))
+     ((cond
+       ((not (boundp sym)) "<unbound>")
+       ((seq-find (lambda (r) (string-match-p r cand)) marginalia-censor-variables) "*****")
+       (t (let ((val (symbol-value sym))
+                (print-escape-newlines t)
+                (print-escape-control-characters t)
+                (print-escape-multibyte t)
+                (print-level 10)
+                (print-length marginalia-truncate-width))
+            (prin1-to-string val))))
       :truncate (/ marginalia-truncate-width 2) :face 'marginalia-variable)
      ((documentation-property sym 'variable-documentation)
       :truncate marginalia-truncate-width :face 'marginalia-documentation))))
