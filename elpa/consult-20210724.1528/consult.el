@@ -442,7 +442,7 @@ Used by `consult-completion-in-region', `consult-yank' and `consult-history'.")
 (make-obsolete-variable 'consult-config "Deprecated in favor of `consult-customize'." "0.7")
 
 (defvar consult--read-config nil
-  "Command configuration alist, which allows fine-grained configuration.
+  "Command configuration alist for fine-grained configuration.
 
 Each element of the list must have the form (command-name plist...). The options
 set here will be passed to `consult--read', when called from the corresponding
@@ -2896,7 +2896,8 @@ narrowing and the settings `consult-goto-line-numbers' and
   (find-file
    (consult--read
     (or (mapcar #'abbreviate-file-name recentf-list)
-        (user-error "No recent files"))
+        (user-error "No recent files, `recentf-mode' is %s"
+                    (if recentf-mode "on" "off")))
     :prompt "Find recent file: "
     :sort nil
     :require-match t
@@ -3496,11 +3497,14 @@ The command supports previewing the currently selected theme."
        :category 'theme
        :history 'consult--theme-history
        :lookup (lambda (_input _cands x)
-                 (and x (not (equal x "default")) (intern-soft x)))
+                 (unless (equal x "default")
+                   (or (when-let (cand (and x (intern-soft x)))
+                         (car (memq cand avail-themes)))
+                       saved-theme)))
        :state (lambda (cand restore)
-                (cond
-                 ((and restore (not cand)) (consult-theme saved-theme))
-                 ((memq cand avail-themes) (consult-theme cand))))
+                (consult-theme (if (and restore (not cand))
+                                   saved-theme
+                                 cand)))
        :default (symbol-name (or saved-theme 'default))))))
   (unless (eq theme (car custom-enabled-themes))
     (mapc #'disable-theme custom-enabled-themes)
