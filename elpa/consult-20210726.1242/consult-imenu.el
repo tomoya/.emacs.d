@@ -143,16 +143,6 @@ TYPES is the mode-specific types configuration."
   "Return all imenu items from each BUFFERS."
   (seq-mapcat (lambda (buf) (with-current-buffer buf (consult-imenu--items))) buffers))
 
-(defun consult-imenu--project-buffers ()
-  "Return project buffers with the same `major-mode' as the current buffer."
-  (if-let (root (consult--project-root))
-      (seq-filter (lambda (buf)
-                    (when-let (file (buffer-file-name buf))
-                      (and (eq (buffer-local-value 'major-mode buf) major-mode)
-                           (string-prefix-p root file))))
-                  (buffer-list))
-    (list (current-buffer))))
-
 (defun consult-imenu--jump (item)
   "Jump to imenu ITEM via `consult--jump'.
 
@@ -210,12 +200,12 @@ The symbol at point is added to the future history."
 The command supports preview and narrowing. See the variable
 `consult-imenu-config', which configures the narrowing.
 
-See also `consult-project-imenu'."
+See also `consult-imenu-project'."
   (interactive)
   (consult-imenu--select (consult-imenu--items)))
 
 ;;;###autoload
-(defun consult-project-imenu ()
+(defun consult-imenu-project ()
   "Select item from the imenus of all buffers from the same project.
 
 In order to determine the buffers belonging to the same project, the
@@ -223,7 +213,17 @@ In order to determine the buffers belonging to the same project, the
 same major mode as the current buffer are used. See also
 `consult-imenu' for more details."
   (interactive)
-  (consult-imenu--select (consult-imenu--all-items (consult-imenu--project-buffers))))
+  (consult-imenu--select
+   (consult-imenu--all-items
+    (or (consult--buffer-query :directory 'project
+                               :mode major-mode
+                               :sort 'alpha)
+        (list (current-buffer))))))
+
+(define-obsolete-function-alias
+  'consult-project-imenu
+  'consult-imenu-project
+  "0.9")
 
 (provide 'consult-imenu)
 ;;; consult-imenu.el ends here

@@ -64,14 +64,16 @@ accessed through the ‘embark-act’ command (which you should bind to a
 convenient key), offering you relevant _actions_ to use on a _target_
 determined by the context:
 
-   • In the minibuffer, the target is the current best completion
+   • In the minibuffer, the target is the current top completion
      candidate.
    • In the ‘*Completions*’ buffer the target is the completion at
      point.
    • In a regular buffer, the target is the region if active, or else
-     the file, symbol or URL at point.
+     the file, symbol, URL, s-expression or defun at point.
 
-   The type of actions offered depend on the type of the target:
+   Multiple targets can be present at the same location and you can
+cycle between them by repeating the ‘embark-act’ key binding.  The type
+of actions offered depend on the type of the target:
 
    • For files you get offered actions like deleting, copying, renaming,
      visiting in another window, running a shell command on the file,
@@ -678,21 +680,21 @@ Tag Table:
 Node: Top206
 Node: Overview1132
 Node: Acting on targets1381
-Node: Working with sets of possible targets5899
-Node: Switching to a different command without losing what you've typed8890
-Node: Configuration11464
-Node: Quick start11907
-Node: Showing a reminder of available actions15265
-Node: Quitting the minibuffer after an action16686
-Node: Allowing the target to be edited before acting on it18435
-Node: Running some setup after injecting the target19755
-Node: Creating your own keymaps20975
-Node: Defining actions for new categories of targets21959
-Node: New minibuffer target example - tab-bar tabs22719
-Ref: Telling Embark about commands that prompt for tabs by name23435
-Ref: Defining and configuring a keymap for tab actions26279
-Node: New target example in regular buffers - short Wikipedia links27969
-Node: Embark Marginalia and Consult29714
+Node: Working with sets of possible targets6051
+Node: Switching to a different command without losing what you've typed9042
+Node: Configuration11616
+Node: Quick start12059
+Node: Showing a reminder of available actions15417
+Node: Quitting the minibuffer after an action16838
+Node: Allowing the target to be edited before acting on it18587
+Node: Running some setup after injecting the target19907
+Node: Creating your own keymaps21127
+Node: Defining actions for new categories of targets22111
+Node: New minibuffer target example - tab-bar tabs22871
+Ref: Telling Embark about commands that prompt for tabs by name23587
+Ref: Defining and configuring a keymap for tab actions26431
+Node: New target example in regular buffers - short Wikipedia links28121
+Node: Embark Marginalia and Consult29866
 
 End Tag Table
 

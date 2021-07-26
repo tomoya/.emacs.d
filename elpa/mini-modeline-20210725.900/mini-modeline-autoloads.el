@@ -22,9 +22,9 @@ or call the function `mini-modeline-mode'.")
 (autoload 'mini-modeline-mode "mini-modeline" "\
 Enable modeline in minibuffer.
 
-If called interactively, toggle `Mini-Modeline mode'.  If the
-prefix argument is positive, enable the mode, and if it is zero
-or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`Mini-Modeline mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
 the mode if ARG is nil, omitted, or is a positive number.

@@ -334,9 +334,9 @@ Select item from flattened `imenu' using `completing-read' with preview.
 The command supports preview and narrowing. See the variable
 `consult-imenu-config', which configures the narrowing.
 
-See also `consult-project-imenu'." t nil)
+See also `consult-imenu-project'." t nil)
 
-(autoload 'consult-project-imenu "consult-imenu" "\
+(autoload 'consult-imenu-project "consult-imenu" "\
 Select item from the imenus of all buffers from the same project.
 
 In order to determine the buffers belonging to the same project, the

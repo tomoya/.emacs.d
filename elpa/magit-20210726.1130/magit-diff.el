@@ -1111,6 +1111,9 @@ If no DWIM context is found, nil is returned."
                           (or current "HEAD")
                           atpoint))))
       (commit (cons 'commit (oref it value)))
+      ([file commit] (cons 'commit (oref (oref it parent) value)))
+      ([hunk file commit]
+       (cons 'commit (oref (oref (oref it parent) parent) value)))
       (stash (cons 'stash (oref it value)))
       (pullreq (forge--pullreq-range (oref it value) t))))))
 
@@ -1505,8 +1508,8 @@ The visited version depends on what changes the diff is about.
 In the file-visiting buffer also go to the line that corresponds
 to the line that point is on in the diff.
 
-Note that this command only works if point is inside a diff.  In
-other cases `magit-find-file' (which see) had to be used."
+Note that this command only works if point is inside a diff.
+In other cases `magit-find-file' (which see) has to be used."
   (interactive (list (magit-file-at-point t t) current-prefix-arg))
   (magit-diff-visit-file--internal file nil
                                    (if other-window
@@ -2250,7 +2253,7 @@ section or a child thereof."
           (setq status "new file"))
          ((looking-at "similarity index .+\n"))
          ((looking-at "dissimilarity index .+\n"))
-         ((looking-at "^index .+\n"))
+         ((looking-at "index .+\n"))
          ((looking-at "--- \\(.+?\\)\t?\n")
           (unless (equal (match-string 1) "/dev/null")
             (setq orig (match-string 1))))
@@ -2258,6 +2261,8 @@ section or a child thereof."
           (unless (equal (match-string 1) "/dev/null")
             (setq file (match-string 1))))
          ((looking-at "Binary files .+ and .+ differ\n"))
+         ;; TODO Use all combined diff extended headers.
+         ((looking-at "mode .+\n"))
          (t
           (error "BUG: Unknown extended header: %S"
                  (buffer-substring (point) (line-end-position)))))
