@@ -4,6 +4,12 @@
 (require 'cl-lib)
 (setq default-directory "~/")
 
+;; Set PATH env and exec-path from $PATH
+(setenv "PATH" (shell-command-to-string "echo $PATH"))
+(cl-loop for x
+         in (reverse (split-string (substring (shell-command-to-string "echo $PATH") 0 -1) ":"))
+         do (add-to-list 'exec-path x))
+
 ;; straight
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -19,12 +25,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
-
-;; Set PATH env and exec-path from $PATH
-(setenv "PATH" (shell-command-to-string "echo $PATH"))
-(cl-loop for x
-         in (reverse (split-string (substring (shell-command-to-string "echo $PATH") 0 -1) ":"))
-         do (add-to-list 'exec-path x))
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
