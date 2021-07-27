@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/git-modes/gitignore-mode.el

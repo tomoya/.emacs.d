@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/emacs-htmlize/htmlize.el

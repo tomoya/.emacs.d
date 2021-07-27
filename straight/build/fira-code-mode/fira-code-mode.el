@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/fira-code-mode/fira-code-mode.el

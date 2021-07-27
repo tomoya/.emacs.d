@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/package-lint/package-lint.el

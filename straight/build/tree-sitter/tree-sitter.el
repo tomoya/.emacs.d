@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/emacs-tree-sitter/lisp/tree-sitter.el

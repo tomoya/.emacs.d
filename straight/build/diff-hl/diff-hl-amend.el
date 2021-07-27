@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/diff-hl/diff-hl-amend.el

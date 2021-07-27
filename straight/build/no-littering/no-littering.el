@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/no-littering/no-littering.el

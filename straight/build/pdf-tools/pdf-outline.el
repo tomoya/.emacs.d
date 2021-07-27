@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/pdf-tools/lisp/pdf-outline.el

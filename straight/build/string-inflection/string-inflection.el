@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/string-inflection/string-inflection.el

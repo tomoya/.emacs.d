@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/tree-sitter-langs/queries/python/highlights.scm

@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/markdown-preview-mode/markdown-preview-mode.el

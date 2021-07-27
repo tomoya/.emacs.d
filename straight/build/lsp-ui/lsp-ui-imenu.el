@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/lsp-ui/lsp-ui-imenu.el

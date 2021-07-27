@@ -1,2 +1,0 @@
-;;; Generated package description from magit-libgit.el  -*- no-byte-compile: t -*-
-(define-package "magit-libgit" "20210702.819" "Libgit functionality" '((emacs "26.1") (magit "3.1.1") (libgit "0")) :commit "b6751568c32b87f8b98c304531ad7f20799c6d86" :authors '(("Jonas Bernoulli" . "jonas@bernoul.li")) :maintainer '("Jonas Bernoulli" . "jonas@bernoul.li") :keywords '("git" "tools" "vc") :url "https://github.com/magit/magit")

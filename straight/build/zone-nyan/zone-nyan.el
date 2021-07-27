@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/zone-nyan/zone-nyan.el

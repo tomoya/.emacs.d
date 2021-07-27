@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/ddskk/skk-show-mode.el

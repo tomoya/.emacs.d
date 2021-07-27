@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/company-box/company-box-icons.el

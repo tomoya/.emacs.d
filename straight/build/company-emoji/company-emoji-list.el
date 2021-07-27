@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/company-emoji/company-emoji-list.el

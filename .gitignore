@@ -13,3 +13,15 @@ ddskk/*
 */libgit-*/build/
 straight/build-cache.el
 straight/repos
+straight/build/libgit/libgit2/
+straight/build/libgit/src/
+straight/build/libgit/build/
+straight/build/pdf-tools/build/
+straight/build/vterm/.gitmodules
+straight/build/vterm/build/
+straight/build/elisp-benchmarks/.gitignore
+straight/build/frame-tabs/.gitignore
+straight/build/undo-tree/.gitignore
+straight/build/darkroom/.gitignore
+straight/build/rainbow-mode/.gitignore
+straight/build/csv-mode/.gitignore

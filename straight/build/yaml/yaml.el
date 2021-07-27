@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/yaml.el/yaml.el
