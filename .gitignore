@@ -11,3 +11,5 @@ ddskk/*
 */libgit-*/libgit2/
 */libgit-*/src/
 */libgit-*/build/
+straight/build-cache.el
+straight/repos
