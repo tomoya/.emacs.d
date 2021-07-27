@@ -12,6 +12,7 @@
 
 ;; straight
 (defvar bootstrap-version)
+(defvar straight-check-for-modifications '(check-on-save find-when-checking))
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
