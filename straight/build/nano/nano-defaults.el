@@ -1,0 +1,1 @@
+/Users/tomoya/.config/emacs/straight/repos/nano-emacs/nano-defaults.el

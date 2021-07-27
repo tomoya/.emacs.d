@@ -18,6 +18,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
+
 (add-to-list 'load-path (locate-user-emacs-file "nano"))
 
 ;; Set PATH env and exec-path from $PATH
