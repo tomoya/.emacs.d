@@ -20,8 +20,6 @@
 
 (straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
 
-(add-to-list 'load-path (locate-user-emacs-file "nano"))
-
 ;; Set PATH env and exec-path from $PATH
 (setenv "PATH" (shell-command-to-string "echo $PATH"))
 (cl-loop for x
