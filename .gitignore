@@ -18,6 +18,7 @@ straight/build/libgit/src/
 straight/build/libgit/build/
 straight/build/pdf-tools/build/
 straight/build/vterm/.gitmodules
+straight/build/vterm/vterm-module.so
 straight/build/vterm/build/
 straight/build/elisp-benchmarks/.gitignore
 straight/build/frame-tabs/.gitignore
