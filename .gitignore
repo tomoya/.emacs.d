@@ -6,11 +6,7 @@ ddskk/*
 *.signed
 *.sqlite
 /eln-cache
-*/vterm-*/build/
 /var
-*/libgit-*/libgit2/
-*/libgit-*/src/
-*/libgit-*/build/
 straight/build-cache.el
 straight/repos
 straight/build/libgit/libgit2/
