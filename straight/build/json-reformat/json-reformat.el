@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/json-reformat/json-reformat.el

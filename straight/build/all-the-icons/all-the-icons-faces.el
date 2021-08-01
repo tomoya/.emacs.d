@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/all-the-icons.el/all-the-icons-faces.el

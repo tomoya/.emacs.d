@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/exec-path-from-shell/exec-path-from-shell.el

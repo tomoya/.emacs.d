@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/flycheck-package/flycheck-package.el

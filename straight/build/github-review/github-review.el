@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/github-review/github-review.el

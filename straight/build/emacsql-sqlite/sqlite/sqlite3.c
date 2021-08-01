@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/emacsql/sqlite/sqlite3.c

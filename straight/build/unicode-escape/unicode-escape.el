@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/unicode-escape.el/unicode-escape.el

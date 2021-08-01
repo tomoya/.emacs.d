@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/forge/lisp/forge-gitea.el

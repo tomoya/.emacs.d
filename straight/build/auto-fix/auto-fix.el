@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/auto-fix.el/auto-fix.el

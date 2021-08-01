@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/libegit2/CMakeLists.txt

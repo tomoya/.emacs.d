@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/frame-local/frame-local.el

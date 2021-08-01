@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/smartparens/sp-sublimetext-like.el

@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/lsp-mode/lsp-lens.el

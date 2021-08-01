@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/elisp-benchmarks/benchmarks/pidigits.el

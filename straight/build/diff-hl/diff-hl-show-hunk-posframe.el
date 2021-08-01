@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/diff-hl/diff-hl-show-hunk-posframe.el

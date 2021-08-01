@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/ssh-config-mode-el/ssh-config-mode.el

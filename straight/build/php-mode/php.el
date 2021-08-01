@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/php-mode/lisp/php.el

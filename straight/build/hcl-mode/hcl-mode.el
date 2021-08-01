@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/emacs-hcl-mode/hcl-mode.el

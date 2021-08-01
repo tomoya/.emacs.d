@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/embark/embark-consult.el

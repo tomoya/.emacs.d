@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/copy-as-format/copy-as-format.el

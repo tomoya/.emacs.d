@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/vertico/extensions/vertico-repeat.el

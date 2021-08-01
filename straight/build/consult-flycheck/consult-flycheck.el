@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/consult-flycheck/consult-flycheck.el

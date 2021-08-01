@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/magit/lisp/magit-tag.el

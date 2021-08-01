@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/diff-hl/diff-hl-inline-popup.el

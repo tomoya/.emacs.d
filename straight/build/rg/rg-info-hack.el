@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/rg.el/rg-info-hack.el

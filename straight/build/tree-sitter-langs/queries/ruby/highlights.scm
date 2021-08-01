@@ -1,1 +1,0 @@
-/Users/tomoya/.config/emacs/straight/repos/tree-sitter-langs/queries/ruby/highlights.scm
