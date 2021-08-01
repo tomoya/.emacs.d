@@ -69,7 +69,7 @@
 (straight-use-package 'php-mode)
 (straight-use-package 'flycheck-posframe)
 (straight-use-package 'rspec-mode)
-;; (straight-use-package 'fira-code-mode)
+(straight-use-package 'fira-code-mode)
 (straight-use-package 'pdf-tools)
 (straight-use-package 'company-box)
 (straight-use-package 'frame-tabs)

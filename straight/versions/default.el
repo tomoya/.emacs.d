@@ -44,6 +44,7 @@
  ("esxml" . "701ccc285f3748d94c12f85636fecaa88858c178")
  ("exec-path-from-shell" . "bf4bdc8b8911e7a2c04e624b9a343164c3878282")
  ("f.el" . "50af874cd19042f17c8686813d52569b1025c76a")
+ ("fira-code-mode" . "eaff81f867d9c84e25891368f3d0cac7513984e8")
  ("flx" . "647cb2f92f9936c62e277d7a74ad54a80502d255")
  ("flycheck" . "21d52264aa80bfa4ede94c59e37a20fb6d033b0c")
  ("flycheck-package" . "ecd03f83790611888d693c684d719e033f69cb40")
