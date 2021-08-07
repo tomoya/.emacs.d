@@ -96,6 +96,7 @@
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'diff-hl)
+(straight-use-package 'yasnippet)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)

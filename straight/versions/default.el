@@ -107,5 +107,6 @@
  ("with-editor" . "5519b6a67ecd66865b4fdd5447425eee900c54f4")
  ("yaml-mode" . "3a57058468211f3cb18e71aecc630dcacb87636b")
  ("yaml.el" . "84b88c9ed178af16da18b230c1f61c57cefedf28")
+ ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6")
  ("zone-nyan" . "38b6e9f1f5871e9166b00a1db44680caa56773be"))
 :beta
