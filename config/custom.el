@@ -28,7 +28,8 @@
  '(company-tooltip-idle-delay 0.1)
  '(company-tooltip-limit 20)
  '(completion-styles '(orderless flex partial-completion))
- '(consult-find-command "fd --color=never --full-path ARG OPTS")
+ '(consult-find-config
+   '(:args "fd --color=never --full-path" :command consult--find-command-builder :highlight consult--command-highlight))
  '(create-lockfiles nil)
  '(css-indent-offset 2)
  '(cursor-in-non-selected-windows nil)
