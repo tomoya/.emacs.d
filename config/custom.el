@@ -79,7 +79,6 @@
      ("XXXX" . "#dc752f")
      ("???" . "#dc752f")))
  '(indent-tabs-mode nil)
- '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(initial-frame-alist
