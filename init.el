@@ -240,7 +240,7 @@
 (defun my-mode-line-buffer-file-name ()
   (let ((file (buffer-file-name)))
     (if (buffer-modified-p)
-         (propertize (concat file "*") 'face '(:foreground "#f56bb7"))
+        (propertize file 'face '(:foreground "Magenta"))
       file)))
 
 (setq-default mini-modeline-l-format '((:eval (my-mode-line-buffer-file-name))))
