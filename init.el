@@ -130,6 +130,9 @@
                         (make-glyph-code ?… 'fallback))
 (set-display-table-slot standard-display-table 'wrap
                         (make-glyph-code ?↩ 'fallback))
+;; Copy standard-display-table before global-whitespace-mode enabled
+(setq-default buffer-display-table standard-display-table)
+
 (require 'nano-theme-dark)
 (require 'nano-faces)
 (nano-faces)
