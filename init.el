@@ -238,7 +238,7 @@
        'face '(:foreground "#9090fa" :height 1)))))
 
 (defun my-mode-line-buffer-file-name ()
-  (let ((file (buffer-file-name)))
+  (let ((file (or (buffer-file-name) "")))
     (if (buffer-modified-p)
         (propertize file 'face '(:foreground "Magenta"))
       file)))
