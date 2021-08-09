@@ -567,6 +567,9 @@ If buffer is associated with a file name, add that file to the
 (with-eval-after-load 'vertico
   (define-key vertico-map (kbd "C-r") 'vertico-previous)
   (define-key vertico-map (kbd "C-s") 'vertico-next))
+(with-eval-after-load 'darkroom
+  (define-key darkroom-mode-map (kbd "C-s-=") 'darkroom-increase-margins)
+  (define-key darkroom-mode-map (kbd "C-s--") 'darkroom-decrease-margins))
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
