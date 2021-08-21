@@ -7,7 +7,6 @@
  ("company-box" . "156f65cfbf690ed84e0e84f90277d665d873ff24")
  ("company-emoji" . "90594eb58b20fb937cfd4e946efcc446ee630e6f")
  ("company-flx" . "16ca0d2f84e8e768bf2db8c5cfe421230a00bded")
- ("company-lsp" . "f921ffa0cdc542c21dc3dd85f2c93df4288e83bd")
  ("company-mode" . "87825c7891ccf4aefb88b9d49c7ff074cc74c53a")
  ("company-tabnine" . "98e9e8b38b6ca289fbe265b0a7b62c7fe38ed0e2")
  ("consult" . "105a1ac50169382368a36ed53d7af908d02ffa07")

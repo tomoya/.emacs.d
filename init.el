@@ -81,7 +81,6 @@
 (straight-use-package 'markdown-preview-mode)
 (straight-use-package '(auto-fix :type git :host github :repo "tomoya/auto-fix.el"))
 (straight-use-package 'company-emoji)
-(straight-use-package 'company-lsp)
 (straight-use-package 'lsp-ui)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'web-mode)
@@ -426,7 +425,6 @@ point reaches the beginning or end of the buffer, stop there."
                           company-pseudo-tooltip-unless-just-one-frontend-with-delay
                           company-preview-frontend))
 (push 'company-emoji company-backends)
-(push 'company-lsp company-backends)
 ;; (push 'company-tabnine company-backends)
 (add-hook 'company-mode-hook 'company-box-mode)
 
