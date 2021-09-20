@@ -185,6 +185,7 @@
  '(frame-tabs-face ((t (:background "#212326" :foreground "gray80"))))
  '(frame-tabs-higlight-tab ((t (:inherit frame-tabs-buffer-tab :background "#3d4147" :box (:line-width 5 :color "#3d4147")))))
  '(frame-tabs-selected-tab ((t (:inherit frame-tabs-buffer-tab :background "#292b2e" :foreground "white" :box (:line-width 5 :color "#292b2e")))))
+ '(nano-face-critical ((t (:foreground "#ECEFF4"))) t)
  '(whitespace-newline ((t (:foreground "gray25")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
