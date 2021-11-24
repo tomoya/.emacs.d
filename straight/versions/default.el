@@ -59,6 +59,7 @@
  ("ht.el" . "c4c1be487d6ecb353d07881526db05d7fc90ea87")
  ("hydra" . "2d553787aca1aceb3e6927e426200e9bb9f056f1")
  ("json-mode" . "eedb4560034f795a7950fa07016bd4347c368873")
+ ("json-par" . "2bc383c4f88a111202b4d00303f3345b32e4b8e9")
  ("json-reformat" . "8eb6668ed447988aea06467ba8f42e1f2178246f")
  ("json-snatcher" . "b28d1c0670636da6db508d03872d96ffddbc10f2")
  ("let-alist" . "d2d0cac92851d4480328bc3f41d30c518beb1f99")
