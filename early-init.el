@@ -1,5 +1,6 @@
 ;; package.el
 (setq package-enable-at-startup nil)
+(setq frame-resize-pixelwise t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
