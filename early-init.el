@@ -38,7 +38,7 @@
 ;; AsciiフォントをFira Codeに
 (set-face-attribute 'default nil
                     :family "Fira Code"
-                    :height 140)
+                    :height 130)
 
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
 ;; amount of data which Emacs reads from the process. Again the emacs
