@@ -31,7 +31,6 @@
 ;; (straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
 (straight-use-package 'orderless)
 (straight-use-package 'no-littering)
-(straight-use-package 'magit-libgit)
 (straight-use-package 'libgit)
 (straight-use-package 'ssh-config-mode)
 (straight-use-package 'git-modes)
