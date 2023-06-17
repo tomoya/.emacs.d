@@ -31,6 +31,9 @@
  '(window-divider-default-right-width 16)
  '(window-divider-default-places 'right-only))
 
+;; No titlebar
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 ;; font
 ;; AsciiフォントをFira Codeに
 (set-face-attribute 'default nil
