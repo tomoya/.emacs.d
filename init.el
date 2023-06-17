@@ -25,7 +25,11 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
+(straight-use-package
+  '(nano-emacs :type git :host github :repo "rougier/nano-emacs"
+               :fork (:host github
+                    :repo "wakatara/nano-emacs")))
+;; (straight-use-package '(nano :type git :host github :repo "rougier/nano-emacs"))
 (straight-use-package 'orderless)
 (straight-use-package 'no-littering)
 (straight-use-package 'magit-libgit)
