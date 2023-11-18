@@ -99,6 +99,7 @@
 (straight-use-package 'json-par)
 (straight-use-package '(emacs-prisma-mode :type git :host github :repo "pimeys/emacs-prisma-mode"))
 (straight-use-package '(lsp-prisma :type git :host github :repo "pimeys/emacs-prisma-mode"))
+(straight-use-package 'lua-mode)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
