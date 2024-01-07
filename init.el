@@ -529,6 +529,22 @@ If buffer is associated with a file name, add that file to the
   (with-eval-after-load 'consult-flycheck
     (global-set-key [remap flycheck-list-errors] 'consult-flycheck)))
 
+;; ellama
+(with-eval-after-load 'llm
+  (setopt ellama-language "Japanese")
+  (require 'llm-ollama)
+  (setopt ellama-provider
+          (make-llm-ollama
+           :chat-model "dolphin-mixtral:8x7b-v2.7" :embedding-model "dolphin-mixtral:8x7b-v2.7"))
+  (setopt ellama-providers
+          '(("mistral" . (make-llm-ollama
+                         :chat-model "mistral:7b-instruct"
+                         :embedding-model "mistral:7b-text"))
+            ("dolphin-mixtral" . (make-llm-ollama
+                          :chat-model "dolphin-mixtral:8x7b-v2.7"
+                          :embedding-model "dolphin-mixtral:8x7b-v2.7"))
+            )))
+
 ;; Key bindings
 (global-set-key (kbd "C-h b") 'embark-bindings)
 (global-set-key (kbd "s-e") 'embark-act)
