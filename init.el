@@ -434,6 +434,9 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; undo-tree
 (global-undo-tree-mode)
+(setopt undo-tree-history-directory-alist `((".*" . ,(expand-file-name "undo-tree-history" (my-get-cache-dir))))
+        undo-tree-visualizer-diff t
+        undo-tree-visualizer-timestamps t)
 
 ;; emacs-revision
 (defun emacs-revision (&optional here)
