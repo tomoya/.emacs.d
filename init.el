@@ -531,6 +531,7 @@ If buffer is associated with a file name, add that file to the
   (defalias 'goto-line 'consult-goto-line)
   (with-eval-after-load 'consult-flycheck
     (global-set-key [remap flycheck-list-errors] 'consult-flycheck))
+  (setopt affe-count 70)
   (setopt affe-grep-command "rg --null --color=never --max-columns=1000 --no-heading --line-number --hidden -v  --glob=!**/.git/** ^$")
   (setopt affe-find-command "fd --color=never --full-path --hidden"))
 
