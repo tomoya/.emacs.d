@@ -7,7 +7,5 @@ ddskk/*
 *.sqlite
 /eln-cache
 /var
-straight/build-cache.el
-straight/repos
-straight/build
+straight
 ellama-sessions
