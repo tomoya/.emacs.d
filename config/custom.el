@@ -153,7 +153,7 @@
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(typescript-indent-level 2)
- '(vertico-count 30)
+ '(vertico-count 50)
  '(vertico-cycle t)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
