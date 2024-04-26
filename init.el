@@ -48,6 +48,7 @@
 (straight-use-package 'elisp-benchmarks)
 (straight-use-package 'vterm)
 (straight-use-package 'tree-sitter-langs)
+(straight-use-package '(ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
 (straight-use-package 'forge)
 (straight-use-package 'github-review)
 (straight-use-package 'string-inflection)
