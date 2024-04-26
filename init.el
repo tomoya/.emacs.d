@@ -542,14 +542,20 @@ If buffer is associated with a file name, add that file to the
   (require 'llm-ollama)
   (setopt ellama-provider
           (make-llm-ollama
-           :chat-model "dolphin-mixtral:8x7b-v2.7" :embedding-model "dolphin-mixtral:8x7b-v2.7"))
+           :chat-model "codegemma:7b-instruct" :embedding-model "codegemma:7b-code"))
   (setopt ellama-providers
           '(("mistral" . (make-llm-ollama
-                         :chat-model "mistral:7b-instruct"
-                         :embedding-model "mistral:7b-text"))
+                          :chat-model "mistral:7b-instruct"
+                          :embedding-model "mistral:7b-text"))
+            ("codegemma" . (make-llm-ollama
+                            :chat-model "codegemma:7b-instruct"
+                            :embedding-model "codegemma:7b-code"))
+            ("command-r" . (make-llm-ollama
+                            :chat-model "command-r:35b"
+                            :embedding-model "command-r:35b"))
             ("dolphin-mixtral" . (make-llm-ollama
-                          :chat-model "dolphin-mixtral:8x7b-v2.7"
-                          :embedding-model "dolphin-mixtral:8x7b-v2.7"))
+                                  :chat-model "dolphin-mixtral:8x7b-v2.7"
+                                  :embedding-model "dolphin-mixtral:8x7b-v2.7"))
             )))
 
 ;; Key bindings
