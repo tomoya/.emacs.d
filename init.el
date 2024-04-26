@@ -260,6 +260,13 @@
 (require 'tree-sitter-langs)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
+;; ts-fold-mode
+(global-ts-fold-indicators-mode 1)
+(setopt
+ ts-fold-summary-max-length 80
+ ts-fold-summary-exceeded-string "✂️✂️✂️"
+ ts-fold-summary-format "【Summary】%s…")
+
 ;; markdown-preview-mode
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
