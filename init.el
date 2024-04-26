@@ -100,6 +100,7 @@
 (straight-use-package '(lsp-prisma :type git :host github :repo "pimeys/emacs-prisma-mode"))
 (straight-use-package 'lua-mode)
 (straight-use-package 'ellama)
+(straight-use-package 'mistty)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
