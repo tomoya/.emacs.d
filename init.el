@@ -545,6 +545,15 @@ If buffer is associated with a file name, add that file to the
   (setopt affe-grep-command "rg --null --color=never --max-columns=1000 --no-heading --line-number --hidden -v  --glob=!**/.git/** ^$")
   (setopt affe-find-command "fd --color=never --full-path --hidden"))
 
+;; mermaid-mode
+(defun my-mermaid-compile-after-save ()
+  (interactive)
+  (when (eq major-mode 'mermaid-mode)
+    (mermaid-compile)))
+
+(add-hook 'mermaid-mode-hook
+          (lambda () (add-hook 'after-save-hook #'my-mermaid-compile-after-save)))
+
 ;; ellama
 (with-eval-after-load 'llm
   (setopt ellama-language "Japanese")
