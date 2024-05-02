@@ -102,6 +102,7 @@
 (straight-use-package 'lua-mode)
 (straight-use-package 'ellama)
 (straight-use-package 'mistty)
+(straight-use-package 'mermaid-mode)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
