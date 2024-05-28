@@ -262,7 +262,8 @@
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 ;; ts-fold-mode
-(global-ts-fold-indicators-mode 1)
+;; (global-ts-fold-indicators-mode 1)
+(add-hook 'tree-sitter-after-on-hook #'ts-fold-indicators-mode)
 (setopt
  ts-fold-summary-max-length 80
  ts-fold-summary-exceeded-string "✂️✂️✂️"
