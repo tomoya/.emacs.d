@@ -103,6 +103,7 @@
 (straight-use-package 'ellama)
 (straight-use-package 'mistty)
 (straight-use-package 'mermaid-mode)
+(straight-use-package 'svelte-mode)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
@@ -426,6 +427,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'yaml-mode-hook #'lsp)
 (add-hook 'json-mode-hook #'lsp)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'svelte-mode-hook #'lsp)
 
 ;; company
 ;; Show first candidate inline
