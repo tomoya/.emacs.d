@@ -145,7 +145,7 @@
 (require 'nano-theme)
 (nano-theme)
 ;; (require 'nano-session)
-(require 'nano-modeline)
+;; (require 'nano-modeline)
 (require 'nano-bindings)
 (let ((inhibit-message t))
   (message "Welcome to GNU Emacs / N Λ N O edition")
