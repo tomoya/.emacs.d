@@ -562,6 +562,9 @@ If buffer is associated with a file name, add that file to the
   (setopt ellama-language "Japanese")
   (require 'llm-ollama)
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
+  (defun my-ellama-generate-commit-message ()
+    (interactive)
+    (ellama-stream (format ellama-generate-commit-message-template (shell-command-to-string "git diff --cached"))))
   (setopt ellama-provider
           (make-llm-ollama
            :chat-model "codegemma:7b-instruct" :embedding-model "codegemma:7b-code"))
@@ -628,6 +631,7 @@ If buffer is associated with a file name, add that file to the
 (with-eval-after-load 'darkroom
   (define-key darkroom-mode-map (kbd "C-s-=") 'darkroom-increase-margins)
   (define-key darkroom-mode-map (kbd "C-s--") 'darkroom-decrease-margins))
+(keymap-set git-commit-mode-map "C-c C-g" 'my-ellama-generate-commit-message)
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
