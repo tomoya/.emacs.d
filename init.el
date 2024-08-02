@@ -562,9 +562,6 @@ If buffer is associated with a file name, add that file to the
   (setopt ellama-language "Japanese")
   (require 'llm-ollama)
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
-  (defun my-ellama-generate-commit-message ()
-    (interactive)
-    (ellama-stream (format ellama-generate-commit-message-template (shell-command-to-string "git diff --cached"))))
   (setopt ellama-provider
           (make-llm-ollama
            :chat-model "codegemma:7b-instruct" :embedding-model "codegemma:7b-code"))
@@ -582,6 +579,10 @@ If buffer is associated with a file name, add that file to the
                                   :chat-model "dolphin-mixtral:8x7b-v2.7"
                                   :embedding-model "dolphin-mixtral:8x7b-v2.7"))
             )))
+
+(defun my-ellama-generate-commit-message ()
+  (interactive)
+  (ellama-stream (format ellama-generate-commit-message-template (shell-command-to-string "git diff --cached"))))
 
 ;; Key bindings
 (global-set-key (kbd "C-h b") 'embark-bindings)
@@ -631,7 +632,9 @@ If buffer is associated with a file name, add that file to the
 (with-eval-after-load 'darkroom
   (define-key darkroom-mode-map (kbd "C-s-=") 'darkroom-increase-margins)
   (define-key darkroom-mode-map (kbd "C-s--") 'darkroom-decrease-margins))
-(keymap-set git-commit-mode-map "C-c C-g" 'my-ellama-generate-commit-message)
+(with-eval-after-load 'git-commit
+  (require 'ellama)
+  (keymap-set git-commit-mode-map "C-c C-g" 'my-ellama-generate-commit-message))
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
