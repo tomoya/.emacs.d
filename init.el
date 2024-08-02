@@ -564,11 +564,14 @@ If buffer is associated with a file name, add that file to the
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   (setopt ellama-provider
           (make-llm-ollama
-           :chat-model "codegemma:7b-instruct" :embedding-model "codegemma:7b-code"))
+           :chat-model "codestral:22b-v0.1-q4_K_S" :embedding-model "codestral:22b-v0.1-q4_K_S"))
   (setopt ellama-providers
-          '(("mistral" . (make-llm-ollama
-                          :chat-model "mistral:7b-instruct"
-                          :embedding-model "mistral:7b-text"))
+          '(("codestral" . (make-llm-ollama
+                            :chat-model "codestral:22b-v0.1-q4_K_S"
+                            :embedding-model "codestral:22b-v0.1-q4_K_S"))
+            ("aya" . (make-llm-ollama
+                      :chat-model "aya:8b-23-q4_K_S"
+                      :embedding-model "aya:8b-23-q4_K_S"))
             ("codegemma" . (make-llm-ollama
                             :chat-model "codegemma:7b-instruct"
                             :embedding-model "codegemma:7b-code"))
