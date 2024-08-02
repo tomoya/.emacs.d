@@ -569,18 +569,15 @@ If buffer is associated with a file name, add that file to the
           '(("codestral" . (make-llm-ollama
                             :chat-model "codestral:22b-v0.1-q4_K_S"
                             :embedding-model "codestral:22b-v0.1-q4_K_S"))
-            ("aya" . (make-llm-ollama
-                      :chat-model "aya:8b-23-q4_K_S"
-                      :embedding-model "aya:8b-23-q4_K_S"))
-            ("codegemma" . (make-llm-ollama
-                            :chat-model "codegemma:7b-instruct"
-                            :embedding-model "codegemma:7b-code"))
+            ("gemma2" . (make-llm-ollama
+                            :chat-model "gemma2:27b-instruct-q4_K_S"
+                            :embedding-model "gemma2:27b-instruct-q4_K_S"))
             ("command-r" . (make-llm-ollama
                             :chat-model "command-r:35b"
                             :embedding-model "command-r:35b"))
-            ("dolphin-mixtral" . (make-llm-ollama
-                                  :chat-model "dolphin-mixtral:8x7b-v2.7"
-                                  :embedding-model "dolphin-mixtral:8x7b-v2.7"))
+            ("llama3.1" . (make-llm-ollama
+                                  :chat-model "llama3.1:8b"
+                                  :embedding-model "llama3.1:8b"))
             )))
 
 (defun my-ellama-generate-commit-message ()
