@@ -559,8 +559,8 @@ If buffer is associated with a file name, add that file to the
 
 ;; ellama
 (with-eval-after-load 'llm
-  (setopt ellama-language "Japanese")
   (require 'llm-ollama)
+  (setopt ellama-language "Japanese")
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   (setopt ellama-provider (make-llm-ollama
                            :chat-model "codestral:22b-v0.1-q4_K_S"
