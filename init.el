@@ -583,10 +583,6 @@ If buffer is associated with a file name, add that file to the
                                   :embedding-model "llama3.1:8b"))
             )))
 
-(defun my-ellama-generate-commit-message ()
-  (interactive)
-  (ellama-stream (format ellama-generate-commit-message-template (shell-command-to-string "git diff --cached"))))
-
 ;; Key bindings
 (global-set-key (kbd "C-h b") 'embark-bindings)
 (global-set-key (kbd "s-e") 'embark-act)
@@ -637,7 +633,7 @@ If buffer is associated with a file name, add that file to the
   (define-key darkroom-mode-map (kbd "C-s--") 'darkroom-decrease-margins))
 (with-eval-after-load 'git-commit
   (require 'ellama)
-  (keymap-set git-commit-mode-map "C-c C-g" 'my-ellama-generate-commit-message))
+  (keymap-set git-commit-mode-map "C-c C-g" 'ellama-generate-commit-message))
 
 ;; Command protection
 (put 'narrow-to-region 'disabled nil)
