@@ -562,9 +562,9 @@ If buffer is associated with a file name, add that file to the
   (setopt ellama-language "Japanese")
   (require 'llm-ollama)
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
-  (setopt ellama-provider
-          (make-llm-ollama
-           :chat-model "codestral:22b-v0.1-q4_K_S" :embedding-model "codestral:22b-v0.1-q4_K_S"))
+  (setopt ellama-provider (make-llm-ollama
+                           :chat-model "codestral:22b-v0.1-q4_K_S"
+                           :embedding-model "codestral:22b-v0.1-q4_K_S"))
   (setopt ellama-translation-provider (make-llm-ollama
                                        :chat-model "aya:35b-23-q4_K_S"
                                        :embedding-model "aya:35b-23-q4_K_S"))
