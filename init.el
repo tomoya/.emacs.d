@@ -568,6 +568,10 @@ If buffer is associated with a file name, add that file to the
   (setopt ellama-translation-provider (make-llm-ollama
                                        :chat-model "aya:35b-23-q4_K_S"
                                        :embedding-model "aya:35b-23-q4_K_S"))
+  (setopt my-ellama-translation-quick-provider (make-llm-ollama
+                                       :chat-model "gemma2:9b-instruct-q4_K_S"
+                                       :embedding-model "gemma2:9b-text-q4_K_S"))
+
   (setopt ellama-providers
           '(("codestral" . (make-llm-ollama
                             :chat-model "codestral:22b-v0.1-q4_K_S"
