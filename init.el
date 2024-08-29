@@ -587,6 +587,36 @@ If buffer is associated with a file name, add that file to the
                                   :embedding-model "llama3.1:8b"))
             )))
 
+(when (require 'ellama nil t)
+  (defun my-ellama-translate-quick ()
+    "Quick version ask ellama to translate selected region or word at point."
+    (interactive)
+    (let ((text (if (region-active-p)
+                    (buffer-substring-no-properties (region-beginning) (region-end))
+                  (thing-at-point 'word))))
+      (ellama-instant
+       (format ellama-translation-template
+               ellama-language text ellama-language)
+       :provider my-ellama-translation-quick-provider)))
+
+  (defun my-ellama-translate-to-english ()
+    "Translate to English using ellama"
+    (interactive)
+    (let* ((beg (if (region-active-p)
+                    (region-beginning)
+                  (point-min)))
+           (end (if (region-active-p)
+                    (region-end)
+                  (point-max)))
+           (text (buffer-substring-no-properties beg end)))
+      (kill-region beg end)
+      (ellama-stream
+       (format
+        ellama-translation-template
+        "English" text "English")
+       :point beg)))
+  )
+
 ;; Key bindings
 (global-set-key (kbd "C-h b") 'embark-bindings)
 (global-set-key (kbd "s-e") 'embark-act)
