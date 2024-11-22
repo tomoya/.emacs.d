@@ -104,6 +104,7 @@
 (straight-use-package 'mistty)
 (straight-use-package 'mermaid-mode)
 (straight-use-package 'svelte-mode)
+(straight-use-package 'markdown-toc)
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
