@@ -101,6 +101,7 @@
 (straight-use-package '(lsp-prisma :type git :host github :repo "pimeys/emacs-prisma-mode"))
 (straight-use-package 'lua-mode)
 (straight-use-package 'ellama)
+(straight-use-package 'elisa)
 (straight-use-package 'mistty)
 (straight-use-package 'mermaid-mode)
 (straight-use-package 'svelte-mode)
