@@ -664,7 +664,7 @@ If buffer is associated with a file name, add that file to the
 (global-set-key (kbd "C-c C-r") 'quickrun)
 (global-set-key (kbd "M-s-z") 'checkout-head-revision)
 (global-set-key (kbd "C-x C-j") 'skk-mode)
-(global-set-key (kbd "s-w") 'kill-this-buffer)
+(global-set-key (kbd "s-w") 'kill-current-buffer)
 (global-set-key (kbd "s-T") 'reopen-killed-file)
 (global-set-key (kbd "s-o") 'open-finder)
 (global-set-key (kbd "<M-s-right>") 'next-code-buffer)
