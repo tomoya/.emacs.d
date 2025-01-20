@@ -279,6 +279,29 @@
 ;; (font-family-list)
 ;; (x-list-fonts "Source Han Code JP")
 ;; (x-list-fonts "Adobe Clean Han")
+;; AsciiフォントをFira Codeに
+(set-face-attribute 'default nil
+                    :family "Fira Code"
+                    :height 130)
+
+;; CJKフォントの横幅を調整
+;; 12121212121212121212
+;; あいうえおかきくけこ
+;; (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
+;; (add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
+;; (add-to-list 'face-font-rescale-alist '(".*BIZ UD.*" . 1.2))
+(add-to-list 'face-font-rescale-alist '(".*Source Han Code JP.*" . 1.1))
+(add-to-list 'face-font-rescale-alist '(".*Adobe Clean Han.*" . 1.1))
+
+;; all-the-iconsの横幅を調整
+(add-to-list 'face-font-rescale-alist '(".*all-the-icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*file-icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*FontAwesome.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
+(add-to-list 'face-font-rescale-alist '(".*Apple Color Emoji.*" . 0.9))
+
 ;; set-fontset-font を early-init.el で実行するとEmacsが死ぬ
 (when window-system
   (set-fontset-font

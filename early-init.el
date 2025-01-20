@@ -34,32 +34,8 @@
 ;; No titlebar
 (add-to-list 'default-frame-alist '(undecorated . t))
 
-;; font
-;; AsciiフォントをFira Codeに
-(set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 130)
-
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
 ;; amount of data which Emacs reads from the process. Again the emacs
 ;; default is too low 4k considering that the some of the language
 ;; server responses are in 800k - 3M range.
 (setq-default read-process-output-max (* 1024 1024))
-
-;; CJKフォントの横幅を調整
-;; 12121212121212121212
-;; あいうえおかきくけこ
-;; (add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))
-;; (add-to-list 'face-font-rescale-alist '(".*MotoyaLCedar.*" . 1.2))
-;; (add-to-list 'face-font-rescale-alist '(".*BIZ UD.*" . 1.2))
-(add-to-list 'face-font-rescale-alist '(".*Source Han Code JP.*" . 1.3))
-(add-to-list 'face-font-rescale-alist '(".*Adobe Clean Han.*" . 1.3))
-
-;; all-the-iconsの横幅を調整
-(add-to-list 'face-font-rescale-alist '(".*all-the-icons.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*file-icons.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*FontAwesome.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*octicons.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*Weather Icons.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*Material Icons.*" . 0.8))
-(add-to-list 'face-font-rescale-alist '(".*Apple Color Emoji.*" . 0.9))
