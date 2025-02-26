@@ -532,7 +532,7 @@ If buffer is associated with a file name, add that file to the
 (defun open-finder ()
   "Open DIR from finder."
   (interactive)
-  (shell-command (concat "open " default-directory)))
+  (shell-command (format "open '%s'" default-directory)))
 
 ;; pdf-view-mode
 (autoload 'pdf-view-mode
