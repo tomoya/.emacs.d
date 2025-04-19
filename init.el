@@ -49,6 +49,7 @@
 (straight-use-package 'vterm)
 (straight-use-package 'tree-sitter-langs)
 (straight-use-package '(ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
+(straight-use-package '(visual-basic-mode :type git :host github :repo "emacsmirror/visual-basic-mode"))
 (straight-use-package 'forge)
 (straight-use-package 'github-review)
 (straight-use-package 'string-inflection)
@@ -425,6 +426,9 @@ point reaches the beginning or end of the buffer, stop there."
 ;; JavaScript
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;; VisualBasic
+(add-to-list 'auto-mode-alist '("\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'" . visual-basic-mode))
 
 ;; TypeScript
 (flycheck-add-mode 'javascript-eslint 'typescript-mode)
