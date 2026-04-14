@@ -40,6 +40,7 @@
 (straight-use-package 'psession)
 (straight-use-package 'consult)
 (straight-use-package 'consult-ghq)
+(straight-use-package '(consult-gh :type git :host github :repo "armindarvish/consult-gh"))
 (straight-use-package 'consult-lsp)
 (straight-use-package 'embark-consult)
 (straight-use-package 'vertico)
