@@ -34,6 +34,9 @@
 ;; No titlebar
 (add-to-list 'default-frame-alist '(undecorated . t))
 
+;; lsp-mode for emacs-lsp-booster
+(setenv "LSP_USE_PLISTS" "true")
+
 ;; https://github.com/emacs-lsp/lsp-mode#performance Increase the
 ;; amount of data which Emacs reads from the process. Again the emacs
 ;; default is too low 4k considering that the some of the language
