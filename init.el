@@ -107,6 +107,8 @@
 (straight-use-package 'mermaid-mode)
 (straight-use-package 'svelte-mode)
 (straight-use-package 'markdown-toc)
+(straight-use-package 'ef-themes)
+
 
 ;; Used by custom-set-variables
 (require 'orderless nil t)
@@ -130,7 +132,7 @@
 ;; nano
 (defvar nano-font-family-monospaced "Fira Code")
 ;; extract nano-layout needed to improve fperformance or initial display
-(window-divider-mode 1)
+;; (window-divider-mode 1)
 (setq widget-image-enable nil)
 
 (defface fallback '((t :family "Fira Code"
@@ -142,11 +144,11 @@
 ;; Copy standard-display-table before global-whitespace-mode enabled
 (setq-default buffer-display-table standard-display-table)
 
-(require 'nano-theme-dark)
+;; (require 'nano-theme-dark)
 (require 'nano-faces)
 (nano-faces)
-(require 'nano-theme)
-(nano-theme)
+;; (require 'nano-theme)
+;; (nano-theme)
 ;; (require 'nano-session)
 ;; (require 'nano-modeline)
 ;; (require 'nano-bindings)
@@ -179,6 +181,10 @@
                               ; (default: 30)
       auto-save-interval 200) ; number of keystrokes between auto-saves
                               ; (default: 300)
+
+;; ef-themes
+(mapc #'disable-theme custom-enabled-themes)
+(load-theme 'ef-deuteranopia-dark :no-confirm)
 
 ;; custom-file
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
