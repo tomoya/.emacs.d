@@ -281,6 +281,10 @@
  ts-fold-summary-exceeded-string "✂️✂️✂️"
  ts-fold-summary-format "【Summary】%s…")
 
+;; markdown-ts-mode
+(require 'markdown-ts-mode)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-ts-mode))
+
 ;; markdown-preview-mode
 (setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"))
 
